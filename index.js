@@ -8,7 +8,7 @@ const { db, dbRun, dbAll, dbGet, initDb, refreshAgentStage } = require('./db');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ storage: multer.memoryStorage() });
 
 app.use(cors());
 app.use(express.json());
@@ -86,7 +86,9 @@ app.post('/api/agents/import', upload.single('file'), async (req, res) => {
       return res.status(400).json({ success: false, error: 'No file uploaded' });
     }
 
-    const workbook = XLSX.readFile(req.file.path);
+    const workbook = req.file.buffer
+      ? XLSX.read(req.file.buffer, { type: 'buffer' })
+      : XLSX.readFile(req.file.path);
     const sheetName = workbook.SheetNames[0];
     const sheetData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
 
