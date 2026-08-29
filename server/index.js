@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const fs = require('fs');
 const multer = require('multer');
 const XLSX = require('xlsx');
 const { db, dbRun, dbAll, dbGet, initDb, refreshAgentStage } = require('./db');
@@ -13,7 +14,11 @@ app.use(cors());
 app.use(express.json());
 
 // Serve static frontend in production if built
-app.use(express.static(path.join(__dirname, '../client/dist')));
+const clientDistPath = path.join(__dirname, '../client/dist');
+const rootDistPath = path.join(__dirname, './dist');
+const currentPath = __dirname;
+const staticDir = fs.existsSync(clientDistPath) ? clientDistPath : (fs.existsSync(rootDistPath) ? rootDistPath : currentPath);
+app.use(express.static(staticDir));
 
 // Initialize DB schema & seed data
 initDb().then(() => {
@@ -1451,7 +1456,14 @@ app.get('/api/export/conveyance', async (req, res) => {
 
 // SPA Fallback Route for Client-side Routing (Express v5 compatible)
 app.use((req, res) => {
-  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+  const indexHtml = fs.existsSync(path.join(staticDir, 'index.html'))
+    ? path.join(staticDir, 'index.html')
+    : path.join(__dirname, 'index.html');
+  if (fs.existsSync(indexHtml)) {
+    res.sendFile(indexHtml);
+  } else {
+    res.send(`<!DOCTYPE html><html><head><title>Travelx CRM</title></head><body style="background:#0f172a;color:#f8fafc;font-family:sans-serif;text-align:center;padding:50px;"><h1>✈️ Travelx CRM Server Active</h1><p>Backend API is 100% Online 24/7.</p></body></html>`);
+  }
 });
 
 // Start Express server
