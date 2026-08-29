@@ -13,12 +13,11 @@ const upload = multer({ dest: 'uploads/' });
 app.use(cors());
 app.use(express.json());
 
-// Serve static frontend in production if built
-const clientDistPath = path.join(__dirname, '../client/dist');
-const rootDistPath = path.join(__dirname, './dist');
-const currentPath = __dirname;
-const staticDir = fs.existsSync(clientDistPath) ? clientDistPath : (fs.existsSync(rootDistPath) ? rootDistPath : currentPath);
-app.use(express.static(staticDir));
+// Serve static frontend in production
+app.use(express.static(path.join(__dirname, '../dist')));
+app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use(express.static(__dirname));
 
 // Initialize DB schema & seed data
 initDb().then(() => {
@@ -1456,13 +1455,18 @@ app.get('/api/export/conveyance', async (req, res) => {
 
 // SPA Fallback Route for Client-side Routing (Express v5 compatible)
 app.use((req, res) => {
-  const indexHtml = fs.existsSync(path.join(staticDir, 'index.html'))
-    ? path.join(staticDir, 'index.html')
-    : path.join(__dirname, 'index.html');
-  if (fs.existsSync(indexHtml)) {
-    res.sendFile(indexHtml);
+  const distIndex = path.join(__dirname, 'dist/index.html');
+  const parentDistIndex = path.join(__dirname, '../dist/index.html');
+  const rootIndex = path.join(__dirname, 'index.html');
+
+  if (fs.existsSync(distIndex)) {
+    res.sendFile(distIndex);
+  } else if (fs.existsSync(parentDistIndex)) {
+    res.sendFile(parentDistIndex);
+  } else if (fs.existsSync(rootIndex)) {
+    res.sendFile(rootIndex);
   } else {
-    res.send(`<!DOCTYPE html><html><head><title>Travelx CRM</title></head><body style="background:#0f172a;color:#f8fafc;font-family:sans-serif;text-align:center;padding:50px;"><h1>✈️ Travelx CRM Server Active</h1><p>Backend API is 100% Online 24/7.</p></body></html>`);
+    res.send(`<!DOCTYPE html><html><head><title>Travelx CRM</title></head><body style="background:#0f172a;color:#f8fafc;font-family:sans-serif;text-align:center;padding:50px;"><h1>✈️ Travelx CRM Server Active</h1></body></html>`);
   }
 });
 
