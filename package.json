@@ -1,20 +1,15 @@
 {
   "name": "travelx-crm",
   "version": "1.0.0",
-  "description": "",
+  "description": "Travelx CRM",
   "main": "index.js",
-  "scripts": {
-    "build": "cd client && npm install && npm run build",
-    "start": "node server/index.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "type": "commonjs",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "cors": "^2.8.6",
     "express": "^5.2.1",
-    "localtunnel": "^2.0.2",
     "multer": "^2.3.0",
     "sqlite3": "^6.0.1",
     "xlsx": "^0.18.5"
