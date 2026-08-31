@@ -63,6 +63,18 @@ export default function Agent360Drawer({ agentId, onClose, onAction }) {
             <p className="text-sm text-slate-400 flex items-center gap-2 mt-1">
               <User className="w-4 h-4 text-slate-500" /> {data?.name} &bull; <Phone className="w-4 h-4 text-slate-500" /> {data?.mobile} &bull; <MapPin className="w-4 h-4 text-slate-500" /> {data?.city} ({data?.area})
             </p>
+            {data && (
+              <div className="flex items-center gap-2 mt-2">
+                <span className="text-xs text-slate-400 font-semibold">💳 Payment Terms:</span>
+                <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold ${
+                  data.payment_terms?.includes('Advance') ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40' :
+                  data.payment_terms?.includes('Credit') || data.payment_terms?.includes('After') ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' :
+                  'bg-slate-800 text-slate-300 border border-slate-700'
+                }`}>
+                  {data.payment_terms || 'Not Discussed'}
+                </span>
+              </div>
+            )}
           </div>
           <button 
             onClick={onClose}

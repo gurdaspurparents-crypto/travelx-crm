@@ -73,6 +73,8 @@ async function initDb() {
     );
   `);
 
+  try { await dbRun(`ALTER TABLE agents ADD COLUMN payment_terms TEXT DEFAULT 'Not Discussed'`); } catch(e){}
+  try { await dbRun(`ALTER TABLE telephonic_calls ADD COLUMN payment_terms TEXT`); } catch(e){}
   try { await dbRun(`ALTER TABLE marketing_visits ADD COLUMN gps_latitude TEXT`); } catch(e){}
   try { await dbRun(`ALTER TABLE marketing_visits ADD COLUMN gps_longitude TEXT`); } catch(e){}
   try { await dbRun(`ALTER TABLE marketing_visits ADD COLUMN gps_address TEXT`); } catch(e){}
@@ -89,6 +91,7 @@ async function initDb() {
       agent_requirement TEXT,
       interest_level TEXT,
       call_result TEXT NOT NULL,
+      payment_terms TEXT,
       remarks TEXT,
       next_followup_date TEXT,
       FOREIGN KEY (agent_id) REFERENCES agents(id)

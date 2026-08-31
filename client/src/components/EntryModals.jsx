@@ -151,6 +151,7 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
     agent_requirement: '',
     interest_level: 'Interested / Warm',
     call_result: 'Requirement Received',
+    payment_terms: data?.payment_terms || 'Advance Payment',
     remarks: '',
     next_followup_date: new Date(Date.now() + 172800000).toISOString().split('T')[0]
   });
@@ -160,7 +161,8 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
       setCallForm(prev => ({
         ...prev,
         agent_id: data.agent_id || data.id || prev.agent_id,
-        visit_id: data.visit_id || null
+        visit_id: data.visit_id || null,
+        payment_terms: data.payment_terms || prev.payment_terms
       }));
     }
   }, [modalType, data]);
@@ -559,6 +561,23 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
                 <option value="Call Again Later">Call Again Later ⏰</option>
                 <option value="Not Interested">Not Interested ❌</option>
               </select>
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-400 mb-1">💳 Agent Payment Terms (Advance / Credit / After)</label>
+              <select
+                value={callForm.payment_terms || 'Advance Payment'}
+                onChange={e => setCallForm({ ...callForm, payment_terms: e.target.value })}
+                className="w-full bg-slate-950 border border-slate-800 text-slate-200 p-2.5 rounded-xl text-sm font-bold text-emerald-400"
+              >
+                <option value="Advance Payment">⚡ Advance Payment (Pehle Payment Leni Hai)</option>
+                <option value="After Booking / Credit">💳 After Booking / Credit (Booking ke Baad Payment)</option>
+                <option value="50% Advance / 50% Credit">🌗 50% Advance / 50% Balance (Aadhi Advance)</option>
+                <option value="Not Discussed">❓ Not Discussed / Pending</option>
+              </select>
+              <p className="text-[10px] text-emerald-400/80 mt-1">
+                ✨ Simranjit: Ye select karne par Agent Master & CRM Me automatically status update ho jayega!
+              </p>
             </div>
 
             <div>

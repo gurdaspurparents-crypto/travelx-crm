@@ -586,6 +586,7 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                 <th className="p-3.5">Agent & Mobile</th>
                 <th className="p-3.5">Connectivity</th>
                 <th className="p-3.5">Call Result</th>
+                <th className="p-3.5">Payment Terms</th>
                 <th className="p-3.5">Captured Requirement</th>
                 <th className="p-3.5">Call Remarks</th>
                 <th className="p-3.5 text-right">Quick Action</th>
@@ -594,13 +595,13 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
             <tbody className="divide-y divide-slate-800/60">
               {loading ? (
                 <tr>
-                  <td colSpan="8" className="text-center p-8">
+                  <td colSpan="9" className="text-center p-8">
                     <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
                   </td>
                 </tr>
               ) : filteredCalls.length === 0 ? (
                 <tr>
-                  <td colSpan="8" className="text-center p-8 text-slate-500">
+                  <td colSpan="9" className="text-center p-8 text-slate-500">
                     No telephonic follow-up calls found for selected filters.
                   </td>
                 </tr>
@@ -632,6 +633,19 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                       }`}>
                         {c.call_result}
                       </span>
+                    </td>
+                    <td className="p-3.5">
+                      {c.payment_terms ? (
+                        <span className={`px-2 py-0.5 rounded text-xs font-bold ${
+                          c.payment_terms.includes('Advance') ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' :
+                          c.payment_terms.includes('Credit') || c.payment_terms.includes('After') ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30' :
+                          'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                        }`}>
+                          {c.payment_terms}
+                        </span>
+                      ) : (
+                        <span className="text-slate-500 text-xs">-</span>
+                      )}
                     </td>
                     <td className="p-3.5 max-w-xs">
                       <div className="text-xs text-slate-200 font-medium">{c.agent_requirement || '—'}</div>

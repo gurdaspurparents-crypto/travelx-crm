@@ -210,6 +210,7 @@ export default function AgentMaster({ onOpenAgentDrawer, onOpenModal, onOpenImpo
                 <th className="p-3.5">Contact Person</th>
                 <th className="p-3.5">Location</th>
                 <th className="p-3.5">Current Stage</th>
+                <th className="p-3.5">Payment Terms</th>
                 <th className="p-3.5 text-center">Queries</th>
                 <th className="p-3.5 text-center">Bookings</th>
                 <th className="p-3.5 text-right">Business Value</th>
@@ -219,13 +220,13 @@ export default function AgentMaster({ onOpenAgentDrawer, onOpenModal, onOpenImpo
             <tbody className="divide-y divide-slate-800/60">
               {loading ? (
                 <tr>
-                  <td colSpan="9" className="text-center p-8">
+                  <td colSpan="10" className="text-center p-8">
                     <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-sky-500"></div>
                   </td>
                 </tr>
               ) : agents.length === 0 ? (
                 <tr>
-                  <td colSpan="9" className="text-center p-8 text-slate-500">
+                  <td colSpan="10" className="text-center p-8 text-slate-500">
                     No travel agents found matching filters.
                   </td>
                 </tr>
@@ -246,6 +247,25 @@ export default function AgentMaster({ onOpenAgentDrawer, onOpenModal, onOpenImpo
                       <div className="text-xs text-slate-500">{ag.area}</div>
                     </td>
                     <td className="p-3.5">{getStageBadge(ag.stage)}</td>
+                    <td className="p-3.5">
+                      {ag.payment_terms?.includes('Advance') ? (
+                        <span className="px-2 py-1 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold rounded-lg text-xs inline-flex items-center gap-1">
+                          ⚡ Advance
+                        </span>
+                      ) : ag.payment_terms?.includes('Credit') || ag.payment_terms?.includes('After') ? (
+                        <span className="px-2 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/30 font-bold rounded-lg text-xs inline-flex items-center gap-1">
+                          💳 After / Credit
+                        </span>
+                      ) : ag.payment_terms?.includes('50%') ? (
+                        <span className="px-2 py-1 bg-blue-500/20 text-blue-300 border border-blue-500/30 font-bold rounded-lg text-xs inline-flex items-center gap-1">
+                          🌗 50% Advance
+                        </span>
+                      ) : (
+                        <span className="px-2 py-1 bg-slate-800 text-slate-400 rounded-lg text-xs">
+                          ❓ Pending
+                        </span>
+                      )}
+                    </td>
                     <td className="p-3.5 text-center font-bold text-slate-200">{ag.total_queries || 0}</td>
                     <td className="p-3.5 text-center font-bold text-emerald-400">{ag.total_bookings || 0}</td>
                     <td className="p-3.5 text-right font-bold text-sky-300">
