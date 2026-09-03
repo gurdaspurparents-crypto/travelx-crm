@@ -70,6 +70,118 @@ app.post('/api/backup/now', async (req, res) => {
   }
 });
 
+// ==================== TODAY'S FOLLOW-UPS ALERT SYSTEM ====================
+
+app.get('/api/followups/due', async (req, res) => {
+  try {
+    const today = req.query.date || new Date().toISOString().split('T')[0];
+
+    // 1. Marketing Visits Followups Due
+    const visitFollowups = await dbAll(`
+      SELECT 
+        mv.id,
+        mv.visit_date as interaction_date,
+        mv.next_followup_date as due_date,
+        mv.executive_name,
+        mv.person_met as contact_person,
+        mv.mobile,
+        mv.products_pitched,
+        mv.response_level,
+        mv.remarks,
+        'visit' as source_type,
+        a.id as agent_id,
+        a.company_name,
+        a.name as agent_name,
+        a.city as agent_city,
+        a.area as agent_area,
+        a.stage as agent_stage
+      FROM marketing_visits mv
+      JOIN agents a ON mv.agent_id = a.id
+      WHERE mv.next_followup_date IS NOT NULL 
+        AND mv.next_followup_date != ''
+        AND mv.next_followup_date <= ?
+      ORDER BY mv.next_followup_date ASC
+    `, [today]);
+
+    // 2. Telephonic Calls Followups Due
+    const callFollowups = await dbAll(`
+      SELECT 
+        tc.id,
+        tc.call_date as interaction_date,
+        tc.next_followup_date as due_date,
+        tc.executive_name,
+        tc.services_discussed as products_pitched,
+        tc.interest_level as response_level,
+        tc.call_result,
+        tc.remarks,
+        'call' as source_type,
+        a.id as agent_id,
+        a.company_name,
+        a.name as contact_person,
+        a.mobile,
+        a.city as agent_city,
+        a.area as agent_area,
+        a.stage as agent_stage
+      FROM telephonic_calls tc
+      JOIN agents a ON tc.agent_id = a.id
+      WHERE tc.next_followup_date IS NOT NULL 
+        AND tc.next_followup_date != ''
+        AND tc.next_followup_date <= ?
+      ORDER BY tc.next_followup_date ASC
+    `, [today]);
+
+    // 3. Queries / Quotation Followups Due
+    const queryFollowups = await dbAll(`
+      SELECT 
+        q.id,
+        q.query_date as interaction_date,
+        q.followup_date as due_date,
+        q.handling_employee as executive_name,
+        q.product as products_pitched,
+        q.status,
+        q.query_details as remarks,
+        q.quoted_amount,
+        'query' as source_type,
+        a.id as agent_id,
+        a.company_name,
+        a.name as contact_person,
+        a.mobile,
+        a.city as agent_city,
+        a.area as agent_area,
+        a.stage as agent_stage
+      FROM queries q
+      JOIN agents a ON q.agent_id = a.id
+      WHERE q.followup_date IS NOT NULL 
+        AND q.followup_date != ''
+        AND q.followup_date <= ?
+        AND q.status NOT IN ('Converted', 'Rejected', 'Lost')
+      ORDER BY q.followup_date ASC
+    `, [today]);
+
+    const allFollowups = [
+      ...visitFollowups,
+      ...callFollowups,
+      ...queryFollowups
+    ];
+
+    res.json({
+      success: true,
+      today,
+      total_due: allFollowups.length,
+      counts: {
+        total: allFollowups.length,
+        visits: visitFollowups.length,
+        calls: callFollowups.length,
+        queries: queryFollowups.length
+      },
+      followups: allFollowups
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+
 // ==================== 1. EXCEL / CSV IMPORT & DATA MANAGEMENT ====================
 
 // Sample Template Download

@@ -116,6 +116,7 @@ export default function App() {
         role={role}
         onRoleChange={handleRoleChange}
         onOpenAgentDrawer={setSelectedAgentId}
+        onOpenModal={handleOpenModal}
       />
 
       {/* Main App Workspace View */}

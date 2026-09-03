@@ -1,15 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { LayoutDashboard, Flame, Users, MapPin, Phone, PhoneCall, FileText, BarChart3, Sparkles, Bell, Shield, X, AlertTriangle, Clock } from 'lucide-react';
+import FollowupAlertModal from './FollowupAlertModal';
 
-export default function Header({ activeTab, onSelectTab, role, onRoleChange, onOpenAgentDrawer }) {
+export default function Header({ activeTab, onSelectTab, role, onRoleChange, onOpenAgentDrawer, onOpenModal }) {
   const [notifications, setNotifications] = useState({ unread_count: 0, alerts: [] });
-  const [showNotificationDrawer, setShowNotificationDrawer] = useState(false);
+  const [followupData, setFollowupData] = useState(null);
+  const [showFollowupModal, setShowFollowupModal] = useState(false);
 
   useEffect(() => {
     fetchNotifications();
-    const interval = setInterval(fetchNotifications, 15000);
+    fetchFollowups();
+    const interval = setInterval(() => {
+      fetchNotifications();
+      fetchFollowups();
+    }, 15000);
     return () => clearInterval(interval);
   }, []);
+
+  const fetchFollowups = async () => {
+    try {
+      const res = await fetch('/api/followups/due');
+      const json = await res.json();
+      if (json.success) {
+        setFollowupData(json);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const fetchNotifications = async () => {
     try {
@@ -79,9 +97,21 @@ export default function Header({ activeTab, onSelectTab, role, onRoleChange, onO
             </div>
           </div>
 
-          {/* Right Controls: Role Switcher & Notifications */}
-          <div className="flex items-center gap-3">
+          {/* Right Controls: Due Followups, Role Switcher & Notifications */}
+          <div className="flex items-center gap-2.5">
             
+            {/* Today's Due Follow-ups Alert Badge */}
+            {followupData && followupData.total_due > 0 && (
+              <button
+                onClick={() => setShowFollowupModal(true)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black bg-gradient-to-r from-rose-600 via-amber-600 to-rose-600 hover:from-rose-500 hover:to-amber-500 text-white shadow-lg shadow-rose-600/30 animate-pulse transition"
+                title="Click to view today's due follow-ups"
+              >
+                <Clock className="w-3.5 h-3.5" />
+                <span>{followupData.total_due} Follow-ups Due</span>
+              </button>
+            )}
+
             {/* Role Switcher */}
             <div className="flex items-center gap-1.5 bg-slate-950 border border-slate-800 px-3 py-1.5 rounded-xl text-xs">
               <Shield className="w-3.5 h-3.5 text-sky-400" />
@@ -100,13 +130,14 @@ export default function Header({ activeTab, onSelectTab, role, onRoleChange, onO
 
             {/* Notification Bell */}
             <button
-              onClick={() => setShowNotificationDrawer(!showNotificationDrawer)}
+              onClick={() => setShowFollowupModal(true)}
               className="relative p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition"
+              title="Today's Follow-ups & Alerts"
             >
               <Bell className="w-4 h-4" />
-              {notifications.unread_count > 0 && (
+              {followupData && followupData.total_due > 0 && (
                 <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-rose-600 text-white font-bold text-[10px] flex items-center justify-center animate-pulse">
-                  {notifications.unread_count}
+                  {followupData.total_due}
                 </span>
               )}
             </button>
@@ -147,6 +178,16 @@ export default function Header({ activeTab, onSelectTab, role, onRoleChange, onO
         </nav>
 
       </div>
+
+      {/* Today's Due Follow-ups Alert Modal */}
+      <FollowupAlertModal
+        isOpen={showFollowupModal}
+        onClose={() => setShowFollowupModal(false)}
+        followupData={followupData}
+        onOpenModal={onOpenModal}
+        onOpenAgentDrawer={onOpenAgentDrawer}
+      />
+
     </header>
   );
 }
