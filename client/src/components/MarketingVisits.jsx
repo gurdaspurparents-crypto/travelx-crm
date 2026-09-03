@@ -577,7 +577,7 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
               </div>
 
               {/* Quick Presets */}
-              <div className="flex flex-wrap items-center gap-1">
+              <div className="flex flex-wrap items-center gap-1.5">
                 {(() => {
                   const todayStr = formatLocalDate(new Date());
                   const yest = new Date();
@@ -594,7 +594,7 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                         className={`px-2.5 py-1 rounded-md text-[11px] font-extrabold transition ${
                           !checklistFromDate && !checklistToDate
                             ? 'bg-yellow-500 text-slate-950 shadow'
-                            : 'bg-slate-900 text-slate-400 hover:text-slate-200'
+                            : 'bg-slate-900 text-slate-400 hover:text-slate-200 border border-slate-800'
                         }`}
                       >
                         All Time
@@ -605,7 +605,7 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                         className={`px-2.5 py-1 rounded-md text-[11px] font-extrabold transition ${
                           isTodayActive
                             ? 'bg-yellow-500 text-slate-950 shadow'
-                            : 'bg-slate-900 text-slate-300 hover:bg-slate-800'
+                            : 'bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800'
                         }`}
                       >
                         Today
@@ -616,7 +616,7 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                         className={`px-2.5 py-1 rounded-md text-[11px] font-extrabold transition ${
                           isYesterdayActive
                             ? 'bg-yellow-500 text-slate-950 shadow'
-                            : 'bg-slate-900 text-slate-300 hover:bg-slate-800'
+                            : 'bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800'
                         }`}
                       >
                         Yesterday
@@ -627,11 +627,27 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                         className={`px-2.5 py-1 rounded-md text-[11px] font-extrabold transition ${
                           checklistFromDate && !isTodayActive && !isYesterdayActive
                             ? 'bg-yellow-500 text-slate-950 shadow'
-                            : 'bg-slate-900 text-slate-300 hover:bg-slate-800'
+                            : 'bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800'
                         }`}
                       >
                         This Month
                       </button>
+
+                      {/* Day-Wise Specific Date Picker */}
+                      <div className="flex items-center gap-1 bg-slate-900 px-2 py-0.5 rounded-md border border-slate-800">
+                        <Calendar className="w-3 h-3 text-yellow-400" />
+                        <span className="text-[10px] text-slate-400 font-bold hidden sm:inline">Pick Day:</span>
+                        <input
+                          type="date"
+                          value={checklistFromDate === checklistToDate ? checklistFromDate : ''}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            setChecklistFromDate(val);
+                            setChecklistToDate(val);
+                          }}
+                          className="bg-slate-950 text-yellow-300 text-[11px] font-bold border-none focus:outline-none cursor-pointer"
+                        />
+                      </div>
                     </>
                   );
                 })()}
@@ -639,7 +655,7 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                   <button
                     type="button"
                     onClick={() => setChecklistPreset('all')}
-                    className="p-1 bg-rose-950/60 hover:bg-rose-900 text-rose-300 rounded-md transition"
+                    className="p-1 bg-rose-950/80 hover:bg-rose-900 text-rose-300 rounded-md transition border border-rose-800/60"
                     title="Clear Date Filter"
                   >
                     <X className="w-3 h-3" />
