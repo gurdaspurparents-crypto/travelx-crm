@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { MapPin, Plus, Calendar, CheckCircle2, User, Phone, Tag, FileText, Filter, X, Trash2, Download, AlertCircle, Navigation, Search, Gauge, DollarSign, Flag, Clock, UserPlus, Edit } from 'lucide-react';
+import { MapPin, Plus, Calendar, CheckCircle2, User, Phone, Tag, FileText, Filter, X, Trash2, Download, AlertCircle, Navigation, Search, Gauge, DollarSign, Flag, Clock, UserPlus, Edit, Compass, Sparkles } from 'lucide-react';
 import { exportToPDF } from '../utils/exportUtils';
 import BikramPwaInstallBanner from './BikramPwaInstallBanner';
+import RoutePlannerTester from './RoutePlannerTester';
 
 export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }) {
   const isAdmin = role === 'Admin / Owner' || !role;
@@ -27,6 +28,9 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
   const [dayReport, setDayReport] = useState([]);
   const [startKmInput, setStartKmInput] = useState('');
   const [endKmInput, setEndKmInput] = useState('');
+
+  // Safe Beta Tester state for Nearby Agents Route Planner
+  const [showRouteTester, setShowRouteTester] = useState(false);
 
   useEffect(() => {
     fetchVisits();
@@ -334,6 +338,17 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
             <FileText className="w-3.5 h-3.5" /> Download PDF
           </button>
           <button
+            onClick={() => setShowRouteTester(!showRouteTester)}
+            className={`px-3.5 py-2 font-extrabold rounded-xl text-xs transition shadow-lg flex items-center gap-1.5 border cursor-pointer ${
+              showRouteTester
+                ? 'bg-emerald-600 hover:bg-emerald-500 text-white border-emerald-400'
+                : 'bg-emerald-950/90 hover:bg-emerald-900 text-emerald-300 border-emerald-600/70 shadow-emerald-950/40'
+            }`}
+          >
+            <Compass className="w-4 h-4 text-emerald-400" />
+            <span>{showRouteTester ? '✕ Close Route Planner' : '🧪 Test: Route Planner'}</span>
+          </button>
+          <button
             onClick={() => onOpenModal('create_agent')}
             className="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white font-semibold rounded-xl text-xs transition shadow-lg shadow-sky-600/20 flex items-center gap-1.5"
           >
@@ -347,6 +362,15 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
           </button>
         </div>
       </div>
+
+      {/* 🧪 SAFE BETA TESTER: Nearby Agents Route Planner */}
+      {showRouteTester && (
+        <RoutePlannerTester
+          onClose={() => setShowRouteTester(false)}
+          onOpenModal={onOpenModal}
+          onOpenAgentDrawer={onOpenAgentDrawer}
+        />
+      )}
 
       {/* 🏍️ ODOMETER & CONVEYANCE TRACKER CARD */}
       <div className="bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border border-indigo-500/40 rounded-2xl p-5 shadow-xl space-y-4">
