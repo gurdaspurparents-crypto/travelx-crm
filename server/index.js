@@ -5,7 +5,7 @@ const fs = require('fs');
 const multer = require('multer');
 const XLSX = require('xlsx');
 const { db, dbRun, dbAll, dbGet, initDb, refreshAgentStage } = require('./db');
-const { restoreFromGitHub, scheduleBackup } = require('./gitBackup');
+const { restoreFromGitHub, scheduleBackup, backupToGitHub, getBackupStatus, exportAllData } = require('./gitBackup');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -38,6 +38,36 @@ initDb().then(async () => {
   await restoreFromGitHub(db, dbRun, dbAll);
 }).catch(err => {
   console.error('Failed to initialize database:', err);
+});
+
+// ==================== AUTO BACKUP MANAGEMENT ENDPOINTS ====================
+
+// Check Backup Status
+app.get('/api/backup/status', (req, res) => {
+  const status = getBackupStatus();
+  res.json({ success: true, status });
+});
+
+// Download full database backup as JSON anytime
+app.get('/api/backup/download', async (req, res) => {
+  try {
+    const data = await exportAllData(db);
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Content-Disposition', `attachment; filename="travelx-crm-backup-${new Date().toISOString().slice(0, 10)}.json"`);
+    res.send(JSON.stringify(data, null, 2));
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// Manually trigger immediate backup to GitHub & disk
+app.post('/api/backup/now', async (req, res) => {
+  try {
+    const result = await backupToGitHub(db);
+    res.json({ success: true, result });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
 });
 
 // ==================== 1. EXCEL / CSV IMPORT & DATA MANAGEMENT ====================
@@ -151,6 +181,8 @@ app.post('/api/agents/import', upload.single('file'), async (req, res) => {
       importedCount++;
     }
 
+    scheduleBackup(db);
+
     res.json({ success: true, count: importedCount, message: `Successfully imported ${importedCount} agents into Master Database!` });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
@@ -164,6 +196,7 @@ app.post('/api/agents/clear', async (req, res) => {
     await dbRun(`DELETE FROM telephonic_calls`);
     await dbRun(`DELETE FROM marketing_visits`);
     await dbRun(`DELETE FROM agents`);
+    scheduleBackup(db);
     res.json({ success: true, message: 'All database records cleared! You can now import your 700+ agents list from Excel.' });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
@@ -374,6 +407,8 @@ app.post('/api/agents', async (req, res) => {
       [nextId, name, company_name, mobile, city, area, agent_type, assigned_marketing_exec || 'Bikramjit Singh', assigned_telephonic_exec || 'Simranjit Kaur', createdAt]
     );
 
+    scheduleBackup(db);
+
     res.json({ success: true, message: 'Agent created successfully', agent_id: nextId });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
@@ -395,6 +430,8 @@ app.put('/api/agents/:id', async (req, res) => {
       [name, company_name, mobile, city, area, agent_type, assigned_marketing_exec, assigned_telephonic_exec, agentId]
     );
 
+    scheduleBackup(db);
+
     res.json({ success: true, message: 'Agent details updated successfully' });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
@@ -409,6 +446,9 @@ app.delete('/api/agents/:id', async (req, res) => {
     await dbRun(`DELETE FROM telephonic_calls WHERE agent_id = ?`, [agentId]);
     await dbRun(`DELETE FROM marketing_visits WHERE agent_id = ?`, [agentId]);
     await dbRun(`DELETE FROM agents WHERE id = ?`, [agentId]);
+
+    scheduleBackup(db);
+
     res.json({ success: true, message: 'Agent deleted successfully' });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
@@ -606,6 +646,7 @@ app.delete('/api/visits/:id', async (req, res) => {
     if (visit) {
       await refreshAgentStage(visit.agent_id);
     }
+    scheduleBackup(db);
     res.json({ success: true, message: 'Marketing visit log deleted successfully' });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
@@ -847,6 +888,7 @@ app.delete('/api/calls/:id', async (req, res) => {
     if (call) {
       await refreshAgentStage(call.agent_id);
     }
+    scheduleBackup(db);
     res.json({ success: true, message: 'Telephonic call log deleted successfully' });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
