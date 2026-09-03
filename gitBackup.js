@@ -126,7 +126,7 @@ async function applyDataToDb(data, dbRun) {
     for (const c of data.telephonic_calls) {
       await dbRun(
         `INSERT OR REPLACE INTO telephonic_calls (id, call_date, agent_id, visit_id, executive_name, is_connected, services_discussed, agent_requirement, interest_level, call_result, remarks, next_followup_date)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [c.id, c.call_date, c.agent_id, c.visit_id, c.executive_name, c.is_connected, c.services_discussed, c.agent_requirement, c.interest_level, c.call_result, c.remarks, c.next_followup_date]
       );
     }
