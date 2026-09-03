@@ -5,6 +5,8 @@ export default function ManagementDashboard({ onNavigate, onOpenAgentDrawer, onO
   const [data, setData] = useState(null);
   const [conveyanceReport, setConveyanceReport] = useState([]);
   const [loading, setLoading] = useState(true);
+  const todayStr = new Date().toISOString().split('T')[0];
+  const [selectedDate, setSelectedDate] = useState(todayStr);
 
   // Edit Modal State
   const [editingRow, setEditingRow] = useState(null);
@@ -12,7 +14,7 @@ export default function ManagementDashboard({ onNavigate, onOpenAgentDrawer, onO
   const [editEndKm, setEditEndKm] = useState('');
 
   useEffect(() => {
-    fetchDashboardData();
+    fetchDashboardData(selectedDate);
     fetchConveyanceReport();
   }, []);
 
@@ -26,9 +28,9 @@ export default function ManagementDashboard({ onNavigate, onOpenAgentDrawer, onO
     }
   };
 
-  const fetchDashboardData = async () => {
+  const fetchDashboardData = async (date = selectedDate) => {
     try {
-      const res = await fetch('/api/dashboard');
+      const res = await fetch(`/api/dashboard?date=${date}`);
       const json = await res.json();
       if (json.success) {
         setData(json);
@@ -140,35 +142,131 @@ export default function ManagementDashboard({ onNavigate, onOpenAgentDrawer, onO
         </div>
       </div>
 
-      {/* Today's Activity Bar */}
+      {/* Activity Metrics Bar with Date Filter */}
       <div>
-        <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-3">Today's Activity Metrics</h3>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-          <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
+          <div className="flex items-center gap-2">
+            <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">
+              Activity Metrics
+            </h3>
+            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-sky-950 text-sky-400 border border-sky-800">
+              {selectedDate === todayStr ? '⚡ Today' : `📅 Date: ${selectedDate}`}
+            </span>
+          </div>
+
+          {/* 1-Click Date Filter Buttons */}
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <button
+              onClick={() => {
+                setSelectedDate(todayStr);
+                fetchDashboardData(todayStr);
+              }}
+              className={`px-3 py-1 rounded-xl text-xs font-bold transition ${
+                selectedDate === todayStr
+                  ? 'bg-sky-600 text-white shadow-md shadow-sky-600/30'
+                  : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+              }`}
+            >
+              Today
+            </button>
+            <button
+              onClick={() => {
+                const y = new Date();
+                y.setDate(y.getDate() - 1);
+                const yStr = y.toISOString().split('T')[0];
+                setSelectedDate(yStr);
+                fetchDashboardData(yStr);
+              }}
+              className={`px-3 py-1 rounded-xl text-xs font-bold transition ${
+                (() => {
+                  const y = new Date();
+                  y.setDate(y.getDate() - 1);
+                  return selectedDate === y.toISOString().split('T')[0];
+                })()
+                  ? 'bg-sky-600 text-white shadow-md shadow-sky-600/30'
+                  : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+              }`}
+            >
+              Yesterday
+            </button>
+            <div className="flex items-center gap-1.5 bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-xs">
+              <Calendar className="w-3.5 h-3.5 text-slate-400" />
+              <input
+                type="date"
+                value={selectedDate}
+                onChange={e => {
+                  setSelectedDate(e.target.value);
+                  fetchDashboardData(e.target.value);
+                }}
+                className="bg-transparent text-slate-200 text-xs focus:outline-none cursor-pointer"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* 6-Card Activity Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
+          
+          {/* Card 1: Marketing Visits */}
+          <div 
+            onClick={() => onNavigate && onNavigate('visits')}
+            className="bg-slate-900 border border-slate-800 hover:border-slate-700 p-4 rounded-xl cursor-pointer transition"
+          >
             <span className="text-xs text-slate-400">Marketing Visits</span>
             <p className="text-2xl font-bold text-slate-100 mt-1">{today?.visits || 0}</p>
-            <span className="text-[11px] text-sky-400 font-medium">{today?.new_agents || 0} New Agents</span>
+            <span className="text-[11px] text-sky-400 font-medium">{today?.new_agents || 0} New Agencies</span>
           </div>
-          <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl">
-            <span className="text-xs text-slate-400">Follow-up Calls</span>
+
+          {/* Card 2: Yug's Calling Desk */}
+          <div 
+            onClick={() => onNavigate && onNavigate('yug_desk')}
+            className="bg-slate-900 border border-emerald-500/30 hover:border-emerald-500/60 p-4 rounded-xl cursor-pointer transition relative overflow-hidden"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-xs text-emerald-400 font-bold">📱 Yug Calling</span>
+              <span className="text-[9px] font-black uppercase px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">DESK</span>
+            </div>
+            <p className="text-2xl font-bold text-emerald-400 mt-1">{today?.yug_calls || 0}</p>
+            <span className="text-[11px] text-emerald-300/80 font-medium">{today?.yug_connected || 0} Connected</span>
+          </div>
+
+          {/* Card 3: Total Calls */}
+          <div 
+            onClick={() => onNavigate && onNavigate('calls')}
+            className="bg-slate-900 border border-slate-800 hover:border-slate-700 p-4 rounded-xl cursor-pointer transition"
+          >
+            <span className="text-xs text-slate-400">Total Office Calls</span>
             <p className="text-2xl font-bold text-blue-400 mt-1">{today?.calls || 0}</p>
-            <span className="text-[11px] text-slate-400 font-medium">Logged Today</span>
+            <span className="text-[11px] text-slate-400 font-medium">All Staff Calling</span>
           </div>
-          <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+
+          {/* Card 4: Queries */}
+          <div 
+            onClick={() => onNavigate && onNavigate('queries')}
+            className="bg-slate-900 border border-slate-800 hover:border-slate-700 p-4 rounded-xl cursor-pointer transition"
+          >
             <span className="text-xs text-slate-400">Queries Received</span>
             <p className="text-2xl font-bold text-amber-400 mt-1">{today?.queries || 0}</p>
             <span className="text-[11px] text-amber-400 font-medium">{today?.pending || 0} Pending Total</span>
           </div>
-          <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+
+          {/* Card 5: Bookings */}
+          <div 
+            onClick={() => onNavigate && onNavigate('queries')}
+            className="bg-slate-900 border border-slate-800 hover:border-slate-700 p-4 rounded-xl cursor-pointer transition"
+          >
             <span className="text-xs text-slate-400">Converted Bookings</span>
             <p className="text-2xl font-bold text-emerald-400 mt-1">{today?.converted || 0}</p>
             <span className="text-[11px] text-emerald-400 font-medium">Stage 4 Active</span>
           </div>
-          <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl col-span-2">
-            <span className="text-xs text-slate-400">Today's Sales Revenue</span>
+
+          {/* Card 6: Revenue */}
+          <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+            <span className="text-xs text-slate-400">Sales Revenue</span>
             <p className="text-2xl font-bold text-emerald-300 mt-1">₹{(today?.revenue || 0).toLocaleString('en-IN')}</p>
-            <span className="text-[11px] text-slate-400 font-medium">Converted Booking Value</span>
+            <span className="text-[11px] text-slate-400 font-medium">Booking Value</span>
           </div>
+
         </div>
       </div>
 

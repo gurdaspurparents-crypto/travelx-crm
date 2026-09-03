@@ -1011,7 +1011,7 @@ app.delete('/api/calls/:id', async (req, res) => {
 
 app.get('/api/queries', async (req, res) => {
   try {
-    const { status, product, agent_id, handling_employee } = req.query;
+    const { status, product, agent_id, handling_employee, date, from_date, to_date } = req.query;
     let query = `
       SELECT q.*, a.name as agent_name, a.company_name, a.mobile as agent_mobile, a.city as agent_city
       FROM queries q
@@ -1035,6 +1035,18 @@ app.get('/api/queries', async (req, res) => {
     if (handling_employee) {
       query += ` AND q.handling_employee = ?`;
       params.push(handling_employee);
+    }
+    if (date) {
+      query += ` AND q.query_date = ?`;
+      params.push(date);
+    }
+    if (from_date) {
+      query += ` AND q.query_date >= ?`;
+      params.push(from_date);
+    }
+    if (to_date) {
+      query += ` AND q.query_date <= ?`;
+      params.push(to_date);
     }
 
     query += ` ORDER BY q.query_date DESC LIMIT 150`;
@@ -1243,18 +1255,31 @@ app.get('/api/focus-list', async (req, res) => {
 
 app.get('/api/dashboard', async (req, res) => {
   try {
-    const today = new Date().toISOString().split('T')[0];
+    const targetDate = req.query.date || new Date().toISOString().split('T')[0];
 
-    // Today's Activity
-    const todayVisits = await dbGet(`SELECT COUNT(*) as count FROM marketing_visits WHERE visit_date = ?`, [today]);
-    const todayNewAgents = await dbGet(`SELECT COUNT(*) as count FROM marketing_visits WHERE visit_date = ? AND is_new_agent = 1`, [today]);
-    const todayCalls = await dbGet(`SELECT COUNT(*) as count FROM telephonic_calls WHERE call_date = ?`, [today]);
-    const todayQueries = await dbGet(`SELECT COUNT(*) as count FROM queries WHERE query_date = ?`, [today]);
-    const todayConverted = await dbGet(`SELECT COUNT(*) as count FROM queries WHERE booking_date = ? AND status = 'Converted'`, [today]);
+    // Activity Metrics for selected date (defaults to today)
+    const todayVisits = await dbGet(`SELECT COUNT(*) as count FROM marketing_visits WHERE visit_date = ?`, [targetDate]);
+    const todayNewAgents = await dbGet(`SELECT COUNT(*) as count FROM marketing_visits WHERE visit_date = ? AND is_new_agent = 1`, [targetDate]);
+    const todayCalls = await dbGet(`SELECT COUNT(*) as count FROM telephonic_calls WHERE call_date = ?`, [targetDate]);
+    
+    // Yug Calling Desk metrics specifically
+    const todayYugCalls = await dbGet(
+      `SELECT COUNT(*) as count FROM telephonic_calls 
+       WHERE call_date = ? AND (executive_name = 'Yug' OR executive_name LIKE '%Yug%')`, 
+      [targetDate]
+    );
+    const todayYugConnected = await dbGet(
+      `SELECT COUNT(*) as count FROM telephonic_calls 
+       WHERE call_date = ? AND (executive_name = 'Yug' OR executive_name LIKE '%Yug%') AND (is_connected = 1 OR call_result LIKE '%Connected%' OR call_result LIKE '%Interested%' OR call_result LIKE '%Requirement%')`, 
+      [targetDate]
+    );
+
+    const todayQueries = await dbGet(`SELECT COUNT(*) as count FROM queries WHERE query_date = ?`, [targetDate]);
+    const todayConverted = await dbGet(`SELECT COUNT(*) as count FROM queries WHERE booking_date = ? AND status = 'Converted'`, [targetDate]);
     const todayPending = await dbGet(`SELECT COUNT(*) as count FROM queries WHERE status IN ('New', 'Quoted', 'Pending', 'Follow-up')`);
-    const todayRevenue = await dbGet(`SELECT COALESCE(SUM(booking_value), 0) as total FROM queries WHERE booking_date = ? AND status = 'Converted'`, [today]);
+    const todayRevenue = await dbGet(`SELECT COALESCE(SUM(booking_value), 0) as total FROM queries WHERE booking_date = ? AND status = 'Converted'`, [targetDate]);
 
-    // Stage counts across all 700 agents
+    // Stage counts across all agents
     const totalAgents = await dbGet(`SELECT COUNT(*) as count FROM agents`);
     const contactedAgents = await dbGet(`SELECT COUNT(DISTINCT agent_id) as count FROM marketing_visits`);
     const followupAgents = await dbGet(`SELECT COUNT(DISTINCT agent_id) as count FROM telephonic_calls WHERE is_connected = 1`);
@@ -1278,10 +1303,14 @@ app.get('/api/dashboard', async (req, res) => {
 
     res.json({
       success: true,
+      target_date: targetDate,
       today: {
+        target_date: targetDate,
         visits: todayVisits.count,
         new_agents: todayNewAgents.count,
         calls: todayCalls.count,
+        yug_calls: todayYugCalls.count,
+        yug_connected: todayYugConnected.count,
         queries: todayQueries.count,
         converted: todayConverted.count,
         pending: todayPending.count,

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, PhoneCall, Plus, Search, Filter, Calendar, MapPin, CheckCircle2, MessageSquare, Flame, FileText, UserCheck, AlertCircle, RefreshCw, Users, Eye, ArrowUpDown, DollarSign, Award, ChevronRight } from 'lucide-react';
+import { Phone, PhoneCall, Plus, Search, Filter, Calendar, MapPin, CheckCircle2, MessageSquare, Flame, FileText, UserCheck, AlertCircle, RefreshCw, Users, Eye, ArrowUpDown, DollarSign, Award, ChevronRight, X } from 'lucide-react';
 
 export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role }) {
   const [agents, setAgents] = useState([]);
@@ -12,6 +12,7 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
   const [search, setSearch] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
   const [selectedStage, setSelectedStage] = useState('');
+  const [callDateFilter, setCallDateFilter] = useState('');
   const [locationsList, setLocationsList] = useState([]);
   const [matrixSort, setMatrixSort] = useState('agents_desc'); // 'agents_desc', 'loc_asc', 'loc_desc', 'revenue_desc'
   
@@ -522,19 +523,81 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
 
       {/* Yug's Recent Calls Log Table */}
       <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow">
-        <div className="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 border-b border-slate-800 pb-3">
           <div>
             <h3 className="font-extrabold text-white text-base flex items-center gap-2">
               <PhoneCall className="w-5 h-5 text-sky-400" /> Recent Calls History (Logged by Yug)
             </h3>
             <p className="text-xs text-slate-400">Complete telephonic log records and agent responses</p>
           </div>
-          <span className="text-xs text-slate-400 font-mono">Total Records: {callsHistory.length}</span>
+
+          {/* Date Filter Controls */}
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <button
+              onClick={() => setCallDateFilter('')}
+              className={`px-2.5 py-1 rounded-xl text-xs font-bold transition ${
+                !callDateFilter
+                  ? 'bg-sky-600 text-white'
+                  : 'bg-slate-950 hover:bg-slate-800 text-slate-400 border border-slate-800'
+              }`}
+            >
+              All Time
+            </button>
+            <button
+              onClick={() => setCallDateFilter(new Date().toISOString().split('T')[0])}
+              className={`px-2.5 py-1 rounded-xl text-xs font-bold transition ${
+                callDateFilter === new Date().toISOString().split('T')[0]
+                  ? 'bg-sky-600 text-white'
+                  : 'bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800'
+              }`}
+            >
+              ⚡ Today
+            </button>
+            <button
+              onClick={() => {
+                const y = new Date();
+                y.setDate(y.getDate() - 1);
+                setCallDateFilter(y.toISOString().split('T')[0]);
+              }}
+              className={`px-2.5 py-1 rounded-xl text-xs font-bold transition ${
+                (() => {
+                  const y = new Date();
+                  y.setDate(y.getDate() - 1);
+                  return callDateFilter === y.toISOString().split('T')[0];
+                })()
+                  ? 'bg-sky-600 text-white'
+                  : 'bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800'
+              }`}
+            >
+              Yesterday
+            </button>
+            <div className="flex items-center gap-1.5 bg-slate-950 border border-slate-800 px-2 py-1 rounded-xl text-xs">
+              <Calendar className="w-3.5 h-3.5 text-slate-400" />
+              <input
+                type="date"
+                value={callDateFilter}
+                onChange={e => setCallDateFilter(e.target.value)}
+                className="bg-transparent text-slate-200 text-xs focus:outline-none cursor-pointer"
+              />
+            </div>
+            {callDateFilter && (
+              <button
+                onClick={() => setCallDateFilter('')}
+                className="p-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs transition border border-slate-700"
+                title="Clear date filter"
+              >
+                <X className="w-3 h-3" />
+              </button>
+            )}
+            <span className="text-xs text-slate-400 font-mono ml-2">
+              ({callsHistory.filter(c => !callDateFilter || c.call_date === callDateFilter).length})
+            </span>
+          </div>
         </div>
 
-        {callsHistory.length === 0 ? (
+        {callsHistory.filter(c => !callDateFilter || c.call_date === callDateFilter).length === 0 ? (
           <div className="text-center text-slate-400 text-xs py-8">
-            No calls recorded by Yug yet. Click "+ Log Call Result (Yug)" to record your first call.
+            No calls recorded for this date filter. Click "+ Log Call Result (Yug)" to record a call.
           </div>
         ) : (
           <div className="overflow-x-auto">
@@ -551,7 +614,7 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-800/60">
-                {callsHistory.slice(0, 30).map((c, i) => (
+                {callsHistory.filter(c => !callDateFilter || c.call_date === callDateFilter).slice(0, 50).map((c, i) => (
                   <tr key={c.id || i} className="hover:bg-slate-800/40 transition">
                     <td className="p-3 font-mono font-medium text-slate-300">{c.call_date}</td>
                     <td className="p-3">

@@ -479,6 +479,46 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
           <option value="Wrong Number">❌ Wrong Number / Switched Off</option>
         </select>
 
+        {/* Quick Date Presets */}
+        <div className="flex items-center gap-1.5 flex-wrap">
+          <button
+            onClick={() => {
+              const today = new Date().toISOString().split('T')[0];
+              setDateFilter(today);
+              setFromDate('');
+              setToDate('');
+            }}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition ${
+              dateFilter === new Date().toISOString().split('T')[0]
+                ? 'bg-sky-600 text-white'
+                : 'bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800'
+            }`}
+          >
+            ⚡ Today
+          </button>
+          <button
+            onClick={() => {
+              const y = new Date();
+              y.setDate(y.getDate() - 1);
+              const yStr = y.toISOString().split('T')[0];
+              setDateFilter(yStr);
+              setFromDate('');
+              setToDate('');
+            }}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition ${
+              (() => {
+                const y = new Date();
+                y.setDate(y.getDate() - 1);
+                return dateFilter === y.toISOString().split('T')[0];
+              })()
+                ? 'bg-sky-600 text-white'
+                : 'bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800'
+            }`}
+          >
+            Yesterday
+          </button>
+        </div>
+
         {/* Single Date Picker */}
         <div className="flex items-center gap-2">
           <Calendar className="w-4 h-4 text-slate-500" />

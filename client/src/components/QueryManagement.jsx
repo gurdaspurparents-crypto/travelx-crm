@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FileText, Plus, CheckCircle2, XCircle, Clock, Filter, DollarSign, ArrowRight, Eye, AlertTriangle, Trash2, Download } from 'lucide-react';
+import { FileText, Plus, CheckCircle2, XCircle, Clock, Filter, DollarSign, ArrowRight, Eye, AlertTriangle, Trash2, Download, Calendar, X } from 'lucide-react';
 import { exportToPDF } from '../utils/exportUtils';
 
 export default function QueryManagement({ onOpenModal, onOpenAgentDrawer }) {
@@ -7,6 +7,7 @@ export default function QueryManagement({ onOpenModal, onOpenAgentDrawer }) {
   const [loading, setLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState('');
   const [productFilter, setProductFilter] = useState('');
+  const [dateFilter, setDateFilter] = useState('');
 
   // Modals inside component
   const [convertingQuery, setConvertingQuery] = useState(null);
@@ -23,7 +24,7 @@ export default function QueryManagement({ onOpenModal, onOpenAgentDrawer }) {
 
   useEffect(() => {
     fetchQueries();
-  }, [statusFilter, productFilter]);
+  }, [statusFilter, productFilter, dateFilter]);
 
   const fetchQueries = async () => {
     setLoading(true);
@@ -31,6 +32,7 @@ export default function QueryManagement({ onOpenModal, onOpenAgentDrawer }) {
       const params = new URLSearchParams();
       if (statusFilter) params.append('status', statusFilter);
       if (productFilter) params.append('product', productFilter);
+      if (dateFilter) params.append('date', dateFilter);
 
       const res = await fetch(`/api/queries?${params.toString()}`);
       const json = await res.json();
@@ -187,6 +189,56 @@ export default function QueryManagement({ onOpenModal, onOpenAgentDrawer }) {
           <option value="Forex">Forex</option>
           <option value="Travel Insurance">Travel Insurance</option>
         </select>
+
+        {/* Date Filter Controls */}
+        <div className="flex items-center gap-1.5 flex-wrap border-t sm:border-t-0 sm:border-l border-slate-800 pt-2 sm:pt-0 sm:pl-3">
+          <span className="text-xs font-semibold text-slate-400">Date:</span>
+          <button
+            onClick={() => setDateFilter(new Date().toISOString().split('T')[0])}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition ${
+              dateFilter === new Date().toISOString().split('T')[0]
+                ? 'bg-amber-600 text-white'
+                : 'bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800'
+            }`}
+          >
+            ⚡ Today
+          </button>
+          <button
+            onClick={() => {
+              const y = new Date();
+              y.setDate(y.getDate() - 1);
+              setDateFilter(y.toISOString().split('T')[0]);
+            }}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition ${
+              (() => {
+                const y = new Date();
+                y.setDate(y.getDate() - 1);
+                return dateFilter === y.toISOString().split('T')[0];
+              })()
+                ? 'bg-amber-600 text-white'
+                : 'bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800'
+            }`}
+          >
+            Yesterday
+          </button>
+          <div className="flex items-center gap-1.5 bg-slate-950 border border-slate-800 px-2.5 py-1.5 rounded-xl text-xs">
+            <Calendar className="w-3.5 h-3.5 text-slate-400" />
+            <input
+              type="date"
+              value={dateFilter}
+              onChange={e => setDateFilter(e.target.value)}
+              className="bg-transparent text-slate-200 text-xs focus:outline-none cursor-pointer"
+            />
+          </div>
+          {dateFilter && (
+            <button
+              onClick={() => setDateFilter('')}
+              className="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs transition flex items-center gap-1 border border-slate-700"
+            >
+              <X className="w-3 h-3" /> Clear
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Queries Table */}
