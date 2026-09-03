@@ -5,6 +5,7 @@ const fs = require('fs');
 const multer = require('multer');
 const XLSX = require('xlsx');
 const { db, dbRun, dbAll, dbGet, initDb, refreshAgentStage } = require('./db');
+const { restoreFromGitHub, scheduleBackup } = require('./gitBackup');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -30,9 +31,11 @@ app.get('/', (req, res) => {
   res.send(`<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Travelx CRM</title></head><body style="background:#0f172a;color:#f8fafc;font-family:sans-serif;text-align:center;padding:50px"><h1>✈️ Travelx CRM</h1><p>Loading...</p></body></html>`);
 });
 
-// Initialize DB schema & seed data
-initDb().then(() => {
+// Initialize DB schema & seed data, then restore live data from GitHub backup
+initDb().then(async () => {
   console.log('Database initialized successfully.');
+  // Restore latest live data from GitHub (overrides seedData with latest entries)
+  await restoreFromGitHub(db, dbRun, dbAll);
 }).catch(err => {
   console.error('Failed to initialize database:', err);
 });
@@ -586,6 +589,9 @@ app.post('/api/visits', async (req, res) => {
     // Update agent stage
     await refreshAgentStage(agent_id);
 
+    // Auto-backup to GitHub so data survives redeploys
+    scheduleBackup(db);
+
     res.json({ success: true, id: result.lastID, message: 'Marketing visit logged successfully with GPS verification' });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
@@ -824,6 +830,9 @@ app.post('/api/calls', async (req, res) => {
     // Update agent stage
     await refreshAgentStage(agent_id);
 
+    // Auto-backup to GitHub so data survives redeploys
+    scheduleBackup(db);
+
     res.json({ success: true, id: result.lastID, message: 'Telephonic call logged successfully' });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
@@ -911,6 +920,9 @@ app.post('/api/queries', async (req, res) => {
     // Refresh agent stage to QueryReceived
     await refreshAgentStage(agent_id);
 
+    // Auto-backup to GitHub so data survives redeploys
+    scheduleBackup(db);
+
     res.json({ success: true, query_id: qryId, message: 'Query created successfully' });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
@@ -929,6 +941,9 @@ app.put('/api/queries/:id/status', async (req, res) => {
 
     const qry = await dbGet(`SELECT agent_id FROM queries WHERE id = ?`, [req.params.id]);
     if (qry) await refreshAgentStage(qry.agent_id);
+
+    // Auto-backup to GitHub
+    scheduleBackup(db);
 
     res.json({ success: true, message: 'Query updated successfully' });
   } catch (err) {
@@ -952,6 +967,9 @@ app.put('/api/queries/:id/convert', async (req, res) => {
     if (qry) {
       await refreshAgentStage(qry.agent_id);
     }
+
+    // Auto-backup to GitHub
+    scheduleBackup(db);
 
     res.json({ success: true, message: 'Query successfully converted to Booking! Agent is now ACTIVE.' });
   } catch (err) {
