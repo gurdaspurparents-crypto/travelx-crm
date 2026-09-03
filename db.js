@@ -184,6 +184,69 @@ async function refreshAgentStage(agentId) {
 
 // Data Seeder for ~700 agents across Punjab cities
 async function seedDatabase() {
+  const seedPath = path.resolve(__dirname, 'seedData.json');
+  if (fs.existsSync(seedPath)) {
+    console.log('Found seedData.json! Loading exact master database of 533 agents, calls, visits, and queries...');
+    try {
+      const seed = JSON.parse(fs.readFileSync(seedPath, 'utf8'));
+
+      if (seed.agents && seed.agents.length > 0) {
+        for (const a of seed.agents) {
+          await dbRun(
+            `INSERT OR REPLACE INTO agents (id, name, company_name, mobile, city, area, agent_type, stage, assigned_marketing_exec, assigned_telephonic_exec, created_at)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            [a.id, a.name, a.company_name, a.mobile, a.city, a.area, a.agent_type, a.stage, a.assigned_marketing_exec || 'Bikramjit Singh', a.assigned_telephonic_exec || 'Simranjit Kaur', a.created_at]
+          );
+        }
+      }
+
+      if (seed.visits && seed.visits.length > 0) {
+        for (const v of seed.visits) {
+          await dbRun(
+            `INSERT OR REPLACE INTO marketing_visits (id, visit_date, agent_id, executive_name, person_met, mobile, is_new_agent, products_pitched, response_level, remarks, next_followup_date, location, gps_latitude, gps_longitude, gps_address)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            [v.id, v.visit_date, v.agent_id, v.executive_name, v.person_met, v.mobile, v.is_new_agent, v.products_pitched, v.response_level, v.remarks, v.next_followup_date, v.location, v.gps_latitude, v.gps_longitude, v.gps_address]
+          );
+        }
+      }
+
+      if (seed.calls && seed.calls.length > 0) {
+        for (const c of seed.calls) {
+          await dbRun(
+            `INSERT OR REPLACE INTO telephonic_calls (id, call_date, agent_id, visit_id, executive_name, is_connected, services_discussed, agent_requirement, interest_level, call_result, remarks, next_followup_date)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            [c.id, c.call_date, c.agent_id, c.visit_id, c.executive_name, c.is_connected, c.services_discussed, c.agent_requirement, c.interest_level, c.call_result, c.remarks, c.next_followup_date]
+          );
+        }
+      }
+
+      if (seed.queries && seed.queries.length > 0) {
+        for (const q of seed.queries) {
+          await dbRun(
+            `INSERT OR REPLACE INTO queries (id, query_date, agent_id, product, query_details, travel_date, pax_details, estimated_value, quoted_amount, handling_employee, followup_date, status, booking_date, booking_value, booking_ref_no, closing_employee, rejection_reason, rejection_remarks)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            [q.id, q.query_date, q.agent_id, q.product, q.query_details, q.travel_date, q.pax_details, q.estimated_value, q.quoted_amount, q.handling_employee, q.followup_date, q.status, q.booking_date, q.booking_value, q.booking_ref_no, q.closing_employee, q.rejection_reason, q.rejection_remarks]
+          );
+        }
+      }
+
+      if (seed.field_trips && seed.field_trips.length > 0) {
+        for (const ft of seed.field_trips) {
+          await dbRun(
+            `INSERT OR REPLACE INTO field_trips (id, trip_date, executive_name, start_meter_reading, end_meter_reading, start_time, end_time, start_location, end_location, total_km, rate_per_km, conveyance_amount, status, remarks, created_at)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            [ft.id, ft.trip_date, ft.executive_name, ft.start_meter_reading, ft.end_meter_reading, ft.start_time, ft.end_time, ft.start_location, ft.end_location, ft.total_km, ft.rate_per_km, ft.conveyance_amount, ft.status, ft.remarks, ft.created_at]
+          );
+        }
+      }
+
+      console.log('Successfully seeded exact master database from seedData.json!');
+      return;
+    } catch (err) {
+      console.error('Error seeding from seedData.json:', err);
+    }
+  }
+
   const cities = [
     { city: 'Gurdaspur', areas: ['Main Market', 'Tibri Road', 'Jail Road', 'Gurdaspur Bypass', 'GT Road'] },
     { city: 'Batala', areas: ['Jalandhar Road', 'Shastri Nagar', 'Cinema Road', 'Dera Baba Nanak Road', 'Near Bus Stand'] },
