@@ -5,6 +5,7 @@ import FocusLists from './components/FocusLists';
 import AgentMaster from './components/AgentMaster';
 import MarketingVisits from './components/MarketingVisits';
 import TelephonicFollowups from './components/TelephonicFollowups';
+import YugCallingDesk from './components/YugCallingDesk';
 import QueryManagement from './components/QueryManagement';
 import LocationAnalytics from './components/LocationAnalytics';
 import ManagementReports from './components/ManagementReports';
@@ -30,16 +31,26 @@ export default function App() {
     const urlParams = new URLSearchParams(window.location.search);
     const roleParam = urlParams.get('role') || urlParams.get('mode');
     
-    if (roleParam === 'field' || roleParam === 'marketing') {
+    if (roleParam === 'field' || roleParam === 'marketing' || roleParam === 'bikramjit') {
       setRole('Marketing Executive');
       setActiveTab('visits');
       localStorage.setItem('travelx_crm_role', 'Marketing Executive');
       localStorage.setItem('travelx_crm_tab', 'visits');
-    } else if (roleParam === 'telephonic' || roleParam === 'calling') {
+    } else if (roleParam === 'yug' || roleParam === 'yug_calling') {
+      setRole('Yug (Calling Executive)');
+      setActiveTab('yug_desk');
+      localStorage.setItem('travelx_crm_role', 'Yug (Calling Executive)');
+      localStorage.setItem('travelx_crm_tab', 'yug_desk');
+    } else if (roleParam === 'telephonic' || roleParam === 'calling' || roleParam === 'simran') {
       setRole('Telephonic Executive');
       setActiveTab('calls');
       localStorage.setItem('travelx_crm_role', 'Telephonic Executive');
       localStorage.setItem('travelx_crm_tab', 'calls');
+    } else if (roleParam === 'admin' || roleParam === 'owner') {
+      setRole('Admin / Owner');
+      setActiveTab('dashboard');
+      localStorage.setItem('travelx_crm_role', 'Admin / Owner');
+      localStorage.setItem('travelx_crm_tab', 'dashboard');
     } else {
       const savedRole = localStorage.getItem('travelx_crm_role');
       const savedTab = localStorage.getItem('travelx_crm_tab');
@@ -56,6 +67,9 @@ export default function App() {
     if (newRole === 'Marketing Executive') {
       setActiveTab('visits');
       localStorage.setItem('travelx_crm_tab', 'visits');
+    } else if (newRole === 'Yug (Calling Executive)') {
+      setActiveTab('yug_desk');
+      localStorage.setItem('travelx_crm_tab', 'yug_desk');
     } else if (newRole === 'Telephonic Executive') {
       setActiveTab('calls');
       localStorage.setItem('travelx_crm_tab', 'calls');
@@ -125,7 +139,16 @@ export default function App() {
           />
         )}
 
-        {activeTab === 'agents' && (role === 'Admin / Owner' || role === 'Telephonic Executive') && (
+        {activeTab === 'yug_desk' && (
+          <YugCallingDesk
+            key={refreshKey}
+            role={role}
+            onOpenModal={handleOpenModal}
+            onOpenAgentDrawer={setSelectedAgentId}
+          />
+        )}
+
+        {activeTab === 'agents' && (role === 'Admin / Owner' || role === 'Telephonic Executive' || role === 'Marketing Executive' || role === 'Yug (Calling Executive)') && (
           <AgentMaster
             key={refreshKey}
             role={role}
@@ -163,10 +186,12 @@ export default function App() {
           />
         )}
 
-        {activeTab === 'analytics' && role === 'Admin / Owner' && (
+        {activeTab === 'analytics' && (role === 'Admin / Owner' || role === 'Telephonic Executive' || role === 'Marketing Executive' || !role) && (
           <LocationAnalytics
             key={refreshKey}
             role={role}
+            onOpenModal={handleOpenModal}
+            onOpenAgentDrawer={setSelectedAgentId}
           />
         )}
 

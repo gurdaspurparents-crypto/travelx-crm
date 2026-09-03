@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MapPin, Plus, Calendar, CheckCircle2, User, Phone, Tag, FileText, Filter, X, Trash2, Download, AlertCircle, Navigation, Search, Gauge, DollarSign, Flag, Clock } from 'lucide-react';
+import { MapPin, Plus, Calendar, CheckCircle2, User, Phone, Tag, FileText, Filter, X, Trash2, Download, AlertCircle, Navigation, Search, Gauge, DollarSign, Flag, Clock, UserPlus, Edit } from 'lucide-react';
 import { exportToPDF } from '../utils/exportUtils';
 
 export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }) {
@@ -17,6 +17,9 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
   const [selectedLocation, setSelectedLocation] = useState('');
   const [locationAgents, setLocationAgents] = useState([]);
   const [loadingLocationAgents, setLoadingLocationAgents] = useState(false);
+  const [checklistStatusFilter, setChecklistStatusFilter] = useState('all'); // 'all' | 'visited' | 'pending'
+  const [checklistFromDate, setChecklistFromDate] = useState('');
+  const [checklistToDate, setChecklistToDate] = useState('');
 
   // Odometer & Conveyance Field Trip state
   const [fieldTrips, setFieldTrips] = useState([]);
@@ -37,8 +40,8 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
       .then(json => {
         if (json.success) {
           setAvailableLocations(json);
-          if (json.cities.length > 0 && !selectedLocation) {
-            setSelectedLocation(json.cities[0]);
+          if (!selectedLocation) {
+            setSelectedLocation('ALL');
           }
         }
       })
@@ -46,12 +49,60 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
   }, []);
 
   useEffect(() => {
-    if (selectedLocation) {
-      fetchLocationAgents(selectedLocation);
-    } else {
-      setLocationAgents([]);
+    fetchLocationAgents(selectedLocation, checklistFromDate, checklistToDate);
+  }, [selectedLocation, visits, checklistFromDate, checklistToDate]);
+
+  const fetchLocationAgents = async (loc = selectedLocation, fDate = checklistFromDate, tDate = checklistToDate) => {
+    setLoadingLocationAgents(true);
+    try {
+      let url = `/api/agents?limit=1500`;
+      if (loc && loc !== 'ALL' && loc !== 'All Locations') {
+        url += `&location=${encodeURIComponent(loc)}`;
+      }
+      if (fDate) url += `&visit_from_date=${encodeURIComponent(fDate)}`;
+      if (tDate) url += `&visit_to_date=${encodeURIComponent(tDate)}`;
+
+      const res = await fetch(url);
+      const json = await res.json();
+      if (json.success) {
+        setLocationAgents(json.agents);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoadingLocationAgents(false);
     }
-  }, [selectedLocation, visits]);
+  };
+
+  const formatLocalDate = (d) => {
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  const setChecklistPreset = (preset) => {
+    const today = new Date();
+
+    if (preset === 'all') {
+      setChecklistFromDate('');
+      setChecklistToDate('');
+    } else if (preset === 'today') {
+      const dateStr = formatLocalDate(today);
+      setChecklistFromDate(dateStr);
+      setChecklistToDate(dateStr);
+    } else if (preset === 'yesterday') {
+      const y = new Date(today);
+      y.setDate(y.getDate() - 1);
+      const dateStr = formatLocalDate(y);
+      setChecklistFromDate(dateStr);
+      setChecklistToDate(dateStr);
+    } else if (preset === 'month') {
+      const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
+      setChecklistFromDate(formatLocalDate(firstDay));
+      setChecklistToDate(formatLocalDate(today));
+    }
+  };
 
   const fetchVisits = async () => {
     setLoading(true);
@@ -96,21 +147,6 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
       }
     } catch (err) {
       console.error(err);
-    }
-  };
-
-  const fetchLocationAgents = async (loc) => {
-    setLoadingLocationAgents(true);
-    try {
-      const res = await fetch(`/api/agents?location=${encodeURIComponent(loc)}&limit=300`);
-      const json = await res.json();
-      if (json.success) {
-        setLocationAgents(json.agents);
-      }
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoadingLocationAgents(false);
     }
   };
 
@@ -255,8 +291,16 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
 
   // Location Agent Checklist Summary Statistics
   const totalInCity = locationAgents.length;
-  const visitedInCity = locationAgents.filter(a => a.last_visit_date || a.stage !== 'Inactive').length;
+  const visitedInCity = locationAgents.filter(a => Boolean(a.last_visit_date)).length;
   const pendingInCity = totalInCity - visitedInCity;
+
+  // Filtered Checklist agents based on status filter (all / visited / pending)
+  const filteredLocationAgents = locationAgents.filter(ag => {
+    const isVisited = Boolean(ag.last_visit_date);
+    if (checklistStatusFilter === 'visited') return isVisited;
+    if (checklistStatusFilter === 'pending') return !isVisited;
+    return true;
+  });
 
   return (
     <div className="space-y-6 animate-in fade-in duration-300">
@@ -286,8 +330,14 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
             <FileText className="w-3.5 h-3.5" /> Download PDF
           </button>
           <button
+            onClick={() => onOpenModal('create_agent')}
+            className="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white font-semibold rounded-xl text-xs transition shadow-lg shadow-sky-600/20 flex items-center gap-1.5"
+          >
+            <UserPlus className="w-4 h-4" /> Add New Agent
+          </button>
+          <button
             onClick={() => onOpenModal('log_visit')}
-            className="px-4 py-2 bg-yellow-600 hover:bg-yellow-500 text-white font-medium rounded-xl text-xs transition shadow-lg shadow-yellow-600/20 flex items-center gap-1.5"
+            className="px-4 py-2 bg-yellow-600 hover:bg-yellow-500 text-white font-semibold rounded-xl text-xs transition shadow-lg shadow-yellow-600/20 flex items-center gap-1.5"
           >
             <Plus className="w-4 h-4" /> Log Marketing Visit
           </button>
@@ -474,12 +524,9 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
               onChange={(e) => setSelectedLocation(e.target.value)}
               className="bg-slate-950 border border-yellow-500/60 text-yellow-300 font-bold rounded-xl text-xs px-3 py-2 focus:outline-none focus:border-yellow-400"
             >
-              <option value="">Select DB Location / City</option>
+              <option value="ALL">🌐 All Locations / All Cities</option>
               {availableLocations.cities.map((c, i) => (
-                <option key={i} value={c}>📍 {c} (City)</option>
-              ))}
-              {availableLocations.areas.map((a, i) => (
-                <option key={i} value={a}>🚩 {a} (Area)</option>
+                <option key={i} value={c}>📍 {c}</option>
               ))}
             </select>
 
@@ -497,44 +544,220 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
           </div>
         </div>
 
-        {/* Location Summary Cards */}
+        {/* 🔍 DATE RANGE & STATUS FILTERS TOOLBAR */}
+        <div className="bg-slate-950/80 border border-slate-800/80 p-3.5 rounded-xl space-y-3">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            
+            {/* 📅 Date Range Filter */}
+            <div className="flex flex-wrap items-center gap-2 text-xs">
+              <span className="font-bold text-slate-300 flex items-center gap-1">
+                <Calendar className="w-3.5 h-3.5 text-yellow-400" /> Visit Date Range:
+              </span>
+
+              {/* From Date */}
+              <div className="flex items-center gap-1 bg-slate-900 px-2.5 py-1 rounded-lg border border-slate-700">
+                <span className="text-[11px] text-slate-400">From:</span>
+                <input
+                  type="date"
+                  value={checklistFromDate}
+                  onChange={(e) => setChecklistFromDate(e.target.value)}
+                  className="bg-transparent text-slate-200 text-xs focus:outline-none font-medium"
+                />
+              </div>
+
+              {/* To Date */}
+              <div className="flex items-center gap-1 bg-slate-900 px-2.5 py-1 rounded-lg border border-slate-700">
+                <span className="text-[11px] text-slate-400">To:</span>
+                <input
+                  type="date"
+                  value={checklistToDate}
+                  onChange={(e) => setChecklistToDate(e.target.value)}
+                  className="bg-transparent text-slate-200 text-xs focus:outline-none font-medium"
+                />
+              </div>
+
+              {/* Quick Presets */}
+              <div className="flex flex-wrap items-center gap-1">
+                {(() => {
+                  const todayStr = formatLocalDate(new Date());
+                  const yest = new Date();
+                  yest.setDate(yest.getDate() - 1);
+                  const yestStr = formatLocalDate(yest);
+                  const isTodayActive = checklistFromDate === todayStr && checklistToDate === todayStr;
+                  const isYesterdayActive = checklistFromDate === yestStr && checklistToDate === yestStr;
+
+                  return (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => setChecklistPreset('all')}
+                        className={`px-2.5 py-1 rounded-md text-[11px] font-extrabold transition ${
+                          !checklistFromDate && !checklistToDate
+                            ? 'bg-yellow-500 text-slate-950 shadow'
+                            : 'bg-slate-900 text-slate-400 hover:text-slate-200'
+                        }`}
+                      >
+                        All Time
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setChecklistPreset('today')}
+                        className={`px-2.5 py-1 rounded-md text-[11px] font-extrabold transition ${
+                          isTodayActive
+                            ? 'bg-yellow-500 text-slate-950 shadow'
+                            : 'bg-slate-900 text-slate-300 hover:bg-slate-800'
+                        }`}
+                      >
+                        Today
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setChecklistPreset('yesterday')}
+                        className={`px-2.5 py-1 rounded-md text-[11px] font-extrabold transition ${
+                          isYesterdayActive
+                            ? 'bg-yellow-500 text-slate-950 shadow'
+                            : 'bg-slate-900 text-slate-300 hover:bg-slate-800'
+                        }`}
+                      >
+                        Yesterday
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setChecklistPreset('month')}
+                        className={`px-2.5 py-1 rounded-md text-[11px] font-extrabold transition ${
+                          checklistFromDate && !isTodayActive && !isYesterdayActive
+                            ? 'bg-yellow-500 text-slate-950 shadow'
+                            : 'bg-slate-900 text-slate-300 hover:bg-slate-800'
+                        }`}
+                      >
+                        This Month
+                      </button>
+                    </>
+                  );
+                })()}
+                {(checklistFromDate || checklistToDate) && (
+                  <button
+                    type="button"
+                    onClick={() => setChecklistPreset('all')}
+                    className="p-1 bg-rose-950/60 hover:bg-rose-900 text-rose-300 rounded-md transition"
+                    title="Clear Date Filter"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* 🏷️ Status Filter Tabs (All / Visited / Pending) */}
+            <div className="flex items-center gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800">
+              <button
+                type="button"
+                onClick={() => setChecklistStatusFilter('all')}
+                className={`px-3 py-1 rounded-lg text-xs font-bold transition flex items-center gap-1 ${
+                  checklistStatusFilter === 'all'
+                    ? 'bg-sky-600 text-white shadow'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                All ({totalInCity})
+              </button>
+              <button
+                type="button"
+                onClick={() => setChecklistStatusFilter('visited')}
+                className={`px-3 py-1 rounded-lg text-xs font-bold transition flex items-center gap-1 ${
+                  checklistStatusFilter === 'visited'
+                    ? 'bg-emerald-600 text-white shadow'
+                    : 'text-emerald-400 hover:bg-emerald-950/40'
+                }`}
+              >
+                <CheckCircle2 className="w-3.5 h-3.5" /> Visited ({visitedInCity})
+              </button>
+              <button
+                type="button"
+                onClick={() => setChecklistStatusFilter('pending')}
+                className={`px-3 py-1 rounded-lg text-xs font-bold transition flex items-center gap-1 ${
+                  checklistStatusFilter === 'pending'
+                    ? 'bg-rose-600 text-white shadow'
+                    : 'text-rose-400 hover:bg-rose-950/40'
+                }`}
+              >
+                <AlertCircle className="w-3.5 h-3.5" /> Pending ({pendingInCity})
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        {/* Location Summary Cards (Interactive Filter Triggers) */}
         {selectedLocation && (
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <div className="bg-slate-950/80 border border-slate-800 p-3 rounded-xl flex items-center justify-between">
+            <button
+              type="button"
+              onClick={() => setChecklistStatusFilter('all')}
+              className={`text-left bg-slate-950/80 p-3 rounded-xl flex items-center justify-between border transition cursor-pointer ${
+                checklistStatusFilter === 'all'
+                  ? 'border-sky-500 ring-1 ring-sky-500 shadow-lg shadow-sky-500/10'
+                  : 'border-slate-800 hover:border-slate-700'
+              }`}
+            >
               <div>
-                <p className="text-xs text-slate-400 font-semibold">Agencies in "{selectedLocation}"</p>
+                <p className="text-xs text-slate-400 font-semibold">Agencies in "{selectedLocation === 'ALL' || !selectedLocation ? 'All Locations' : selectedLocation}"</p>
                 <p className="text-xl font-extrabold text-slate-100">{totalInCity}</p>
               </div>
               <MapPin className="w-6 h-6 text-sky-400" />
-            </div>
-            <div className="bg-emerald-950/20 border border-emerald-800/50 p-3 rounded-xl flex items-center justify-between">
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setChecklistStatusFilter('visited')}
+              className={`text-left bg-emerald-950/20 p-3 rounded-xl flex items-center justify-between border transition cursor-pointer ${
+                checklistStatusFilter === 'visited'
+                  ? 'border-emerald-500 ring-1 ring-emerald-500 shadow-lg shadow-emerald-500/10'
+                  : 'border-emerald-800/50 hover:border-emerald-700/60'
+              }`}
+            >
               <div>
-                <p className="text-xs text-emerald-400 font-semibold">✅ Visited Agencies</p>
+                <p className="text-xs text-emerald-400 font-semibold">
+                  ✅ Visited Agencies {checklistFromDate || checklistToDate ? '(Selected Period)' : ''}
+                </p>
                 <p className="text-xl font-extrabold text-emerald-400">{visitedInCity}</p>
               </div>
               <CheckCircle2 className="w-6 h-6 text-emerald-400" />
-            </div>
-            <div className="bg-rose-950/20 border border-rose-800/50 p-3 rounded-xl flex items-center justify-between">
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setChecklistStatusFilter('pending')}
+              className={`text-left bg-rose-950/20 p-3 rounded-xl flex items-center justify-between border transition cursor-pointer ${
+                checklistStatusFilter === 'pending'
+                  ? 'border-rose-500 ring-1 ring-rose-500 shadow-lg shadow-rose-500/10'
+                  : 'border-rose-800/50 hover:border-rose-700/60'
+              }`}
+            >
               <div>
-                <p className="text-xs text-rose-400 font-semibold">🔴 Pending Field Visits</p>
+                <p className="text-xs text-rose-400 font-semibold">
+                  🔴 Pending Field Visits {checklistFromDate || checklistToDate ? '(Selected Period)' : ''}
+                </p>
                 <p className="text-xl font-extrabold text-rose-400">{pendingInCity}</p>
               </div>
               <AlertCircle className="w-6 h-6 text-rose-400" />
-            </div>
+            </button>
           </div>
         )}
 
         {/* Location Agents Checklist Cards Grid */}
         {loadingLocationAgents ? (
           <div className="text-center py-6 text-slate-400 text-xs">Loading agencies in "{selectedLocation}"...</div>
-        ) : locationAgents.length === 0 ? (
-          <div className="text-center py-6 text-slate-500 text-xs">
-            {selectedLocation ? `No agencies found matching location "${selectedLocation}". Select or type a valid city/area.` : 'Select or type a location above to see agencies.'}
+        ) : filteredLocationAgents.length === 0 ? (
+          <div className="text-center py-6 text-slate-500 text-xs bg-slate-950/40 rounded-xl border border-slate-800/50">
+            {selectedLocation
+              ? `No agencies found matching location "${selectedLocation}" with filter "${checklistStatusFilter}".`
+              : 'Select or type a location above to see agencies.'}
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 max-h-80 overflow-y-auto pr-1">
-            {locationAgents.map((ag) => {
-              const isVisited = ag.last_visit_date || ag.stage !== 'Inactive';
+            {filteredLocationAgents.map((ag) => {
+              const isVisited = Boolean(ag.last_visit_date);
               return (
                 <div key={ag.id} className={`p-3 rounded-xl border text-xs space-y-2 transition ${
                   isVisited ? 'bg-slate-950/60 border-slate-800' : 'bg-rose-950/10 border-rose-900/40 hover:border-rose-700/60'
@@ -545,8 +768,8 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                       <p className="text-slate-400 text-[11px] font-medium">{ag.name} &bull; 📍 {ag.city} ({ag.area})</p>
                     </div>
                     {isVisited ? (
-                      <span className="bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded-full text-[10px] font-bold whitespace-nowrap">
-                        ✅ Visited
+                      <span className="bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded-full text-[10px] font-bold whitespace-nowrap" title={`Visited on: ${ag.last_visit_date}`}>
+                        ✅ Visited ({ag.last_visit_date})
                       </span>
                     ) : (
                       <span className="bg-rose-950 text-rose-400 border border-rose-800 px-2 py-0.5 rounded-full text-[10px] font-bold whitespace-nowrap animate-pulse">
@@ -563,12 +786,21 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                       <Phone className="w-3 h-3" /> {ag.mobile}
                     </a>
 
-                    <button
-                      onClick={() => onOpenModal('log_visit', { id: ag.id, company_name: ag.company_name, name: ag.name, mobile: ag.mobile, city: ag.city })}
-                      className="px-2.5 py-1 bg-yellow-600 hover:bg-yellow-500 text-white rounded-lg text-[11px] font-semibold transition flex items-center gap-1 shadow"
-                    >
-                      <Plus className="w-3 h-3" /> Log Visit
-                    </button>
+                    <div className="flex items-center gap-1.5">
+                      <button
+                        onClick={() => onOpenModal('edit_agent', ag)}
+                        className="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 rounded-lg text-[11px] font-semibold transition flex items-center gap-1"
+                        title="Edit Agent Details"
+                      >
+                        <Edit className="w-3 h-3 text-sky-400" /> Edit
+                      </button>
+                      <button
+                        onClick={() => onOpenModal('log_visit', { id: ag.id, company_name: ag.company_name, name: ag.name, mobile: ag.mobile, city: ag.city })}
+                        className="px-2.5 py-1 bg-yellow-600 hover:bg-yellow-500 text-white rounded-lg text-[11px] font-semibold transition flex items-center gap-1 shadow"
+                      >
+                        <Plus className="w-3 h-3" /> Log Visit
+                      </button>
+                    </div>
                   </div>
                 </div>
               );
@@ -732,6 +964,13 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                             title="Log Telephonic Call Follow-up for Simranjit Kaur"
                           >
                             <Phone className="w-3 h-3" /> Log Call
+                          </button>
+                          <button
+                            onClick={() => onOpenModal('edit_agent', { id: v.agent_id, name: v.person_met, company_name: v.company_name, mobile: v.mobile, city: v.agent_city })}
+                            className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-xs transition border border-slate-700 flex items-center gap-1 font-semibold"
+                            title="Edit Agent Details"
+                          >
+                            <Edit className="w-3 h-3 text-sky-400" /> Edit Agent
                           </button>
                           <button
                             onClick={() => onOpenAgentDrawer(v.agent_id)}

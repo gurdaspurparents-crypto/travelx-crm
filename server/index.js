@@ -79,6 +79,19 @@ app.get('/api/agents/sample-template', (req, res) => {
   }
 });
 
+// Helper to generate next unique Agent ID based on max existing numeric ID
+async function getNextAgentId() {
+  const rows = await dbAll(`SELECT id FROM agents`);
+  let maxNum = 1000;
+  for (const r of rows) {
+    const num = parseInt((r.id || '').replace(/\D/g, ''));
+    if (!isNaN(num) && num > maxNum) {
+      maxNum = num;
+    }
+  }
+  return `AGT-${maxNum + 1}`;
+}
+
 // Import Excel or CSV file
 app.post('/api/agents/import', upload.single('file'), async (req, res) => {
   try {
@@ -93,8 +106,15 @@ app.post('/api/agents/import', upload.single('file'), async (req, res) => {
     const sheetData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
 
     let importedCount = 0;
-    const countRow = await dbGet(`SELECT COUNT(*) as count FROM agents`);
-    let nextIdCounter = countRow.count + 1001;
+    const allRows = await dbAll(`SELECT id FROM agents`);
+    let maxNum = 1000;
+    for (const r of allRows) {
+      const num = parseInt((r.id || '').replace(/\D/g, ''));
+      if (!isNaN(num) && num > maxNum) {
+        maxNum = num;
+      }
+    }
+    let nextIdCounter = maxNum + 1;
 
     for (const row of sheetData) {
       const companyName = row['Company Name'] || row['Firm Name'] || row['Agency Name'] || row['Company'] || row['company_name'] || 'Travel Agency';
@@ -141,7 +161,27 @@ app.post('/api/agents/clear', async (req, res) => {
 // List agents with search, filter, and pagination
 app.get('/api/agents', async (req, res) => {
   try {
-    const { search, city, stage, agent_type, exec, limit = 100, offset = 0 } = req.query;
+    const { search, city, stage, agent_type, exec, visit_from_date, visit_to_date, limit = 100, offset = 0 } = req.query;
+
+    const mvWhere = [];
+    const mvParams = [];
+    if (visit_from_date) {
+      mvWhere.push(`mv1.visit_date >= ?`);
+      mvParams.push(visit_from_date);
+    }
+    if (visit_to_date) {
+      mvWhere.push(`mv1.visit_date <= ?`);
+      mvParams.push(visit_to_date);
+    }
+
+    const mvJoinClause = mvWhere.length > 0
+      ? `LEFT JOIN (
+          SELECT agent_id, MAX(visit_date) as visit_date
+          FROM marketing_visits mv1
+          WHERE ${mvWhere.join(' AND ')}
+          GROUP BY agent_id
+        ) mv ON a.id = mv.agent_id`
+      : `LEFT JOIN marketing_visits mv ON a.id = mv.agent_id`;
 
     let query = `
       SELECT a.*,
@@ -153,12 +193,12 @@ app.get('/api/agents', async (req, res) => {
              MAX(q.query_date) as last_query_date,
              MAX(CASE WHEN q.status = 'Converted' THEN q.booking_date END) as last_booking_date
       FROM agents a
-      LEFT JOIN marketing_visits mv ON a.id = mv.agent_id
+      ${mvJoinClause}
       LEFT JOIN telephonic_calls tc ON a.id = tc.agent_id
       LEFT JOIN queries q ON a.id = q.agent_id
       WHERE 1=1
     `;
-    const params = [];
+    const params = [...mvParams];
 
     if (search) {
       query += ` AND (a.name LIKE ? OR a.company_name LIKE ? OR a.mobile LIKE ? OR a.id LIKE ?)`;
@@ -243,12 +283,30 @@ app.get('/api/agents', async (req, res) => {
 // Endpoint to fetch dynamic distinct cities and areas from imported agents DB
 app.get('/api/agents/locations', async (req, res) => {
   try {
-    const cities = await dbAll(`SELECT DISTINCT city FROM agents WHERE city IS NOT NULL AND city != '' ORDER BY city ASC`);
-    const areas = await dbAll(`SELECT DISTINCT area FROM agents WHERE area IS NOT NULL AND area != '' ORDER BY area ASC`);
+    const rawCities = await dbAll(`SELECT DISTINCT city FROM agents WHERE city IS NOT NULL AND city != '' ORDER BY city ASC`);
+    const rawAreas = await dbAll(`SELECT DISTINCT area FROM agents WHERE area IS NOT NULL AND area != '' ORDER BY area ASC`);
+
+    function toTitleCase(str) {
+      if (!str) return '';
+      return str.trim().replace(/\s+/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
+    }
+
+    const citiesSet = new Set();
+    rawCities.forEach(c => {
+      const clean = toTitleCase(c.city);
+      if (clean) citiesSet.add(clean);
+    });
+
+    const areasSet = new Set();
+    rawAreas.forEach(a => {
+      const clean = toTitleCase(a.area);
+      if (clean) areasSet.add(clean);
+    });
+
     res.json({
       success: true,
-      cities: cities.map(c => c.city),
-      areas: areas.map(a => a.area)
+      cities: Array.from(citiesSet).sort((a, b) => a.localeCompare(b)),
+      areas: Array.from(areasSet).sort((a, b) => a.localeCompare(b))
     });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
@@ -293,8 +351,7 @@ app.post('/api/agents', async (req, res) => {
   try {
     const { name, company_name, mobile, city, area, agent_type, assigned_marketing_exec, assigned_telephonic_exec } = req.body;
 
-    const countRow = await dbGet(`SELECT COUNT(*) as count FROM agents`);
-    const nextId = `AGT-${1001 + countRow.count}`;
+    const nextId = await getNextAgentId();
     const createdAt = new Date().toISOString().split('T')[0];
 
     await dbRun(
@@ -815,17 +872,29 @@ app.get('/api/queries', async (req, res) => {
   }
 });
 
+// Helper to generate next unique Query ID based on max existing numeric ID
+async function getNextQueryId() {
+  const rows = await dbAll(`SELECT id FROM queries`);
+  let maxNum = 5000;
+  for (const r of rows) {
+    const num = parseInt((r.id || '').replace(/\D/g, ''));
+    if (!isNaN(num) && num > maxNum) {
+      maxNum = num;
+    }
+  }
+  return `QRY-${maxNum + 1}`;
+}
+
 app.post('/api/queries', async (req, res) => {
   try {
     const { query_date, agent_id, product, query_details, travel_date, pax_details, estimated_value, quoted_amount, handling_employee, followup_date } = req.body;
 
-    const countRow = await dbGet(`SELECT COUNT(*) as count FROM queries`);
-    const qryId = `QRY-${5001 + countRow.count}`;
+    const qryId = await getNextQueryId();
 
     await dbRun(
       `INSERT INTO queries (id, query_date, agent_id, product, query_details, travel_date, pax_details, estimated_value, quoted_amount, handling_employee, followup_date, status)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'New')`,
-      [qryId, query_date || '2026-08-29', agent_id, product, query_details, travel_date, pax_details, estimated_value || 0, quoted_amount || 0, handling_employee || 'Pooja Rani', followup_date]
+      [qryId, query_date || new Date().toISOString().split('T')[0], agent_id, product, query_details, travel_date, pax_details, estimated_value || 0, quoted_amount || 0, handling_employee || 'Simranjit Kaur', followup_date]
     );
 
     // Refresh agent stage to QueryReceived
@@ -957,16 +1026,20 @@ app.get('/api/focus-list', async (req, res) => {
       LIMIT 50
     `);
 
+    const thirtyDaysAgoDate = new Date();
+    thirtyDaysAgoDate.setDate(thirtyDaysAgoDate.getDate() - 30);
+    const thirtyDaysAgo = thirtyDaysAgoDate.toISOString().split('T')[0];
+
     // 5. ⚠️ Previously Active but Now Inactive (Dormant): Had bookings in past, but zero queries in last 30 days
     const dormantActive = await dbAll(`
       SELECT a.*, MAX(q.booking_date) as last_booking_date, COUNT(q.id) as past_bookings, SUM(q.booking_value) as past_revenue
       FROM agents a
       JOIN queries q ON a.id = q.agent_id AND q.status = 'Converted'
-      WHERE a.stage = 'Dormant' OR (q.booking_date < '2026-07-29')
+      WHERE a.stage = 'Dormant' OR (q.booking_date < ?)
       GROUP BY a.id
       ORDER BY last_booking_date ASC
       LIMIT 50
-    `);
+    `, [thirtyDaysAgo]);
 
     res.json({
       success: true,
@@ -987,7 +1060,7 @@ app.get('/api/focus-list', async (req, res) => {
 
 app.get('/api/dashboard', async (req, res) => {
   try {
-    const today = '2026-08-29';
+    const today = new Date().toISOString().split('T')[0];
 
     // Today's Activity
     const todayVisits = await dbGet(`SELECT COUNT(*) as count FROM marketing_visits WHERE visit_date = ?`, [today]);
@@ -1163,7 +1236,8 @@ app.get('/api/reports/weekly', async (req, res) => {
 
 app.get('/api/reports/monthly', async (req, res) => {
   try {
-    const { month = '2026-08' } = req.query;
+    const currentMonth = new Date().toISOString().slice(0, 7);
+    const { month = currentMonth } = req.query;
 
     const execPerformance = await dbAll(`
       SELECT 
@@ -1207,16 +1281,19 @@ app.get('/api/reports/monthly', async (req, res) => {
 
 app.get('/api/notifications', async (req, res) => {
   try {
-    const today = '2026-08-29';
+    const today = new Date().toISOString().split('T')[0];
+    const twoDaysAgoDate = new Date();
+    twoDaysAgoDate.setDate(twoDaysAgoDate.getDate() - 2);
+    const twoDaysAgo = twoDaysAgoDate.toISOString().split('T')[0];
 
     // Pending queries > 2 days
     const pendingOldQueries = await dbAll(`
       SELECT q.*, a.company_name
       FROM queries q
       JOIN agents a ON q.agent_id = a.id
-      WHERE q.status IN ('New', 'Quoted', 'Pending') AND q.query_date <= '2026-08-27'
+      WHERE q.status IN ('New', 'Quoted', 'Pending') AND q.query_date <= ?
       LIMIT 10
-    `);
+    `, [twoDaysAgo]);
 
     // High risk query but no booking agents
     const hotNoBooking = await dbAll(`

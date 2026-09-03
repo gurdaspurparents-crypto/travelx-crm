@@ -10,7 +10,7 @@ function AgentCombobox({ agentsList, selectedAgentId, onSelectAgent }) {
 
   // Filter matching agents
   const filtered = query.trim() === '' 
-    ? agentsList.slice(0, 50) 
+    ? agentsList.slice(0, 100) 
     : agentsList.filter(a => {
         const q = query.toLowerCase();
         return (
@@ -18,9 +18,10 @@ function AgentCombobox({ agentsList, selectedAgentId, onSelectAgent }) {
           (a.name && a.name.toLowerCase().includes(q)) ||
           (a.mobile && a.mobile.includes(q)) ||
           (a.id && a.id.toLowerCase().includes(q)) ||
-          (a.city && a.city.toLowerCase().includes(q))
+          (a.city && a.city.toLowerCase().includes(q)) ||
+          (a.area && a.area.toLowerCase().includes(q))
         );
-      }).slice(0, 50);
+      }).slice(0, 100);
 
   return (
     <div className="relative">
@@ -211,13 +212,15 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
   }, [modalType, data]);
 
   useEffect(() => {
-    // Fetch quick agents dropdown list
-    fetch('/api/agents?limit=700')
-      .then(res => res.json())
-      .then(json => {
-        if (json.success) setAgentsList(json.agents);
-      });
-  }, []);
+    if (modalType) {
+      // Fetch full agents dropdown list (limit 5000, newest first)
+      fetch('/api/agents?limit=5000')
+        .then(res => res.json())
+        .then(json => {
+          if (json.success) setAgentsList(json.agents);
+        });
+    }
+  }, [modalType]);
 
   // Sync prefilled data whenever an agent is selected for 1-Click Visit Log!
   useEffect(() => {
@@ -234,7 +237,7 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
       setCallForm(prev => ({
         ...prev,
         agent_id: data.id || prev.agent_id,
-        executive_name: 'Simranjit Kaur'
+        executive_name: data.executive_name || prev.executive_name || 'Simranjit Kaur'
       }));
 
       setQueryForm(prev => ({
@@ -530,6 +533,7 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
                   className="w-full bg-slate-950 border border-slate-800 text-slate-200 p-2.5 rounded-xl text-sm font-bold text-sky-400"
                 >
                   <option value="Simranjit Kaur">Simranjit Kaur</option>
+                  <option value="Yug">Yug (Calling Exec)</option>
                 </select>
               </div>
             </div>

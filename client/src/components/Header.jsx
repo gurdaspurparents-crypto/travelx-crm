@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { LayoutDashboard, Flame, Users, MapPin, Phone, FileText, BarChart3, Sparkles, Bell, Shield, X, AlertTriangle, Clock } from 'lucide-react';
+import { LayoutDashboard, Flame, Users, MapPin, Phone, PhoneCall, FileText, BarChart3, Sparkles, Bell, Shield, X, AlertTriangle, Clock } from 'lucide-react';
 
 export default function Header({ activeTab, onSelectTab, role, onRoleChange, onOpenAgentDrawer }) {
   const [notifications, setNotifications] = useState({ unread_count: 0, alerts: [] });
@@ -36,6 +36,7 @@ export default function Header({ activeTab, onSelectTab, role, onRoleChange, onO
 
   const tabs = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { id: 'yug_desk', label: "Yug's Calling Desk", icon: PhoneCall, badge: 'Yug' },
     { id: 'focus', label: 'Focus Lists', icon: Flame, badge: 'Priority' },
     { id: 'agents', label: 'Agent Master', icon: Users },
     { id: 'visits', label: 'Marketing Visits', icon: MapPin },
@@ -47,10 +48,13 @@ export default function Header({ activeTab, onSelectTab, role, onRoleChange, onO
 
   const visibleTabs = tabs.filter(tab => {
     if (role === 'Marketing Executive') {
-      return tab.id === 'visits';
+      return tab.id === 'visits' || tab.id === 'agents';
     }
     if (role === 'Telephonic Executive') {
-      return tab.id === 'agents' || tab.id === 'visits' || tab.id === 'calls' || tab.id === 'queries';
+      return tab.id === 'agents' || tab.id === 'visits' || tab.id === 'calls' || tab.id === 'queries' || tab.id === 'analytics' || tab.id === 'yug_desk';
+    }
+    if (role === 'Yug (Calling Executive)') {
+      return tab.id === 'yug_desk' || tab.id === 'agents' || tab.id === 'calls' || tab.id === 'queries';
     }
     return true;
   });
@@ -70,7 +74,7 @@ export default function Header({ activeTab, onSelectTab, role, onRoleChange, onO
             <div>
               <span className="text-lg font-black text-white tracking-tight">TRAVEL<span className="text-sky-400">X</span></span>
               <span className="hidden sm:inline-block ml-2 text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 rounded bg-sky-950 text-sky-400 border border-sky-800">
-                {role === 'Admin / Owner' ? 'B2B CRM (Owner Admin)' : role === 'Marketing Executive' ? 'Field Marketing App' : 'Telephonic App'}
+                {role === 'Admin / Owner' ? 'B2B CRM (Owner Admin)' : role === 'Marketing Executive' ? 'Field Marketing App' : role === 'Yug (Calling Executive)' ? "Yug's Calling Desk" : 'Telephonic App'}
               </span>
             </div>
           </div>
@@ -88,8 +92,9 @@ export default function Header({ activeTab, onSelectTab, role, onRoleChange, onO
                 className="bg-transparent font-bold text-slate-200 focus:outline-none cursor-pointer"
               >
                 <option value="Admin / Owner" className="bg-slate-900 text-slate-200">👑 Admin / Owner Mode</option>
+                <option value="Yug (Calling Executive)" className="bg-slate-900 text-slate-200">📱 Yug (Calling Exec)</option>
+                <option value="Telephonic Executive" className="bg-slate-900 text-slate-200">📞 Telephonic Exec (Simran)</option>
                 <option value="Marketing Executive" className="bg-slate-900 text-slate-200">🚗 Field Marketing Exec</option>
-                <option value="Telephonic Executive" className="bg-slate-900 text-slate-200">📞 Telephonic Exec</option>
               </select>
             </div>
 

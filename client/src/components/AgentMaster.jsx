@@ -13,12 +13,25 @@ export default function AgentMaster({ onOpenAgentDrawer, onOpenModal, onOpenImpo
   const [selectedCity, setSelectedCity] = useState('');
   const [selectedStage, setSelectedStage] = useState(initialStage || '');
   const [selectedType, setSelectedType] = useState('');
+  const [availableLocations, setAvailableLocations] = useState([]);
   const [page, setPage] = useState(1);
   const limit = 25;
 
   useEffect(() => {
     fetchAgents();
   }, [search, selectedCity, selectedStage, selectedType, page]);
+
+  useEffect(() => {
+    fetch('/api/agents/locations')
+      .then(res => res.json())
+      .then(json => {
+        if (json.success) {
+          const allLocs = Array.from(new Set([...(json.cities || []), ...(json.areas || [])])).filter(Boolean).sort();
+          setAvailableLocations(allLocs);
+        }
+      })
+      .catch(console.error);
+  }, []);
 
   const fetchAgents = async () => {
     setLoading(true);
@@ -156,16 +169,12 @@ export default function AgentMaster({ onOpenAgentDrawer, onOpenModal, onOpenImpo
         <select
           value={selectedCity}
           onChange={(e) => { setSelectedCity(e.target.value); setPage(1); }}
-          className="bg-slate-950 border border-slate-800 text-slate-300 rounded-xl text-sm p-2.5 focus:outline-none focus:border-sky-500"
+          className="bg-slate-950 border border-slate-800 text-slate-300 rounded-xl text-sm p-2.5 focus:outline-none focus:border-sky-500 max-w-xs"
         >
-          <option value="">All Locations (Cities)</option>
-          <option value="Gurdaspur">Gurdaspur</option>
-          <option value="Batala">Batala</option>
-          <option value="Pathankot">Pathankot</option>
-          <option value="Amritsar">Amritsar</option>
-          <option value="Jalandhar">Jalandhar</option>
-          <option value="Ludhiana">Ludhiana</option>
-          <option value="Chandigarh">Chandigarh</option>
+          <option value="">All Locations ({availableLocations.length > 0 ? `${availableLocations.length} Cities/Areas` : 'Cities'})</option>
+          {availableLocations.map((loc, idx) => (
+            <option key={idx} value={loc}>📍 {loc}</option>
+          ))}
         </select>
 
         {/* Stage Filter */}

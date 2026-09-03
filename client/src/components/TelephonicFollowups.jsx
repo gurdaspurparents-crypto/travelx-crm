@@ -304,6 +304,7 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
               }}
               className="bg-slate-950 border border-indigo-500 text-indigo-300 font-extrabold rounded-xl text-xs p-2 focus:outline-none"
             >
+              <option value="ALL">🌐 All Locations / All Cities</option>
               {(coverageData?.cities || ['Gurdaspur']).map(c => (
                 <option key={c} value={c}>📍 City: {c}</option>
               ))}
@@ -324,7 +325,7 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
             <div className="flex flex-wrap items-center justify-between gap-3 bg-slate-950/60 p-3 rounded-xl border border-slate-800">
               <div className="flex flex-wrap items-center gap-2 text-xs font-bold">
                 <span className="text-slate-300 bg-slate-900 px-3 py-1 rounded-full border border-slate-700">
-                  🏙️ Total Agents in {coverageData?.selectedCity}: <strong className="text-white">{coverageData?.stats?.total_agents || 0}</strong>
+                  🏙️ Total Agents in {coverageData?.selectedCity === 'ALL' || !coverageData?.selectedCity ? 'All Locations' : coverageData?.selectedCity}: <strong className="text-white">{coverageData?.stats?.total_agents || 0}</strong>
                 </span>
                 <span className="text-emerald-400 bg-emerald-950 px-3 py-1 rounded-full border border-emerald-800">
                   🟢 Visited by Bikramjit: <strong className="text-white">{coverageData?.stats?.visited_agents || 0}</strong>
@@ -460,6 +461,7 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
         >
           <option value="">All Telephonic Executives</option>
           <option value="Simranjit Kaur">Simranjit Kaur</option>
+          <option value="Yug">Yug (Calling Exec)</option>
         </select>
 
         {/* Call Result Filter Dropdown */}
