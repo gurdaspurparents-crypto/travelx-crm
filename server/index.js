@@ -1550,6 +1550,6 @@ app.use((req, res) => {
 });
 
 // Start Express server
-app.listen(PORT, () => {
-  console.log(`Travelx CRM Backend running on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Travelx CRM Backend running on port ${PORT}`);
 });
