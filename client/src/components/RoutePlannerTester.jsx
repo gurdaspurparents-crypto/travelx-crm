@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { MapPin, Navigation, Compass, CheckCircle2, AlertCircle, Phone, MessageSquare, Plus, Eye, ChevronRight, X, Sparkles, LocateFixed, Search, Filter } from 'lucide-react';
+import { MapPin, Navigation, Compass, CheckCircle2, AlertCircle, Phone, MessageSquare, Plus, Eye, ChevronRight, X, Sparkles, LocateFixed, Search, Filter, RefreshCw } from 'lucide-react';
 
 export default function RoutePlannerTester({ onClose, onOpenModal, onOpenAgentDrawer }) {
   const [agents, setAgents] = useState([]);
@@ -148,12 +148,21 @@ export default function RoutePlannerTester({ onClose, onOpenModal, onOpenAgentDr
           </p>
         </div>
 
-        <button
-          onClick={onClose}
-          className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold transition flex items-center gap-1.5 self-end sm:self-auto border border-slate-700"
-        >
-          <X className="w-4 h-4" /> Normal View Par Wapas Jayein
-        </button>
+        <div className="flex items-center gap-2 self-end sm:self-auto">
+          <button
+            onClick={() => fetchCityAgents(selectedCity)}
+            className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold transition flex items-center gap-1.5 border border-slate-700"
+            title="Refresh Live Data"
+          >
+            <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin text-emerald-400' : ''}`} /> Refresh
+          </button>
+          <button
+            onClick={onClose}
+            className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold transition flex items-center gap-1.5 border border-slate-700"
+          >
+            <X className="w-4 h-4" /> Normal View Par Wapas Jayein
+          </button>
+        </div>
       </div>
 
       {/* Control Toolbar: City Selector, Search, Filter & GPS */}
@@ -322,9 +331,9 @@ export default function RoutePlannerTester({ onClose, onOpenModal, onOpenAgentDr
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                   {cluster.agents.map((ag) => {
                     const isVisited = Boolean(ag.last_visit_date);
-                    // Google Maps search query for direct bike navigation
-                    const mapsQuery = encodeURIComponent(`${ag.company_name} ${ag.area || ''} ${ag.city || ''}`);
-                    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
+                    // Google Maps turn-by-turn navigation for motorcycle field visit
+                    const mapsQuery = encodeURIComponent(`${ag.company_name}, ${ag.area || ''}, ${ag.city || ''}`);
+                    const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapsQuery}`;
 
                     return (
                       <div
