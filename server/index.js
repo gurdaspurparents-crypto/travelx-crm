@@ -19,6 +19,17 @@ app.use(express.static(path.join(__dirname, '../dist')));
 app.use(express.static(path.join(__dirname, 'client/dist')));
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
+// Explicit root route - always serve latest compiled React app
+app.get('/', (req, res) => {
+  const distIndex = path.join(__dirname, 'dist', 'index.html');
+  const parentDistIndex = path.join(__dirname, '../dist', 'index.html');
+  const clientDistIndex = path.join(__dirname, 'client', 'dist', 'index.html');
+  if (fs.existsSync(distIndex)) return res.sendFile(distIndex);
+  if (fs.existsSync(parentDistIndex)) return res.sendFile(parentDistIndex);
+  if (fs.existsSync(clientDistIndex)) return res.sendFile(clientDistIndex);
+  res.send(`<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Travelx CRM</title></head><body style="background:#0f172a;color:#f8fafc;font-family:sans-serif;text-align:center;padding:50px"><h1>✈️ Travelx CRM</h1><p>Loading...</p></body></html>`);
+});
+
 // Initialize DB schema & seed data
 initDb().then(() => {
   console.log('Database initialized successfully.');
