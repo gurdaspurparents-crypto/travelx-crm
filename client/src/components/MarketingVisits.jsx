@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MapPin, Plus, Calendar, CheckCircle2, User, Phone, Tag, FileText, Filter, X, Trash2, Download, AlertCircle, Navigation, Search, Gauge, DollarSign, Flag, Clock, UserPlus, Edit } from 'lucide-react';
 import { exportToPDF } from '../utils/exportUtils';
+import BikramPwaInstallBanner from './BikramPwaInstallBanner';
 
 export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }) {
   const isAdmin = role === 'Admin / Owner' || !role;
@@ -305,6 +306,9 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
   return (
     <div className="space-y-6 animate-in fade-in duration-300">
       
+      {/* PWA Install Banner specifically for Bikramjit */}
+      <BikramPwaInstallBanner role={role} />
+
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
         <div>
