@@ -14,9 +14,11 @@ app.use(cors());
 app.use(express.json());
 
 // Serve static frontend in production
-app.use(express.static(path.join(__dirname, 'dist')));
-app.use(express.static(path.join(__dirname, '../dist')));
-app.use(express.static(path.join(__dirname, '../client/dist')));
+const distPath = fs.existsSync(path.join(__dirname, 'dist'))
+  ? path.join(__dirname, 'dist')
+  : path.join(__dirname, '../dist');
+
+app.use(express.static(distPath));
 
 // Initialize DB schema & seed data
 initDb().then(() => {
@@ -1537,10 +1539,9 @@ app.use((req, res) => {
   const parentDistIndex = path.join(__dirname, '../dist/index.html');
   const rootIndex = path.join(__dirname, 'index.html');
 
-  if (fs.existsSync(distIndex)) {
-    res.sendFile(distIndex);
-  } else if (fs.existsSync(parentDistIndex)) {
-    res.sendFile(parentDistIndex);
+  const indexFile = path.join(distPath, 'index.html');
+  if (fs.existsSync(indexFile)) {
+    res.sendFile(indexFile);
   } else {
     res.send(`<!DOCTYPE html><html><head><title>Travelx CRM</title></head><body style="background:#0f172a;color:#f8fafc;font-family:sans-serif;text-align:center;padding:50px;"><h1>✈️ Travelx CRM Server Active</h1></body></html>`);
   }
