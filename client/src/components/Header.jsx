@@ -36,7 +36,7 @@ export default function Header({ activeTab, onSelectTab, role, onRoleChange, onO
 
   const tabs = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { id: 'yug_desk', label: "Yug's Calling Desk", icon: PhoneCall, badge: 'Yug' },
+    { id: 'yug_desk', label: "Yug's Calling Desk", icon: PhoneCall, badge: 'YUG CALLING' },
     { id: 'focus', label: 'Focus Lists', icon: Flame, badge: 'Priority' },
     { id: 'agents', label: 'Agent Master', icon: Users },
     { id: 'visits', label: 'Marketing Visits', icon: MapPin },
@@ -48,7 +48,7 @@ export default function Header({ activeTab, onSelectTab, role, onRoleChange, onO
 
   const visibleTabs = tabs.filter(tab => {
     if (role === 'Marketing Executive') {
-      return tab.id === 'visits' || tab.id === 'agents';
+      return tab.id === 'visits' || tab.id === 'agents' || tab.id === 'yug_desk';
     }
     if (role === 'Telephonic Executive') {
       return tab.id === 'agents' || tab.id === 'visits' || tab.id === 'calls' || tab.id === 'queries' || tab.id === 'analytics' || tab.id === 'yug_desk';
@@ -133,8 +133,10 @@ export default function Header({ activeTab, onSelectTab, role, onRoleChange, onO
                 <Icon className="w-4 h-4" />
                 <span>{tab.label}</span>
                 {tab.badge && (
-                  <span className={`text-[9px] uppercase font-bold px-1.5 py-0.2 rounded-full ${
-                    tab.badge === 'AI' ? 'bg-indigo-950 text-indigo-400 border border-indigo-800' : 'bg-rose-950 text-rose-400 border border-rose-800'
+                  <span className={`text-[9px] uppercase font-bold px-1.5 py-0.5 rounded-full ${
+                    tab.badge === 'AI' ? 'bg-indigo-950 text-indigo-400 border border-indigo-800' :
+                    tab.badge === 'YUG CALLING' ? 'bg-emerald-950 text-emerald-300 border border-emerald-600 animate-pulse font-black' :
+                    'bg-rose-950 text-rose-400 border border-rose-800'
                   }`}>
                     {tab.badge}
                   </span>
