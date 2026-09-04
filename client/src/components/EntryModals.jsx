@@ -305,9 +305,11 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
         alert('✅ Agent query created successfully!');
         onSuccess();
         onClose();
+      } else {
+        alert('❌ Error saving query: ' + (json.error || 'Unknown error. Please try again.'));
       }
     } catch (err) {
-      alert('Error creating query');
+      alert('❌ Network error creating query: ' + err.message);
     }
   };
 

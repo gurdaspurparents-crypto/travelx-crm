@@ -1015,7 +1015,7 @@ app.get('/api/queries', async (req, res) => {
     let query = `
       SELECT q.*, a.name as agent_name, a.company_name, a.mobile as agent_mobile, a.city as agent_city
       FROM queries q
-      JOIN agents a ON q.agent_id = a.id
+      LEFT JOIN agents a ON q.agent_id = a.id
       WHERE 1=1
     `;
     const params = [];
