@@ -29,9 +29,10 @@ export default function App() {
   // Permanent LocalStorage Session Retention (No repeated logins required)
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const roleParam = urlParams.get('role') || urlParams.get('mode');
+    const rawRole = urlParams.get('role') || urlParams.get('mode') || '';
+    const roleParam = rawRole.toLowerCase().trim();
     
-    if (roleParam === 'field' || roleParam === 'marketing' || roleParam === 'bikramjit') {
+    if (roleParam === 'field' || roleParam === 'marketing' || roleParam === 'bikramjit' || roleParam === 'bikram') {
       setRole('Marketing Executive');
       setActiveTab('visits');
       localStorage.setItem('travelx_crm_role', 'Marketing Executive');
