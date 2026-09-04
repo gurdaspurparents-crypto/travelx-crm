@@ -16,10 +16,10 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
   const [locationsList, setLocationsList] = useState([]);
   const [matrixSort, setMatrixSort] = useState('agents_desc'); // 'agents_desc', 'loc_asc', 'loc_desc', 'revenue_desc'
   
-  // Tracking Date Filter & Details Dropdown States
+  // Tracking Date Filter & Details Dropdown States (Default to OPEN so user immediately sees who was called)
   const todayStr = new Date().toISOString().split('T')[0];
   const [trackingDate, setTrackingDate] = useState(todayStr);
-  const [showCallDetails, setShowCallDetails] = useState(false);
+  const [showCallDetails, setShowCallDetails] = useState(true);
   const [callSearchTerm, setCallSearchTerm] = useState('');
   const [callResultFilter, setCallResultFilter] = useState('all');
 
