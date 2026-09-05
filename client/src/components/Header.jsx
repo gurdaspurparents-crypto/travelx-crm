@@ -6,16 +6,30 @@ export default function Header({ activeTab, onSelectTab, role, onRoleChange, onO
   const [notifications, setNotifications] = useState({ unread_count: 0, alerts: [] });
   const [followupData, setFollowupData] = useState(null);
   const [showFollowupModal, setShowFollowupModal] = useState(false);
+  const [backupStatus, setBackupStatus] = useState(null);
 
   useEffect(() => {
     fetchNotifications();
     fetchFollowups();
+    fetchBackupStatus();
     const interval = setInterval(() => {
       fetchNotifications();
       fetchFollowups();
-    }, 15000);
+      fetchBackupStatus();
+    }, 60000); // refresh every 60 seconds
     return () => clearInterval(interval);
   }, []);
+
+  const fetchBackupStatus = async () => {
+    try {
+      const res = await fetch('/api/backup/status');
+      const json = await res.json();
+      if (json.success) setBackupStatus(json.status);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
 
   const fetchFollowups = async () => {
     try {
@@ -100,6 +114,51 @@ export default function Header({ activeTab, onSelectTab, role, onRoleChange, onO
           {/* Right Controls: Due Followups, Role Switcher & Notifications */}
           <div className="flex items-center gap-2.5">
             
+            {/* ✅ BACKUP STATUS BADGE — always visible */}
+            {(() => {
+              if (!backupStatus) return null;
+              const lastSuccess = backupStatus.lastSuccess;
+              const minutesAgo = lastSuccess
+                ? Math.floor((Date.now() - new Date(lastSuccess).getTime()) / 60000)
+                : null;
+              const isStale = minutesAgo === null || minutesAgo > 60;
+              const timeLabel = lastSuccess
+                ? (() => {
+                    const d = new Date(lastSuccess);
+                    // Convert UTC to IST (+5:30)
+                    const ist = new Date(d.getTime() + 5.5 * 60 * 60 * 1000);
+                    return ist.toISOString().replace('T', ' ').substring(0, 16) + ' IST';
+                  })()
+                : 'Never';
+              return (
+                <button
+                  onClick={async () => {
+                    try {
+                      await fetch('/api/backup/now', { method: 'POST' });
+                      setTimeout(fetchBackupStatus, 3000);
+                      alert('✅ Backup triggered! Check status in 5 seconds.');
+                    } catch (e) {}
+                  }}
+                  title={`Last backup: ${timeLabel}. Click to backup now.`}
+                  className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-[11px] font-bold border transition cursor-pointer ${
+                    isStale
+                      ? 'bg-rose-950 border-rose-700 text-rose-300 animate-pulse'
+                      : 'bg-emerald-950 border-emerald-800 text-emerald-300'
+                  }`}
+                >
+                  <span className={`w-2 h-2 rounded-full ${isStale ? 'bg-rose-400' : 'bg-emerald-400'}`}></span>
+                  <span className="hidden sm:inline">
+                    {isStale
+                      ? `⚠️ Backup: ${timeLabel}`
+                      : `✅ Backed up: ${timeLabel}`}
+                  </span>
+                  <span className="sm:hidden">
+                    {isStale ? '⚠️ Backup!' : '✅ Saved'}
+                  </span>
+                </button>
+              );
+            })()}
+
             {/* Today's Due Follow-ups Alert Badge */}
             {followupData && followupData.total_due > 0 && (
               <button
