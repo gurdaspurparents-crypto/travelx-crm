@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-04T07:35:27.427Z",
+  "backed_up_at": "2026-09-05T05:36:56.353Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -8425,7 +8425,7 @@
       "call_result": "Interested",
       "remarks": "Interested in packages and group airfares",
       "next_followup_date": "2026-09-06",
-      "payment_terms": "Advance"
+      "payment_terms": null
     },
     {
       "id": 416,
@@ -8440,7 +8440,7 @@
       "call_result": "Call Again Later",
       "remarks": "Busy in customer dealing, call tomorrow",
       "next_followup_date": "2026-09-05",
-      "payment_terms": "Advance"
+      "payment_terms": null
     },
     {
       "id": 417,
@@ -8455,7 +8455,7 @@
       "call_result": "Call Again Later",
       "remarks": "Will share requirement on WhatsApp",
       "next_followup_date": "2026-09-05",
-      "payment_terms": "Advance"
+      "payment_terms": null
     },
     {
       "id": 418,
@@ -8470,7 +8470,7 @@
       "call_result": "Call Again Later",
       "remarks": "Owner out of station, call Saturday",
       "next_followup_date": "2026-09-06",
-      "payment_terms": "Advance"
+      "payment_terms": null
     },
     {
       "id": 419,
@@ -8485,7 +8485,7 @@
       "call_result": "Interested",
       "remarks": "Interested in Dubai group fares",
       "next_followup_date": "2026-09-05",
-      "payment_terms": "Advance"
+      "payment_terms": null
     },
     {
       "id": 420,
@@ -8500,7 +8500,7 @@
       "call_result": "Call Again Later",
       "remarks": "Call again after 3 PM",
       "next_followup_date": "2026-09-05",
-      "payment_terms": "Advance"
+      "payment_terms": null
     }
   ],
   "queries": [
