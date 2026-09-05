@@ -10,14 +10,26 @@ const https = require('https');
 const path = require('path');
 const fs = require('fs');
 
+function sanitizeToken(val) {
+  if (!val) return '';
+  return String(val)
+    .trim()
+    .replace(/^["'`]|["'`]$/g, '')
+    .replace(/^(token|bearer)\s+/i, '')
+    .trim();
+}
+
 const fallbackToken = Buffer.from('Z2hwX1cyd2hRcFB1UFJBZDAzMVZGQWtzOTMwbDFUU0pmcTBBaVFQMQ==', 'base64').toString('ascii');
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN || fallbackToken;
+const GITHUB_TOKEN = sanitizeToken(process.env.GITHUB_TOKEN) || sanitizeToken(fallbackToken);
 const REPO = 'gurdaspurparents-crypto/travelx-crm';
 const FILE_PATH = 'liveBackup.json';
 const BRANCH = 'main';
 
 let lastBackupStatus = {
   hasToken: Boolean(GITHUB_TOKEN),
+  tokenLength: GITHUB_TOKEN ? GITHUB_TOKEN.length : 0,
+  tokenPrefix: GITHUB_TOKEN ? GITHUB_TOKEN.substring(0, 8) + '...' : 'none',
+  tokenSource: process.env.GITHUB_TOKEN ? 'RENDER_ENV' : 'FALLBACK',
   lastAttempt: null,
   lastSuccess: null,
   lastError: null,
@@ -36,7 +48,7 @@ function githubRequest(method, endpoint, body) {
       path: endpoint,
       method,
       headers: {
-        'Authorization': `token ${GITHUB_TOKEN}`,
+        'Authorization': `Bearer ${GITHUB_TOKEN}`,
         'Content-Type': 'application/json',
         'User-Agent': 'TravelxCRM-AutoBackup/2.0',
         ...(data ? { 'Content-Length': Buffer.byteLength(data) } : {})
