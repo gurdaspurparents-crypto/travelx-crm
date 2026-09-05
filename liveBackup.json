@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-05T14:41:05.588Z",
+  "backed_up_at": "2026-09-05T14:46:27.661Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -9,7 +9,7 @@
       "city": "Amipur",
       "area": "Amipur",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -1339,7 +1339,7 @@
       "city": "Dinanagar",
       "area": "Dinanagar",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -8244,6 +8244,40 @@
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
+    },
+    {
+      "id": 540,
+      "visit_date": "2026-09-05",
+      "agent_id": "AGT-1106",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "mr.palwinder",
+      "mobile": "9780176127",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-06",
+      "location": "Dhariwal",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 541,
+      "visit_date": "2026-09-05",
+      "agent_id": "AGT-1106",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "mr.palwinder",
+      "mobile": "9780176127",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-06",
+      "location": "Dhariwal",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
     }
   ],
   "telephonic_calls": [
@@ -8500,6 +8534,51 @@
       "call_result": "Call Again Later",
       "remarks": "Call again after 3 PM",
       "next_followup_date": "2026-09-05",
+      "payment_terms": null
+    },
+    {
+      "id": 421,
+      "call_date": "2026-09-05",
+      "agent_id": "AGT-1173",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Requirement Received",
+      "remarks": "",
+      "next_followup_date": "2026-09-07",
+      "payment_terms": null
+    },
+    {
+      "id": 422,
+      "call_date": "2026-09-05",
+      "agent_id": "AGT-1007",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Requirement Received",
+      "remarks": "",
+      "next_followup_date": "2026-09-07",
+      "payment_terms": null
+    },
+    {
+      "id": 423,
+      "call_date": "2026-09-05",
+      "agent_id": "AGT-1007",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Requirement Received",
+      "remarks": "",
+      "next_followup_date": "2026-09-07",
       "payment_terms": null
     }
   ],
@@ -8963,6 +9042,26 @@
       "closing_employee": null,
       "rejection_reason": "Agent Did Not Respond",
       "rejection_remarks": ""
+    },
+    {
+      "id": "QRY-5029",
+      "query_date": "2026-09-05",
+      "agent_id": "AGT-1007",
+      "product": "International Flight",
+      "query_details": "asd",
+      "travel_date": "2026-09-20",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-09-06",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
     }
   ],
   "field_trips": []
