@@ -46,6 +46,9 @@ function githubRequest(method, endpoint, body) {
       let responseData = '';
       res.on('data', chunk => responseData += chunk);
       res.on('end', () => {
+        if (res.statusCode < 200 || res.statusCode >= 300) {
+          return reject(new Error(`GitHub API returned HTTP ${res.statusCode}: ${responseData}`));
+        }
         try { resolve(JSON.parse(responseData)); }
         catch (e) { resolve(responseData); }
       });
