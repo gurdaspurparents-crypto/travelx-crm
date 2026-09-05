@@ -16,7 +16,7 @@ export default function ManagementDashboard({ onNavigate, onOpenAgentDrawer, onO
   useEffect(() => {
     fetchDashboardData(selectedDate);
     fetchConveyanceReport();
-  }, []);
+  }, [selectedDate]);
 
   const fetchConveyanceReport = async () => {
     try {
