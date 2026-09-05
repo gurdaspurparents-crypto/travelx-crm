@@ -1768,6 +1768,17 @@ app.use((req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Travelx CRM Backend running on port ${PORT}`);
 
+  // ✅ Initial backup 30 seconds after start (after restore completes)
+  setTimeout(async () => {
+    console.log('[AutoBackup] 🚀 Initial post-start backup running...');
+    try {
+      await backupToGitHub(db);
+      console.log('[AutoBackup] ✅ Initial backup complete!');
+    } catch (err) {
+      console.error('[AutoBackup] ❌ Initial backup error:', err.message);
+    }
+  }, 30000);
+
   // ✅ Auto-backup every 30 minutes — keeps GitHub in sync even with no new entries
   const BACKUP_INTERVAL_MS = 30 * 60 * 1000; // 30 minutes
   setInterval(async () => {
@@ -1780,5 +1791,5 @@ app.listen(PORT, '0.0.0.0', () => {
     }
   }, BACKUP_INTERVAL_MS);
 
-  console.log('[AutoBackup] ✅ 30-minute auto-backup scheduler started!');
+  console.log('[AutoBackup] ✅ Auto-backup scheduler started (initial: 30s, then every 30 min)!');
 });
