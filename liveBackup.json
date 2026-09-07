@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-07T09:59:19.622Z",
+  "backed_up_at": "2026-09-07T10:00:30.441Z",
   "agents": [
     {
       "id": "AGT-1925",
@@ -7807,7 +7807,7 @@
       "city": "Udhanwal",
       "area": "Takoya",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -10259,6 +10259,21 @@
       "agent_requirement": "",
       "interest_level": "Interested / Warm",
       "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-09",
+      "payment_terms": null
+    },
+    {
+      "id": 480,
+      "call_date": "2026-09-07",
+      "agent_id": "AGT-1855",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-09",
       "payment_terms": null
