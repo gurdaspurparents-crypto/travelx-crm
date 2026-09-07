@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { LayoutDashboard, Flame, Users, MapPin, Phone, PhoneCall, FileText, BarChart3, Sparkles, Bell, Shield, X, AlertTriangle, Clock } from 'lucide-react';
 import FollowupAlertModal from './FollowupAlertModal';
+import BackupRecoveryModal from './BackupRecoveryModal';
 
 export default function Header({ activeTab, onSelectTab, role, onRoleChange, onOpenAgentDrawer, onOpenModal }) {
   const [notifications, setNotifications] = useState({ unread_count: 0, alerts: [] });
   const [followupData, setFollowupData] = useState(null);
   const [showFollowupModal, setShowFollowupModal] = useState(false);
+  const [showBackupModal, setShowBackupModal] = useState(false);
   const [backupStatus, setBackupStatus] = useState(null);
 
   useEffect(() => {
@@ -132,28 +134,22 @@ export default function Header({ activeTab, onSelectTab, role, onRoleChange, onO
                 : 'Never';
               return (
                 <button
-                  onClick={async () => {
-                    try {
-                      await fetch('/api/backup/now', { method: 'POST' });
-                      setTimeout(fetchBackupStatus, 3000);
-                      alert('✅ Backup triggered! Check status in 5 seconds.');
-                    } catch (e) {}
-                  }}
-                  title={`Last backup: ${timeLabel}. Click to backup now.`}
+                  onClick={() => setShowBackupModal(true)}
+                  title={`Backup Status: ${timeLabel}. Click to download backup to laptop or restore.`}
                   className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-[11px] font-bold border transition cursor-pointer ${
                     isStale
                       ? 'bg-rose-950 border-rose-700 text-rose-300 animate-pulse'
-                      : 'bg-emerald-950 border-emerald-800 text-emerald-300'
+                      : 'bg-emerald-950 border-emerald-800 text-emerald-300 hover:bg-emerald-900/60'
                   }`}
                 >
                   <span className={`w-2 h-2 rounded-full ${isStale ? 'bg-rose-400' : 'bg-emerald-400'}`}></span>
                   <span className="hidden sm:inline">
                     {isStale
                       ? `⚠️ Backup: ${timeLabel}`
-                      : `✅ Backed up: ${timeLabel}`}
+                      : `💾 Backup: ${timeLabel}`}
                   </span>
                   <span className="sm:hidden">
-                    {isStale ? '⚠️ Backup!' : '✅ Saved'}
+                    {isStale ? '⚠️ Backup' : '💾 Backup'}
                   </span>
                 </button>
               );
@@ -245,6 +241,14 @@ export default function Header({ activeTab, onSelectTab, role, onRoleChange, onO
         followupData={followupData}
         onOpenModal={onOpenModal}
         onOpenAgentDrawer={onOpenAgentDrawer}
+      />
+
+      {/* Backup & Laptop Recovery Center Modal */}
+      <BackupRecoveryModal
+        isOpen={showBackupModal}
+        onClose={() => setShowBackupModal(false)}
+        backupStatus={backupStatus}
+        onRefreshStatus={fetchBackupStatus}
       />
 
     </header>

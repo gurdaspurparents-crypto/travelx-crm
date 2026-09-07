@@ -318,5 +318,6 @@ module.exports = {
   restoreFromGitHub,
   scheduleBackup,
   getBackupStatus,
-  exportAllData
+  exportAllData,
+  applyDataToDb
 };

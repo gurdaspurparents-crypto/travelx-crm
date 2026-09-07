@@ -5,7 +5,7 @@ const fs = require('fs');
 const multer = require('multer');
 const XLSX = require('xlsx');
 const { db, dbRun, dbAll, dbGet, initDb, refreshAgentStage } = require('./db');
-const { restoreFromGitHub, scheduleBackup, backupToGitHub, getBackupStatus, exportAllData } = require('./gitBackup');
+const { restoreFromGitHub, scheduleBackup, backupToGitHub, getBackupStatus, exportAllData, applyDataToDb } = require('./gitBackup');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -77,6 +77,45 @@ app.post('/api/backup/restore', async (req, res) => {
       }
     });
   } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// Upload and restore database from a local laptop JSON backup file
+app.post('/api/backup/upload-restore', upload.single('backupFile'), async (req, res) => {
+  try {
+    let data = null;
+    if (req.file) {
+      data = JSON.parse(req.file.buffer.toString('utf8'));
+    } else if (req.body && req.body.backupData) {
+      data = typeof req.body.backupData === 'string' ? JSON.parse(req.body.backupData) : req.body.backupData;
+    } else if (req.body && (req.body.agents || req.body.marketing_visits)) {
+      data = req.body;
+    }
+
+    if (!data || (!Array.isArray(data.agents) && !Array.isArray(data.marketing_visits))) {
+      return res.status(400).json({ success: false, error: 'Invalid backup file format. Expected agents or visits array.' });
+    }
+
+    console.log(`[LaptopRestore] Restoring database from uploaded laptop file...`);
+    await applyDataToDb(data, dbRun);
+
+    // Sync to GitHub cloud backup as well
+    scheduleBackup(db);
+
+    const counts = await exportAllData(db);
+    res.json({
+      success: true,
+      message: `Database successfully restored from laptop file! Loaded ${counts.agents.length} agents, ${counts.marketing_visits.length} visits, ${counts.telephonic_calls.length} calls, ${counts.queries.length} queries.`,
+      records: {
+        agents: counts.agents.length,
+        visits: counts.marketing_visits.length,
+        calls: counts.telephonic_calls.length,
+        queries: counts.queries.length
+      }
+    });
+  } catch (err) {
+    console.error('[LaptopRestore] Error:', err);
     res.status(500).json({ success: false, error: err.message });
   }
 });
