@@ -197,6 +197,26 @@ async function backupToGitHub(db) {
       return { success: false, reason: 'NO_TOKEN', data };
     }
 
+    // Anti-Data Loss Guard: Never overwrite cloud backup if local DB has fewer records!
+    try {
+      const cloudFile = await githubRequest('GET', `/repos/${REPO}/contents/${FILE_PATH}?ref=${BRANCH}`);
+      if (cloudFile && cloudFile.content) {
+        const cloudData = JSON.parse(Buffer.from(cloudFile.content, 'base64').toString('utf8'));
+        const cloudAgents = cloudData.agents ? cloudData.agents.length : 0;
+        const cloudVisits = cloudData.marketing_visits ? cloudData.marketing_visits.length : 0;
+
+        if (data.agents.length < cloudAgents || data.marketing_visits.length < cloudVisits) {
+          console.warn(`[Backup Guard] 🛑 REJECTED! Local DB has fewer records (Agents: ${data.agents.length}/${cloudAgents}, Visits: ${data.marketing_visits.length}/${cloudVisits}). Refusing to overwrite cloud!`);
+          lastBackupStatus.lastError = `Backup rejected by guard: local has fewer records than cloud (${data.agents.length} < ${cloudAgents} agents or ${data.marketing_visits.length} < ${cloudVisits} visits)`;
+          console.log('[Backup Guard] 🔄 Auto-healing local database from cloud backup...');
+          await applyDataToDb(cloudData, (sql, p) => new Promise((res, rej) => db.run(sql, p, function(e) { if (e) rej(e); else res(this); })));
+          return { success: false, reason: 'LOCAL_DATA_SMALLER_THAN_CLOUD_HEALED' };
+        }
+      }
+    } catch (guardErr) {
+      console.warn('[Backup Guard] Cloud check warning:', guardErr.message);
+    }
+
     const content = Buffer.from(JSON.stringify(data, null, 2)).toString('base64');
     let sha = await getFileSha();
 

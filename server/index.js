@@ -31,15 +31,6 @@ app.get('/', (req, res) => {
   res.send(`<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Travelx CRM</title></head><body style="background:#0f172a;color:#f8fafc;font-family:sans-serif;text-align:center;padding:50px"><h1>✈️ Travelx CRM</h1><p>Loading...</p></body></html>`);
 });
 
-// Initialize DB schema & seed data, then restore live data from GitHub backup
-initDb().then(async () => {
-  console.log('Database initialized successfully.');
-  // Restore latest live data from GitHub (overrides seedData with latest entries)
-  await restoreFromGitHub(db, dbRun, dbAll);
-}).catch(err => {
-  console.error('Failed to initialize database:', err);
-});
-
 // ==================== AUTO BACKUP MANAGEMENT ENDPOINTS ====================
 
 // Check Backup Status
@@ -65,6 +56,26 @@ app.post('/api/backup/now', async (req, res) => {
   try {
     const result = await backupToGitHub(db);
     res.json({ success: true, result });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// Manually trigger immediate restore from GitHub cloud backup
+app.post('/api/backup/restore', async (req, res) => {
+  try {
+    const success = await restoreFromGitHub(db, dbRun, dbAll);
+    const data = await exportAllData(db);
+    res.json({
+      success,
+      message: success ? 'Database restored from GitHub successfully!' : 'Failed to restore from GitHub',
+      records: {
+        agents: data.agents.length,
+        visits: data.marketing_visits.length,
+        calls: data.telephonic_calls.length,
+        queries: data.queries.length
+      }
+    });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }
@@ -1015,7 +1026,7 @@ app.get('/api/queries', async (req, res) => {
     let query = `
       SELECT q.*, a.name as agent_name, a.company_name, a.mobile as agent_mobile, a.city as agent_city
       FROM queries q
-      JOIN agents a ON q.agent_id = a.id
+      LEFT JOIN agents a ON q.agent_id = a.id
       WHERE 1=1
     `;
     const params = [];
@@ -1764,7 +1775,35 @@ app.use((req, res) => {
   }
 });
 
-// Start Express server
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Travelx CRM Backend running on port ${PORT}`);
-});
+// Start Express server after DB init and restore are complete
+async function startServer() {
+  try {
+    console.log('[Startup] 1. Initializing database schema...');
+    await initDb();
+    console.log('[Startup] 2. Restoring master cloud backup from GitHub...');
+    await restoreFromGitHub(db, dbRun, dbAll);
+    console.log('[Startup] 3. Database successfully initialized & restored.');
+
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`Travelx CRM Backend running on port ${PORT}`);
+
+      // Auto-backup every 30 minutes — keeps GitHub in sync
+      const BACKUP_INTERVAL_MS = 30 * 60 * 1000;
+      setInterval(async () => {
+        console.log('[AutoBackup] ⏰ Scheduled 30-min backup running...');
+        try {
+          await backupToGitHub(db);
+          console.log('[AutoBackup] ✅ 30-min backup complete!');
+        } catch (err) {
+          console.error('[AutoBackup] ❌ Error:', err.message);
+        }
+      }, BACKUP_INTERVAL_MS);
+
+      console.log('[AutoBackup] ✅ Auto-backup scheduler started (every 30 min)!');
+    });
+  } catch (err) {
+    console.error('[Startup] ❌ Fatal error starting server:', err);
+  }
+}
+
+startServer();

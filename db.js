@@ -184,11 +184,14 @@ async function refreshAgentStage(agentId) {
 
 // Data Seeder for ~700 agents across Punjab cities
 async function seedDatabase() {
+  const liveBackupPath = path.resolve(__dirname, 'liveBackup.json');
   const seedPath = path.resolve(__dirname, 'seedData.json');
-  if (fs.existsSync(seedPath)) {
-    console.log('Found seedData.json! Loading exact master database of 533 agents, calls, visits, and queries...');
+  const targetFile = fs.existsSync(liveBackupPath) ? liveBackupPath : seedPath;
+
+  if (fs.existsSync(targetFile)) {
+    console.log(`Found ${path.basename(targetFile)}! Loading master database of agents, visits, calls, and queries...`);
     try {
-      const seed = JSON.parse(fs.readFileSync(seedPath, 'utf8'));
+      const seed = JSON.parse(fs.readFileSync(targetFile, 'utf8'));
 
       if (seed.agents && seed.agents.length > 0) {
         for (const a of seed.agents) {
@@ -200,8 +203,9 @@ async function seedDatabase() {
         }
       }
 
-      if (seed.visits && seed.visits.length > 0) {
-        for (const v of seed.visits) {
+      const visits = seed.marketing_visits || seed.visits;
+      if (visits && visits.length > 0) {
+        for (const v of visits) {
           await dbRun(
             `INSERT OR REPLACE INTO marketing_visits (id, visit_date, agent_id, executive_name, person_met, mobile, is_new_agent, products_pitched, response_level, remarks, next_followup_date, location, gps_latitude, gps_longitude, gps_address)
              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -210,8 +214,9 @@ async function seedDatabase() {
         }
       }
 
-      if (seed.calls && seed.calls.length > 0) {
-        for (const c of seed.calls) {
+      const calls = seed.telephonic_calls || seed.calls;
+      if (calls && calls.length > 0) {
+        for (const c of calls) {
           await dbRun(
             `INSERT OR REPLACE INTO telephonic_calls (id, call_date, agent_id, visit_id, executive_name, is_connected, services_discussed, agent_requirement, interest_level, call_result, remarks, next_followup_date)
              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
