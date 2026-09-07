@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-07T08:26:15.846Z",
+  "backed_up_at": "2026-09-07T08:29:19.956Z",
   "agents": [
     {
       "id": "AGT-1925",
@@ -1535,7 +1535,7 @@
       "city": "Dehriwal",
       "area": "Dehriwal, Distt Shekwa",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -9982,6 +9982,21 @@
       "id": 461,
       "call_date": "2026-09-07",
       "agent_id": "AGT-1510",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Not Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-09",
+      "payment_terms": null
+    },
+    {
+      "id": 462,
+      "call_date": "2026-09-07",
+      "agent_id": "AGT-1071",
       "visit_id": null,
       "executive_name": "Yug",
       "is_connected": 1,
