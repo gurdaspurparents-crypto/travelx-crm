@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { 
   X, Download, Upload, HardDrive, ShieldCheck, AlertTriangle, 
   CheckCircle2, RefreshCw, Cloud, FileJson, ArrowDownToLine
@@ -18,14 +19,14 @@ export default function BackupRecoveryModal({ isOpen, onClose, backupStatus, onR
   // 1. Download Backup to Laptop
   const handleDownload = () => {
     setDownloading(true);
-    setStatusMessage({ type: 'success', text: `✅ Download started! File saved in your Downloads folder: ${backupFileName}` });
+    setStatusMessage({ type: 'success', text: `✅ Download started! Check Downloads folder: ${backupFileName}` });
     window.location.href = '/api/backup/download';
     setTimeout(() => {
       setDownloading(false);
     }, 1000);
   };
 
-  // 2. Select File & Immediately Trigger Restore
+  // 2. Select File & Trigger Restore
   const handleFileChange = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -89,9 +90,12 @@ export default function BackupRecoveryModal({ isOpen, onClose, backupStatus, onR
       })()
     : 'Active';
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 bg-black/85 backdrop-blur-sm animate-in fade-in duration-150">
-      <div className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden flex flex-col">
+  const modalContent = (
+    <div className="fixed inset-0 z-[99999] flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-150">
+      <div 
+        onClick={e => e.stopPropagation()}
+        className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden flex flex-col relative z-10 my-auto"
+      >
         
         {/* Header */}
         <div className="px-5 py-4 border-b border-slate-800 bg-slate-950/80 flex items-center justify-between">
@@ -116,7 +120,7 @@ export default function BackupRecoveryModal({ isOpen, onClose, backupStatus, onR
           </button>
         </div>
 
-        {/* Content - Compact & Clean */}
+        {/* Content Body */}
         <div className="p-5 space-y-4">
           
           {/* Status Alert Banner */}
@@ -140,7 +144,7 @@ export default function BackupRecoveryModal({ isOpen, onClose, backupStatus, onR
                 <Download className="w-3.5 h-3.5" /> 1. Download Backup to Laptop
               </span>
               <span className="text-[10px] text-emerald-300 bg-emerald-950 border border-emerald-800 px-2 py-0.5 rounded-full font-bold">
-                Daily Copy
+                Daily Save
               </span>
             </div>
             <p className="text-xs text-slate-300 mb-3">
@@ -227,4 +231,8 @@ export default function BackupRecoveryModal({ isOpen, onClose, backupStatus, onR
       </div>
     </div>
   );
+
+  return typeof document !== 'undefined' 
+    ? createPortal(modalContent, document.body)
+    : modalContent;
 }
