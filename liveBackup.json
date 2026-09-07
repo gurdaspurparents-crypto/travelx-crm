@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-07T10:19:35.624Z",
+  "backed_up_at": "2026-09-07T10:20:07.210Z",
   "agents": [
     {
       "id": "AGT-1925",
@@ -2403,7 +2403,7 @@
       "city": "Dinanagar",
       "area": "Dinanagar, Near Bus Stand",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -10853,9 +10853,9 @@
     {
       "id": "QRY-5030",
       "query_date": "2026-09-07",
-      "agent_id": "AGT-1212",
+      "agent_id": "AGT-1180",
       "product": "International Flight",
-      "query_details": "dxb -atq",
+      "query_details": "goa pack..",
       "travel_date": "2026-09-22",
       "pax_details": "2 Adults",
       "estimated_value": 0,
