@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-07T07:50:04.230Z",
+  "backed_up_at": "2026-09-07T07:50:52.673Z",
   "agents": [
     {
       "id": "AGT-1925",
@@ -7275,7 +7275,7 @@
       "city": "Sri Hargobindpur",
       "area": "Sri Hargobindpur",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -9749,6 +9749,21 @@
       "agent_requirement": "",
       "interest_level": "Interested / Warm",
       "call_result": "Call Again Later",
+      "remarks": "",
+      "next_followup_date": "2026-09-09",
+      "payment_terms": null
+    },
+    {
+      "id": 446,
+      "call_date": "2026-09-07",
+      "agent_id": "AGT-1796",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-09",
       "payment_terms": null
