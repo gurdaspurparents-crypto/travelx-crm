@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-07T09:45:49.046Z",
+  "backed_up_at": "2026-09-07T09:48:45.929Z",
   "agents": [
     {
       "id": "AGT-1925",
@@ -7597,7 +7597,7 @@
       "city": "Taragarh",
       "area": "Targrah",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -10192,6 +10192,21 @@
       "id": 475,
       "call_date": "2026-09-07",
       "agent_id": "AGT-1909",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "No Response",
+      "remarks": "",
+      "next_followup_date": "2026-09-09",
+      "payment_terms": null
+    },
+    {
+      "id": 476,
+      "call_date": "2026-09-07",
+      "agent_id": "AGT-1827",
       "visit_id": null,
       "executive_name": "Yug",
       "is_connected": 1,
