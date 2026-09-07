@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-07T07:59:29.862Z",
+  "backed_up_at": "2026-09-07T08:01:23.055Z",
   "agents": [
     {
       "id": "AGT-1925",
@@ -4741,7 +4741,7 @@
       "city": "Kahnuwan",
       "area": "Near Singh Saba Gurudwara Kahnuwan, Distt Gsp",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -9832,6 +9832,21 @@
       "id": 451,
       "call_date": "2026-09-07",
       "agent_id": "AGT-1487",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "No Response",
+      "remarks": "",
+      "next_followup_date": "2026-09-09",
+      "payment_terms": null
+    },
+    {
+      "id": 452,
+      "call_date": "2026-09-07",
+      "agent_id": "AGT-1488",
       "visit_id": null,
       "executive_name": "Yug",
       "is_connected": 1,
