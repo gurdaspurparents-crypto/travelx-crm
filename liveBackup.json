@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-07T12:26:50.804Z",
+  "backed_up_at": "2026-09-07T12:27:47.949Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7833,6 +7833,20 @@
       "company_name": "sidhu generl store",
       "mobile": "9872560625",
       "city": "shrihrgobinpur rd",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-09-07",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-1952",
+      "name": "gurpeet singh",
+      "company_name": "paramount immigration",
+      "mobile": "9988833808",
+      "city": "Gurdaspur",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
       "stage": "Inactive",
