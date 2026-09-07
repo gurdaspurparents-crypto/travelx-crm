@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-07T11:33:35.869Z",
+  "backed_up_at": "2026-09-07T11:34:15.279Z",
   "agents": [
     {
       "id": "AGT-1925",
@@ -359,7 +359,7 @@
       "city": "Gurdaspur",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-07",
@@ -9158,12 +9158,12 @@
     {
       "id": 582,
       "visit_date": "2026-09-07",
-      "agent_id": "AGT-1950",
+      "agent_id": "AGT-1353",
       "executive_name": "Bikramjit Singh",
-      "person_met": "Anu kumar ",
-      "mobile": "7986046910",
+      "person_met": "Ms.Ridhima sharma",
+      "mobile": "7273000071",
       "is_new_agent": 0,
-      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Cruise\",\"Tour Packages\",\"International Flight\",\"Money Transfer\"]",
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Cruise\",\"International Flight\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-09-08",
