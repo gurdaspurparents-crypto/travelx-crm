@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-08T05:26:17.875Z",
+  "backed_up_at": "2026-09-08T05:40:32.544Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -4027,7 +4027,7 @@
       "city": "Kotli",
       "area": "Kotli",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -10513,6 +10513,21 @@
       "call_result": "Not Interested",
       "remarks": "",
       "next_followup_date": "2026-09-09",
+      "payment_terms": null
+    },
+    {
+      "id": 487,
+      "call_date": "2026-09-08",
+      "agent_id": "AGT-1586",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "No Response",
+      "remarks": "",
+      "next_followup_date": "2026-09-10",
       "payment_terms": null
     }
   ],
