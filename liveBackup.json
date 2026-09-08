@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-08T06:53:59.391Z",
+  "backed_up_at": "2026-09-08T06:54:48.223Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -3887,7 +3887,7 @@
       "city": "Keshopur",
       "area": "Keshopur",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -5945,7 +5945,7 @@
       "city": "Taragarh",
       "area": "Targrah",
       "agent_type": "Retail Travel Agent",
-      "stage": "QueryReceived",
+      "stage": "Active",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -10859,21 +10859,6 @@
       "remarks": "",
       "next_followup_date": "2026-09-10",
       "payment_terms": null
-    },
-    {
-      "id": 510,
-      "call_date": "2026-09-08",
-      "agent_id": "AGT-1570",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Warm",
-      "call_result": "Requirement Received",
-      "remarks": "",
-      "next_followup_date": "2026-09-10",
-      "payment_terms": null
     }
   ],
   "queries": [
@@ -11609,11 +11594,11 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-09-09",
-      "status": "New",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
+      "status": "Converted",
+      "booking_date": "2026-08-29",
+      "booking_value": 1,
+      "booking_ref_no": "1",
+      "closing_employee": "Simranjit Kaur",
       "rejection_reason": null,
       "rejection_remarks": null
     }
