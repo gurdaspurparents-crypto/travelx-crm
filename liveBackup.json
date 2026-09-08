@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-08T09:27:27.564Z",
+  "backed_up_at": "2026-09-08T09:31:10.318Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7205,7 +7205,7 @@
       "city": "Bhaini Mia Khan",
       "area": "Bhaini Mia Khan",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-02",
@@ -11096,6 +11096,21 @@
       "agent_requirement": "",
       "interest_level": "Interested / Warm",
       "call_result": "No Response",
+      "remarks": "",
+      "next_followup_date": "2026-09-10",
+      "payment_terms": null
+    },
+    {
+      "id": 526,
+      "call_date": "2026-09-08",
+      "agent_id": "AGT-1921",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Not Interested",
       "remarks": "",
       "next_followup_date": "2026-09-10",
       "payment_terms": null
