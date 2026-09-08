@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-08T10:00:07.995Z",
+  "backed_up_at": "2026-09-08T10:00:27.076Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -289,7 +289,7 @@
       "city": "Dhariwal",
       "area": "Dhariwal",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -11238,7 +11238,7 @@
     {
       "id": 535,
       "call_date": "2026-09-08",
-      "agent_id": "AGT-1112",
+      "agent_id": "AGT-1113",
       "visit_id": null,
       "executive_name": "Yug",
       "is_connected": 1,
