@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-08T08:09:38.044Z",
+  "backed_up_at": "2026-09-08T08:09:56.912Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -2655,7 +2655,7 @@
       "city": "Harchowal",
       "area": "Harchowal",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -10991,6 +10991,21 @@
       "agent_requirement": "",
       "interest_level": "Interested / Warm",
       "call_result": "Not Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-10",
+      "payment_terms": null
+    },
+    {
+      "id": 519,
+      "call_date": "2026-09-08",
+      "agent_id": "AGT-1431",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-09-10",
       "payment_terms": null
