@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-08T09:59:44.046Z",
+  "backed_up_at": "2026-09-08T09:59:55.551Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -275,7 +275,7 @@
       "city": "Dhariwal",
       "area": "G.t. Road, Dhariwal, Distt Gsp",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -11209,6 +11209,21 @@
       "id": 533,
       "call_date": "2026-09-08",
       "agent_id": "AGT-1110",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "No Response",
+      "remarks": "",
+      "next_followup_date": "2026-09-10",
+      "payment_terms": null
+    },
+    {
+      "id": 534,
+      "call_date": "2026-09-08",
+      "agent_id": "AGT-1111",
       "visit_id": null,
       "executive_name": "Yug",
       "is_connected": 1,
