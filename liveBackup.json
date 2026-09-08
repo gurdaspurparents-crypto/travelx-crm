@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-08T09:20:19.477Z",
+  "backed_up_at": "2026-09-08T09:27:13.997Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -6253,7 +6253,7 @@
       "city": "Naushera majha singh",
       "area": "Naushera majha singh",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-03",
@@ -11059,6 +11059,21 @@
       "id": 523,
       "call_date": "2026-09-08",
       "agent_id": "AGT-1734",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "No Response",
+      "remarks": "",
+      "next_followup_date": "2026-09-10",
+      "payment_terms": null
+    },
+    {
+      "id": 524,
+      "call_date": "2026-09-08",
+      "agent_id": "AGT-1928",
       "visit_id": null,
       "executive_name": "Yug",
       "is_connected": 1,
