@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-09T11:22:01.681Z",
+  "backed_up_at": "2026-09-09T11:22:11.078Z",
   "agents": [
     {
       "id": "AGT-1112",
@@ -388,20 +388,6 @@
       "area": "Opp. Union Bank Of India, Near New Bus Stand, Dhariwal",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1122",
-      "name": "Mr. Varinder singh",
-      "company_name": "Hitu Enterprises",
-      "mobile": "9988808040",
-      "city": "Dhariwal",
-      "area": "Near Bus Stand, Dhariwal",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
