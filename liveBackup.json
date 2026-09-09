@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-09T11:59:23.020Z",
+  "backed_up_at": "2026-09-09T11:59:27.067Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7611,7 +7611,7 @@
       "city": "Gurdaspur",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-07",
@@ -9241,6 +9241,23 @@
       "remarks": "",
       "next_followup_date": "2026-09-10",
       "location": "Dhariwal",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 599,
+      "visit_date": "2026-09-09",
+      "agent_id": "AGT-1952",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "gurpeet singh",
+      "mobile": "9988833808",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Cruise\",\"International Flight\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-10",
+      "location": "Gurdaspur",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
