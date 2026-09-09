@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-09T11:59:49.996Z",
+  "backed_up_at": "2026-09-09T12:23:27.656Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -14445,6 +14445,26 @@
       "booking_value": 1,
       "booking_ref_no": "1",
       "closing_employee": "Simranjit Kaur",
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5054",
+      "query_date": "2026-09-09",
+      "agent_id": "AGT-1825",
+      "product": "International Flight",
+      "query_details": "atq-lca",
+      "travel_date": "2026-09-24",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-09-10",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
       "rejection_reason": null,
       "rejection_remarks": null
     }
