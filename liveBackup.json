@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-09T06:39:52.475Z",
+  "backed_up_at": "2026-09-09T06:43:32.601Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -9278,6 +9278,23 @@
       "remarks": "",
       "next_followup_date": "2026-09-08",
       "location": "Gurdaspur",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 587,
+      "visit_date": "2026-09-09",
+      "agent_id": "AGT-1908",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "miss.jyoti",
+      "mobile": "9501335344",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Cruise\",\"International Flight\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-10",
+      "location": "Dhariwal",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
