@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-09T11:32:25.534Z",
+  "backed_up_at": "2026-09-09T11:32:40.000Z",
   "agents": [
     {
       "id": "AGT-1147",
@@ -8,20 +8,6 @@
       "mobile": "9023675112",
       "city": "Dhariwal",
       "area": "Dhariwal",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1126",
-      "name": "Mr. Kumar",
-      "company_name": "Kumar document centre",
-      "mobile": "9781972211",
-      "city": "Dhariwal",
-      "area": "Dadwan Vill, Dhariwal",
       "agent_type": "Retail Travel Agent",
       "stage": "Visited",
       "assigned_marketing_exec": "Bikram",
@@ -338,20 +324,6 @@
       "payment_terms": "Not Discussed"
     },
     {
-      "id": "AGT-1116",
-      "name": "Mr. Amit",
-      "company_name": "Durga maa jeweller",
-      "mobile": "9855003786",
-      "city": "Dhariwal",
-      "area": "Dhariwal",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
       "id": "AGT-1117",
       "name": "Mr. Parkash",
       "company_name": "Fauji photostate",
@@ -402,20 +374,6 @@
       "area": "Opp. Union Bank Of India, Near New Bus Stand, Dhariwal",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1122",
-      "name": "Mr. Varinder singh",
-      "company_name": "Hitu Enterprises",
-      "mobile": "9988808040",
-      "city": "Dhariwal",
-      "area": "Near Bus Stand, Dhariwal",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -11439,21 +11397,6 @@
       "payment_terms": null
     },
     {
-      "id": 538,
-      "call_date": "2026-09-08",
-      "agent_id": "AGT-1116",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Warm",
-      "call_result": "Follow-up Required",
-      "remarks": "",
-      "next_followup_date": "2026-09-10",
-      "payment_terms": null
-    },
-    {
       "id": 539,
       "call_date": "2026-09-08",
       "agent_id": "AGT-1121",
@@ -11539,21 +11482,6 @@
       "agent_requirement": "",
       "interest_level": "Interested / Warm",
       "call_result": "No Response",
-      "remarks": "",
-      "next_followup_date": "2026-09-10",
-      "payment_terms": null
-    },
-    {
-      "id": 547,
-      "call_date": "2026-09-08",
-      "agent_id": "AGT-1116",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Warm",
-      "call_result": "Call Again Later",
       "remarks": "",
       "next_followup_date": "2026-09-10",
       "payment_terms": null
