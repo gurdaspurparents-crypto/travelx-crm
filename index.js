@@ -14,14 +14,27 @@ const upload = multer({ storage: multer.memoryStorage() });
 app.use(cors());
 app.use(express.json());
 
+const staticOptions = {
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.html') || filePath.endsWith('sw.js')) {
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.setHeader('Pragma', 'no-cache');
+      res.setHeader('Expires', '0');
+    }
+  }
+};
+
 // Serve static frontend in production
-app.use(express.static(path.join(__dirname, 'dist')));
-app.use(express.static(path.join(__dirname, '../dist')));
-app.use(express.static(path.join(__dirname, 'client/dist')));
-app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use(express.static(path.join(__dirname, 'dist'), staticOptions));
+app.use(express.static(path.join(__dirname, '../dist'), staticOptions));
+app.use(express.static(path.join(__dirname, 'client/dist'), staticOptions));
+app.use(express.static(path.join(__dirname, '../client/dist'), staticOptions));
 
 // Explicit root route - always serve latest compiled React app
 app.get('/', (req, res) => {
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
   const distIndex = path.join(__dirname, 'dist', 'index.html');
   const parentDistIndex = path.join(__dirname, '../dist', 'index.html');
   const clientDistIndex = path.join(__dirname, 'client', 'dist', 'index.html');
