@@ -22,6 +22,8 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
   const [showCallDetails, setShowCallDetails] = useState(true);
   const [callSearchTerm, setCallSearchTerm] = useState('');
   const [callResultFilter, setCallResultFilter] = useState('all');
+  const [onlyWithComments, setOnlyWithComments] = useState(false);
+  const [bottomOnlyComments, setBottomOnlyComments] = useState(false);
 
   // Metrics State
   const [stats, setStats] = useState({
@@ -146,6 +148,26 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
     return yCalls.length > 0 ? yCalls : callsHistory;
   }, [callsHistory]);
 
+  // Helper to check if a call record has meaningful remarks or requirement comments
+  const hasCallComment = (c) => {
+    const r = (c?.remarks || '').trim();
+    const req = (c?.agent_requirement || '').trim();
+    const isMeaningful = (txt) => {
+      if (!txt) return false;
+      const lower = txt.toLowerCase();
+      return (
+        lower !== 'no specific remarks noted' &&
+        lower !== 'no specific remarks' &&
+        lower !== 'no remarks noted' &&
+        lower !== 'no remarks' &&
+        lower !== 'n/a' &&
+        lower !== 'none' &&
+        lower !== '-'
+      );
+    };
+    return isMeaningful(r) || isMeaningful(req);
+  };
+
   const dateFilteredCalls = useMemo(() => {
     return yugOnlyCalls.filter(c => {
       if (trackingDate && c.call_date !== trackingDate) return false;
@@ -162,18 +184,22 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
                         (c.agent_name || '').toLowerCase().includes(q) ||
                         (c.agent_mobile || '').includes(q) ||
                         (c.remarks || '').toLowerCase().includes(q) ||
+                        (c.agent_requirement || '').toLowerCase().includes(q) ||
                         (c.call_result || '').toLowerCase().includes(q) ||
                         (c.agent_city || '').toLowerCase().includes(q);
         if (!matches) return false;
       }
-      if (callResultFilter !== 'all') {
+      if (callResultFilter === 'With Comments') {
+        if (!hasCallComment(c)) return false;
+      } else {
         if (callResultFilter === 'Interested' && !c.call_result?.toLowerCase().includes('interested')) return false;
         if (callResultFilter === 'Call Again' && !c.call_result?.toLowerCase().includes('call again')) return false;
         if (callResultFilter === 'Not Interested' && !c.call_result?.toLowerCase().includes('not interested')) return false;
+        if (onlyWithComments && !hasCallComment(c)) return false;
       }
       return true;
     });
-  }, [dateFilteredCalls, callSearchTerm, callResultFilter]);
+  }, [dateFilteredCalls, callSearchTerm, callResultFilter, onlyWithComments]);
 
   const dateConnectedCount = useMemo(() => {
     return dateFilteredCalls.filter(c => c.is_connected || c.call_result?.includes('Connected') || c.call_result?.includes('Interested') || c.call_result?.includes('Requirement') || c.call_result?.includes('Call Again')).length;
@@ -181,6 +207,10 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
 
   const dateRequirementsCount = useMemo(() => {
     return dateFilteredCalls.filter(c => c.agent_requirement || c.call_result?.includes('Requirement')).length;
+  }, [dateFilteredCalls]);
+
+  const dateWithCommentsCount = useMemo(() => {
+    return dateFilteredCalls.filter(hasCallComment).length;
   }, [dateFilteredCalls]);
 
   return (
@@ -401,13 +431,13 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
           </div>
 
           {/* Quick Filters & Search inside dropdown */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-slate-950/70 p-2.5 rounded-xl border border-slate-800">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 bg-slate-950/70 p-2.5 rounded-xl border border-slate-800">
             {/* Filter Pills */}
-            <div className="flex items-center gap-1.5 flex-wrap w-full sm:w-auto">
+            <div className="flex items-center gap-1.5 flex-wrap w-full lg:w-auto">
               <button
-                onClick={() => setCallResultFilter('all')}
+                onClick={() => { setCallResultFilter('all'); setOnlyWithComments(false); }}
                 className={`px-3 py-1 rounded-lg text-xs font-bold transition ${
-                  callResultFilter === 'all'
+                  callResultFilter === 'all' && !onlyWithComments
                     ? 'bg-sky-600 text-white shadow'
                     : 'bg-slate-900 text-slate-400 hover:text-slate-200'
                 }`}
@@ -444,18 +474,54 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
               >
                 ❌ Not Interested ({dateFilteredCalls.filter(c => c.call_result?.toLowerCase().includes('not interested')).length})
               </button>
+              <button
+                onClick={() => {
+                  setCallResultFilter('With Comments');
+                  setOnlyWithComments(false);
+                }}
+                className={`px-3 py-1 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${
+                  callResultFilter === 'With Comments'
+                    ? 'bg-purple-600 text-white shadow shadow-purple-600/30 ring-2 ring-purple-400/50'
+                    : 'bg-purple-950/40 text-purple-300 hover:bg-purple-900/60 border border-purple-800/50'
+                }`}
+                title="Comment Wise Filter: Show all calls with remarks or customer comments"
+              >
+                💬 Comment Wise ({dateWithCommentsCount})
+              </button>
             </div>
 
-            {/* Quick Search */}
-            <div className="relative w-full sm:w-64">
-              <Search className="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-2.5" />
-              <input
-                type="text"
-                value={callSearchTerm}
-                onChange={e => setCallSearchTerm(e.target.value)}
-                placeholder="Search agency, mobile, remarks..."
-                className="w-full bg-slate-900 border border-slate-700 text-slate-200 pl-8 pr-3 py-1.5 rounded-lg text-xs focus:outline-none focus:border-emerald-500"
-              />
+            {/* Quick Search & Only Comments Toggle */}
+            <div className="flex items-center gap-2 w-full lg:w-auto flex-wrap sm:flex-nowrap">
+              <label className="flex items-center gap-1.5 text-xs text-slate-300 cursor-pointer bg-slate-900 px-2.5 py-1.5 rounded-lg border border-slate-700 select-none hover:border-purple-500 transition whitespace-nowrap">
+                <input
+                  type="checkbox"
+                  checked={onlyWithComments || callResultFilter === 'With Comments'}
+                  onChange={e => {
+                    const checked = e.target.checked;
+                    setOnlyWithComments(checked);
+                    if (checked && callResultFilter === 'all') {
+                      setCallResultFilter('With Comments');
+                    } else if (!checked && callResultFilter === 'With Comments') {
+                      setCallResultFilter('all');
+                    }
+                  }}
+                  className="rounded border-slate-700 text-purple-600 focus:ring-purple-500 w-3.5 h-3.5 cursor-pointer"
+                />
+                <span className={`font-bold text-[11px] ${onlyWithComments || callResultFilter === 'With Comments' ? 'text-purple-300' : 'text-slate-400'}`}>
+                  💬 Only Comments
+                </span>
+              </label>
+
+              <div className="relative w-full sm:w-60">
+                <Search className="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-2.5" />
+                <input
+                  type="text"
+                  value={callSearchTerm}
+                  onChange={e => setCallSearchTerm(e.target.value)}
+                  placeholder="Search agency, mobile, remarks..."
+                  className="w-full bg-slate-900 border border-slate-700 text-slate-200 pl-8 pr-3 py-1.5 rounded-lg text-xs focus:outline-none focus:border-purple-500"
+                />
+              </div>
             </div>
           </div>
 
@@ -464,6 +530,8 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
             <div className="p-8 text-center text-slate-400 text-xs bg-slate-950 rounded-xl border border-slate-800">
               {dateFilteredCalls.length === 0 
                 ? `Iss date (${trackingDate || 'selected'}) par Yug ne koi call record nahi ki.`
+                : callResultFilter === 'With Comments' || onlyWithComments
+                ? 'Iss date par kisi call me koi comments ya remarks darj nahi hai.'
                 : 'Selected filter ke liye koi record nahi mila.'}
             </div>
           ) : (
@@ -523,12 +591,26 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
                           )}
                         </td>
 
-                        {/* Remarks (The user specifically asked: 'remarks kya aaya hai') */}
+                        {/* Remarks / Customer Response */}
                         <td className="p-3 max-w-xs">
-                          {call.remarks || call.agent_requirement ? (
-                            <div className="bg-slate-900/90 border border-slate-800 p-2 rounded-lg text-slate-200 text-xs">
-                              <span className="text-amber-400 font-bold text-[10px] uppercase block mb-0.5">Yug's Remarks:</span>
-                              "{call.remarks || call.agent_requirement}"
+                          {hasCallComment(call) ? (
+                            <div className="bg-purple-950/30 border border-purple-800/60 p-2.5 rounded-xl text-slate-200 text-xs shadow-sm space-y-1.5">
+                              {call.remarks && call.remarks.trim().toLowerCase() !== 'no specific remarks noted' && (
+                                <div>
+                                  <span className="text-purple-300 font-bold text-[10px] uppercase tracking-wider flex items-center gap-1 mb-0.5">
+                                    <MessageSquare className="w-2.5 h-2.5 text-purple-400" /> Remarks:
+                                  </span>
+                                  <span className="text-slate-200 font-medium">"{call.remarks}"</span>
+                                </div>
+                              )}
+                              {call.agent_requirement && call.agent_requirement.trim().toLowerCase() !== 'no specific remarks noted' && (
+                                <div className={call.remarks && call.remarks.trim().toLowerCase() !== 'no specific remarks noted' ? "pt-1.5 border-t border-purple-800/40" : ""}>
+                                  <span className="text-amber-400 font-bold text-[10px] uppercase tracking-wider flex items-center gap-1 mb-0.5">
+                                    <Sparkles className="w-2.5 h-2.5 text-amber-400" /> Requirement:
+                                  </span>
+                                  <span className="text-amber-200 font-medium">"{call.agent_requirement}"</span>
+                                </div>
+                              )}
                             </div>
                           ) : (
                             <span className="text-slate-500 italic text-[11px]">No specific remarks noted</span>
@@ -962,6 +1044,16 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
             >
               Yesterday
             </button>
+            <button
+              onClick={() => setBottomOnlyComments(!bottomOnlyComments)}
+              className={`px-2.5 py-1 rounded-xl text-xs font-bold transition flex items-center gap-1 border ${
+                bottomOnlyComments
+                  ? 'bg-purple-600 text-white border-purple-500 shadow shadow-purple-600/30'
+                  : 'bg-slate-950 hover:bg-slate-800 text-slate-300 border-slate-800'
+              }`}
+            >
+              💬 With Comments ({callsHistory.filter(c => (!callDateFilter || c.call_date === callDateFilter) && hasCallComment(c)).length})
+            </button>
             <div className="flex items-center gap-1.5 bg-slate-950 border border-slate-800 px-2 py-1 rounded-xl text-xs">
               <Calendar className="w-3.5 h-3.5 text-slate-400" />
               <input
@@ -981,14 +1073,16 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
               </button>
             )}
             <span className="text-xs text-slate-400 font-mono ml-2">
-              ({callsHistory.filter(c => !callDateFilter || c.call_date === callDateFilter).length})
+              ({callsHistory.filter(c => (!callDateFilter || c.call_date === callDateFilter) && (!bottomOnlyComments || hasCallComment(c))).length})
             </span>
           </div>
         </div>
 
-        {callsHistory.filter(c => !callDateFilter || c.call_date === callDateFilter).length === 0 ? (
+        {callsHistory.filter(c => (!callDateFilter || c.call_date === callDateFilter) && (!bottomOnlyComments || hasCallComment(c))).length === 0 ? (
           <div className="text-center text-slate-400 text-xs py-8">
-            No calls recorded for this date filter. Click "+ Log Call Result (Yug)" to record a call.
+            {bottomOnlyComments 
+              ? 'Selected filter me kisi call par comments ya remarks darj nahi hai.'
+              : 'No calls recorded for this date filter. Click "+ Log Call Result (Yug)" to record a call.'}
           </div>
         ) : (
           <div className="overflow-x-auto">
@@ -1005,7 +1099,7 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-800/60">
-                {callsHistory.filter(c => !callDateFilter || c.call_date === callDateFilter).slice(0, 50).map((c, i) => (
+                {callsHistory.filter(c => (!callDateFilter || c.call_date === callDateFilter) && (!bottomOnlyComments || hasCallComment(c))).slice(0, 50).map((c, i) => (
                   <tr key={c.id || i} className="hover:bg-slate-800/40 transition">
                     <td className="p-3 font-mono font-medium text-slate-300">{c.call_date}</td>
                     <td className="p-3">
