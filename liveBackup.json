@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-09T11:53:59.063Z",
+  "backed_up_at": "2026-09-09T11:54:04.160Z",
   "agents": [
     {
       "id": "AGT-1163",
@@ -482,20 +482,6 @@
       "name": "Mr. Vishal",
       "company_name": "NCS computer",
       "mobile": "9646760181",
-      "city": "Dhariwal",
-      "area": "Dhariwal",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1152",
-      "name": "Mr.sukhwinder singh",
-      "company_name": "csc entre",
-      "mobile": "769679678",
       "city": "Dhariwal",
       "area": "Dhariwal",
       "agent_type": "Retail Travel Agent",
