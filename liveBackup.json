@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-09T09:44:11.843Z",
+  "backed_up_at": "2026-09-09T09:44:24.517Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -1955,11 +1955,11 @@
       "city": "Gurdaspur",
       "area": "Near Electricity House, Prem Nagar, Gsp",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "Advance Payment"
     },
     {
       "id": "AGT-1338",
@@ -13387,6 +13387,21 @@
       "call_date": "2026-09-09",
       "agent_id": "AGT-1426",
       "visit_id": 546,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-11",
+      "payment_terms": "Advance Payment"
+    },
+    {
+      "id": 668,
+      "call_date": "2026-09-09",
+      "agent_id": "AGT-1337",
+      "visit_id": 548,
       "executive_name": "Simranjit Kaur",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
