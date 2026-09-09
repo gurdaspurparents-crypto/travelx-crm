@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-09T10:11:55.778Z",
+  "backed_up_at": "2026-09-09T10:49:32.274Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -2393,7 +2393,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1405",
@@ -9451,6 +9451,23 @@
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
+    },
+    {
+      "id": 597,
+      "visit_date": "2026-09-09",
+      "agent_id": "AGT-1148",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Vishal",
+      "mobile": "9646760181",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Cruise\",\"International Flight\",\"Money Transfer\"]",
+      "response_level": "Very Interested / Hot",
+      "remarks": "",
+      "next_followup_date": "2026-09-10",
+      "location": "Dhariwal",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
     }
   ],
   "telephonic_calls": [
@@ -13772,7 +13789,7 @@
       "call_result": "Requirement Received",
       "remarks": "",
       "next_followup_date": "2026-09-11",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     }
   ],
   "queries": [
