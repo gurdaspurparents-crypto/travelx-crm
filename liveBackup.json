@@ -1,13 +1,13 @@
 {
-  "backed_up_at": "2026-09-09T11:33:02.029Z",
+  "backed_up_at": "2026-09-09T11:35:24.952Z",
   "agents": [
     {
-      "id": "AGT-1108",
-      "name": "Mr. vineet mahajan",
-      "company_name": "Mahajan photography",
-      "mobile": "7973081871",
+      "id": "AGT-1142",
+      "name": "Mr.sukhjinder singh",
+      "company_name": "online cse cntre",
+      "mobile": "8825261976",
       "city": "Dhariwal",
-      "area": "Dhariwal",
+      "area": "Bidhipur Fatak",
       "agent_type": "Retail Travel Agent",
       "stage": "Visited",
       "assigned_marketing_exec": "Bikram",
