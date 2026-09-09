@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-09T07:06:40.234Z",
+  "backed_up_at": "2026-09-09T07:07:12.775Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -681,7 +681,7 @@
       "city": "Dhariwal",
       "area": "Dhariwal",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -3397,7 +3397,7 @@
       "city": "Kalanour",
       "area": "Near Shiv Mandir, Kalanaur",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -12216,14 +12216,14 @@
     {
       "id": 597,
       "call_date": "2026-09-09",
-      "agent_id": "AGT-1162",
-      "visit_id": 588,
-      "executive_name": "Simranjit Kaur",
+      "agent_id": "AGT-1527",
+      "visit_id": null,
+      "executive_name": "Yug",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
+      "agent_requirement": "NO CALL BUSY HAI ",
       "interest_level": "Interested / Warm",
-      "call_result": "Interested",
+      "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-11",
       "payment_terms": null
