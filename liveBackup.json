@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-09T07:15:21.139Z",
+  "backed_up_at": "2026-09-09T07:15:36.907Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -6295,7 +6295,7 @@
       "city": "Nikke ghuman",
       "area": "Nikke ghuman ",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-03",
@@ -12490,6 +12490,21 @@
       "call_date": "2026-09-09",
       "agent_id": "AGT-1929",
       "visit_id": 537,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-11",
+      "payment_terms": null
+    },
+    {
+      "id": 615,
+      "call_date": "2026-09-09",
+      "agent_id": "AGT-1931",
+      "visit_id": 539,
       "executive_name": "Simranjit Kaur",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
