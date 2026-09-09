@@ -142,12 +142,7 @@ async function initDb() {
     );
   `);
 
-  // Auto-seed ~700 B2B Agents if database is fresh/empty
-  const countRow = await dbGet(`SELECT COUNT(*) as count FROM agents`);
-  if (!countRow || countRow.count === 0) {
-    console.log('Seeding ~700 B2B Travel Agents across Gurdaspur, Batala, Pathankot & Punjab...');
-    await seedDatabase();
-  }
+  // Database schema initialization complete (seeding is handled by startup restore)
 }
 
 // Function to recalculate stage for an agent
@@ -456,5 +451,6 @@ module.exports = {
   dbAll,
   dbGet,
   initDb,
+  seedDatabase,
   refreshAgentStage
 };

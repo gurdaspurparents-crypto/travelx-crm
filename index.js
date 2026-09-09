@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const multer = require('multer');
 const XLSX = require('xlsx');
-const { db, dbRun, dbAll, dbGet, initDb, refreshAgentStage } = require('./db');
+const { db, dbRun, dbAll, dbGet, initDb, seedDatabase, refreshAgentStage } = require('./db');
 const { restoreFromGitHub, scheduleBackup, backupToGitHub, getBackupStatus, exportAllData, applyDataToDb } = require('./gitBackup');
 
 const app = express();
@@ -1905,6 +1905,11 @@ async function startServer() {
     await initDb();
     console.log('[Startup] 2. Restoring master cloud backup from GitHub...');
     await restoreFromGitHub(db, dbRun, dbAll);
+    const countRow = await dbGet('SELECT COUNT(*) as count FROM agents');
+    if (!countRow || countRow.count === 0) {
+      console.log('[Startup] ⚠️ DB is empty after all restore attempts. Loading fallback seed...');
+      if (typeof seedDatabase === 'function') await seedDatabase();
+    }
     console.log('[Startup] 3. Database successfully initialized & restored.');
 
     app.listen(PORT, '0.0.0.0', () => {

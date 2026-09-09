@@ -112,11 +112,29 @@ function exportAllData(db) {
 }
 
 // Populate database from data object
-async function applyDataToDb(data, dbRun) {
+async function applyDataToDb(data, dbRun, dbAll) {
   if (!data) return false;
 
   // Restore Agents
   if (Array.isArray(data.agents) && data.agents.length > 0) {
+    if (typeof dbAll === 'function') {
+      try {
+        const backupAgentIds = new Set(data.agents.map(a => a.id));
+        const existingAgents = await dbAll('SELECT id FROM agents');
+        for (const ea of existingAgents) {
+          if (!backupAgentIds.has(ea.id)) {
+            console.log(`[Restore] Removing deleted agent ${ea.id} from local database (not in cloud backup)`);
+            await dbRun('DELETE FROM queries WHERE agent_id = ?', [ea.id]);
+            await dbRun('DELETE FROM telephonic_calls WHERE agent_id = ?', [ea.id]);
+            await dbRun('DELETE FROM marketing_visits WHERE agent_id = ?', [ea.id]);
+            await dbRun('DELETE FROM agents WHERE id = ?', [ea.id]);
+          }
+        }
+      } catch (pruneErr) {
+        console.warn('[Restore] Prune check warning:', pruneErr.message);
+      }
+    }
+
     for (const a of data.agents) {
       await dbRun(
         `INSERT OR REPLACE INTO agents (id, name, company_name, mobile, city, area, agent_type, stage, assigned_marketing_exec, assigned_telephonic_exec, created_at)
@@ -278,7 +296,7 @@ async function restoreFromGitHub(db, dbRun, dbAll) {
         const raw = Buffer.from(result.content, 'base64').toString('utf8');
         const data = JSON.parse(raw);
         console.log(`[Restore] Found cloud backup from: ${data.backed_up_at}`);
-        await applyDataToDb(data, dbRun);
+        await applyDataToDb(data, dbRun, dbAll);
         // Sync to local liveBackup.json
         try { fs.writeFileSync(path.resolve(__dirname, 'liveBackup.json'), raw); } catch (e) {}
         console.log('[Restore] ✅ Restored successfully from GitHub!');
@@ -301,7 +319,7 @@ async function restoreFromGitHub(db, dbRun, dbAll) {
       try {
         console.log(`[Restore] Loading fallback backup from ${path.basename(filePath)}...`);
         const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-        await applyDataToDb(data, dbRun);
+        await applyDataToDb(data, dbRun, dbAll);
         console.log(`[Restore] ✅ Restored from ${path.basename(filePath)}!`);
         return true;
       } catch (e) {
