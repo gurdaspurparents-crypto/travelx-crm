@@ -676,52 +676,48 @@ app.get('/api/visits', async (req, res) => {
 // Visited Agents Queue for Telephonic Follow-up (Bikramjit Field Visits Queue for Simranjit Next-Day Feedback)
 app.get('/api/visits/pending-followup', async (req, res) => {
   try {
-    const queue = await dbAll(`
-      WITH visit_queue AS (
-        SELECT 
-          mv.id as visit_id,
-          mv.visit_date,
-          mv.executive_name as visited_by,
-          mv.person_met,
-          mv.mobile as contact_mobile,
-          mv.products_pitched,
-          mv.response_level,
-          mv.remarks as visit_remarks,
-          mv.gps_latitude,
-          mv.gps_longitude,
-          a.id as agent_id,
-          a.company_name,
-          a.city as agent_city,
-          a.area as agent_area,
-          (
-            SELECT tc_sub.id 
-            FROM telephonic_calls tc_sub 
-            WHERE tc_sub.visit_id = mv.id 
-               OR (tc_sub.agent_id = mv.agent_id AND tc_sub.call_date >= mv.visit_date)
-            ORDER BY 
-              CASE WHEN tc_sub.visit_id = mv.id THEN 1 ELSE 2 END,
-              tc_sub.call_date DESC, tc_sub.id DESC 
-            LIMIT 1
-          ) as call_id
-        FROM marketing_visits mv
-        JOIN agents a ON mv.agent_id = a.id
-      )
+    const visits = await dbAll(`
       SELECT 
-        vq.*,
-        tc.call_date,
-        tc.executive_name as call_executive,
-        tc.call_result,
-        tc.remarks as call_feedback,
-        tc.agent_requirement,
-        tc.payment_terms,
-        tc.services_discussed,
-        tc.is_connected,
-        tc.next_followup_date
-      FROM visit_queue vq
-      LEFT JOIN telephonic_calls tc ON tc.id = vq.call_id
-      ORDER BY vq.visit_date DESC, vq.visit_id DESC
+        mv.id as visit_id,
+        mv.visit_date,
+        mv.executive_name as visited_by,
+        mv.person_met,
+        mv.mobile as contact_mobile,
+        mv.products_pitched,
+        mv.response_level,
+        mv.remarks as visit_remarks,
+        mv.gps_latitude,
+        mv.gps_longitude,
+        a.id as agent_id,
+        a.company_name,
+        a.city as agent_city,
+        a.area as agent_area
+      FROM marketing_visits mv
+      JOIN agents a ON mv.agent_id = a.id
+      ORDER BY mv.visit_date DESC, mv.id DESC
       LIMIT 150
     `);
+
+    const calls = await dbAll(`SELECT * FROM telephonic_calls ORDER BY call_date DESC, id DESC`);
+
+    const queue = visits.map(v => {
+      const call = calls.find(c => c.visit_id === v.visit_id) 
+                || calls.find(c => c.agent_id === v.agent_id && c.call_date >= v.visit_date);
+      return {
+        ...v,
+        call_id: call ? call.id : null,
+        call_date: call ? call.call_date : null,
+        call_executive: call ? call.executive_name : null,
+        call_result: call ? call.call_result : null,
+        call_feedback: call ? call.remarks : null,
+        agent_requirement: call ? call.agent_requirement : null,
+        payment_terms: call ? call.payment_terms : null,
+        services_discussed: call ? call.services_discussed : null,
+        is_connected: call ? call.is_connected : null,
+        next_followup_date: call ? call.next_followup_date : null
+      };
+    });
+
     res.json({ success: true, queue });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
