@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-09T11:59:16.286Z",
+  "backed_up_at": "2026-09-09T11:59:23.020Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -6033,20 +6033,6 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1925",
-      "name": "Test Owner",
-      "company_name": "Test Agency Fix",
-      "mobile": "9876543210",
-      "city": "Gurdaspur",
-      "area": "Main Market",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
-      "assigned_marketing_exec": "Bikramjit Singh",
-      "assigned_telephonic_exec": "Simranjit Kaur",
-      "created_at": "2026-09-03",
       "payment_terms": "Not Discussed"
     },
     {
