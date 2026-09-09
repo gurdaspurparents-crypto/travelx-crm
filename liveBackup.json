@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-09T10:58:16.534Z",
+  "backed_up_at": "2026-09-09T11:01:27.203Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7864,6 +7864,20 @@
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
       "stage": "Active",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-09-09",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-1954",
+      "name": "arvinder singh",
+      "company_name": "csc centre",
+      "mobile": "7889045076",
+      "city": "wadla granthia",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-09",
