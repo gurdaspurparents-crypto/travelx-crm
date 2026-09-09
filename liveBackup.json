@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-09T08:32:31.551Z",
+  "backed_up_at": "2026-09-09T08:33:00.903Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -3733,7 +3733,7 @@
       "city": "Kalanour",
       "area": "Kalanour",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -13129,6 +13129,21 @@
       "id": 651,
       "call_date": "2026-09-09",
       "agent_id": "AGT-1557",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "GOOD RELPY",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-11",
+      "payment_terms": null
+    },
+    {
+      "id": 652,
+      "call_date": "2026-09-09",
+      "agent_id": "AGT-1558",
       "visit_id": null,
       "executive_name": "Yug",
       "is_connected": 1,
