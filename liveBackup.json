@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-09T09:44:57.069Z",
+  "backed_up_at": "2026-09-09T09:45:21.161Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -667,7 +667,7 @@
       "city": "Dhariwal",
       "area": "Dhariwal",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -1959,7 +1959,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1338",
@@ -2603,7 +2603,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1427",
@@ -4349,7 +4349,7 @@
       "city": "Naushera Majha Singh",
       "area": "Near Punjab Gramin Bank, Naushera Majja Singh",
       "agent_type": "Retail Travel Agent",
-      "stage": "QueryReceived",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -13395,7 +13395,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-11",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 668,
@@ -13410,7 +13410,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-11",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     }
   ],
   "queries": [
@@ -14237,9 +14237,9 @@
     {
       "id": "QRY-5048",
       "query_date": "2026-09-09",
-      "agent_id": "AGT-1622",
+      "agent_id": "AGT-1159",
       "product": "International Flight",
-      "query_details": "atq-auh",
+      "query_details": "bcn-del-bcn",
       "travel_date": "2026-09-24",
       "pax_details": "2 Adults",
       "estimated_value": 0,
