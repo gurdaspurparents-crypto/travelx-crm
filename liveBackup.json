@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-09T11:50:12.764Z",
+  "backed_up_at": "2026-09-09T11:50:45.234Z",
   "agents": [
     {
       "id": "AGT-1142",
@@ -444,20 +444,6 @@
       "area": "Burj Sahib Road, Dhariwal",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1133",
-      "name": "Mr. Abhinav   ",
-      "company_name": "Puri computer",
-      "mobile": "9988075112",
-      "city": "Dhariwal",
-      "area": "Dhariwal,near Khunda Road",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
