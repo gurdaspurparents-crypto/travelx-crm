@@ -267,6 +267,27 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
     }
   };
 
+  const handleRemoveLocationAgent = async (agentId, companyName) => {
+    if (!isAdmin) {
+      alert('🔒 Access Denied: Only Admin can remove agencies!');
+      return;
+    }
+    if (!window.confirm(`🗑️ Are you sure you want to permanently delete "${companyName || 'this agency'}" (ID: ${agentId}) and all associated records?`)) return;
+    try {
+      const res = await fetch(`/api/agents/${agentId}`, { method: 'DELETE' });
+      const json = await res.json();
+      if (json.success) {
+        alert(`✅ "${companyName || agentId}" removed successfully!`);
+        setLocationAgents(prev => prev.filter(a => a.id !== agentId));
+        fetchLocationAgents(selectedLocation);
+      } else {
+        alert(`❌ Error removing agent: ${json.error || 'Failed'}`);
+      }
+    } catch (err) {
+      alert('Error removing agent: ' + err.message);
+    }
+  };
+
   const clearDateFilters = () => {
     setDateFilter('');
     setFromDate('');
@@ -833,17 +854,26 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                     <div className="flex items-center gap-1.5">
                       <button
                         onClick={() => onOpenModal('edit_agent', ag)}
-                        className="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 rounded-lg text-[11px] font-semibold transition flex items-center gap-1"
+                        className="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 rounded-lg text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer"
                         title="Edit Agent Details"
                       >
                         <Edit className="w-3 h-3 text-sky-400" /> Edit
                       </button>
                       <button
                         onClick={() => onOpenModal('log_visit', { id: ag.id, company_name: ag.company_name, name: ag.name, mobile: ag.mobile, city: ag.city })}
-                        className="px-2.5 py-1 bg-yellow-600 hover:bg-yellow-500 text-white rounded-lg text-[11px] font-semibold transition flex items-center gap-1 shadow"
+                        className="px-2.5 py-1 bg-yellow-600 hover:bg-yellow-500 text-white rounded-lg text-[11px] font-semibold transition flex items-center gap-1 shadow cursor-pointer"
                       >
                         <Plus className="w-3 h-3" /> Log Visit
                       </button>
+                      {isAdmin && (
+                        <button
+                          onClick={() => handleRemoveLocationAgent(ag.id, ag.company_name)}
+                          className="px-2 py-1 bg-rose-950/40 hover:bg-rose-900 text-rose-300 border border-rose-800/60 hover:border-rose-600 rounded-lg text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer"
+                          title="Admin Only: Delete & Remove Unwanted Non-Agent Shop"
+                        >
+                          <Trash2 className="w-3 h-3 text-rose-400" /> Delete
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>
