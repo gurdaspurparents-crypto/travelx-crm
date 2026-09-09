@@ -81,11 +81,48 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
       const res = await fetch(`/api/calls/${callId}`, { method: 'DELETE' });
       const json = await res.json();
       if (json.success) {
-        alert('Call log deleted successfully');
+        alert('✅ Call log deleted successfully');
         fetchCalls();
+        fetchVisitQueue();
+      } else {
+        alert(json.error || 'Failed to delete call');
       }
     } catch (err) {
       alert('Error deleting call log');
+    }
+  };
+
+  const handleDeleteVisit = async (visitId, companyName) => {
+    if (!window.confirm(`🗑️ Are you sure you want to delete the physical visit record for "${companyName || 'this agency'}"? This will remove this entry from the pending follow-up queue.`)) return;
+    try {
+      const res = await fetch(`/api/visits/${visitId}`, { method: 'DELETE' });
+      const json = await res.json();
+      if (json.success) {
+        alert('✅ Visit record deleted successfully');
+        fetchVisitQueue();
+        fetchLocationCoverage();
+      } else {
+        alert(json.error || 'Failed to delete visit');
+      }
+    } catch (err) {
+      alert('Error deleting visit: ' + err.message);
+    }
+  };
+
+  const handleDeleteCallFromQueue = async (callId, companyName) => {
+    if (!window.confirm(`🗑️ Are you sure you want to delete the call log for "${companyName || 'this agency'}"? The visit will revert to "Pending Next-Day Call".`)) return;
+    try {
+      const res = await fetch(`/api/calls/${callId}`, { method: 'DELETE' });
+      const json = await res.json();
+      if (json.success) {
+        alert('✅ Call log deleted successfully');
+        fetchVisitQueue();
+        fetchCalls();
+      } else {
+        alert(json.error || 'Failed to delete call log');
+      }
+    } catch (err) {
+      alert('Error deleting call: ' + err.message);
     }
   };
 
@@ -251,23 +288,74 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                           )}
                         </td>
                         <td className="p-3 text-right">
-                          <button
-                            onClick={() => onOpenModal('log_call', {
-                              agent_id: v.agent_id,
-                              visit_id: v.visit_id,
-                              company_name: v.company_name,
-                              name: v.person_met,
-                              mobile: v.contact_mobile,
-                              city: v.agent_city
-                            })}
-                            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition shadow flex items-center gap-1.5 ml-auto ${
-                              isCalled
-                                ? 'bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700'
-                                : 'bg-blue-600 hover:bg-blue-500 text-white shadow-blue-600/30 animate-pulse'
-                            }`}
-                          >
-                            <Phone className="w-3.5 h-3.5" /> {isCalled ? 'Update Call Log' : '📞 Log Next-Day Feedback'}
-                          </button>
+                          <div className="flex items-center justify-end gap-1.5 flex-wrap">
+                            {isCalled ? (
+                              <>
+                                <button
+                                  onClick={() => onOpenModal('log_call', {
+                                    id: v.call_id,
+                                    call_id: v.call_id,
+                                    agent_id: v.agent_id,
+                                    visit_id: v.visit_id,
+                                    company_name: v.company_name,
+                                    name: v.person_met,
+                                    mobile: v.contact_mobile,
+                                    city: v.agent_city,
+                                    call_date: v.call_date,
+                                    executive_name: v.call_executive,
+                                    call_result: v.call_result,
+                                    remarks: v.call_feedback,
+                                    agent_requirement: v.agent_requirement,
+                                    payment_terms: v.payment_terms,
+                                    services_discussed: v.services_discussed,
+                                    is_connected: v.is_connected,
+                                    next_followup_date: v.next_followup_date
+                                  })}
+                                  className="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-amber-600 hover:bg-amber-500 text-white shadow shadow-amber-600/30 transition flex items-center gap-1 cursor-pointer"
+                                  title="Edit Call Log Details"
+                                >
+                                  ✏️ Edit Call
+                                </button>
+                                <button
+                                  onClick={() => handleDeleteCallFromQueue(v.call_id, v.company_name)}
+                                  className="px-2 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-rose-900/60 text-rose-300 border border-slate-700 hover:border-rose-700 transition flex items-center gap-1 cursor-pointer"
+                                  title="Delete Call Log (Revert to Pending)"
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" /> Call
+                                </button>
+                                <button
+                                  onClick={() => handleDeleteVisit(v.visit_id, v.company_name)}
+                                  className="px-2 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-rose-900/60 text-slate-400 hover:text-rose-300 border border-slate-700 hover:border-rose-700 transition flex items-center gap-1 cursor-pointer"
+                                  title="Delete Entire Visit Record"
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" /> Visit
+                                </button>
+                              </>
+                            ) : (
+                              <>
+                                <button
+                                  onClick={() => onOpenModal('log_call', {
+                                    agent_id: v.agent_id,
+                                    visit_id: v.visit_id,
+                                    company_name: v.company_name,
+                                    name: v.person_met,
+                                    mobile: v.contact_mobile,
+                                    city: v.agent_city
+                                  })}
+                                  className="px-3 py-1.5 rounded-lg text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white shadow-blue-600/30 animate-pulse transition flex items-center gap-1.5 cursor-pointer"
+                                >
+                                  <Phone className="w-3.5 h-3.5" /> Log Call
+                                </button>
+                                <button
+                                  onClick={() => handleDeleteVisit(v.visit_id, v.company_name)}
+                                  className="p-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-rose-900/60 text-rose-400 border border-slate-700 hover:border-rose-700 transition flex items-center cursor-pointer"
+                                  title="Delete Pending Visit Record"
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                </button>
+                              </>
+                            )}
+                          </div>
                         </td>
                       </tr>
                     );
@@ -704,6 +792,19 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                             <FileText className="w-3 h-3" /> Create Query
                           </button>
                         )}
+                        <button
+                          onClick={() => onOpenModal('log_call', {
+                            ...c,
+                            call_id: c.id,
+                            id: c.id,
+                            agent_id: c.agent_id,
+                            visit_id: c.visit_id
+                          })}
+                          title="Edit Call Log Details"
+                          className="px-2.5 py-1 bg-amber-900/40 hover:bg-amber-800/70 text-amber-300 rounded text-xs font-semibold transition border border-amber-700/60 flex items-center gap-1 cursor-pointer"
+                        >
+                          ✏️ Edit
+                        </button>
                         <button
                           onClick={() => onOpenAgentDrawer(c.agent_id)}
                           className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-xs transition border border-slate-700"

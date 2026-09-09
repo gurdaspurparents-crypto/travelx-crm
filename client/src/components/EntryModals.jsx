@@ -143,28 +143,45 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
 
   // Log Call Form State
   const [callForm, setCallForm] = useState({
-    call_date: new Date().toISOString().split('T')[0],
+    id: data?.call_id || data?.id || null,
+    call_date: data?.call_date || new Date().toISOString().split('T')[0],
     agent_id: data?.agent_id || data?.id || '',
     visit_id: data?.visit_id || null,
-    executive_name: 'Simranjit Kaur',
-    is_connected: true,
+    executive_name: data?.executive_name || data?.call_executive || 'Simranjit Kaur',
+    is_connected: data?.is_connected !== undefined ? !!data.is_connected : true,
     services_discussed: ['Domestic Flight', 'Tour Packages'],
-    agent_requirement: '',
-    interest_level: 'Interested / Warm',
-    call_result: 'Requirement Received',
+    agent_requirement: data?.agent_requirement || '',
+    interest_level: data?.interest_level || 'Interested / Warm',
+    call_result: data?.call_result || 'Requirement Received',
     payment_terms: data?.payment_terms || 'Advance Payment',
-    remarks: '',
-    next_followup_date: new Date(Date.now() + 172800000).toISOString().split('T')[0]
+    remarks: data?.remarks || data?.call_feedback || '',
+    next_followup_date: data?.next_followup_date || new Date(Date.now() + 172800000).toISOString().split('T')[0]
   });
 
   useEffect(() => {
-    if (modalType === 'log_call' && data) {
-      setCallForm(prev => ({
-        ...prev,
-        agent_id: data.agent_id || data.id || prev.agent_id,
+    if ((modalType === 'log_call' || modalType === 'edit_call') && data) {
+      let parsedServices = ['Domestic Flight', 'Tour Packages'];
+      if (Array.isArray(data.services_discussed)) {
+        parsedServices = data.services_discussed;
+      } else if (typeof data.services_discussed === 'string') {
+        try { parsedServices = JSON.parse(data.services_discussed); } catch (e) { parsedServices = [data.services_discussed]; }
+      }
+
+      setCallForm({
+        id: data.call_id || (modalType === 'edit_call' || data.call_result ? data.id : null),
+        call_date: data.call_date || new Date().toISOString().split('T')[0],
+        agent_id: data.agent_id || data.id || '',
         visit_id: data.visit_id || null,
-        payment_terms: data.payment_terms || prev.payment_terms
-      }));
+        executive_name: data.executive_name || data.call_executive || 'Simranjit Kaur',
+        is_connected: data.is_connected !== undefined ? !!data.is_connected : true,
+        services_discussed: parsedServices,
+        agent_requirement: data.agent_requirement || '',
+        interest_level: data.interest_level || 'Interested / Warm',
+        call_result: data.call_result || 'Requirement Received',
+        payment_terms: data.payment_terms || 'Advance Payment',
+        remarks: data.remarks || data.call_feedback || '',
+        next_followup_date: data.next_followup_date || new Date(Date.now() + 172800000).toISOString().split('T')[0]
+      });
     }
   }, [modalType, data]);
 
@@ -234,11 +251,13 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
         executive_name: 'Bikramjit Singh'
       }));
 
-      setCallForm(prev => ({
-        ...prev,
-        agent_id: data.id || prev.agent_id,
-        executive_name: data.executive_name || prev.executive_name || 'Simranjit Kaur'
-      }));
+      if (modalType !== 'log_call' && modalType !== 'edit_call') {
+        setCallForm(prev => ({
+          ...prev,
+          agent_id: data.agent_id || data.id || prev.agent_id,
+          executive_name: data.executive_name || prev.executive_name || 'Simranjit Kaur'
+        }));
+      }
 
       setQueryForm(prev => ({
         ...prev,
@@ -276,19 +295,25 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
   const handleCallSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('/api/calls', {
-        method: 'POST',
+      const isEdit = !!callForm.id;
+      const url = isEdit ? `/api/calls/${callForm.id}` : '/api/calls';
+      const method = isEdit ? 'PUT' : 'POST';
+
+      const res = await fetch(url, {
+        method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(callForm)
       });
       const json = await res.json();
       if (json.success) {
-        alert('✅ Telephonic follow-up call logged successfully!');
+        alert(isEdit ? '✅ Telephonic call updated successfully!' : '✅ Telephonic follow-up call logged successfully!');
         onSuccess();
         onClose();
+      } else {
+        alert(json.error || 'Failed to save call');
       }
     } catch (err) {
-      alert('Error logging call');
+      alert('Error saving call: ' + err.message);
     }
   };
 
@@ -350,7 +375,7 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
         <div className="flex justify-between items-center border-b border-slate-800 pb-4 mb-4">
           <h3 className="text-xl font-extrabold text-white flex items-center gap-2">
             {modalType === 'log_visit' && <><MapPin className="w-5 h-5 text-yellow-500" /> Stage 1: Log Marketing Visit</>}
-            {modalType === 'log_call' && <><Phone className="w-5 h-5 text-blue-500" /> Stage 2: Log Telephonic Call</>}
+            {(modalType === 'log_call' || modalType === 'edit_call') && <><Phone className="w-5 h-5 text-blue-500" /> {callForm.id ? '✏️ Edit Telephonic Call' : 'Stage 2: Log Telephonic Call'}</>}
             {modalType === 'create_query' && <><FileText className="w-5 h-5 text-amber-500" /> Stage 3: Create Agent Query</>}
             {modalType === 'create_agent' && <><UserPlus className="w-5 h-5 text-sky-500" /> Add New Travel Agency</>}
             {modalType === 'edit_agent' && <><UserPlus className="w-5 h-5 text-sky-500" /> ✏️ Edit Agent Details ({agentForm.id})</>}
@@ -514,7 +539,7 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
         )}
 
         {/* LOG TELEPHONIC CALL FORM */}
-        {modalType === 'log_call' && (
+        {(modalType === 'log_call' || modalType === 'edit_call') && (
           <form onSubmit={handleCallSubmit} className="space-y-4">
             <div className="grid grid-cols-2 gap-3">
               <div>
@@ -586,6 +611,28 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
               </p>
             </div>
 
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-xs font-semibold text-slate-400 mb-1">Remarks / Customer Feedback</label>
+                <input
+                  type="text"
+                  value={callForm.remarks}
+                  onChange={e => setCallForm({ ...callForm, remarks: e.target.value })}
+                  placeholder="Conversation notes..."
+                  className="w-full bg-slate-950 border border-slate-800 text-slate-200 p-2.5 rounded-xl text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-slate-400 mb-1">Next Follow-up Date</label>
+                <input
+                  type="date"
+                  value={callForm.next_followup_date || ''}
+                  onChange={e => setCallForm({ ...callForm, next_followup_date: e.target.value })}
+                  className="w-full bg-slate-950 border border-slate-800 text-slate-200 p-2.5 rounded-xl text-sm font-mono"
+                />
+              </div>
+            </div>
+
             <div>
               <label className="block text-xs font-semibold text-slate-400 mb-1">Captured Requirement / Notes</label>
               <textarea
@@ -599,9 +646,9 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
 
             <button
               type="submit"
-              className="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl text-sm transition shadow-lg shadow-blue-600/30"
+              className={`w-full py-3 ${callForm.id ? 'bg-amber-600 hover:bg-amber-500 shadow-amber-600/30' : 'bg-blue-600 hover:bg-blue-500 shadow-blue-600/30'} text-white font-bold rounded-xl text-sm transition shadow-lg cursor-pointer`}
             >
-              ✅ Save Call Log
+              {callForm.id ? '💾 Update Call Record' : '✅ Save Call Log'}
             </button>
           </form>
         )}

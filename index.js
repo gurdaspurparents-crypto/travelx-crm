@@ -694,12 +694,25 @@ app.get('/api/visits/pending-followup', async (req, res) => {
         a.area as agent_area,
         tc.id as call_id,
         tc.call_date,
+        tc.executive_name as call_executive,
         tc.call_result,
         tc.remarks as call_feedback,
+        tc.agent_requirement,
+        tc.payment_terms,
+        tc.services_discussed,
+        tc.is_connected,
         tc.next_followup_date
       FROM marketing_visits mv
       JOIN agents a ON mv.agent_id = a.id
-      LEFT JOIN telephonic_calls tc ON mv.id = tc.visit_id
+      LEFT JOIN telephonic_calls tc ON tc.id = (
+        SELECT id FROM telephonic_calls 
+        WHERE visit_id = mv.id 
+           OR (agent_id = mv.agent_id AND call_date >= mv.visit_date)
+        ORDER BY 
+          CASE WHEN visit_id = mv.id THEN 1 ELSE 2 END,
+          call_date DESC, id DESC 
+        LIMIT 1
+      )
       ORDER BY mv.visit_date DESC, mv.id DESC
       LIMIT 150
     `);
@@ -817,6 +830,7 @@ app.post('/api/visits', async (req, res) => {
 app.delete('/api/visits/:id', async (req, res) => {
   try {
     const visit = await dbGet(`SELECT agent_id FROM marketing_visits WHERE id = ?`, [req.params.id]);
+    await dbRun(`UPDATE telephonic_calls SET visit_id = NULL WHERE visit_id = ?`, [req.params.id]);
     await dbRun(`DELETE FROM marketing_visits WHERE id = ?`, [req.params.id]);
     if (visit) {
       await refreshAgentStage(visit.agent_id);
@@ -1033,15 +1047,30 @@ app.get('/api/calls', async (req, res) => {
 
 app.post('/api/calls', async (req, res) => {
   try {
-    const { call_date, agent_id, visit_id, executive_name, is_connected, services_discussed, agent_requirement, interest_level, call_result, remarks, next_followup_date } = req.body;
+    const { call_date, agent_id, visit_id, executive_name, is_connected, services_discussed, agent_requirement, interest_level, call_result, remarks, next_followup_date, payment_terms } = req.body;
 
     const servicesJson = Array.isArray(services_discussed) ? JSON.stringify(services_discussed) : services_discussed;
 
+    // Smart visit auto-linking: if visit_id is not passed, find latest visit for this agent
+    let linkedVisitId = visit_id || null;
+    if (!linkedVisitId && agent_id) {
+      const visitRow = await dbGet(
+        `SELECT id FROM marketing_visits WHERE agent_id = ? ORDER BY visit_date DESC, id DESC LIMIT 1`,
+        [agent_id]
+      );
+      if (visitRow) linkedVisitId = visitRow.id;
+    }
+
     const result = await dbRun(
-      `INSERT INTO telephonic_calls (call_date, agent_id, visit_id, executive_name, is_connected, services_discussed, agent_requirement, interest_level, call_result, remarks, next_followup_date)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [call_date, agent_id, visit_id || null, executive_name, is_connected ? 1 : 0, servicesJson, agent_requirement, interest_level, call_result, remarks, next_followup_date]
+      `INSERT INTO telephonic_calls (call_date, agent_id, visit_id, executive_name, is_connected, services_discussed, agent_requirement, interest_level, call_result, remarks, next_followup_date, payment_terms)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [call_date, agent_id, linkedVisitId, executive_name, is_connected ? 1 : 0, servicesJson, agent_requirement, interest_level, call_result, remarks, next_followup_date, payment_terms || 'Advance Payment']
     );
+
+    // If payment_terms specified, also update agent record
+    if (payment_terms && agent_id) {
+      await dbRun(`UPDATE agents SET payment_terms = ? WHERE id = ?`, [payment_terms, agent_id]);
+    }
 
     // Update agent stage
     await refreshAgentStage(agent_id);
@@ -1050,6 +1079,45 @@ app.post('/api/calls', async (req, res) => {
     scheduleBackup(db);
 
     res.json({ success: true, id: result.lastID, message: 'Telephonic call logged successfully' });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// Update / Edit Telephonic Call Log
+app.put('/api/calls/:id', async (req, res) => {
+  try {
+    const { call_date, executive_name, is_connected, services_discussed, agent_requirement, interest_level, call_result, remarks, next_followup_date, payment_terms } = req.body;
+    const servicesJson = Array.isArray(services_discussed) ? JSON.stringify(services_discussed) : services_discussed;
+
+    const existingCall = await dbGet(`SELECT agent_id FROM telephonic_calls WHERE id = ?`, [req.params.id]);
+    if (!existingCall) {
+      return res.status(404).json({ success: false, error: 'Call log not found' });
+    }
+
+    await dbRun(
+      `UPDATE telephonic_calls 
+       SET call_date = COALESCE(?, call_date),
+           executive_name = COALESCE(?, executive_name),
+           is_connected = ?,
+           services_discussed = COALESCE(?, services_discussed),
+           agent_requirement = ?,
+           interest_level = COALESCE(?, interest_level),
+           call_result = COALESCE(?, call_result),
+           remarks = ?,
+           next_followup_date = ?,
+           payment_terms = COALESCE(?, payment_terms)
+       WHERE id = ?`,
+      [call_date, executive_name, is_connected ? 1 : 0, servicesJson, agent_requirement, interest_level, call_result, remarks, next_followup_date, payment_terms, req.params.id]
+    );
+
+    if (payment_terms && existingCall.agent_id) {
+      await dbRun(`UPDATE agents SET payment_terms = ? WHERE id = ?`, [payment_terms, existingCall.agent_id]);
+    }
+
+    await refreshAgentStage(existingCall.agent_id);
+    scheduleBackup(db);
+    res.json({ success: true, message: 'Telephonic call updated successfully' });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }
