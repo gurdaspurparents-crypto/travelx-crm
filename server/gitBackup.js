@@ -197,7 +197,7 @@ async function backupToGitHub(db) {
       return { success: false, reason: 'NO_TOKEN', data };
     }
 
-    // Anti-Data Loss Guard: Never overwrite cloud backup if local DB has fewer records!
+    // Anti-Data Loss Guard: Prevent overwriting cloud if local DB suffered catastrophic data loss (e.g. wiped to 0 or unexpected >30% drop)
     try {
       const cloudFile = await githubRequest('GET', `/repos/${REPO}/contents/${FILE_PATH}?ref=${BRANCH}`);
       if (cloudFile && cloudFile.content) {
@@ -205,9 +205,18 @@ async function backupToGitHub(db) {
         const cloudAgents = cloudData.agents ? cloudData.agents.length : 0;
         const cloudVisits = cloudData.marketing_visits ? cloudData.marketing_visits.length : 0;
 
-        if (data.agents.length < cloudAgents || data.marketing_visits.length < cloudVisits) {
-          console.warn(`[Backup Guard] 🛑 REJECTED! Local DB has fewer records (Agents: ${data.agents.length}/${cloudAgents}, Visits: ${data.marketing_visits.length}/${cloudVisits}). Refusing to overwrite cloud!`);
-          lastBackupStatus.lastError = `Backup rejected by guard: local has fewer records than cloud (${data.agents.length} < ${cloudAgents} agents or ${data.marketing_visits.length} < ${cloudVisits} visits)`;
+        const agentDrop = cloudAgents - data.agents.length;
+        const visitDrop = cloudVisits - data.marketing_visits.length;
+
+        // Catastrophic wipeout check:
+        // 1. Local database completely empty (0 agents) while cloud has agents
+        // 2. Unexpected major drop (>30% of entire database dropped at once and allowFewer was NOT set)
+        const isCatastrophicWipeout = (data.agents.length === 0 && cloudAgents > 0) ||
+          (!options.allowFewer && (agentDrop > cloudAgents * 0.3 || visitDrop > cloudVisits * 0.3));
+
+        if (isCatastrophicWipeout) {
+          console.warn(`[Backup Guard] 🛑 REJECTED! Local DB suffered major record loss (Agents: ${data.agents.length}/${cloudAgents}, Visits: ${data.marketing_visits.length}/${cloudVisits}). Refusing to overwrite cloud!`);
+          lastBackupStatus.lastError = `Backup rejected by guard: suspected data loss (${data.agents.length} < ${cloudAgents} agents or ${data.marketing_visits.length} < ${cloudVisits} visits)`;
           console.log('[Backup Guard] 🔄 Auto-healing local database from cloud backup...');
           await applyDataToDb(cloudData, (sql, p) => new Promise((res, rej) => db.run(sql, p, function(e) { if (e) rej(e); else res(this); })));
           return { success: false, reason: 'LOCAL_DATA_SMALLER_THAN_CLOUD_HEALED' };
@@ -300,12 +309,16 @@ async function restoreFromGitHub(db, dbRun, dbAll) {
 // Debounced backup helper
 let backupTimer = null;
 let dbInstance = null;
+let pendingBackupOptions = {};
 
-function scheduleBackup(db) {
+function scheduleBackup(db, options = {}) {
   dbInstance = db;
+  pendingBackupOptions = { ...pendingBackupOptions, ...options };
   if (backupTimer) clearTimeout(backupTimer);
   backupTimer = setTimeout(() => {
-    backupToGitHub(dbInstance);
+    const opts = pendingBackupOptions;
+    pendingBackupOptions = {};
+    backupToGitHub(dbInstance, opts);
   }, 4000);
 }
 

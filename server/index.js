@@ -622,7 +622,7 @@ app.delete('/api/agents/:id', async (req, res) => {
     await dbRun(`DELETE FROM marketing_visits WHERE agent_id = ?`, [agentId]);
     await dbRun(`DELETE FROM agents WHERE id = ?`, [agentId]);
 
-    scheduleBackup(db);
+    scheduleBackup(db, { allowFewer: true });
 
     res.json({ success: true, message: 'Agent deleted successfully' });
   } catch (err) {
@@ -837,7 +837,7 @@ app.delete('/api/visits/:id', async (req, res) => {
     if (visit) {
       await refreshAgentStage(visit.agent_id);
     }
-    scheduleBackup(db);
+    scheduleBackup(db, { allowFewer: true });
     res.json({ success: true, message: 'Marketing visit log deleted successfully' });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
@@ -1133,7 +1133,7 @@ app.delete('/api/calls/:id', async (req, res) => {
     if (call) {
       await refreshAgentStage(call.agent_id);
     }
-    scheduleBackup(db);
+    scheduleBackup(db, { allowFewer: true });
     res.json({ success: true, message: 'Telephonic call log deleted successfully' });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
@@ -1300,6 +1300,7 @@ app.delete('/api/queries/:id', async (req, res) => {
     if (qry) {
       await refreshAgentStage(qry.agent_id);
     }
+    scheduleBackup(db, { allowFewer: true });
     res.json({ success: true, message: 'Query deleted successfully' });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });

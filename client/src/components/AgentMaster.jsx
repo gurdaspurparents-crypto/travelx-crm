@@ -76,17 +76,19 @@ export default function AgentMaster({ onOpenAgentDrawer, onOpenModal, onOpenImpo
     }
   };
 
-  const handleDeleteAgent = async (agentId) => {
-    if (!window.confirm(`🗑️ Are you sure you want to delete Agent ${agentId} and all associated history?`)) return;
+  const handleDeleteAgent = async (agentId, companyName) => {
+    if (!window.confirm(`🗑️ Are you sure you want to delete "${companyName || agentId}" (ID: ${agentId}) and all associated visits, calls, and queries?`)) return;
     try {
       const res = await fetch(`/api/agents/${agentId}`, { method: 'DELETE' });
       const json = await res.json();
       if (json.success) {
-        alert('Agent deleted successfully');
+        alert('✅ Agent deleted successfully');
         fetchAgents();
+      } else {
+        alert(`❌ Failed to delete agent: ${json.error || 'Server error'}`);
       }
     } catch (err) {
-      alert('Error deleting agent');
+      alert('❌ Error deleting agent: ' + err.message);
     }
   };
 
@@ -297,7 +299,7 @@ export default function AgentMaster({ onOpenAgentDrawer, onOpenModal, onOpenImpo
                         </button>
                         {isAdmin && (
                           <button
-                            onClick={() => handleDeleteAgent(ag.id)}
+                            onClick={() => handleDeleteAgent(ag.id, ag.company_name)}
                             title="Admin Only: Delete Agent Record"
                             className="p-1.5 bg-rose-950/40 hover:bg-rose-900 text-rose-400 rounded-lg text-xs transition border border-rose-800/60"
                           >
