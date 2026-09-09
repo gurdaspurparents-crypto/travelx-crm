@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-09T10:50:31.018Z",
+  "backed_up_at": "2026-09-09T10:58:16.534Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -2071,7 +2071,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1355",
@@ -9468,6 +9468,23 @@
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
+    },
+    {
+      "id": 598,
+      "visit_date": "2026-09-09",
+      "agent_id": "AGT-1109",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Manoj Mehta",
+      "mobile": "7696889777",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"International Flight\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-10",
+      "location": "Dhariwal",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
     }
   ],
   "telephonic_calls": [
@@ -13834,7 +13851,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-11",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     }
   ],
   "queries": [
