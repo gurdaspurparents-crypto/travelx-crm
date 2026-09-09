@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-09T07:05:51.972Z",
+  "backed_up_at": "2026-09-09T07:05:58.313Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -12194,6 +12194,21 @@
       "agent_requirement": " KAM NNI KARTE HAI ",
       "interest_level": "Interested / Warm",
       "call_result": "Requirement Received",
+      "remarks": "",
+      "next_followup_date": "2026-09-11",
+      "payment_terms": null
+    },
+    {
+      "id": 596,
+      "call_date": "2026-09-09",
+      "agent_id": "AGT-1590",
+      "visit_id": 525,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "rate jada hai bollte but query bhej ge ",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-11",
       "payment_terms": null
