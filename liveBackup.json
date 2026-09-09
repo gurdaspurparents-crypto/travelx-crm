@@ -1,6 +1,20 @@
 {
-  "backed_up_at": "2026-09-09T11:23:13.117Z",
+  "backed_up_at": "2026-09-09T11:31:54.969Z",
   "agents": [
+    {
+      "id": "AGT-1147",
+      "name": "Mr. Abhinav",
+      "company_name": "Puri computers",
+      "mobile": "9023675112",
+      "city": "Dhariwal",
+      "area": "Dhariwal",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Visited",
+      "assigned_marketing_exec": "Bikram",
+      "assigned_telephonic_exec": "Simran",
+      "created_at": "2026-08-29",
+      "payment_terms": "Not Discussed"
+    },
     {
       "id": "AGT-1112",
       "name": "Mr.Navi",
@@ -2133,7 +2147,7 @@
       "id": "AGT-1364",
       "name": "Mr. kuljit singh",
       "company_name": "kuljit cyber caffa",
-      "mobile": "7508006419",
+      "mobile": "7508006411",
       "city": "Gurdaspur",
       "area": "Aujla Bypass",
       "agent_type": "Retail Travel Agent",
