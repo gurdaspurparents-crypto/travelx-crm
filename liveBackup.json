@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-09T07:09:56.944Z",
+  "backed_up_at": "2026-09-09T07:10:27.847Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -387,7 +387,7 @@
       "city": "Dhariwal",
       "area": "Dhariwal, New Bus Stand",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -12299,6 +12299,21 @@
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
       "agent_requirement": "rate jda bolte but query bhejge ",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-11",
+      "payment_terms": null
+    },
+    {
+      "id": 602,
+      "call_date": "2026-09-09",
+      "agent_id": "AGT-1120",
+      "visit_id": 520,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
       "interest_level": "Interested / Warm",
       "call_result": "Interested",
       "remarks": "",
