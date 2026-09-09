@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-09T07:07:39.358Z",
+  "backed_up_at": "2026-09-09T07:08:09.444Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -12248,6 +12248,21 @@
       "call_date": "2026-09-09",
       "agent_id": "AGT-1107",
       "visit_id": 512,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-11",
+      "payment_terms": null
+    },
+    {
+      "id": 600,
+      "call_date": "2026-09-09",
+      "agent_id": "AGT-1912",
+      "visit_id": 519,
       "executive_name": "Simranjit Kaur",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
