@@ -191,6 +191,13 @@ async function backupToGitHub(db) {
       fs.writeFileSync(path.resolve(__dirname, 'liveBackup.json'), JSON.stringify(data, null, 2));
     } catch (e) {}
 
+    // Safety guard: Local developer laptops should NEVER overwrite production cloud database!
+    const isRender = process.env.RENDER === 'true' || Boolean(process.env.RENDER) || Boolean(process.env.IS_PRODUCTION);
+    if (!isRender && !process.env.FORCE_GITHUB_BACKUP) {
+      console.log('[Backup] Running in local laptop environment. Cloud push skipped to protect live CRM data.');
+      return { success: true, reason: 'LOCAL_DEV_SKIPPED', data };
+    }
+
     if (!GITHUB_TOKEN) {
       console.log('[Backup] GITHUB_TOKEN not set in Render environment. Local backup saved.');
       lastBackupStatus.lastError = 'GITHUB_TOKEN not configured in Render environment variables';
