@@ -62,7 +62,11 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
     try {
       let url = `/api/agents?limit=1500`;
       if (loc && loc !== 'ALL' && loc !== 'All Locations') {
-        url += `&location=${encodeURIComponent(loc)}`;
+        if (loc.startsWith('ROUTE:')) {
+          url += `&route_id=${encodeURIComponent(loc.replace('ROUTE:', ''))}`;
+        } else {
+          url += `&location=${encodeURIComponent(loc)}`;
+        }
       }
       if (fDate) url += `&visit_from_date=${encodeURIComponent(fDate)}`;
       if (tDate) url += `&visit_to_date=${encodeURIComponent(tDate)}`;
@@ -571,12 +575,28 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
             <select
               value={selectedLocation}
               onChange={(e) => setSelectedLocation(e.target.value)}
-              className="bg-slate-950 border border-yellow-500/60 text-yellow-300 font-bold rounded-xl text-xs px-3 py-2 focus:outline-none focus:border-yellow-400"
+              className="bg-slate-950 border border-yellow-500/60 text-yellow-300 font-bold rounded-xl text-xs px-3 py-2 focus:outline-none focus:border-yellow-400 max-w-[280px] sm:max-w-[340px]"
             >
-              <option value="ALL">🌐 All Locations / All Cities</option>
-              {availableLocations.cities.map((c, i) => (
-                <option key={i} value={c}>📍 {c}</option>
+              <option value="ALL">🌐 All Locations / All Routes</option>
+
+              {availableLocations.routes && availableLocations.routes.map((rt) => (
+                <optgroup key={rt.id} label={`🛣️ ${rt.name}`}>
+                  <option value={`ROUTE:${rt.id}`} className="font-bold text-yellow-400 bg-slate-900">
+                    🚩 Entire Route: {rt.shortName} ({rt.totalAgents} Agents)
+                  </option>
+                  {rt.stops.map((stop, idx) => (
+                    <option key={stop.primaryCity} value={stop.primaryCity}>
+                      &nbsp;&nbsp;{idx + 1}. 📍 {stop.displayName} ({stop.agentCount})
+                    </option>
+                  ))}
+                </optgroup>
               ))}
+
+              {(!availableLocations.routes || availableLocations.routes.length === 0) && availableLocations.cities && (
+                availableLocations.cities.map((c, i) => (
+                  <option key={i} value={c}>📍 {c}</option>
+                ))
+              )}
             </select>
 
             {/* Type custom location / area search input */}
@@ -766,7 +786,16 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
               }`}
             >
               <div>
-                <p className="text-xs text-slate-400 font-semibold">Agencies in "{selectedLocation === 'ALL' || !selectedLocation ? 'All Locations' : selectedLocation}"</p>
+                <p className="text-xs text-slate-400 font-semibold">
+                  Agencies in {(() => {
+                    if (selectedLocation === 'ALL' || !selectedLocation) return '"All Locations / Routes"';
+                    if (selectedLocation.startsWith('ROUTE:')) {
+                      const rObj = availableLocations.routes?.find(r => r.id === selectedLocation.replace('ROUTE:', ''));
+                      return rObj ? `"${rObj.shortName}" (Entire Route)` : `"${selectedLocation}"`;
+                    }
+                    return `"${selectedLocation}"`;
+                  })()}
+                </p>
                 <p className="text-xl font-extrabold text-slate-100">{totalInCity}</p>
               </div>
               <MapPin className="w-6 h-6 text-sky-400" />
@@ -783,7 +812,7 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
             >
               <div>
                 <p className="text-xs text-emerald-400 font-semibold">
-                  ✅ Visited Agencies {checklistFromDate || checklistToDate ? '(Selected Period)' : ''}
+                  Visited Agencies (Selected Period)
                 </p>
                 <p className="text-xl font-extrabold text-emerald-400">{visitedInCity}</p>
               </div>
@@ -801,7 +830,7 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
             >
               <div>
                 <p className="text-xs text-rose-400 font-semibold">
-                  🔴 Pending Field Visits {checklistFromDate || checklistToDate ? '(Selected Period)' : ''}
+                  Pending Field Visits (Selected Period)
                 </p>
                 <p className="text-xl font-extrabold text-rose-400">{pendingInCity}</p>
               </div>
@@ -829,8 +858,15 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                 }`}>
                   <div className="flex items-start justify-between gap-1">
                     <div>
-                      <h4 className="font-bold text-slate-100 text-sm line-clamp-1">{ag.company_name}</h4>
-                      <p className="text-slate-400 text-[11px] font-medium">{ag.name} &bull; 📍 {ag.city} ({ag.area})</p>
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        <h4 className="font-bold text-slate-100 text-sm line-clamp-1">{ag.company_name}</h4>
+                        {ag.routeInfo && ag.routeInfo.routeId !== 'other' && (
+                          <span className="text-[10px] font-bold text-amber-300 bg-amber-950/60 border border-amber-800/50 px-1.5 py-0.5 rounded" title={ag.routeInfo.routeName}>
+                            Stop {ag.routeInfo.stopIndex}: {ag.routeInfo.stopName}
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-slate-400 text-[11px] font-medium mt-0.5">{ag.name} &bull; 📍 {ag.city} ({ag.area})</p>
                     </div>
                     {isVisited ? (
                       <span className="bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded-full text-[10px] font-bold whitespace-nowrap" title={`Visited on: ${ag.last_visit_date}`}>

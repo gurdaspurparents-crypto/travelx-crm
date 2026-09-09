@@ -6,6 +6,7 @@ const multer = require('multer');
 const XLSX = require('xlsx');
 const { db, dbRun, dbAll, dbGet, initDb, seedDatabase, refreshAgentStage } = require('./db');
 const { restoreFromGitHub, scheduleBackup, backupToGitHub, getBackupStatus, exportAllData, applyDataToDb } = require('./gitBackup');
+const { CORRIDORS, getCorridorsWithCounts, getAgentStopInfo, getRouteAliases, getStopAliases } = require('./corridors');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -433,11 +434,26 @@ app.get('/api/agents', async (req, res) => {
       params.push(city, city);
     }
 
-    const { location } = req.query;
-    if (location) {
-      query += ` AND (a.city LIKE ? OR a.area LIKE ?)`;
-      const loc = `%${location}%`;
-      params.push(loc, loc);
+    const { location, route_id } = req.query;
+    if (route_id) {
+      const aliases = getRouteAliases(route_id);
+      if (aliases.length > 0) {
+        const placeholders = aliases.map(() => '(LOWER(TRIM(a.city)) = ? OR LOWER(TRIM(a.area)) = ?)').join(' OR ');
+        query += ` AND (${placeholders})`;
+        aliases.forEach(al => params.push(al, al));
+      }
+    } else if (location) {
+      const aliases = getStopAliases(location);
+      if (aliases.length > 1) {
+        const placeholders = aliases.map(() => '(LOWER(TRIM(a.city)) = ? OR LOWER(TRIM(a.area)) = ?)').join(' OR ');
+        query += ` AND (${placeholders} OR a.city LIKE ? OR a.area LIKE ?)`;
+        aliases.forEach(al => params.push(al, al));
+        params.push(`%${location}%`, `%${location}%`);
+      } else {
+        query += ` AND (a.city LIKE ? OR a.area LIKE ?)`;
+        const loc = `%${location}%`;
+        params.push(loc, loc);
+      }
     }
 
     if (stage) {
@@ -464,7 +480,7 @@ app.get('/api/agents', async (req, res) => {
     query += ` GROUP BY a.id ORDER BY a.id ASC LIMIT ? OFFSET ?`;
     params.push(parseInt(limit), parseInt(offset));
 
-    const agents = await dbAll(query, params);
+    const rawAgentsList = await dbAll(query, params);
 
     // Get total count for pagination
     let countQuery = `SELECT COUNT(*) as total FROM agents WHERE 1=1`;
@@ -478,10 +494,25 @@ app.get('/api/agents', async (req, res) => {
       countQuery += ` AND (city = ? OR area = ?)`;
       countParams.push(city, city);
     }
-    if (location) {
-      countQuery += ` AND (city LIKE ? OR area LIKE ?)`;
-      const loc = `%${location}%`;
-      countParams.push(loc, loc);
+    if (route_id) {
+      const aliases = getRouteAliases(route_id);
+      if (aliases.length > 0) {
+        const placeholders = aliases.map(() => '(LOWER(TRIM(city)) = ? OR LOWER(TRIM(area)) = ?)').join(' OR ');
+        countQuery += ` AND (${placeholders})`;
+        aliases.forEach(al => countParams.push(al, al));
+      }
+    } else if (location) {
+      const aliases = getStopAliases(location);
+      if (aliases.length > 1) {
+        const placeholders = aliases.map(() => '(LOWER(TRIM(city)) = ? OR LOWER(TRIM(area)) = ?)').join(' OR ');
+        countQuery += ` AND (${placeholders} OR city LIKE ? OR area LIKE ?)`;
+        aliases.forEach(al => countParams.push(al, al));
+        countParams.push(`%${location}%`, `%${location}%`);
+      } else {
+        countQuery += ` AND (city LIKE ? OR area LIKE ?)`;
+        const loc = `%${location}%`;
+        countParams.push(loc, loc);
+      }
     }
     if (stage) {
       if (stage === 'Visited') {
@@ -496,15 +527,32 @@ app.get('/api/agents', async (req, res) => {
 
     const { total } = await dbGet(countQuery, countParams);
 
+    // Enrich agents with sequential route stop info
+    const agents = rawAgentsList.map(a => ({
+      ...a,
+      routeInfo: getAgentStopInfo(a)
+    }));
+
+    // If viewing an entire route corridor, sort agents by stop sequence along the highway
+    if (route_id) {
+      agents.sort((a, b) => {
+        const orderA = a.routeInfo ? a.routeInfo.stopIndex : 999;
+        const orderB = b.routeInfo ? b.routeInfo.stopIndex : 999;
+        if (orderA !== orderB) return orderA - orderB;
+        return (a.company_name || '').localeCompare(b.company_name || '');
+      });
+    }
+
     res.json({ success: true, agents, total });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }
 });
 
-// Endpoint to fetch dynamic distinct cities and areas from imported agents DB
+// Endpoint to fetch dynamic distinct cities, corridors, and sequential stops
 app.get('/api/agents/locations', async (req, res) => {
   try {
+    const rawAgents = await dbAll(`SELECT id, city, area FROM agents`);
     const rawCities = await dbAll(`SELECT DISTINCT city FROM agents WHERE city IS NOT NULL AND city != '' ORDER BY city ASC`);
     const rawAreas = await dbAll(`SELECT DISTINCT area FROM agents WHERE area IS NOT NULL AND area != '' ORDER BY area ASC`);
 
@@ -525,9 +573,28 @@ app.get('/api/agents/locations', async (req, res) => {
       if (clean) areasSet.add(clean);
     });
 
+    const corridorRoutes = getCorridorsWithCounts(rawAgents);
+
+    // Build sequential cities list based on corridors
+    const serialCities = [];
+    corridorRoutes.forEach(r => {
+      r.stops.forEach(s => {
+        if (!serialCities.includes(s.primaryCity)) {
+          serialCities.push(s.primaryCity);
+        }
+      });
+    });
+    // Append any unmapped cities
+    citiesSet.forEach(c => {
+      if (!serialCities.some(sc => sc.toLowerCase() === c.toLowerCase())) {
+        serialCities.push(c);
+      }
+    });
+
     res.json({
       success: true,
-      cities: Array.from(citiesSet).sort((a, b) => a.localeCompare(b)),
+      routes: corridorRoutes,
+      cities: serialCities,
       areas: Array.from(areasSet).sort((a, b) => a.localeCompare(b))
     });
   } catch (err) {
