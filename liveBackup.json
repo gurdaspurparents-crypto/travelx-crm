@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-09T07:10:43.010Z",
+  "backed_up_at": "2026-09-09T07:10:59.211Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -639,7 +639,7 @@
       "city": "Dhariwal",
       "area": "Dhariwal",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -7065,7 +7065,7 @@
       "city": "Kot Santokh Rai",
       "area": "Kot Santokh Rai",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-01",
@@ -12323,8 +12323,8 @@
     {
       "id": 603,
       "call_date": "2026-09-09",
-      "agent_id": "AGT-1155",
-      "visit_id": 515,
+      "agent_id": "AGT-1911",
+      "visit_id": 517,
       "executive_name": "Simranjit Kaur",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
