@@ -105,7 +105,12 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
+    <div className="min-h-screen bg-[#070b14] text-slate-100 flex flex-col font-sans selection:bg-sky-500/30 selection:text-white relative">
+      {/* Ambient background light gradients */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1000px] h-[380px] bg-gradient-to-b from-sky-600/12 via-indigo-600/6 to-transparent blur-3xl opacity-70"></div>
+        <div className="absolute top-[40%] right-[-100px] w-[500px] h-[500px] bg-blue-600/5 blur-[120px] rounded-full"></div>
+      </div>
       
       {/* Header */}
       <Header
@@ -121,7 +126,7 @@ export default function App() {
       />
 
       {/* Main App Workspace View */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-8">
+      <main className="relative z-10 flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
         
         {activeTab === 'dashboard' && role === 'Admin / Owner' && (
           <ManagementDashboard
@@ -206,9 +211,19 @@ export default function App() {
 
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-slate-900 bg-slate-950 py-6 text-center text-xs text-slate-500">
-        Travelx B2B Agent Marketing & Lead Conversion CRM • Active Role: <strong className="text-slate-300">{role}</strong>
+      {/* Enterprise SaaS Footer */}
+      <footer className="relative z-10 border-t border-white/[0.06] bg-[#060911]/90 backdrop-blur py-5 text-center text-xs text-slate-400">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block shadow-sm shadow-emerald-400/50"></span>
+            <span className="font-semibold text-slate-300">TravelX Enterprise B2B CRM</span>
+            <span className="text-slate-600">&bull;</span>
+            <span className="text-slate-400">Live Production Database</span>
+          </div>
+          <div className="text-slate-400 font-mono text-[11px] flex items-center gap-1.5">
+            Active Mode: <span className="text-sky-400 font-semibold px-2 py-0.5 rounded bg-sky-950/60 border border-sky-800/60">{role}</span>
+          </div>
+        </div>
       </footer>
 
       {/* Slide-over 360 Agent Profile Drawer */}

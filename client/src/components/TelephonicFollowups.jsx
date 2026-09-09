@@ -171,12 +171,12 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
     <div className="space-y-6 animate-in fade-in duration-300">
       
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/[0.06] pb-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-white flex items-center gap-2">
-            <Phone className="w-6 h-6 text-blue-500" /> Stage 2 – Telephonic Follow-up Management
+          <h1 className="text-2xl font-extrabold text-white flex items-center gap-2 tracking-tight">
+            <Phone className="w-5 h-5 text-blue-400" /> Stage 2 – Telephonic Follow-up Management
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
+          <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
             Office telephonic queue for calling visited travel agents and capturing immediate requirements
           </p>
         </div>
@@ -184,19 +184,19 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
         <div className="flex flex-wrap items-center gap-2">
           <a
             href="/api/export/calls"
-            className="px-3.5 py-2 bg-emerald-700/80 hover:bg-emerald-600 text-white font-medium rounded-xl text-xs transition shadow flex items-center gap-1.5 border border-emerald-600"
+            className="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-xl text-xs transition shadow-sm flex items-center gap-1.5 cursor-pointer"
           >
             <Download className="w-3.5 h-3.5" /> Export Excel (.xlsx)
           </a>
           <button
             onClick={handleExportPDF}
-            className="px-3.5 py-2 bg-sky-700/80 hover:bg-sky-600 text-white font-medium rounded-xl text-xs transition shadow flex items-center gap-1.5 border border-sky-600"
+            className="px-3.5 py-2 bg-white/[0.05] hover:bg-white/[0.1] text-slate-200 border border-white/[0.1] font-semibold rounded-xl text-xs transition flex items-center gap-1.5 cursor-pointer"
           >
             <FileText className="w-3.5 h-3.5" /> Download PDF
           </button>
           <button
             onClick={() => onOpenModal('log_call')}
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-xl text-xs transition shadow-lg shadow-blue-600/20 flex items-center gap-1.5"
+            className="px-4 py-2 bg-gradient-to-r from-blue-600 to-sky-600 hover:from-blue-500 hover:to-sky-500 text-white font-semibold rounded-xl text-xs transition-all shadow-md shadow-blue-900/20 flex items-center gap-1.5 cursor-pointer"
           >
             <Plus className="w-4 h-4" /> Log Call Outcome
           </button>
@@ -204,32 +204,32 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
       </div>
 
       {/* 🚗 Visited Agents Queue for Telephonic Follow-up (Bikramjit Field Visits Queue for Simranjit Next-Day Feedback) */}
-      <div className="bg-gradient-to-r from-slate-900 via-sky-950/40 to-slate-900 border border-sky-500/40 rounded-2xl p-5 shadow-xl space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-3">
+      <div className="bg-[#0c1322]/90 border border-white/[0.08] rounded-2xl p-5 shadow-xl space-y-4 backdrop-blur-md">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/[0.06] pb-3">
           <div>
             <div className="flex items-center gap-2 text-sky-400 text-xs font-bold uppercase tracking-wider mb-0.5">
-              <MapPin className="w-4 h-4" /> Next-Day Feedback Call Queue
+              <MapPin className="w-3.5 h-3.5" /> Next-Day Feedback Call Queue
             </div>
-            <h3 className="text-xl font-extrabold text-white flex items-center gap-2">
+            <h3 className="text-base sm:text-lg font-extrabold text-white flex items-center gap-2">
               🚗 Visited Travel Agents Queue (Bikramjit Physical Visits)
             </h3>
-            <p className="text-xs text-slate-400 mt-1">
+            <p className="text-xs text-slate-400 mt-0.5">
               Agencies visited by Bikramjit Singh in date-wise order. Simranjit Kaur can call for next-day feedback & capture response!
             </p>
           </div>
 
           <button
             onClick={() => setShowQueue(!showQueue)}
-            className="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-bold border border-slate-700 self-start sm:self-auto"
+            className="px-3 py-1.5 bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 rounded-xl text-xs font-medium border border-white/[0.08] self-start sm:self-auto cursor-pointer"
           >
             {showQueue ? 'Hide Queue' : `Show Queue (${visitQueue.length})`}
           </button>
         </div>
 
         {showQueue && (
-          <div className="overflow-x-auto border border-slate-800 rounded-xl">
+          <div className="overflow-x-auto border border-white/[0.06] rounded-xl">
             <table className="w-full text-left text-xs text-slate-300">
-              <thead className="bg-slate-950 text-slate-400 uppercase font-semibold">
+              <thead className="bg-[#090e1a] text-[11px] text-slate-400 uppercase tracking-wider">
                 <tr>
                   <th className="p-3">Visit Date</th>
                   <th className="p-3">Visited Agency & Contact</th>

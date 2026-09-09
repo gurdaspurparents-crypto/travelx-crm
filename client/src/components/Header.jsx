@@ -94,27 +94,38 @@ export default function Header({ activeTab, onSelectTab, role, onRoleChange, onO
   });
 
   return (
-    <header className="sticky top-0 z-40 bg-slate-900/95 backdrop-blur border-b border-slate-800 shadow-xl">
+    <header className="sticky top-0 z-40 bg-[#070b14]/85 backdrop-blur-xl border-b border-white/[0.08] shadow-lg shadow-black/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         
         {/* Top Navbar Row */}
-        <div className="flex items-center justify-between h-16 border-b border-slate-800/60">
+        <div className="flex items-center justify-between h-16 border-b border-white/[0.06]">
           
-          {/* Logo */}
+          {/* Logo & Brand Identity */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-sky-600/30">
-              Tx
+            <div className="relative group">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-sky-500 to-indigo-600 rounded-xl blur opacity-30 group-hover:opacity-60 transition duration-300"></div>
+              <div className="relative w-9 h-9 rounded-xl bg-gradient-to-br from-slate-900 via-[#0d1527] to-slate-900 border border-white/[0.15] flex items-center justify-center text-white font-black text-base shadow-md">
+                <span className="bg-gradient-to-r from-sky-400 via-indigo-200 to-white bg-clip-text text-transparent">Tx</span>
+              </div>
             </div>
-            <div>
-              <span className="text-lg font-black text-white tracking-tight">TRAVEL<span className="text-sky-400">X</span></span>
-              <span className="hidden sm:inline-block ml-2 text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 rounded bg-sky-950 text-sky-400 border border-sky-800">
-                {role === 'Admin / Owner' ? 'B2B CRM (Owner Admin)' : role === 'Marketing Executive' ? 'Field Marketing App' : role === 'Yug (Calling Executive)' ? "Yug's Calling Desk" : 'Telephonic App'}
+            <div className="flex items-center gap-2">
+              <div className="flex flex-col">
+                <span className="text-base font-extrabold text-white tracking-tight leading-none">
+                  TRAVEL<span className="text-sky-400">X</span>
+                </span>
+                <span className="text-[10px] text-slate-400 font-mono tracking-wider uppercase mt-0.5">
+                  Enterprise B2B CRM
+                </span>
+              </div>
+              <span className="hidden sm:inline-flex items-center gap-1.5 ml-2 text-[10px] font-semibold tracking-wide px-2 py-0.5 rounded-full bg-white/[0.04] text-slate-300 border border-white/[0.08]">
+                <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse"></span>
+                {role === 'Admin / Owner' ? 'Executive Portal' : role === 'Marketing Executive' ? 'Field Marketing' : role === 'Yug (Calling Executive)' ? "Yug's Calling Desk" : 'Telephonic App'}
               </span>
             </div>
           </div>
 
-          {/* Right Controls: Due Followups, Role Switcher & Notifications */}
-          <div className="flex items-center gap-2.5">
+          {/* Right Controls: Backup Badge, Due Followups, Role Switcher & Notifications */}
+          <div className="flex items-center gap-2 sm:gap-2.5">
             
             {/* ✅ BACKUP STATUS BADGE — always visible */}
             {(() => {
@@ -136,20 +147,23 @@ export default function Header({ activeTab, onSelectTab, role, onRoleChange, onO
                 <button
                   onClick={() => setShowBackupModal(true)}
                   title={`Backup Status: ${timeLabel}. Click to download backup to laptop or restore.`}
-                  className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-[11px] font-bold border transition cursor-pointer ${
+                  className={`flex items-center gap-2 px-2.5 sm:px-3 py-1.5 rounded-xl text-[11px] font-mono font-medium border transition-all cursor-pointer ${
                     isStale
-                      ? 'bg-rose-950 border-rose-700 text-rose-300 animate-pulse'
-                      : 'bg-emerald-950 border-emerald-800 text-emerald-300 hover:bg-emerald-900/60'
+                      ? 'bg-rose-500/10 border-rose-500/30 text-rose-300 hover:bg-rose-500/20 shadow-sm shadow-rose-950'
+                      : 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300 hover:bg-emerald-500/20 hover:border-emerald-500/30'
                   }`}
                 >
-                  <span className={`w-2 h-2 rounded-full ${isStale ? 'bg-rose-400' : 'bg-emerald-400'}`}></span>
-                  <span className="hidden sm:inline">
-                    {isStale
-                      ? `⚠️ Backup: ${timeLabel}`
-                      : `💾 Backup: ${timeLabel}`}
+                  <span className="relative flex h-2 w-2">
+                    <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${isStale ? 'bg-rose-400' : 'bg-emerald-400'}`}></span>
+                    <span className={`relative inline-flex rounded-full h-2 w-2 ${isStale ? 'bg-rose-500' : 'bg-emerald-500'}`}></span>
                   </span>
-                  <span className="sm:hidden">
-                    {isStale ? '⚠️ Backup' : '💾 Backup'}
+                  <span className="hidden md:inline">
+                    {isStale
+                      ? `Backup: Stale (${timeLabel})`
+                      : `Cloud Sync: ${timeLabel}`}
+                  </span>
+                  <span className="md:hidden">
+                    {isStale ? 'Sync !' : 'Cloud OK'}
                   </span>
                 </button>
               );
@@ -159,39 +173,40 @@ export default function Header({ activeTab, onSelectTab, role, onRoleChange, onO
             {followupData && followupData.total_due > 0 && (
               <button
                 onClick={() => setShowFollowupModal(true)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black bg-gradient-to-r from-rose-600 via-amber-600 to-rose-600 hover:from-rose-500 hover:to-amber-500 text-white shadow-lg shadow-rose-600/30 animate-pulse transition"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-gradient-to-r from-rose-500/20 via-amber-500/20 to-rose-500/20 hover:from-rose-500/30 hover:to-amber-500/30 text-amber-200 border border-amber-500/30 hover:border-amber-400/50 shadow-sm transition-all cursor-pointer"
                 title="Click to view today's due follow-ups"
               >
-                <Clock className="w-3.5 h-3.5" />
-                <span>{followupData.total_due} Follow-ups Due</span>
+                <Clock className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
+                <span className="font-mono font-bold text-amber-300">{followupData.total_due}</span>
+                <span className="hidden sm:inline text-amber-200/90">Due</span>
               </button>
             )}
 
             {/* Role Switcher */}
-            <div className="flex items-center gap-1.5 bg-slate-950 border border-slate-800 px-3 py-1.5 rounded-xl text-xs">
+            <div className="flex items-center gap-1.5 bg-white/[0.04] hover:bg-white/[0.06] border border-white/[0.08] hover:border-white/[0.15] px-2.5 sm:px-3 py-1.5 rounded-xl text-xs transition-all">
               <Shield className="w-3.5 h-3.5 text-sky-400" />
-              <span className="text-slate-400 hidden md:inline">Mode:</span>
+              <span className="text-slate-400 hidden lg:inline font-medium">Role:</span>
               <select
                 value={role}
                 onChange={e => handleRoleSelect(e.target.value)}
-                className="bg-transparent font-bold text-slate-200 focus:outline-none cursor-pointer"
+                className="bg-transparent font-semibold text-slate-200 focus:outline-none cursor-pointer text-xs"
               >
-                <option value="Admin / Owner" className="bg-slate-900 text-slate-200">👑 Admin / Owner Mode</option>
-                <option value="Yug (Calling Executive)" className="bg-slate-900 text-slate-200">📱 Yug (Calling Exec)</option>
-                <option value="Telephonic Executive" className="bg-slate-900 text-slate-200">📞 Telephonic Exec (Simran)</option>
-                <option value="Marketing Executive" className="bg-slate-900 text-slate-200">🚗 Field Marketing Exec</option>
+                <option value="Admin / Owner" className="bg-[#0b1120] text-slate-200">👑 Admin / Owner</option>
+                <option value="Yug (Calling Executive)" className="bg-[#0b1120] text-slate-200">📱 Yug Calling Desk</option>
+                <option value="Telephonic Executive" className="bg-[#0b1120] text-slate-200">📞 Telephonic Desk (Simran)</option>
+                <option value="Marketing Executive" className="bg-[#0b1120] text-slate-200">🚗 Field Marketing (Bikram)</option>
               </select>
             </div>
 
             {/* Notification Bell */}
             <button
               onClick={() => setShowFollowupModal(true)}
-              className="relative p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition"
+              className="relative p-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] hover:border-white/[0.15] text-slate-300 hover:text-white transition-all cursor-pointer"
               title="Today's Follow-ups & Alerts"
             >
               <Bell className="w-4 h-4" />
               {followupData && followupData.total_due > 0 && (
-                <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-rose-600 text-white font-bold text-[10px] flex items-center justify-center animate-pulse">
+                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-rose-500 text-white font-mono font-bold text-[9px] flex items-center justify-center shadow-sm">
                   {followupData.total_due}
                 </span>
               )}
@@ -201,8 +216,8 @@ export default function Header({ activeTab, onSelectTab, role, onRoleChange, onO
 
         </div>
 
-        {/* Navigation Tabs */}
-        <nav className="flex space-x-1 overflow-x-auto py-2 scrollbar-none">
+        {/* Navigation Tabs (Linear Segmented Pills) */}
+        <nav className="flex items-center space-x-1.5 overflow-x-auto py-2.5 scrollbar-none">
           {visibleTabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -210,19 +225,19 @@ export default function Header({ activeTab, onSelectTab, role, onRoleChange, onO
               <button
                 key={tab.id}
                 onClick={() => onSelectTab(tab.id)}
-                className={`px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition flex items-center gap-2 relative ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all duration-150 flex items-center gap-2 relative cursor-pointer ${
                   isActive
-                    ? 'bg-sky-600 text-white shadow-lg shadow-sky-600/20'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+                    ? 'bg-sky-600 text-white shadow-md shadow-sky-600/30 border border-sky-400/30'
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-white/[0.05] border border-transparent'
                 }`}
               >
-                <Icon className="w-4 h-4" />
+                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-slate-400'}`} />
                 <span>{tab.label}</span>
                 {tab.badge && (
-                  <span className={`text-[9px] uppercase font-bold px-1.5 py-0.5 rounded-full ${
-                    tab.badge === 'AI' ? 'bg-indigo-950 text-indigo-400 border border-indigo-800' :
-                    tab.badge === 'YUG CALLING' ? 'bg-emerald-950 text-emerald-300 border border-emerald-600 animate-pulse font-black' :
-                    'bg-rose-950 text-rose-400 border border-rose-800'
+                  <span className={`text-[9px] font-mono uppercase font-bold px-1.5 py-0.2 rounded ${
+                    tab.badge === 'AI' ? 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30' :
+                    tab.badge === 'YUG CALLING' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-black' :
+                    'bg-rose-500/20 text-rose-300 border border-rose-500/30'
                   }`}>
                     {tab.badge}
                   </span>

@@ -125,31 +125,31 @@ export default function QueryManagement({ onOpenModal, onOpenAgentDrawer }) {
     <div className="space-y-6 animate-in fade-in duration-300">
       
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/[0.06] pb-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-white flex items-center gap-2">
-            <FileText className="w-6 h-6 text-amber-500" /> Stage 3 & 4 – Agent Query & Booking Conversion
+          <h1 className="text-2xl font-extrabold text-white flex items-center gap-2 tracking-tight">
+            <FileText className="w-5 h-5 text-amber-400" /> Stage 3 & 4 – Agent Query & Booking Conversion
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
+          <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
             Manage incoming requirements, quotations, booking closures, and lost business reasons
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <a
             href="/api/export/queries"
-            className="px-3.5 py-2 bg-emerald-700/80 hover:bg-emerald-600 text-white font-medium rounded-xl text-xs transition shadow flex items-center gap-1.5 border border-emerald-600"
+            className="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-xl text-xs transition shadow-sm flex items-center gap-1.5 cursor-pointer"
           >
             <Download className="w-3.5 h-3.5" /> Export Excel (.xlsx)
           </a>
           <button
             onClick={handleExportPDF}
-            className="px-3.5 py-2 bg-sky-700/80 hover:bg-sky-600 text-white font-medium rounded-xl text-xs transition shadow flex items-center gap-1.5 border border-sky-600"
+            className="px-3.5 py-2 bg-white/[0.05] hover:bg-white/[0.1] text-slate-200 border border-white/[0.1] font-semibold rounded-xl text-xs transition flex items-center gap-1.5 cursor-pointer"
           >
             <FileText className="w-3.5 h-3.5" /> Download PDF
           </button>
           <button
             onClick={() => onOpenModal('create_query')}
-            className="px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white font-medium rounded-xl text-xs transition shadow-lg shadow-amber-600/20 flex items-center gap-1.5"
+            className="px-4 py-2 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white font-semibold rounded-xl text-xs transition shadow-md shadow-amber-900/20 flex items-center gap-1.5 cursor-pointer"
           >
             <Plus className="w-4 h-4" /> Create New Query
           </button>
@@ -157,14 +157,14 @@ export default function QueryManagement({ onOpenModal, onOpenAgentDrawer }) {
       </div>
 
       {/* Filters */}
-      <div className="bg-slate-900 border border-slate-800 p-4 rounded-2xl flex flex-wrap gap-4 items-center">
+      <div className="bg-[#0c1322]/90 border border-white/[0.08] p-4 rounded-2xl flex flex-wrap gap-4 items-center backdrop-blur-md">
         <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
-          <Filter className="w-3.5 h-3.5" /> Filters:
+          <Filter className="w-3.5 h-3.5 text-sky-400" /> Filters:
         </span>
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="bg-slate-950 border border-slate-800 text-slate-300 rounded-xl text-sm p-2.5 focus:outline-none focus:border-sky-500"
+          className="bg-[#070b14] border border-white/[0.08] text-slate-300 rounded-xl text-xs p-2 focus:outline-none focus:border-sky-500 cursor-pointer"
         >
           <option value="">All Query Statuses</option>
           <option value="New">New</option>
@@ -178,7 +178,7 @@ export default function QueryManagement({ onOpenModal, onOpenAgentDrawer }) {
         <select
           value={productFilter}
           onChange={(e) => setProductFilter(e.target.value)}
-          className="bg-slate-950 border border-slate-800 text-slate-300 rounded-xl text-sm p-2.5 focus:outline-none focus:border-sky-500"
+          className="bg-[#070b14] border border-white/[0.08] text-slate-300 rounded-xl text-xs p-2 focus:outline-none focus:border-sky-500 cursor-pointer"
         >
           <option value="">All Travel Products</option>
           <option value="Domestic Flight">Domestic Flight</option>
@@ -191,14 +191,14 @@ export default function QueryManagement({ onOpenModal, onOpenAgentDrawer }) {
         </select>
 
         {/* Date Filter Controls */}
-        <div className="flex items-center gap-1.5 flex-wrap border-t sm:border-t-0 sm:border-l border-slate-800 pt-2 sm:pt-0 sm:pl-3">
-          <span className="text-xs font-semibold text-slate-400">Date:</span>
+        <div className="flex items-center gap-1.5 flex-wrap border-t sm:border-t-0 sm:border-l border-white/[0.06] pt-2 sm:pt-0 sm:pl-3">
+          <span className="text-xs font-medium text-slate-400">Date:</span>
           <button
             onClick={() => setDateFilter(new Date().toISOString().split('T')[0])}
-            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer ${
               dateFilter === new Date().toISOString().split('T')[0]
-                ? 'bg-amber-600 text-white'
-                : 'bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800'
+                ? 'bg-amber-600 text-white shadow-sm shadow-amber-600/30'
+                : 'bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 border border-white/[0.08]'
             }`}
           >
             ⚡ Today
@@ -209,31 +209,31 @@ export default function QueryManagement({ onOpenModal, onOpenAgentDrawer }) {
               y.setDate(y.getDate() - 1);
               setDateFilter(y.toISOString().split('T')[0]);
             }}
-            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer ${
               (() => {
                 const y = new Date();
                 y.setDate(y.getDate() - 1);
                 return dateFilter === y.toISOString().split('T')[0];
               })()
-                ? 'bg-amber-600 text-white'
-                : 'bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800'
+                ? 'bg-amber-600 text-white shadow-sm shadow-amber-600/30'
+                : 'bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 border border-white/[0.08]'
             }`}
           >
             Yesterday
           </button>
-          <div className="flex items-center gap-1.5 bg-slate-950 border border-slate-800 px-2.5 py-1.5 rounded-xl text-xs">
+          <div className="flex items-center gap-1.5 bg-[#070b14] border border-white/[0.08] px-2.5 py-1.5 rounded-xl text-xs">
             <Calendar className="w-3.5 h-3.5 text-slate-400" />
             <input
               type="date"
               value={dateFilter}
               onChange={e => setDateFilter(e.target.value)}
-              className="bg-transparent text-slate-200 text-xs focus:outline-none cursor-pointer"
+              className="bg-transparent text-slate-200 font-mono text-xs focus:outline-none cursor-pointer"
             />
           </div>
           {dateFilter && (
             <button
               onClick={() => setDateFilter('')}
-              className="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs transition flex items-center gap-1 border border-slate-700"
+              className="px-2 py-1 bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 rounded-lg text-xs transition flex items-center gap-1 border border-white/[0.08] cursor-pointer"
             >
               <X className="w-3 h-3" /> Clear
             </button>
@@ -242,10 +242,10 @@ export default function QueryManagement({ onOpenModal, onOpenAgentDrawer }) {
       </div>
 
       {/* Queries Table */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+      <div className="bg-[#0c1322]/90 border border-white/[0.08] rounded-2xl overflow-hidden shadow-xl backdrop-blur-md">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm text-slate-300">
-            <thead className="bg-slate-800/80 text-xs text-slate-400 uppercase">
+          <table className="w-full text-left text-xs text-slate-300">
+            <thead className="bg-[#090e1a] text-[11px] text-slate-400 uppercase tracking-wider">
               <tr>
                 <th className="p-3.5">Query ID</th>
                 <th className="p-3.5">Date</th>
@@ -254,10 +254,10 @@ export default function QueryManagement({ onOpenModal, onOpenAgentDrawer }) {
                 <th className="p-3.5">Quoted Amount</th>
                 <th className="p-3.5">Handling Exec</th>
                 <th className="p-3.5">Status</th>
-                <th className="p-3.5 text-right">Actions / Conversion</th>
+                <th className="p-3.5 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-white/[0.04]">
               {loading ? (
                 <tr>
                   <td colSpan="8" className="text-center p-8">
@@ -272,32 +272,32 @@ export default function QueryManagement({ onOpenModal, onOpenAgentDrawer }) {
                 </tr>
               ) : (
                 queries.map((q) => (
-                  <tr key={q.id} className="hover:bg-slate-800/40 transition">
+                  <tr key={q.id} className="hover:bg-white/[0.02] transition">
                     <td className="p-3.5 font-mono font-bold text-amber-400">{q.id}</td>
                     <td className="p-3.5 font-mono text-xs text-slate-400">{q.query_date}</td>
                     <td className="p-3.5">
                       <div className="font-semibold text-slate-100">{q.company_name}</div>
-                      <div className="text-xs text-slate-400">{q.agent_city}</div>
+                      <div className="text-[11px] text-slate-400 mt-0.5">{q.agent_city}</div>
                     </td>
                     <td className="p-3.5">
                       <div className="font-semibold text-sky-400">{q.product}</div>
-                      <div className="text-xs text-slate-400 max-w-xs truncate">{q.query_details}</div>
+                      <div className="text-xs text-slate-400 max-w-xs truncate mt-0.5">{q.query_details}</div>
                     </td>
-                    <td className="p-3.5 font-bold text-slate-200">
+                    <td className="p-3.5 font-mono font-bold text-slate-200">
                       ₹{(q.quoted_amount || 0).toLocaleString('en-IN')}
                     </td>
                     <td className="p-3.5 text-slate-300 text-xs">{q.handling_employee}</td>
                     <td className="p-3.5">
-                      <span className={`px-2.5 py-1 rounded-full text-xs font-bold uppercase ${
-                        q.status === 'Converted' ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' :
-                        q.status === 'Rejected' || q.status === 'Lost' ? 'bg-rose-950 text-rose-400 border border-rose-800' :
-                        'bg-amber-950 text-amber-400 border border-amber-800'
+                      <span className={`px-2.5 py-0.5 rounded-full font-mono text-[10px] font-bold uppercase ${
+                        q.status === 'Converted' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/25' :
+                        q.status === 'Rejected' || q.status === 'Lost' ? 'bg-rose-500/10 text-rose-400 border border-rose-500/25' :
+                        'bg-amber-500/10 text-amber-400 border border-amber-500/25'
                       }`}>
                         {q.status}
                       </span>
                     </td>
                     <td className="p-3.5 text-right">
-                      <div className="flex justify-end gap-2">
+                      <div className="flex justify-end gap-1.5">
                         {q.status !== 'Converted' && q.status !== 'Rejected' && (
                           <>
                             <button
@@ -305,13 +305,13 @@ export default function QueryManagement({ onOpenModal, onOpenAgentDrawer }) {
                                 setConvertingQuery(q);
                                 setBookingValue(q.quoted_amount || '');
                               }}
-                              className="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded text-xs font-semibold transition flex items-center gap-1 shadow"
+                              className="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-semibold transition flex items-center gap-1 shadow-sm cursor-pointer"
                             >
                               <CheckCircle2 className="w-3.5 h-3.5" /> Convert
                             </button>
                             <button
                               onClick={() => setRejectingQuery(q)}
-                              className="px-2.5 py-1 bg-rose-900/60 hover:bg-rose-800 text-rose-300 rounded text-xs font-semibold transition border border-rose-700/50 flex items-center gap-1"
+                              className="px-2 py-1 bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 rounded-lg text-xs font-semibold transition border border-rose-500/20 flex items-center gap-1 cursor-pointer"
                             >
                               <XCircle className="w-3.5 h-3.5" /> Reject
                             </button>
@@ -319,16 +319,16 @@ export default function QueryManagement({ onOpenModal, onOpenAgentDrawer }) {
                         )}
                         <button
                           onClick={() => onOpenAgentDrawer(q.agent_id)}
-                          className="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-xs transition border border-slate-700"
+                          className="px-2 py-1 bg-white/[0.06] hover:bg-white/[0.1] text-slate-300 rounded-lg text-xs transition border border-white/[0.08] cursor-pointer"
                         >
-                          View 360°
+                          360°
                         </button>
                         <button
                           onClick={() => handleDeleteQuery(q.id)}
-                          title="Delete Wrong Query Entry"
-                          className="p-1.5 bg-rose-950/40 hover:bg-rose-900 text-rose-400 rounded text-xs transition border border-rose-800/60"
+                          title="Delete Query"
+                          className="p-1.5 bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 rounded-lg text-xs transition border border-rose-500/20 cursor-pointer"
                         >
-                          <Trash2 className="w-3.5 h-3.5" />
+                          <Trash2 className="w-3.5 h-3.5 text-rose-400" />
                         </button>
                       </div>
                     </td>

@@ -217,40 +217,41 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
     <div className="space-y-6 animate-in fade-in duration-300">
       
       {/* Top Banner & Title */}
-      <div className="bg-gradient-to-r from-sky-950 via-slate-900 to-indigo-950 border border-sky-800/60 rounded-2xl p-6 shadow-2xl relative overflow-hidden">
-        <div className="absolute right-0 top-0 translate-x-4 -translate-y-4 opacity-10 pointer-events-none">
+      {/* Top Banner (Executive Calling Hub) */}
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-sky-950/40 via-[#0c1322] to-indigo-950/40 border border-white/[0.08] p-6 shadow-xl backdrop-blur-md">
+        <div className="absolute right-0 top-0 translate-x-4 -translate-y-4 opacity-5 pointer-events-none">
           <Phone className="w-64 h-64 text-sky-400" />
         </div>
 
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 relative z-10">
           <div>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="px-3 py-1 bg-sky-500/20 text-sky-400 border border-sky-500/40 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
-                <PhoneCall className="w-3.5 h-3.5 animate-pulse" /> Dedicated Telephonic Calling Head
+            <div className="flex items-center gap-2 mb-2 flex-wrap">
+              <span className="px-2.5 py-0.5 bg-sky-500/10 text-sky-400 border border-sky-500/20 rounded-full text-xs font-mono font-semibold uppercase tracking-wider flex items-center gap-1.5">
+                <PhoneCall className="w-3.5 h-3.5 animate-pulse text-sky-400" /> Dedicated Telephonic Calling Head
               </span>
-              <span className="px-2.5 py-0.5 bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 rounded-full text-[10px] font-semibold">
-                🟢 Access: Admin / Owner &bull; Simran &bull; Yug
+              <span className="px-2.5 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full text-[10px] font-mono font-medium">
+                Live Voice Channel
               </span>
             </div>
 
-            <h1 className="text-3xl font-black text-white tracking-tight flex items-center gap-3">
-              📞 Yug's Calling Desk
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight flex items-center gap-2.5">
+              <span>📞 Yug's Calling Desk</span>
             </h1>
-            <p className="text-sm text-slate-300 mt-1 max-w-2xl">
+            <p className="text-xs sm:text-sm text-slate-400 mt-1 max-w-2xl">
               Call B2B travel agents city-by-city across Punjab, log call responses, payment terms, and capture requirements.
             </p>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
             <button
               onClick={() => onOpenModal('log_call', { executive_name: 'Yug' })}
-              className="px-4 py-2.5 bg-sky-600 hover:bg-sky-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-sky-600/30 flex items-center gap-2 cursor-pointer"
+              className="px-4 py-2 bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 text-white font-semibold rounded-xl text-xs transition-all shadow-md shadow-sky-900/20 flex items-center gap-1.5 cursor-pointer"
             >
               <Plus className="w-4 h-4" /> Log Call Result (Yug)
             </button>
             <button
               onClick={() => { fetchYugDeskData(); fetchLocationMatrix(); }}
-              className="p-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs transition border border-slate-700"
+              className="p-2 bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 rounded-xl text-xs transition border border-white/[0.08] cursor-pointer"
               title="Refresh Data"
             >
               <RefreshCw className="w-4 h-4" />
@@ -262,13 +263,13 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
       {/* ========================================================================= */}
       {/* 📅 DATE FILTER & TRACKING TOOLBAR (Today / Yesterday / Custom Date Picker) */}
       {/* ========================================================================= */}
-      <div className="bg-slate-900 border border-slate-800 p-3.5 sm:p-4 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-lg">
+      <div className="bg-[#0c1322]/90 border border-white/[0.08] p-3.5 sm:p-4 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-lg backdrop-blur-md">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+          <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
             <Calendar className="w-4 h-4 text-sky-400" />
             <span>Call Tracking Date:</span>
           </span>
-          <span className="px-2.5 py-0.5 rounded-full text-xs font-black bg-sky-950 text-sky-300 border border-sky-700/60">
+          <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-sky-500/10 text-sky-300 border border-sky-500/20">
             {trackingDate === todayStr ? '⚡ Today (' + todayStr + ')' : trackingDate ? `📅 Date: ${trackingDate}` : '🌐 All Recorded History'}
           </span>
         </div>
@@ -277,10 +278,10 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
         <div className="flex items-center gap-2 flex-wrap">
           <button
             onClick={() => setTrackingDate(todayStr)}
-            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition shadow ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer ${
               trackingDate === todayStr
-                ? 'bg-sky-600 text-white shadow-sky-600/30'
-                : 'bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800'
+                ? 'bg-sky-600 text-white shadow-sm shadow-sky-600/30'
+                : 'bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 border border-white/[0.08]'
             }`}
           >
             ⚡ Today
@@ -291,33 +292,33 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
               y.setDate(y.getDate() - 1);
               setTrackingDate(y.toISOString().split('T')[0]);
             }}
-            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition shadow ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer ${
               (() => {
                 const y = new Date();
                 y.setDate(y.getDate() - 1);
                 return trackingDate === y.toISOString().split('T')[0];
               })()
-                ? 'bg-sky-600 text-white shadow-sky-600/30'
-                : 'bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800'
+                ? 'bg-sky-600 text-white shadow-sm shadow-sky-600/30'
+                : 'bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 border border-white/[0.08]'
             }`}
           >
             📅 Yesterday
           </button>
           
-          <div className="flex items-center gap-1.5 bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-xs">
+          <div className="flex items-center gap-1.5 bg-[#070b14] border border-white/[0.08] px-2.5 py-1 rounded-xl text-xs">
             <Calendar className="w-3.5 h-3.5 text-slate-400" />
             <input
               type="date"
               value={trackingDate}
               onChange={e => setTrackingDate(e.target.value)}
-              className="bg-transparent text-slate-200 text-xs focus:outline-none cursor-pointer"
+              className="bg-transparent text-slate-200 font-mono text-xs focus:outline-none cursor-pointer"
             />
           </div>
 
           {trackingDate && (
             <button
               onClick={() => setTrackingDate('')}
-              className="px-2.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center gap-1"
+              className="px-2.5 py-1.5 rounded-xl text-xs font-medium bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 border border-white/[0.08] flex items-center gap-1 cursor-pointer"
               title="Show all recorded dates"
             >
               <X className="w-3.5 h-3.5" /> All Dates
@@ -327,10 +328,10 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
           {/* Toggle Details Dropdown Button */}
           <button
             onClick={() => setShowCallDetails(!showCallDetails)}
-            className={`px-3.5 py-1.5 rounded-xl text-xs font-black transition flex items-center gap-1.5 border shadow cursor-pointer ${
+            className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 border shadow-sm cursor-pointer ${
               showCallDetails
                 ? 'bg-amber-500 hover:bg-amber-400 text-slate-950 border-amber-400 shadow-amber-500/20'
-                : 'bg-slate-800 hover:bg-slate-700 text-amber-300 border-amber-500/40'
+                : 'bg-white/[0.05] hover:bg-white/[0.1] text-amber-300 border-amber-500/30'
             }`}
           >
             {showCallDetails ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
@@ -344,27 +345,27 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
       {/* ========================================================================= */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {/* Card 1: Total Agencies */}
-        <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl shadow">
-          <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Database Agencies</div>
-          <div className="text-2xl font-black text-sky-400 mt-1">{stats.totalAgenciesCount || agents.length}</div>
-          <div className="text-[11px] text-sky-400/80 mt-0.5 font-semibold">All Punjab Cities</div>
+        <div className="bg-[#0c1322]/90 border border-white/[0.08] p-4 rounded-xl shadow-sm backdrop-blur-md">
+          <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Total Database Agencies</div>
+          <div className="text-2xl font-extrabold font-mono text-sky-400 mt-1">{stats.totalAgenciesCount || agents.length}</div>
+          <div className="text-[11px] text-slate-400 mt-0.5">All Punjab Cities</div>
         </div>
 
         {/* Card 2: Today's / Selected Date Calls (Clickable to open breakdown!) */}
         <div 
           onClick={() => setShowCallDetails(!showCallDetails)}
-          className="bg-slate-900 border border-emerald-500/50 hover:border-emerald-400 p-4 rounded-xl shadow cursor-pointer transition relative group"
+          className="bg-[#0c1322]/90 border border-emerald-500/30 hover:border-emerald-500/60 p-4 rounded-xl shadow-sm cursor-pointer transition-all duration-150 backdrop-blur-md relative group"
         >
           <div className="flex items-center justify-between">
-            <div className="text-xs font-bold text-emerald-400 uppercase tracking-wider">
+            <div className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider">
               {trackingDate === todayStr ? "Today's Calls" : trackingDate ? "Selected Day Calls" : "Total Calls"}
             </div>
-            <span className="text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-800 px-1.5 py-0.5 rounded font-bold">
+            <span className="text-[9px] font-mono bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 px-1.5 py-0.5 rounded font-bold">
               {showCallDetails ? 'Hide ▲' : 'Details ▼'}
             </span>
           </div>
-          <div className="text-2xl font-black text-emerald-400 mt-1">{dateFilteredCalls.length}</div>
-          <div className="text-[11px] text-emerald-400/80 mt-0.5 font-semibold">
+          <div className="text-2xl font-extrabold font-mono text-emerald-400 mt-1">{dateFilteredCalls.length}</div>
+          <div className="text-[11px] text-emerald-400/80 mt-0.5 font-medium">
             {trackingDate ? `Completed on ${trackingDate}` : 'All Logged Calls'} (Click to View)
           </div>
         </div>
@@ -372,20 +373,20 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
         {/* Card 3: Connected Calls */}
         <div 
           onClick={() => setShowCallDetails(true)}
-          className="bg-slate-900 border border-slate-800 hover:border-amber-500/50 p-4 rounded-xl shadow cursor-pointer transition"
+          className="bg-[#0c1322]/90 border border-white/[0.08] hover:border-amber-500/40 p-4 rounded-xl shadow-sm cursor-pointer transition-all duration-150 backdrop-blur-md"
         >
-          <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Connected Calls</div>
-          <div className="text-2xl font-black text-amber-400 mt-1">{dateConnectedCount}</div>
-          <div className="text-[11px] text-amber-400/80 mt-0.5 font-semibold">
+          <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Connected Calls</div>
+          <div className="text-2xl font-extrabold font-mono text-amber-400 mt-1">{dateConnectedCount}</div>
+          <div className="text-[11px] text-amber-400/80 mt-0.5 font-medium">
             {trackingDate ? `Connected on ${trackingDate}` : 'Successful Connections'}
           </div>
         </div>
 
         {/* Card 4: Requirements Received */}
-        <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl shadow">
-          <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Requirements Received</div>
-          <div className="text-2xl font-black text-indigo-400 mt-1">{dateRequirementsCount}</div>
-          <div className="text-[11px] text-indigo-400/80 mt-0.5 font-semibold">
+        <div className="bg-[#0c1322]/90 border border-white/[0.08] p-4 rounded-xl shadow-sm backdrop-blur-md">
+          <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Requirements Recd</div>
+          <div className="text-2xl font-extrabold font-mono text-indigo-400 mt-1">{dateRequirementsCount}</div>
+          <div className="text-[11px] text-indigo-400/80 mt-0.5 font-medium">
             {trackingDate ? `Received on ${trackingDate}` : 'Ready for Quoting'}
           </div>
         </div>

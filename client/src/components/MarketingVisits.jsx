@@ -335,12 +335,12 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
       <BikramPwaInstallBanner role={role} />
 
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/[0.06] pb-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-white flex items-center gap-2">
-            <MapPin className="w-6 h-6 text-yellow-500" /> Stage 1 – Field Marketing Visits
+          <h1 className="text-2xl font-extrabold text-white flex items-center gap-2 tracking-tight">
+            <MapPin className="w-5 h-5 text-amber-400" /> Stage 1 – Field Marketing Visits
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
+          <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
             Track daily physical agency visits & motorcycle odometer conveyance (Bikramjit Singh)
           </p>
         </div>
@@ -348,36 +348,36 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
         <div className="flex flex-wrap items-center gap-2">
           <a
             href="/api/export/visits"
-            className="px-3.5 py-2 bg-emerald-700/80 hover:bg-emerald-600 text-white font-medium rounded-xl text-xs transition shadow flex items-center gap-1.5 border border-emerald-600"
+            className="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-xl text-xs transition shadow-sm flex items-center gap-1.5 cursor-pointer"
           >
             <Download className="w-3.5 h-3.5" /> Export Excel (.xlsx)
           </a>
           <button
             onClick={handleExportPDF}
-            className="px-3.5 py-2 bg-sky-700/80 hover:bg-sky-600 text-white font-medium rounded-xl text-xs transition shadow flex items-center gap-1.5 border border-sky-600"
+            className="px-3.5 py-2 bg-white/[0.05] hover:bg-white/[0.1] text-slate-200 border border-white/[0.1] font-semibold rounded-xl text-xs transition flex items-center gap-1.5 cursor-pointer"
           >
             <FileText className="w-3.5 h-3.5" /> Download PDF
           </button>
           <button
             onClick={() => setShowRouteTester(!showRouteTester)}
-            className={`px-3.5 py-2 font-extrabold rounded-xl text-xs transition shadow-lg flex items-center gap-1.5 border cursor-pointer ${
+            className={`px-3.5 py-2 font-bold rounded-xl text-xs transition shadow-sm flex items-center gap-1.5 border cursor-pointer ${
               showRouteTester
                 ? 'bg-emerald-600 hover:bg-emerald-500 text-white border-emerald-400'
-                : 'bg-emerald-950/90 hover:bg-emerald-900 text-emerald-300 border-emerald-600/70 shadow-emerald-950/40'
+                : 'bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border-emerald-500/20'
             }`}
           >
-            <Compass className="w-4 h-4 text-emerald-400" />
+            <Compass className="w-3.5 h-3.5 text-emerald-400" />
             <span>{showRouteTester ? '✕ Close Route Planner' : '🧪 Test: Route Planner'}</span>
           </button>
           <button
             onClick={() => onOpenModal('create_agent')}
-            className="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white font-semibold rounded-xl text-xs transition shadow-lg shadow-sky-600/20 flex items-center gap-1.5"
+            className="px-3.5 py-2 bg-white/[0.06] hover:bg-white/[0.1] text-slate-200 border border-white/[0.1] font-semibold rounded-xl text-xs transition flex items-center gap-1.5 cursor-pointer"
           >
-            <UserPlus className="w-4 h-4" /> Add New Agent
+            <UserPlus className="w-3.5 h-3.5 text-sky-400" /> Add Agent
           </button>
           <button
             onClick={() => onOpenModal('log_visit')}
-            className="px-4 py-2 bg-yellow-600 hover:bg-yellow-500 text-white font-semibold rounded-xl text-xs transition shadow-lg shadow-yellow-600/20 flex items-center gap-1.5"
+            className="px-4 py-2 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white font-semibold rounded-xl text-xs transition shadow-md shadow-amber-900/20 flex items-center gap-1.5 cursor-pointer"
           >
             <Plus className="w-4 h-4" /> Log Marketing Visit
           </button>
@@ -394,31 +394,31 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
       )}
 
       {/* 🏍️ ODOMETER & CONVEYANCE TRACKER CARD */}
-      <div className="bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border border-indigo-500/40 rounded-2xl p-5 shadow-xl space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-3">
+      <div className="bg-[#0c1322]/90 border border-white/[0.08] rounded-2xl p-5 shadow-xl space-y-4 backdrop-blur-md">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/[0.06] pb-3">
           <div>
-            <h3 className="text-lg font-bold text-indigo-300 flex items-center gap-2">
-              <Gauge className="w-5 h-5 text-indigo-400" /> 🏍️ Motorcycle Odometer & Conveyance Tracker (Bikramjit Singh)
+            <h3 className="text-base font-bold text-slate-100 flex items-center gap-2">
+              <Gauge className="w-4 h-4 text-sky-400" /> 🏍️ Motorcycle Odometer & Conveyance Tracker (Bikramjit Singh)
             </h3>
             <p className="text-xs text-slate-400 mt-0.5">
               Log motorcycle meter reading on leaving & returning to office for 100% exact conveyance calculation!
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-emerald-400 bg-emerald-950 px-2.5 py-1 rounded-full border border-emerald-800">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-lg border border-emerald-500/20">
               Total KM: {totalKmSum} KM
             </span>
-            <span className="text-xs font-bold text-amber-400 bg-amber-950 px-2.5 py-1 rounded-full border border-amber-800">
-              Total Conveyance: ₹{totalConveyanceSum.toLocaleString('en-IN')}
+            <span className="text-xs font-mono font-bold text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20">
+              Conveyance: ₹{totalConveyanceSum.toLocaleString('en-IN')}
             </span>
             {isAdmin && (
               <button
                 onClick={handleClearAllConveyance}
-                className="px-2.5 py-1 bg-rose-950/80 hover:bg-rose-900 text-rose-300 rounded-full text-xs transition border border-rose-800 flex items-center gap-1 font-semibold"
+                className="px-2.5 py-1 bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 rounded-lg text-xs transition border border-rose-500/20 flex items-center gap-1 font-semibold cursor-pointer"
                 title="Admin Only: Clear all conveyance trip logs"
               >
-                <Trash2 className="w-3 h-3" /> Clear Conveyance
+                <Trash2 className="w-3 h-3 text-rose-400" /> Clear Conveyance
               </button>
             )}
           </div>
@@ -428,12 +428,12 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           
           {/* Section 1: Morning Office Departure (Start KM) */}
-          <form onSubmit={handleStartTrip} className="bg-emerald-950/20 border border-emerald-800/50 p-4 rounded-xl space-y-3">
+          <form onSubmit={handleStartTrip} className="bg-[#070b14]/70 border border-white/[0.06] p-4 rounded-xl space-y-3">
             <div className="flex items-center justify-between">
-              <h4 className="font-bold text-emerald-300 text-sm flex items-center gap-1.5">
+              <h4 className="font-bold text-emerald-300 text-xs sm:text-sm flex items-center gap-1.5">
                 <Clock className="w-4 h-4 text-emerald-400" /> 1. Office Departure (Start KM)
               </h4>
-              <span className="text-[10px] text-emerald-400 font-bold bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">
+              <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
                 Morning Departure
               </span>
             </div>
@@ -446,14 +446,14 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                 placeholder="Start KM (e.g. 12450)..."
                 value={startKmInput}
                 onChange={e => setStartKmInput(e.target.value)}
-                className="bg-slate-950 border border-slate-700 text-slate-100 font-mono text-sm px-3 py-2 rounded-xl focus:outline-none focus:border-emerald-400 w-full"
+                className="bg-[#0c1322] border border-white/[0.08] text-slate-100 font-mono text-xs px-3 py-2 rounded-xl focus:outline-none focus:border-emerald-400 w-full"
                 required
               />
               <button
                 type="submit"
-                className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs transition shadow flex items-center gap-1.5 whitespace-nowrap"
+                className="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-xl text-xs transition shadow-sm flex items-center gap-1.5 whitespace-nowrap cursor-pointer"
               >
-                <Gauge className="w-4 h-4" /> Start Field Trip
+                <Gauge className="w-3.5 h-3.5" /> Start Trip
               </button>
             </div>
           </form>
@@ -470,25 +470,25 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
               }
             }}
             className={`p-4 rounded-xl space-y-3 border transition ${
-              activeTrip ? 'bg-rose-950/30 border-rose-800 animate-pulse' : 'bg-slate-950/40 border-slate-800'
+              activeTrip ? 'bg-rose-500/10 border-rose-500/40 animate-pulse' : 'bg-[#070b14]/70 border-white/[0.06]'
             }`}
           >
             <div className="flex items-center justify-between">
-              <h4 className="font-bold text-rose-300 text-sm flex items-center gap-1.5">
+              <h4 className="font-bold text-rose-300 text-xs sm:text-sm flex items-center gap-1.5">
                 <Flag className="w-4 h-4 text-rose-400" /> 2. Office Return (End KM)
               </h4>
               {activeTrip ? (
-                <span className="text-[10px] text-rose-300 font-bold bg-rose-950 px-2 py-0.5 rounded border border-rose-800 animate-bounce">
+                <span className="text-[10px] font-mono text-rose-300 font-bold bg-rose-500/20 px-2 py-0.5 rounded border border-rose-500/30">
                   🚀 Trip Active ({activeTrip.start_time})
                 </span>
               ) : (
-                <span className="text-[10px] text-slate-400 bg-slate-800 px-2 py-0.5 rounded">
+                <span className="text-[10px] text-slate-400 bg-white/[0.04] px-2 py-0.5 rounded border border-white/[0.06]">
                   Evening Return
                 </span>
               )}
             </div>
             <p className="text-xs text-slate-400">
-              {activeTrip ? `Start Odometer was: ${activeTrip.start_meter_reading} KM. Enter final meter reading.` : 'Enter speedometer reading upon returning back to office'}
+              {activeTrip ? `Start was: ${activeTrip.start_meter_reading} KM. Enter final reading.` : 'Enter speedometer reading upon returning to office'}
             </p>
 
             <div className="flex items-center gap-2">
@@ -498,14 +498,14 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                 placeholder="End KM (e.g. 12512)..."
                 value={endKmInput}
                 onChange={e => setEndKmInput(e.target.value)}
-                className="bg-slate-950 border border-slate-700 text-slate-100 font-mono text-sm px-3 py-2 rounded-xl focus:outline-none focus:border-rose-400 w-full"
+                className="bg-[#0c1322] border border-white/[0.08] text-slate-100 font-mono text-xs px-3 py-2 rounded-xl focus:outline-none focus:border-rose-400 w-full"
                 required
               />
               <button
                 type="submit"
-                className="px-4 py-2 bg-rose-600 hover:bg-rose-500 text-white font-bold rounded-xl text-xs transition shadow flex items-center gap-1.5 whitespace-nowrap"
+                className="px-3.5 py-2 bg-rose-600 hover:bg-rose-500 text-white font-semibold rounded-xl text-xs transition shadow-sm flex items-center gap-1.5 whitespace-nowrap cursor-pointer"
               >
-                <Flag className="w-4 h-4" /> End Trip & Calculate
+                <Flag className="w-3.5 h-3.5" /> End Trip
               </button>
             </div>
           </form>
@@ -513,36 +513,36 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
         </div>
 
         {/* 📊 DAY-WISE ADMIN CONVEYANCE REPORT SUMMARY TABLE */}
-        <div className="space-y-2 pt-2 border-t border-slate-800">
+        <div className="space-y-2 pt-2 border-t border-white/[0.06]">
           <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-            <Calendar className="w-3.5 h-3.5 text-indigo-400" /> Day-Wise Admin Conveyance Report Summary:
+            <Calendar className="w-3.5 h-3.5 text-sky-400" /> Day-Wise Conveyance Summary:
           </h4>
 
           {dayReport.length === 0 ? (
             <p className="text-xs text-slate-500 italic">No completed trip reports yet. Log Start & End KM above!</p>
           ) : (
-            <div className="overflow-x-auto border border-slate-800 rounded-xl">
+            <div className="overflow-x-auto border border-white/[0.06] rounded-xl">
               <table className="w-full text-left text-xs text-slate-300">
-                <thead className="bg-slate-950 text-slate-400 uppercase font-semibold">
+                <thead className="bg-[#090e1a] text-slate-400 uppercase font-semibold text-[11px] tracking-wider">
                   <tr>
                     <th className="p-2.5">Date</th>
                     <th className="p-2.5">Executive</th>
                     <th className="p-2.5">Day Start KM</th>
                     <th className="p-2.5">Day End KM</th>
-                    <th className="p-2.5">Total Distance (KM)</th>
+                    <th className="p-2.5">Total Distance</th>
                     <th className="p-2.5">Rate / KM</th>
-                    <th className="p-2.5">Day Conveyance Payable</th>
+                    <th className="p-2.5">Payable</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60 bg-slate-950/40">
+                <tbody className="divide-y divide-white/[0.04] bg-[#0b101e]/60">
                   {dayReport.map((r, i) => (
-                    <tr key={i} className="hover:bg-slate-800/40">
+                    <tr key={i} className="hover:bg-white/[0.02] transition">
                       <td className="p-2.5 font-mono font-bold text-slate-200">{r.trip_date}</td>
                       <td className="p-2.5 font-semibold text-slate-300">{r.executive_name}</td>
                       <td className="p-2.5 font-mono text-emerald-400">{r.day_start_km || '--'} KM</td>
                       <td className="p-2.5 font-mono text-rose-400">{r.day_end_km || '--'} KM</td>
                       <td className="p-2.5 font-bold font-mono text-sky-400">{r.total_day_km || 0} KM</td>
-                      <td className="p-2.5 text-slate-400 font-mono">₹3.00 / KM</td>
+                      <td className="p-2.5 text-slate-400 font-mono">₹3.00</td>
                       <td className="p-2.5 font-extrabold font-mono text-amber-400">₹{(r.total_day_conveyance || 0).toLocaleString('en-IN')}</td>
                     </tr>
                   ))}
@@ -555,11 +555,11 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
       </div>
 
       {/* 📍 Field Location Route & Agent Checklist */}
-      <div className="bg-slate-900 border border-yellow-500/40 rounded-2xl p-5 shadow-xl space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-3">
+      <div className="bg-[#0c1322]/90 border border-amber-500/25 rounded-2xl p-5 shadow-xl space-y-4 backdrop-blur-md">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/[0.06] pb-3">
           <div>
-            <h3 className="text-lg font-bold text-yellow-400 flex items-center gap-2">
-              <Navigation className="w-5 h-5 text-yellow-500" /> 📍 Field Location Agent Checklist (Zero Missed Visits)
+            <h3 className="text-base font-bold text-amber-300 flex items-center gap-2">
+              <Navigation className="w-4 h-4 text-amber-400" /> 📍 Field Location Agent Checklist (Zero Missed Visits)
             </h3>
             <p className="text-xs text-slate-400 mt-0.5">
               Select or type any Location/City/Area from your agent database to view all registered travel agencies for that route!
@@ -567,61 +567,61 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
-            {/* Quick Location Select Dropdown from DB */}
+            {/* Quick Location Select Dropdown from DB (Preserved original un-grouped format) */}
             <select
               value={selectedLocation}
               onChange={(e) => setSelectedLocation(e.target.value)}
-              className="bg-slate-950 border border-yellow-500/60 text-yellow-300 font-bold rounded-xl text-xs px-3 py-2 focus:outline-none focus:border-yellow-400"
+              className="bg-[#070b14] border border-amber-500/40 text-amber-300 font-semibold rounded-xl text-xs px-3 py-2 focus:outline-none focus:border-amber-400 cursor-pointer"
             >
               <option value="ALL">🌐 All Locations / All Cities</option>
               {availableLocations.cities.map((c, i) => (
-                <option key={i} value={c}>📍 {c}</option>
+                <option key={i} value={c} className="bg-[#090e1a] text-slate-200">📍 {c}</option>
               ))}
             </select>
 
             {/* Type custom location / area search input */}
             <div className="relative">
-              <Search className="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-2.5" />
+              <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" />
               <input
                 type="text"
                 placeholder="Type City / Area..."
                 value={selectedLocation}
                 onChange={(e) => setSelectedLocation(e.target.value)}
-                className="bg-slate-950 border border-slate-800 text-slate-200 text-xs pl-8 pr-3 py-1.5 rounded-xl focus:outline-none focus:border-yellow-400 w-36 sm:w-44 font-medium"
+                className="bg-[#070b14] border border-white/[0.08] text-slate-200 text-xs pl-8 pr-3 py-2 rounded-xl focus:outline-none focus:border-amber-400 w-36 sm:w-44 font-medium"
               />
             </div>
           </div>
         </div>
 
         {/* 🔍 DATE RANGE & STATUS FILTERS TOOLBAR */}
-        <div className="bg-slate-950/80 border border-slate-800/80 p-3.5 rounded-xl space-y-3">
+        <div className="bg-[#070b14]/70 border border-white/[0.06] p-3.5 rounded-xl space-y-3">
           <div className="flex flex-wrap items-center justify-between gap-3">
             
             {/* 📅 Date Range Filter */}
             <div className="flex flex-wrap items-center gap-2 text-xs">
-              <span className="font-bold text-slate-300 flex items-center gap-1">
-                <Calendar className="w-3.5 h-3.5 text-yellow-400" /> Visit Date Range:
+              <span className="font-semibold text-slate-300 flex items-center gap-1">
+                <Calendar className="w-3.5 h-3.5 text-amber-400" /> Visit Date Range:
               </span>
 
               {/* From Date */}
-              <div className="flex items-center gap-1 bg-slate-900 px-2.5 py-1 rounded-lg border border-slate-700">
+              <div className="flex items-center gap-1.5 bg-[#0c1322] px-2.5 py-1 rounded-lg border border-white/[0.08]">
                 <span className="text-[11px] text-slate-400">From:</span>
                 <input
                   type="date"
                   value={checklistFromDate}
                   onChange={(e) => setChecklistFromDate(e.target.value)}
-                  className="bg-transparent text-slate-200 text-xs focus:outline-none font-medium"
+                  className="bg-transparent text-slate-200 font-mono text-xs focus:outline-none font-medium cursor-pointer"
                 />
               </div>
 
               {/* To Date */}
-              <div className="flex items-center gap-1 bg-slate-900 px-2.5 py-1 rounded-lg border border-slate-700">
+              <div className="flex items-center gap-1.5 bg-[#0c1322] px-2.5 py-1 rounded-lg border border-white/[0.08]">
                 <span className="text-[11px] text-slate-400">To:</span>
                 <input
                   type="date"
                   value={checklistToDate}
                   onChange={(e) => setChecklistToDate(e.target.value)}
-                  className="bg-transparent text-slate-200 text-xs focus:outline-none font-medium"
+                  className="bg-transparent text-slate-200 font-mono text-xs focus:outline-none font-medium cursor-pointer"
                 />
               </div>
 
@@ -640,10 +640,10 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                       <button
                         type="button"
                         onClick={() => setChecklistPreset('all')}
-                        className={`px-2.5 py-1 rounded-md text-[11px] font-extrabold transition ${
+                        className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition cursor-pointer ${
                           !checklistFromDate && !checklistToDate
-                            ? 'bg-yellow-500 text-slate-950 shadow'
-                            : 'bg-slate-900 text-slate-400 hover:text-slate-200 border border-slate-800'
+                            ? 'bg-amber-500 text-slate-950 font-bold shadow-sm'
+                            : 'bg-white/[0.04] text-slate-400 hover:text-slate-200 border border-white/[0.06]'
                         }`}
                       >
                         All Time
@@ -651,10 +651,10 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                       <button
                         type="button"
                         onClick={() => setChecklistPreset('today')}
-                        className={`px-2.5 py-1 rounded-md text-[11px] font-extrabold transition ${
+                        className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition cursor-pointer ${
                           isTodayActive
-                            ? 'bg-yellow-500 text-slate-950 shadow'
-                            : 'bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800'
+                            ? 'bg-amber-500 text-slate-950 font-bold shadow-sm'
+                            : 'bg-white/[0.04] text-slate-300 hover:bg-white/[0.08] border border-white/[0.06]'
                         }`}
                       >
                         Today
@@ -662,10 +662,10 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                       <button
                         type="button"
                         onClick={() => setChecklistPreset('yesterday')}
-                        className={`px-2.5 py-1 rounded-md text-[11px] font-extrabold transition ${
+                        className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition cursor-pointer ${
                           isYesterdayActive
-                            ? 'bg-yellow-500 text-slate-950 shadow'
-                            : 'bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800'
+                            ? 'bg-amber-500 text-slate-950 font-bold shadow-sm'
+                            : 'bg-white/[0.04] text-slate-300 hover:bg-white/[0.08] border border-white/[0.06]'
                         }`}
                       >
                         Yesterday
@@ -673,19 +673,19 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                       <button
                         type="button"
                         onClick={() => setChecklistPreset('month')}
-                        className={`px-2.5 py-1 rounded-md text-[11px] font-extrabold transition ${
+                        className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition cursor-pointer ${
                           checklistFromDate && !isTodayActive && !isYesterdayActive
-                            ? 'bg-yellow-500 text-slate-950 shadow'
-                            : 'bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800'
+                            ? 'bg-amber-500 text-slate-950 font-bold shadow-sm'
+                            : 'bg-white/[0.04] text-slate-300 hover:bg-white/[0.08] border border-white/[0.06]'
                         }`}
                       >
                         This Month
                       </button>
 
                       {/* Day-Wise Specific Date Picker */}
-                      <div className="flex items-center gap-1 bg-slate-900 px-2 py-0.5 rounded-md border border-slate-800">
-                        <Calendar className="w-3 h-3 text-yellow-400" />
-                        <span className="text-[10px] text-slate-400 font-bold hidden sm:inline">Pick Day:</span>
+                      <div className="flex items-center gap-1 bg-[#0c1322] px-2 py-0.5 rounded-lg border border-white/[0.08]">
+                        <Calendar className="w-3 h-3 text-amber-400" />
+                        <span className="text-[10px] text-slate-400 font-medium hidden sm:inline">Pick:</span>
                         <input
                           type="date"
                           value={checklistFromDate === checklistToDate ? checklistFromDate : ''}
@@ -694,7 +694,7 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                             setChecklistFromDate(val);
                             setChecklistToDate(val);
                           }}
-                          className="bg-slate-950 text-yellow-300 text-[11px] font-bold border-none focus:outline-none cursor-pointer"
+                          className="bg-transparent text-amber-300 text-[11px] font-mono font-semibold border-none focus:outline-none cursor-pointer"
                         />
                       </div>
                     </>
@@ -704,7 +704,7 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                   <button
                     type="button"
                     onClick={() => setChecklistPreset('all')}
-                    className="p-1 bg-rose-950/80 hover:bg-rose-900 text-rose-300 rounded-md transition border border-rose-800/60"
+                    className="p-1 bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 rounded-lg transition border border-rose-500/20 cursor-pointer"
                     title="Clear Date Filter"
                   >
                     <X className="w-3 h-3" />
@@ -714,13 +714,13 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
             </div>
 
             {/* 🏷️ Status Filter Tabs (All / Visited / Pending) */}
-            <div className="flex items-center gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800">
+            <div className="flex items-center gap-1 bg-[#0c1322] p-1 rounded-xl border border-white/[0.08]">
               <button
                 type="button"
                 onClick={() => setChecklistStatusFilter('all')}
-                className={`px-3 py-1 rounded-lg text-xs font-bold transition flex items-center gap-1 ${
+                className={`px-3 py-1 rounded-lg text-xs font-semibold transition cursor-pointer flex items-center gap-1 ${
                   checklistStatusFilter === 'all'
-                    ? 'bg-sky-600 text-white shadow'
+                    ? 'bg-sky-600 text-white shadow-sm'
                     : 'text-slate-400 hover:text-slate-200'
                 }`}
               >
@@ -729,10 +729,10 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
               <button
                 type="button"
                 onClick={() => setChecklistStatusFilter('visited')}
-                className={`px-3 py-1 rounded-lg text-xs font-bold transition flex items-center gap-1 ${
+                className={`px-3 py-1 rounded-lg text-xs font-semibold transition cursor-pointer flex items-center gap-1 ${
                   checklistStatusFilter === 'visited'
-                    ? 'bg-emerald-600 text-white shadow'
-                    : 'text-emerald-400 hover:bg-emerald-950/40'
+                    ? 'bg-emerald-600 text-white shadow-sm'
+                    : 'text-emerald-400 hover:bg-emerald-500/10'
                 }`}
               >
                 <CheckCircle2 className="w-3.5 h-3.5" /> Visited ({visitedInCity})
@@ -740,10 +740,10 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
               <button
                 type="button"
                 onClick={() => setChecklistStatusFilter('pending')}
-                className={`px-3 py-1 rounded-lg text-xs font-bold transition flex items-center gap-1 ${
+                className={`px-3 py-1 rounded-lg text-xs font-semibold transition cursor-pointer flex items-center gap-1 ${
                   checklistStatusFilter === 'pending'
-                    ? 'bg-rose-600 text-white shadow'
-                    : 'text-rose-400 hover:bg-rose-950/40'
+                    ? 'bg-rose-600 text-white shadow-sm'
+                    : 'text-rose-400 hover:bg-rose-500/10'
                 }`}
               >
                 <AlertCircle className="w-3.5 h-3.5" /> Pending ({pendingInCity})
@@ -759,15 +759,15 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
             <button
               type="button"
               onClick={() => setChecklistStatusFilter('all')}
-              className={`text-left bg-slate-950/80 p-3 rounded-xl flex items-center justify-between border transition cursor-pointer ${
+              className={`text-left bg-[#070b14]/70 p-3.5 rounded-xl flex items-center justify-between border transition cursor-pointer ${
                 checklistStatusFilter === 'all'
-                  ? 'border-sky-500 ring-1 ring-sky-500 shadow-lg shadow-sky-500/10'
-                  : 'border-slate-800 hover:border-slate-700'
+                  ? 'border-sky-500 ring-1 ring-sky-500/40 shadow-md shadow-sky-500/10'
+                  : 'border-white/[0.06] hover:border-white/[0.14]'
               }`}
             >
               <div>
-                <p className="text-xs text-slate-400 font-semibold">Agencies in "{selectedLocation === 'ALL' || !selectedLocation ? 'All Locations' : selectedLocation}"</p>
-                <p className="text-xl font-extrabold text-slate-100">{totalInCity}</p>
+                <p className="text-xs text-slate-400 font-medium">Agencies in "{selectedLocation === 'ALL' || !selectedLocation ? 'All Locations' : selectedLocation}"</p>
+                <p className="text-xl font-extrabold font-mono text-slate-100 mt-0.5">{totalInCity}</p>
               </div>
               <MapPin className="w-6 h-6 text-sky-400" />
             </button>
@@ -775,17 +775,17 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
             <button
               type="button"
               onClick={() => setChecklistStatusFilter('visited')}
-              className={`text-left bg-emerald-950/20 p-3 rounded-xl flex items-center justify-between border transition cursor-pointer ${
+              className={`text-left bg-emerald-500/5 p-3.5 rounded-xl flex items-center justify-between border transition cursor-pointer ${
                 checklistStatusFilter === 'visited'
-                  ? 'border-emerald-500 ring-1 ring-emerald-500 shadow-lg shadow-emerald-500/10'
-                  : 'border-emerald-800/50 hover:border-emerald-700/60'
+                  ? 'border-emerald-500 ring-1 ring-emerald-500/40 shadow-md shadow-emerald-500/10'
+                  : 'border-emerald-500/20 hover:border-emerald-500/40'
               }`}
             >
               <div>
-                <p className="text-xs text-emerald-400 font-semibold">
+                <p className="text-xs text-emerald-400 font-medium">
                   ✅ Visited Agencies {checklistFromDate || checklistToDate ? '(Selected Period)' : ''}
                 </p>
-                <p className="text-xl font-extrabold text-emerald-400">{visitedInCity}</p>
+                <p className="text-xl font-extrabold font-mono text-emerald-400 mt-0.5">{visitedInCity}</p>
               </div>
               <CheckCircle2 className="w-6 h-6 text-emerald-400" />
             </button>
@@ -793,17 +793,17 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
             <button
               type="button"
               onClick={() => setChecklistStatusFilter('pending')}
-              className={`text-left bg-rose-950/20 p-3 rounded-xl flex items-center justify-between border transition cursor-pointer ${
+              className={`text-left bg-rose-500/5 p-3.5 rounded-xl flex items-center justify-between border transition cursor-pointer ${
                 checklistStatusFilter === 'pending'
-                  ? 'border-rose-500 ring-1 ring-rose-500 shadow-lg shadow-rose-500/10'
-                  : 'border-rose-800/50 hover:border-rose-700/60'
+                  ? 'border-rose-500 ring-1 ring-rose-500/40 shadow-md shadow-rose-500/10'
+                  : 'border-rose-500/20 hover:border-rose-500/40'
               }`}
             >
               <div>
-                <p className="text-xs text-rose-400 font-semibold">
-                  🔴 Pending Field Visits {checklistFromDate || checklistToDate ? '(Selected Period)' : ''}
+                <p className="text-xs text-rose-400 font-medium">
+                  🔴 Pending Visits {checklistFromDate || checklistToDate ? '(Selected Period)' : ''}
                 </p>
-                <p className="text-xl font-extrabold text-rose-400">{pendingInCity}</p>
+                <p className="text-xl font-extrabold font-mono text-rose-400 mt-0.5">{pendingInCity}</p>
               </div>
               <AlertCircle className="w-6 h-6 text-rose-400" />
             </button>
@@ -814,7 +814,7 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
         {loadingLocationAgents ? (
           <div className="text-center py-6 text-slate-400 text-xs">Loading agencies in "{selectedLocation}"...</div>
         ) : filteredLocationAgents.length === 0 ? (
-          <div className="text-center py-6 text-slate-500 text-xs bg-slate-950/40 rounded-xl border border-slate-800/50">
+          <div className="text-center py-6 text-slate-500 text-xs bg-[#070b14]/50 rounded-xl border border-white/[0.06]">
             {selectedLocation
               ? `No agencies found matching location "${selectedLocation}" with filter "${checklistStatusFilter}".`
               : 'Select or type a location above to see agencies.'}
@@ -824,26 +824,28 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
             {filteredLocationAgents.map((ag) => {
               const isVisited = Boolean(ag.last_visit_date);
               return (
-                <div key={ag.id} className={`p-3 rounded-xl border text-xs space-y-2 transition ${
-                  isVisited ? 'bg-slate-950/60 border-slate-800' : 'bg-rose-950/10 border-rose-900/40 hover:border-rose-700/60'
+                <div key={ag.id} className={`p-3.5 rounded-xl border text-xs space-y-2.5 transition-all shadow-sm ${
+                  isVisited
+                    ? 'bg-[#070e1b]/80 border-white/[0.07] hover:border-emerald-500/40'
+                    : 'bg-[#140b10]/60 border-rose-500/25 hover:border-rose-500/50'
                 }`}>
                   <div className="flex items-start justify-between gap-1">
                     <div>
                       <h4 className="font-bold text-slate-100 text-sm line-clamp-1">{ag.company_name}</h4>
-                      <p className="text-slate-400 text-[11px] font-medium">{ag.name} &bull; 📍 {ag.city} ({ag.area})</p>
+                      <p className="text-slate-400 text-[11px] font-medium mt-0.5">{ag.name} &bull; 📍 {ag.city} ({ag.area})</p>
                     </div>
                     {isVisited ? (
-                      <span className="bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded-full text-[10px] font-bold whitespace-nowrap" title={`Visited on: ${ag.last_visit_date}`}>
+                      <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 px-2 py-0.5 rounded-full text-[10px] font-mono font-bold whitespace-nowrap" title={`Visited on: ${ag.last_visit_date}`}>
                         ✅ Visited ({ag.last_visit_date})
                       </span>
                     ) : (
-                      <span className="bg-rose-950 text-rose-400 border border-rose-800 px-2 py-0.5 rounded-full text-[10px] font-bold whitespace-nowrap animate-pulse">
+                      <span className="bg-rose-500/10 text-rose-400 border border-rose-500/25 px-2 py-0.5 rounded-full text-[10px] font-mono font-bold whitespace-nowrap animate-pulse">
                         🔴 Pending Visit
                       </span>
                     )}
                   </div>
 
-                  <div className="flex items-center justify-between border-t border-slate-800/60 pt-2">
+                  <div className="flex items-center justify-between border-t border-white/[0.06] pt-2">
                     <a
                       href={`tel:${ag.mobile}`}
                       className="text-sky-400 font-mono font-semibold hover:underline flex items-center gap-1"
@@ -854,22 +856,22 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                     <div className="flex items-center gap-1.5">
                       <button
                         onClick={() => onOpenModal('edit_agent', ag)}
-                        className="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 rounded-lg text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer"
+                        className="px-2 py-1 bg-white/[0.06] hover:bg-white/[0.1] text-slate-200 border border-white/[0.08] rounded-lg text-[11px] font-medium transition flex items-center gap-1 cursor-pointer"
                         title="Edit Agent Details"
                       >
                         <Edit className="w-3 h-3 text-sky-400" /> Edit
                       </button>
                       <button
                         onClick={() => onOpenModal('log_visit', { id: ag.id, company_name: ag.company_name, name: ag.name, mobile: ag.mobile, city: ag.city })}
-                        className="px-2.5 py-1 bg-yellow-600 hover:bg-yellow-500 text-white rounded-lg text-[11px] font-semibold transition flex items-center gap-1 shadow cursor-pointer"
+                        className="px-2.5 py-1 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white rounded-lg text-[11px] font-semibold transition flex items-center gap-1 shadow cursor-pointer"
                       >
                         <Plus className="w-3 h-3" /> Log Visit
                       </button>
                       {isAdmin && (
                         <button
                           onClick={() => handleRemoveLocationAgent(ag.id, ag.company_name)}
-                          className="px-2 py-1 bg-rose-950/40 hover:bg-rose-900 text-rose-300 border border-rose-800/60 hover:border-rose-600 rounded-lg text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer"
-                          title="Admin Only: Delete & Remove Unwanted Non-Agent Shop"
+                          className="px-2 py-1 bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/30 hover:border-rose-500/50 rounded-lg text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer"
+                          title="Admin Only: Delete & Remove Agency from CRM"
                         >
                           <Trash2 className="w-3 h-3 text-rose-400" /> Delete
                         </button>
@@ -884,16 +886,16 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
       </div>
 
       {/* General Filters with Date Selection */}
-      <div className="bg-slate-900 border border-slate-800 p-4 rounded-2xl flex flex-wrap gap-4 items-center">
+      <div className="bg-[#0c1322]/90 border border-white/[0.08] p-4 rounded-2xl flex flex-wrap gap-4 items-center backdrop-blur-md">
         <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
-          <Filter className="w-3.5 h-3.5" /> Logged Visits History Filter:
+          <Filter className="w-3.5 h-3.5 text-sky-400" /> Logged Visits Filter:
         </span>
 
         {/* Executive Filter */}
         <select
           value={execFilter}
           onChange={(e) => setExecFilter(e.target.value)}
-          className="bg-slate-950 border border-slate-800 text-slate-300 rounded-xl text-sm p-2.5 focus:outline-none focus:border-sky-500"
+          className="bg-[#070b14] border border-white/[0.08] text-slate-300 rounded-xl text-xs p-2.5 focus:outline-none focus:border-sky-500 cursor-pointer"
         >
           <option value="">All Field Executives</option>
           <option value="Bikramjit Singh">Bikramjit Singh</option>
@@ -902,7 +904,7 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
         {/* Single Date Picker */}
         <div className="flex items-center gap-2">
           <Calendar className="w-4 h-4 text-slate-500" />
-          <span className="text-xs text-slate-400 font-semibold">Visit Date:</span>
+          <span className="text-xs text-slate-400 font-medium">Date:</span>
           <input
             type="date"
             value={dateFilter}
@@ -911,13 +913,13 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
               setFromDate('');
               setToDate('');
             }}
-            className="bg-slate-950 border border-slate-800 text-slate-200 px-3 py-2 rounded-xl text-sm focus:outline-none focus:border-sky-500"
+            className="bg-[#070b14] border border-white/[0.08] text-slate-200 font-mono px-3 py-1.5 rounded-xl text-xs focus:outline-none focus:border-sky-500 cursor-pointer"
           />
         </div>
 
         {/* Date Range Option (From - To) */}
         <div className="flex items-center gap-2">
-          <span className="text-xs text-slate-400 font-semibold">From:</span>
+          <span className="text-xs text-slate-400 font-medium">From:</span>
           <input
             type="date"
             value={fromDate}
@@ -925,9 +927,9 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
               setFromDate(e.target.value);
               setDateFilter('');
             }}
-            className="bg-slate-950 border border-slate-800 text-slate-200 px-2.5 py-2 rounded-xl text-xs focus:outline-none focus:border-sky-500"
+            className="bg-[#070b14] border border-white/[0.08] text-slate-200 font-mono px-2.5 py-1.5 rounded-xl text-xs focus:outline-none focus:border-sky-500 cursor-pointer"
           />
-          <span className="text-xs text-slate-400 font-semibold">To:</span>
+          <span className="text-xs text-slate-400 font-medium">To:</span>
           <input
             type="date"
             value={toDate}
@@ -935,14 +937,14 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
               setToDate(e.target.value);
               setDateFilter('');
             }}
-            className="bg-slate-950 border border-slate-800 text-slate-200 px-2.5 py-2 rounded-xl text-xs focus:outline-none focus:border-sky-500"
+            className="bg-[#070b14] border border-white/[0.08] text-slate-200 font-mono px-2.5 py-1.5 rounded-xl text-xs focus:outline-none focus:border-sky-500 cursor-pointer"
           />
         </div>
 
         {(dateFilter || fromDate || toDate) && (
           <button
             onClick={clearDateFilters}
-            className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs transition border border-slate-700 flex items-center gap-1"
+            className="px-2.5 py-1.5 bg-white/[0.06] hover:bg-white/[0.1] text-slate-300 rounded-lg text-xs transition border border-white/[0.08] flex items-center gap-1 cursor-pointer"
           >
             <X className="w-3.5 h-3.5" /> Clear Date
           </button>
@@ -950,14 +952,14 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
       </div>
 
       {/* Logged Visits History Table */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
-        <div className="p-3.5 bg-slate-950/60 border-b border-slate-800 flex justify-between items-center text-xs text-slate-400">
-          <span>Logged Physical Visits History: <strong className="text-slate-100">{visits.length}</strong></span>
+      <div className="bg-[#0c1322]/90 border border-white/[0.08] rounded-2xl overflow-hidden shadow-xl backdrop-blur-md">
+        <div className="p-3.5 bg-[#090e1a] border-b border-white/[0.06] flex justify-between items-center text-xs text-slate-400">
+          <span>Logged Physical Visits History: <strong className="font-mono text-slate-100">{visits.length}</strong></span>
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm text-slate-300">
-            <thead className="bg-slate-800/80 text-xs text-slate-400 uppercase">
+          <table className="w-full text-left text-xs text-slate-300">
+            <thead className="bg-[#090e1a] text-[11px] text-slate-400 uppercase tracking-wider">
               <tr>
                 <th className="p-3.5">Visit Date</th>
                 <th className="p-3.5">Field Executive</th>
@@ -969,11 +971,11 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                 <th className="p-3.5 text-right">Action</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-white/[0.04]">
               {loading ? (
                 <tr>
                   <td colSpan="8" className="text-center p-8">
-                    <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-yellow-500"></div>
+                    <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-amber-500"></div>
                   </td>
                 </tr>
               ) : visits.length === 0 ? (
@@ -987,7 +989,7 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                   let pitched = [];
                   try { pitched = JSON.parse(v.products_pitched || '[]'); } catch(e){}
                   return (
-                    <tr key={v.id} className="hover:bg-slate-800/40 transition">
+                    <tr key={v.id} className="hover:bg-white/[0.02] transition">
                       <td className="p-3.5 font-mono text-slate-300 font-bold">{v.visit_date}</td>
                       <td className="p-3.5 font-semibold text-slate-200">{v.executive_name}</td>
                       <td className="p-3.5">
@@ -998,10 +1000,10 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                             href={`https://www.google.com/maps?q=${v.gps_latitude},${v.gps_longitude}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 mt-1 px-2 py-0.5 bg-emerald-950 text-emerald-400 border border-emerald-800 rounded text-[10px] font-bold hover:underline shadow"
+                            className="inline-flex items-center gap-1 mt-1 px-2 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded text-[10px] font-bold hover:underline shadow-sm"
                             title="Click to view exact physical GPS location pin on Google Maps"
                           >
-                            <Navigation className="w-3 h-3 text-emerald-400" /> GPS Verified (Maps)
+                            <Navigation className="w-3 h-3 text-emerald-400" /> GPS Verified
                           </a>
                         ) : (
                           <span className="text-[10px] text-slate-500 font-medium block mt-0.5">📍 Manual Entry</span>
@@ -1014,7 +1016,7 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                       <td className="p-3.5">
                         <div className="flex flex-wrap gap-1 max-w-xs">
                           {pitched.map((p, idx) => (
-                            <span key={idx} className="bg-slate-800 text-slate-300 text-[11px] px-2 py-0.5 rounded border border-slate-700">
+                            <span key={idx} className="bg-white/[0.04] text-slate-300 text-[11px] px-2 py-0.5 rounded border border-white/[0.06]">
                               {p}
                             </span>
                           ))}
@@ -1022,41 +1024,41 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                       </td>
                       <td className="p-3.5">
                         <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${
-                          v.response_level?.includes('Hot') ? 'bg-rose-950 text-rose-400 border border-rose-800' :
-                          v.response_level?.includes('Warm') ? 'bg-amber-950 text-amber-400 border border-amber-800' :
-                          'bg-slate-800 text-slate-400 border border-slate-700'
+                          v.response_level?.includes('Hot') ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20' :
+                          v.response_level?.includes('Warm') ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20' :
+                          'bg-white/[0.04] text-slate-400 border border-white/[0.06]'
                         }`}>
                           {v.response_level}
                         </span>
                       </td>
                       <td className="p-3.5 max-w-xs text-xs text-slate-400 truncate">{v.remarks}</td>
                       <td className="p-3.5 text-right">
-                        <div className="flex justify-end gap-2">
+                        <div className="flex justify-end gap-1.5">
                           <button
                             onClick={() => onOpenModal('log_call', { id: v.agent_id, company_name: v.company_name, name: v.person_met, mobile: v.mobile, city: v.agent_city })}
-                            className="px-2.5 py-1 bg-blue-700/80 hover:bg-blue-600 text-white rounded text-xs transition border border-blue-600 flex items-center gap-1 shadow font-semibold"
+                            className="px-2.5 py-1 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs transition shadow-sm flex items-center gap-1 font-semibold cursor-pointer"
                             title="Log Telephonic Call Follow-up for Simranjit Kaur"
                           >
                             <Phone className="w-3 h-3" /> Log Call
                           </button>
                           <button
                             onClick={() => onOpenModal('edit_agent', { id: v.agent_id, name: v.person_met, company_name: v.company_name, mobile: v.mobile, city: v.agent_city })}
-                            className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-xs transition border border-slate-700 flex items-center gap-1 font-semibold"
+                            className="px-2 py-1 bg-white/[0.06] hover:bg-white/[0.1] text-slate-200 rounded-lg text-xs transition border border-white/[0.08] flex items-center gap-1 font-medium cursor-pointer"
                             title="Edit Agent Details"
                           >
-                            <Edit className="w-3 h-3 text-sky-400" /> Edit Agent
+                            <Edit className="w-3 h-3 text-sky-400" /> Edit
                           </button>
                           <button
                             onClick={() => onOpenAgentDrawer(v.agent_id)}
-                            className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-xs transition border border-slate-700"
+                            className="px-2 py-1 bg-white/[0.06] hover:bg-white/[0.1] text-slate-300 rounded-lg text-xs transition border border-white/[0.08] cursor-pointer"
                           >
-                            View 360°
+                            360°
                           </button>
                           {isAdmin && (
                             <button
                               onClick={() => handleDeleteVisit(v.id)}
                               title="Admin Only: Delete Wrong Visit Entry"
-                              className="p-1.5 bg-rose-950/40 hover:bg-rose-900 text-rose-400 rounded text-xs transition border border-rose-800/60"
+                              className="p-1.5 bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 rounded-lg text-xs transition border border-rose-500/20 cursor-pointer"
                             >
                               <Trash2 className="w-3.5 h-3.5" />
                             </button>
