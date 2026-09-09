@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-09T11:50:45.234Z",
+  "backed_up_at": "2026-09-09T11:52:20.301Z",
   "agents": [
     {
       "id": "AGT-1142",
@@ -22,20 +22,6 @@
       "mobile": "9023675112",
       "city": "Dhariwal",
       "area": "Dhariwal",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1126",
-      "name": "Mr. Kumar",
-      "company_name": "Kumar document centre",
-      "mobile": "9781972211",
-      "city": "Dhariwal",
-      "area": "Dadwan Vill, Dhariwal",
       "agent_type": "Retail Travel Agent",
       "stage": "Visited",
       "assigned_marketing_exec": "Bikram",
