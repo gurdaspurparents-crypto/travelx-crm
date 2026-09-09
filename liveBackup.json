@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-09T10:09:04.053Z",
+  "backed_up_at": "2026-09-09T10:09:12.258Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -6421,11 +6421,11 @@
       "city": "Gurdaspur",
       "area": "Jail rd",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-07",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "Advance Payment"
     },
     {
       "id": "AGT-1941",
@@ -13687,6 +13687,21 @@
       "call_date": "2026-09-09",
       "agent_id": "AGT-1360",
       "visit_id": 577,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-11",
+      "payment_terms": "Advance Payment"
+    },
+    {
+      "id": 688,
+      "call_date": "2026-09-09",
+      "agent_id": "AGT-1940",
+      "visit_id": 574,
       "executive_name": "Simranjit Kaur",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
