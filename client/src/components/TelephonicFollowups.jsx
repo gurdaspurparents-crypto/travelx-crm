@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Plus, Calendar, FileText, CheckCircle2, AlertCircle, PhoneCall, PhoneOff, Eye, Trash2, Filter, X, Download, MapPin, Clock } from 'lucide-react';
+import { Phone, Plus, Calendar, FileText, CheckCircle2, AlertCircle, PhoneCall, PhoneOff, Eye, Trash2, Filter, X, Download, MapPin, Clock, MessageSquare, Zap, ArrowRight, Target, Sparkles, UserCheck } from 'lucide-react';
 import { exportToPDF } from '../utils/exportUtils';
 
 export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) {
@@ -14,12 +14,16 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
   // Bikramjit Physical Visit Queue for Simranjit Next-Day Feedback
   const [visitQueue, setVisitQueue] = useState([]);
   const [showQueue, setShowQueue] = useState(true);
+  const [queueTab, setQueueTab] = useState('pending'); // 'pending', 'completed', 'all'
+  const [quickReqVisit, setQuickReqVisit] = useState(null);
+  const [quickReqText, setQuickReqText] = useState('');
+  const [quickPaymentTerms, setQuickPaymentTerms] = useState('Advance Payment');
 
   // Location Coverage Matrix State (Visited vs Unvisited Agents by City)
   const [coverageData, setCoverageData] = useState(null);
   const [selectedCityCoverage, setSelectedCityCoverage] = useState('');
   const [coverageFilter, setCoverageFilter] = useState('all');
-  const [showCoverageCard, setShowCoverageCard] = useState(true);
+  const [showCoverageCard, setShowCoverageCard] = useState(false);
 
   useEffect(() => {
     fetchCalls();
@@ -126,6 +130,80 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
     }
   };
 
+  const handleQuickLog = async (visit, resultType, customRequirement = '', paymentTerms = 'Advance Payment') => {
+    const today = new Date().toISOString().split('T')[0];
+    const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
+    
+    let isConnected = resultType !== 'not_picked';
+    let callResult = 'Requirement Received';
+    let interestLevel = 'Very Interested / Hot';
+    let remarks = '';
+    let nextDate = today;
+
+    if (resultType === 'requirement') {
+      callResult = 'Requirement Received';
+      interestLevel = 'Very Interested / Hot';
+      remarks = customRequirement ? `Requirement Captured: ${customRequirement}` : 'Immediate inquiry received on follow-up call';
+      nextDate = today;
+    } else if (resultType === 'call_tomorrow') {
+      callResult = 'Call Again Later';
+      interestLevel = 'Interested / Warm';
+      remarks = 'Agent busy, requested to call back tomorrow';
+      nextDate = tomorrow;
+    } else if (resultType === 'not_picked') {
+      callResult = 'Not Picked / Ringing';
+      interestLevel = 'Interested / Warm';
+      remarks = 'Phone ringing / call not picked up';
+      nextDate = tomorrow;
+    } else if (resultType === 'not_interested') {
+      callResult = 'Not Interested';
+      interestLevel = 'Not Interested';
+      remarks = 'Agent currently not interested in B2B services';
+      nextDate = '';
+    }
+
+    try {
+      const res = await fetch('/api/calls', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          call_date: today,
+          agent_id: visit.agent_id,
+          visit_id: visit.visit_id,
+          executive_name: 'Simranjit Kaur',
+          is_connected: isConnected,
+          services_discussed: visit.products_pitched || ['Domestic Flight'],
+          interest_level: interestLevel,
+          call_result: callResult,
+          agent_requirement: customRequirement || (resultType === 'requirement' ? 'Requirement captured' : ''),
+          remarks: remarks,
+          next_followup_date: nextDate,
+          payment_terms: paymentTerms
+        })
+      });
+
+      const json = await res.json();
+      if (json.success) {
+        fetchVisitQueue();
+        fetchCalls();
+        if (resultType === 'requirement') {
+          if (window.confirm('🎉 Direct Requirement Saved! Agent stage upgraded to "Query Received".\n\nWould you like to open "Create Query" to generate an official booking quote right now?')) {
+            onOpenModal('create_query', {
+              agent_id: visit.agent_id,
+              company_name: visit.company_name,
+              handling_employee: 'Simranjit Kaur',
+              notes: customRequirement
+            });
+          }
+        }
+      } else {
+        alert(json.error || 'Failed to log call outcome');
+      }
+    } catch (err) {
+      alert('Error: ' + err.message);
+    }
+  };
+
   const clearDateFilters = () => {
     setDateFilter('');
     setFromDate('');
@@ -203,169 +281,454 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
         </div>
       </div>
 
-      {/* 🚗 Visited Agents Queue for Telephonic Follow-up (Bikramjit Field Visits Queue for Simranjit Next-Day Feedback) */}
-      <div className="bg-[#0c1322]/90 border border-white/[0.08] rounded-2xl p-5 shadow-xl space-y-4 backdrop-blur-md">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/[0.06] pb-3">
-          <div>
-            <div className="flex items-center gap-2 text-sky-400 text-xs font-bold uppercase tracking-wider mb-0.5">
-              <MapPin className="w-3.5 h-3.5" /> Next-Day Feedback Call Queue
+      {/* 🎯 TOP RESULT METRICS STRIP FOR SIMRANJIT */}
+      {(() => {
+        const pendingQueue = visitQueue.filter(v => !v.call_id);
+        const calledQueue = visitQueue.filter(v => !!v.call_id);
+        const requirementsCount = calls.filter(c => (c.call_result || '').toLowerCase().includes('requirement')).length;
+        const connectedCallsCount = calls.filter(c => c.is_connected).length;
+        const scheduledCallbacksCount = calls.filter(c => (c.call_result || '').toLowerCase().includes('again') || (c.call_result || '').toLowerCase().includes('follow')).length;
+
+        const displayedQueue = queueTab === 'pending'
+          ? pendingQueue
+          : (queueTab === 'completed' ? calledQueue : visitQueue);
+
+        return (
+          <>
+            {/* 4-Card Result KPI Strip */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+              <div className="bg-[#0c1322] border border-emerald-500/30 p-3.5 rounded-xl flex items-center justify-between shadow-lg shadow-emerald-950/20">
+                <div>
+                  <span className="text-[10px] uppercase font-bold text-emerald-400 tracking-wider flex items-center gap-1">
+                    <Zap className="w-3.5 h-3.5 text-emerald-400" /> Queries / Enquiries Won
+                  </span>
+                  <div className="text-2xl font-extrabold text-white font-mono mt-0.5">{requirementsCount}</div>
+                  <span className="text-[11px] text-emerald-400/80 font-medium">Direct B2B Business Generated</span>
+                </div>
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                  <Target className="w-5 h-5" />
+                </div>
+              </div>
+
+              <div className="bg-[#0c1322] border border-amber-500/30 p-3.5 rounded-xl flex items-center justify-between shadow-lg shadow-amber-950/20">
+                <div>
+                  <span className="text-[10px] uppercase font-bold text-amber-400 tracking-wider flex items-center gap-1">
+                    <Clock className="w-3.5 h-3.5 text-amber-400" /> Pending Action Today
+                  </span>
+                  <div className="text-2xl font-extrabold text-white font-mono mt-0.5">{pendingQueue.length}</div>
+                  <span className="text-[11px] text-amber-400/80 font-medium">Visited Agents To Call</span>
+                </div>
+                <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+                  <PhoneCall className="w-5 h-5" />
+                </div>
+              </div>
+
+              <div className="bg-[#0c1322] border border-blue-500/30 p-3.5 rounded-xl flex items-center justify-between shadow-lg shadow-blue-950/20">
+                <div>
+                  <span className="text-[10px] uppercase font-bold text-blue-400 tracking-wider flex items-center gap-1">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-400" /> Connected Calls Logged
+                  </span>
+                  <div className="text-2xl font-extrabold text-white font-mono mt-0.5">{connectedCallsCount}</div>
+                  <span className="text-[11px] text-blue-400/80 font-medium">Successful Interactions</span>
+                </div>
+                <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                  <Phone className="w-5 h-5" />
+                </div>
+              </div>
+
+              <div className="bg-[#0c1322] border border-white/[0.08] p-3.5 rounded-xl flex items-center justify-between shadow-lg">
+                <div>
+                  <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider flex items-center gap-1">
+                    <MapPin className="w-3.5 h-3.5 text-slate-400" /> Total Handed-Over Visits
+                  </span>
+                  <div className="text-2xl font-extrabold text-white font-mono mt-0.5">{visitQueue.length}</div>
+                  <span className="text-[11px] text-slate-400 font-medium">From Bikramjit's Field Route</span>
+                </div>
+                <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-slate-300">
+                  <Sparkles className="w-5 h-5" />
+                </div>
+              </div>
             </div>
-            <h3 className="text-base sm:text-lg font-extrabold text-white flex items-center gap-2">
-              🚗 Visited Travel Agents Queue (Bikramjit Physical Visits)
-            </h3>
-            <p className="text-xs text-slate-400 mt-0.5">
-              Agencies visited by Bikramjit Singh in date-wise order. Simranjit Kaur can call for next-day feedback & capture response!
-            </p>
-          </div>
 
-          <button
-            onClick={() => setShowQueue(!showQueue)}
-            className="px-3 py-1.5 bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 rounded-xl text-xs font-medium border border-white/[0.08] self-start sm:self-auto cursor-pointer"
-          >
-            {showQueue ? 'Hide Queue' : `Show Queue (${visitQueue.length})`}
-          </button>
-        </div>
+            {/* 🚗 Visited Agents Queue for Telephonic Follow-up */}
+            <div className="bg-[#0c1322]/90 border border-white/[0.08] rounded-2xl p-5 shadow-xl space-y-4 backdrop-blur-md">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/[0.06] pb-3">
+                <div>
+                  <div className="flex items-center gap-2 text-sky-400 text-xs font-bold uppercase tracking-wider mb-0.5">
+                    <Zap className="w-3.5 h-3.5 text-amber-400" /> Result Desk • Next-Day Feedback Queue
+                  </div>
+                  <h3 className="text-base sm:text-lg font-extrabold text-white flex items-center gap-2">
+                    🚗 Visited Travel Agents Queue (Bikramjit ➔ Simranjit Handover)
+                  </h3>
+                  <p className="text-xs text-slate-400 mt-0.5">
+                    Call yesterday's visited agents, capture flight & tour inquiries, and convert visits into paying bookings!
+                  </p>
+                </div>
 
-        {showQueue && (
-          <div className="overflow-x-auto border border-white/[0.06] rounded-xl">
-            <table className="w-full text-left text-xs text-slate-300">
-              <thead className="bg-[#090e1a] text-[11px] text-slate-400 uppercase tracking-wider">
-                <tr>
-                  <th className="p-3">Visit Date</th>
-                  <th className="p-3">Visited Agency & Contact</th>
-                  <th className="p-3">Location & Area</th>
-                  <th className="p-3">Bikramjit Pitched & Remarks</th>
-                  <th className="p-3">Follow-up Status</th>
-                  <th className="p-3 text-right">Action for Simranjit</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-800/60 bg-slate-950/40">
-                {visitQueue.length === 0 ? (
-                  <tr>
-                    <td colSpan="6" className="p-6 text-center text-slate-500">
-                      No recent physical visits logged yet. Physical visits logged by Bikramjit will appear here automatically!
-                    </td>
-                  </tr>
-                ) : (
-                  visitQueue.map((v) => {
-                    const isCalled = !!v.call_id;
-                    let pitched = [];
-                    try { pitched = typeof v.products_pitched === 'string' ? JSON.parse(v.products_pitched) : (v.products_pitched || []); } catch(e){}
+                {/* Queue Filter Tabs */}
+                <div className="flex items-center gap-1.5 bg-[#070b14] p-1 rounded-xl border border-white/[0.06] self-start sm:self-auto">
+                  <button
+                    type="button"
+                    onClick={() => setQueueTab('pending')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
+                      queueTab === 'pending'
+                        ? 'bg-amber-500 text-slate-950 shadow-sm'
+                        : 'text-slate-400 hover:text-slate-200'
+                    }`}
+                  >
+                    <Clock className="w-3 h-3" />
+                    <span>Pending Calls ({pendingQueue.length})</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setQueueTab('completed')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
+                      queueTab === 'completed'
+                        ? 'bg-emerald-600 text-white shadow-sm'
+                        : 'text-slate-400 hover:text-slate-200'
+                    }`}
+                  >
+                    <CheckCircle2 className="w-3 h-3" />
+                    <span>Results Logged ({calledQueue.length})</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setQueueTab('all')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
+                      queueTab === 'all'
+                        ? 'bg-white/[0.1] text-white'
+                        : 'text-slate-400 hover:text-slate-200'
+                    }`}
+                  >
+                    All ({visitQueue.length})
+                  </button>
+                  <button
+                    onClick={() => setShowQueue(!showQueue)}
+                    className="px-2.5 py-1 text-slate-400 hover:text-slate-200 text-xs ml-1"
+                  >
+                    {showQueue ? 'Hide' : 'Show'}
+                  </button>
+                </div>
+              </div>
 
-                    return (
-                      <tr key={v.visit_id} className="hover:bg-slate-800/40">
-                        <td className="p-3 font-mono font-bold text-slate-200">{v.visit_date}</td>
-                        <td className="p-3">
-                          <div className="font-bold text-sky-400 text-sm">{v.company_name}</div>
-                          <div className="text-slate-300 font-medium">{v.person_met} &bull; <span className="font-mono text-slate-400">{v.contact_mobile}</span></div>
-                        </td>
-                        <td className="p-3">
-                          <div className="text-slate-200">{v.agent_city}</div>
-                          <div className="text-slate-400 text-[11px]">{v.agent_area}</div>
-                        </td>
-                        <td className="p-3 max-w-xs">
-                          <div className="flex flex-wrap gap-1 mb-1">
-                            {pitched.map((p, i) => (
-                              <span key={i} className="bg-slate-800 text-slate-300 text-[10px] px-1.5 py-0.5 rounded border border-slate-700">
-                                {p}
-                              </span>
-                            ))}
-                          </div>
-                          <div className="text-xs text-slate-400 truncate">{v.visit_remarks}</div>
-                        </td>
-                        <td className="p-3">
-                          {isCalled ? (
-                            <div>
-                              <span className="bg-emerald-950 text-emerald-400 border border-emerald-800 px-2.5 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1">
-                                <CheckCircle2 className="w-3.5 h-3.5" /> Call Logged ({v.call_result})
-                              </span>
-                              {v.call_feedback && <div className="text-[11px] text-slate-400 mt-1 italic max-w-xs">"{v.call_feedback}"</div>}
-                            </div>
-                          ) : (
-                            <span className="bg-amber-950 text-amber-400 border border-amber-800 px-2.5 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1">
-                              <Clock className="w-3.5 h-3.5" /> 🟡 Pending Next-Day Call
-                            </span>
-                          )}
-                        </td>
-                        <td className="p-3 text-right">
-                          <div className="flex items-center justify-end gap-1.5 flex-wrap">
-                            {isCalled ? (
-                              <>
-                                <button
-                                  onClick={() => onOpenModal('log_call', {
-                                    id: v.call_id,
-                                    call_id: v.call_id,
-                                    agent_id: v.agent_id,
-                                    visit_id: v.visit_id,
-                                    company_name: v.company_name,
-                                    name: v.person_met,
-                                    mobile: v.contact_mobile,
-                                    city: v.agent_city,
-                                    call_date: v.call_date,
-                                    executive_name: v.call_executive,
-                                    call_result: v.call_result,
-                                    remarks: v.call_feedback,
-                                    agent_requirement: v.agent_requirement,
-                                    payment_terms: v.payment_terms,
-                                    services_discussed: v.services_discussed,
-                                    is_connected: v.is_connected,
-                                    next_followup_date: v.next_followup_date
-                                  })}
-                                  className="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-amber-600 hover:bg-amber-500 text-white shadow shadow-amber-600/30 transition flex items-center gap-1 cursor-pointer"
-                                  title="Edit Call Log Details"
-                                >
-                                  ✏️ Edit Call
-                                </button>
-                                <button
-                                  onClick={() => handleDeleteCallFromQueue(v.call_id, v.company_name)}
-                                  className="px-2 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-rose-900/60 text-rose-300 border border-slate-700 hover:border-rose-700 transition flex items-center gap-1 cursor-pointer"
-                                  title="Delete Call Log (Revert to Pending)"
-                                >
-                                  <Trash2 className="w-3.5 h-3.5" /> Call
-                                </button>
-                                <button
-                                  onClick={() => handleDeleteVisit(v.visit_id, v.company_name)}
-                                  className="px-2 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-rose-900/60 text-slate-400 hover:text-rose-300 border border-slate-700 hover:border-rose-700 transition flex items-center gap-1 cursor-pointer"
-                                  title="Delete Entire Visit Record"
-                                >
-                                  <Trash2 className="w-3.5 h-3.5" /> Visit
-                                </button>
-                              </>
-                            ) : (
-                              <>
-                                <button
-                                  onClick={() => onOpenModal('log_call', {
-                                    agent_id: v.agent_id,
-                                    visit_id: v.visit_id,
-                                    company_name: v.company_name,
-                                    name: v.person_met,
-                                    mobile: v.contact_mobile,
-                                    city: v.agent_city
-                                  })}
-                                  className="px-3 py-1.5 rounded-lg text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white shadow-blue-600/30 animate-pulse transition flex items-center gap-1.5 cursor-pointer"
-                                >
-                                  <Phone className="w-3.5 h-3.5" /> Log Call
-                                </button>
-                                <button
-                                  onClick={() => handleDeleteVisit(v.visit_id, v.company_name)}
-                                  className="p-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-rose-900/60 text-rose-400 border border-slate-700 hover:border-rose-700 transition flex items-center cursor-pointer"
-                                  title="Delete Pending Visit Record"
-                                >
-                                  <Trash2 className="w-3.5 h-3.5" />
-                                </button>
-                              </>
-                            )}
-                          </div>
-                        </td>
+              {showQueue && (
+                <div className="overflow-x-auto border border-white/[0.06] rounded-xl">
+                  <table className="w-full text-left text-xs text-slate-300">
+                    <thead className="bg-[#090e1a] text-[11px] text-slate-400 uppercase tracking-wider">
+                      <tr>
+                        <th className="p-3">Visit Date</th>
+                        <th className="p-3">Visited Agency & 1-Click Connect</th>
+                        <th className="p-3">Location & Area</th>
+                        <th className="p-3">Bikramjit Pitched & Remarks</th>
+                        <th className="p-3">Result / Status</th>
+                        <th className="p-3 text-right">Result Action for Simranjit</th>
                       </tr>
-                    );
-                  })
-                )}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </div>
+                    </thead>
+                    <tbody className="divide-y divide-slate-800/60 bg-slate-950/40">
+                      {displayedQueue.length === 0 ? (
+                        <tr>
+                          <td colSpan="6" className="p-8 text-center text-slate-400">
+                            {queueTab === 'pending' ? (
+                              <div className="space-y-1">
+                                <span className="text-2xl">🎉</span>
+                                <p className="font-bold text-emerald-400 text-sm">All caught up! Zero pending calls.</p>
+                                <p className="text-xs text-slate-500">Every visited agent has been called and feedback logged.</p>
+                              </div>
+                            ) : (
+                              'No records found for selected filter.'
+                            )}
+                          </td>
+                        </tr>
+                      ) : (
+                        displayedQueue.map((v) => {
+                          const isCalled = !!v.call_id;
+                          let pitched = [];
+                          try { pitched = typeof v.products_pitched === 'string' ? JSON.parse(v.products_pitched) : (v.products_pitched || []); } catch(e){}
+                          const cleanMobile = (v.contact_mobile || '').replace(/\D/g, '');
+                          const waGreeting = encodeURIComponent(`Hello ${v.person_met || 'Sir'}, Bikramjit from TravelX visited your office yesterday. Do you have any flight ticket or tour package requirement today?`);
+
+                          return (
+                            <tr key={v.visit_id} className="hover:bg-slate-800/30 transition">
+                              <td className="p-3 font-mono font-bold text-slate-200">{v.visit_date}</td>
+                              <td className="p-3">
+                                <div className="font-bold text-sky-400 text-sm">{v.company_name}</div>
+                                <div className="text-slate-300 font-medium">{v.person_met}</div>
+                                
+                                {/* 1-Click Dial & WhatsApp Shortcuts */}
+                                <div className="flex items-center gap-1.5 mt-1.5">
+                                  {v.contact_mobile && (
+                                    <>
+                                      <a
+                                        href={`tel:${v.contact_mobile}`}
+                                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-sky-500/10 hover:bg-sky-500/20 text-sky-300 border border-sky-500/20 text-[11px] font-mono transition"
+                                        title="Click to dial"
+                                      >
+                                        <Phone className="w-3 h-3 text-sky-400" /> {v.contact_mobile}
+                                      </a>
+                                      {cleanMobile && (
+                                        <a
+                                          href={`https://wa.me/91${cleanMobile}?text=${waGreeting}`}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/20 text-[11px] font-semibold transition"
+                                          title="Send WhatsApp greeting"
+                                        >
+                                          <MessageSquare className="w-3 h-3 text-emerald-400" /> WA
+                                        </a>
+                                      )}
+                                    </>
+                                  )}
+                                </div>
+                              </td>
+                              <td className="p-3">
+                                <div className="text-slate-200 font-medium">{v.agent_city}</div>
+                                <div className="text-slate-400 text-[11px]">{v.agent_area}</div>
+                              </td>
+                              <td className="p-3 max-w-xs">
+                                <div className="flex flex-wrap gap-1 mb-1">
+                                  {pitched.map((p, i) => (
+                                    <span key={i} className="bg-slate-800/80 text-slate-300 text-[10px] px-1.5 py-0.5 rounded border border-slate-700/60 font-medium">
+                                      {p}
+                                    </span>
+                                  ))}
+                                </div>
+                                <div className="text-xs text-slate-400 truncate" title={v.visit_remarks}>{v.visit_remarks || 'No notes'}</div>
+                              </td>
+                              <td className="p-3">
+                                {isCalled ? (
+                                  <div className="space-y-1">
+                                    <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold inline-flex items-center gap-1 border ${
+                                      (v.call_result || '').includes('Requirement')
+                                        ? 'bg-emerald-950 text-emerald-300 border-emerald-800'
+                                        : (v.call_result || '').includes('Not')
+                                        ? 'bg-rose-950 text-rose-300 border-rose-800'
+                                        : 'bg-blue-950 text-blue-300 border-blue-800'
+                                    }`}>
+                                      <CheckCircle2 className="w-3 h-3" /> {v.call_result}
+                                    </span>
+                                    {v.call_feedback && <div className="text-[11px] text-slate-400 italic max-w-xs">"{v.call_feedback}"</div>}
+                                  </div>
+                                ) : (
+                                  <span className="bg-amber-950/80 text-amber-300 border border-amber-800/80 px-2.5 py-1 rounded-full text-[11px] font-bold inline-flex items-center gap-1">
+                                    <Clock className="w-3 h-3 text-amber-400" /> 🟡 Call Pending
+                                  </span>
+                                )}
+                              </td>
+                              <td className="p-3 text-right">
+                                <div className="flex items-center justify-end gap-1.5 flex-wrap">
+                                  {isCalled ? (
+                                    <>
+                                      {/* Direct Convert to Stage 3 Query Button if requirement received */}
+                                      {(v.call_result || '').includes('Requirement') && (
+                                        <button
+                                          type="button"
+                                          onClick={() => onOpenModal('create_query', {
+                                            agent_id: v.agent_id,
+                                            company_name: v.company_name,
+                                            handling_employee: 'Simranjit Kaur',
+                                            notes: v.agent_requirement || v.call_feedback || ''
+                                          })}
+                                          className="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white shadow-sm transition flex items-center gap-1 cursor-pointer"
+                                          title="Convert directly to Stage 3 Sales Query"
+                                        >
+                                          <Zap className="w-3 h-3" /> 🚀 Create Query
+                                        </button>
+                                      )}
+                                      <button
+                                        type="button"
+                                        onClick={() => onOpenModal('log_call', {
+                                          id: v.call_id,
+                                          call_id: v.call_id,
+                                          agent_id: v.agent_id,
+                                          visit_id: v.visit_id,
+                                          company_name: v.company_name,
+                                          name: v.person_met,
+                                          mobile: v.contact_mobile,
+                                          city: v.agent_city,
+                                          call_date: v.call_date,
+                                          executive_name: v.call_executive,
+                                          call_result: v.call_result,
+                                          remarks: v.call_feedback,
+                                          agent_requirement: v.agent_requirement,
+                                          payment_terms: v.payment_terms,
+                                          services_discussed: v.services_discussed,
+                                          is_connected: v.is_connected,
+                                          next_followup_date: v.next_followup_date
+                                        })}
+                                        className="px-2 py-1.5 rounded-lg text-xs font-semibold bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 border border-white/[0.08] transition flex items-center gap-1 cursor-pointer"
+                                        title="Edit Call Log"
+                                      >
+                                        ✏️ Edit
+                                      </button>
+                                      <button
+                                        type="button"
+                                        onClick={() => handleDeleteCallFromQueue(v.call_id, v.company_name)}
+                                        className="p-1.5 rounded-lg text-xs font-bold bg-white/[0.04] hover:bg-rose-950/60 text-slate-400 hover:text-rose-300 border border-white/[0.08] transition cursor-pointer"
+                                        title="Delete Call Log (Revert to Pending)"
+                                      >
+                                        <Trash2 className="w-3.5 h-3.5" />
+                                      </button>
+                                    </>
+                                  ) : (
+                                    <>
+                                      {/* ⚡ 1-Click RESULT: Got Requirement */}
+                                      <button
+                                        type="button"
+                                        onClick={() => {
+                                          setQuickReqVisit(v);
+                                          setQuickReqText('');
+                                          setQuickPaymentTerms('Advance Payment');
+                                        }}
+                                        className="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white shadow-sm transition flex items-center gap-1 cursor-pointer"
+                                        title="Agent shared enquiry/requirement"
+                                      >
+                                        <Zap className="w-3.5 h-3.5 text-amber-300" /> ⚡ Got Query
+                                      </button>
+
+                                      {/* 📅 1-Click RESULT: Call Tomorrow */}
+                                      <button
+                                        type="button"
+                                        onClick={() => handleQuickLog(v, 'call_tomorrow')}
+                                        className="px-2 py-1.5 rounded-lg text-xs font-medium bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 border border-white/[0.08] transition flex items-center gap-1 cursor-pointer"
+                                        title="Agent asked to call back tomorrow"
+                                      >
+                                        <Clock className="w-3 h-3 text-amber-400" /> Tomorrow
+                                      </button>
+
+                                      {/* 📵 1-Click RESULT: No Answer */}
+                                      <button
+                                        type="button"
+                                        onClick={() => handleQuickLog(v, 'not_picked')}
+                                        className="px-2 py-1.5 rounded-lg text-xs font-medium bg-white/[0.04] hover:bg-rose-950/40 text-slate-400 hover:text-rose-300 border border-white/[0.08] transition flex items-center gap-1 cursor-pointer"
+                                        title="Phone ringing / Not answered"
+                                      >
+                                        <PhoneOff className="w-3 h-3 text-rose-400" /> No Answer
+                                      </button>
+
+                                      {/* ⚙️ Full Detailed Modal */}
+                                      <button
+                                        type="button"
+                                        onClick={() => onOpenModal('log_call', {
+                                          agent_id: v.agent_id,
+                                          visit_id: v.visit_id,
+                                          company_name: v.company_name,
+                                          name: v.person_met,
+                                          mobile: v.contact_mobile,
+                                          city: v.agent_city
+                                        })}
+                                        className="p-1.5 rounded-lg text-xs font-semibold bg-white/[0.04] hover:bg-white/[0.08] text-slate-400 hover:text-slate-200 border border-white/[0.08] transition cursor-pointer"
+                                        title="Open Full Form"
+                                      >
+                                        <Plus className="w-3.5 h-3.5" />
+                                      </button>
+
+                                      {/* 🗑️ Delete Pending Visit Record */}
+                                      <button
+                                        type="button"
+                                        onClick={() => handleDeleteVisit(v.visit_id, v.company_name)}
+                                        className="p-1.5 rounded-lg text-xs font-bold bg-white/[0.04] hover:bg-rose-950/60 text-slate-500 hover:text-rose-400 border border-white/[0.08] transition cursor-pointer"
+                                        title="Delete Visit Record"
+                                      >
+                                        <Trash2 className="w-3.5 h-3.5" />
+                                      </button>
+                                    </>
+                                  )}
+                                </div>
+                              </td>
+                            </tr>
+                          );
+                        })
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+
+            {/* 🎯 FAST RESULT MODAL: CAPTURE REQUIREMENT */}
+            {quickReqVisit && (
+              <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+                <div className="bg-[#0c1322] border border-emerald-500/40 rounded-2xl p-6 w-full max-w-md shadow-2xl space-y-4 animate-in zoom-in-95">
+                  <div className="flex justify-between items-start border-b border-white/[0.08] pb-3">
+                    <div>
+                      <span className="text-[10px] uppercase font-bold text-emerald-400 tracking-wider flex items-center gap-1">
+                        <Zap className="w-3.5 h-3.5 text-amber-400" /> Direct Query Capture
+                      </span>
+                      <h3 className="text-lg font-extrabold text-white mt-0.5">
+                        {quickReqVisit.company_name}
+                      </h3>
+                      <p className="text-xs text-slate-400">
+                        {quickReqVisit.person_met} &bull; {quickReqVisit.agent_city} &bull; <span className="font-mono text-slate-300">{quickReqVisit.contact_mobile}</span>
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => setQuickReqVisit(null)}
+                      className="p-1 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] text-slate-400 hover:text-slate-200"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  <div className="space-y-3">
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-300 mb-1">
+                        What ticket / package did the agent ask for? 🎯
+                      </label>
+                      <textarea
+                        rows="3"
+                        autoFocus
+                        value={quickReqText}
+                        onChange={(e) => setQuickReqText(e.target.value)}
+                        placeholder="e.g. 2 Tickets Delhi to Dubai on 15th Sep, looking for group rate or Thailand 4 Pax package..."
+                        className="w-full bg-[#070b14] border border-white/[0.1] focus:border-emerald-500 text-slate-200 p-3 rounded-xl text-xs focus:outline-none"
+                      ></textarea>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-300 mb-1">
+                        Payment Terms (पेमेंट कैसे देगा?)
+                      </label>
+                      <select
+                        value={quickPaymentTerms}
+                        onChange={(e) => setQuickPaymentTerms(e.target.value)}
+                        className="w-full bg-[#070b14] border border-white/[0.1] text-emerald-300 font-bold p-2.5 rounded-xl text-xs focus:outline-none"
+                      >
+                        <option value="Advance Payment">⚡ Advance Payment (Pehle Payment)</option>
+                        <option value="50% Advance / 50% Balance">🌗 50% Advance / 50% Balance</option>
+                        <option value="After Booking / Credit">💳 After Booking / Credit</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-end gap-2 pt-2 border-t border-white/[0.08]">
+                    <button
+                      type="button"
+                      onClick={() => setQuickReqVisit(null)}
+                      className="px-3 py-2 rounded-xl text-xs font-semibold bg-white/[0.04] hover:bg-white/[0.08] text-slate-300"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="button"
+                      disabled={!quickReqText.trim()}
+                      onClick={async () => {
+                        const v = quickReqVisit;
+                        const req = quickReqText.trim();
+                        const terms = quickPaymentTerms;
+                        setQuickReqVisit(null);
+                        await handleQuickLog(v, 'requirement', req, terms);
+                      }}
+                      className="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-950/40 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1.5 cursor-pointer"
+                    >
+                      <Zap className="w-3.5 h-3.5" /> Save & Lock Enquiry 🚀
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </>
+        );
+      })()}
 
       {/* 📍 City-Wise Bikramjit Visit & Missed Agent Tracker (For Simranjit) */}
       <div className="bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border border-indigo-500/40 rounded-2xl p-5 shadow-xl space-y-4">
