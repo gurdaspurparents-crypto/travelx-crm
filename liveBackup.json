@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-09T10:11:33.916Z",
+  "backed_up_at": "2026-09-09T10:11:55.778Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -6365,7 +6365,7 @@
       "city": "kundha ",
       "area": "kundha",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-03",
@@ -9431,6 +9431,23 @@
       "remarks": "",
       "next_followup_date": "2026-09-10",
       "location": "Dhariwal",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 596,
+      "visit_date": "2026-09-09",
+      "agent_id": "AGT-1936",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Ranjit singh",
+      "mobile": "98550 56637",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Cruise\",\"International Flight\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-10",
+      "location": "kundha ",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
