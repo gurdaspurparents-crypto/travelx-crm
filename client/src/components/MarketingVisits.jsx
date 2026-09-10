@@ -446,14 +446,14 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                 placeholder="Start KM (e.g. 12450)..."
                 value={startKmInput}
                 onChange={e => setStartKmInput(e.target.value)}
-                className="bg-[#0c1322] border border-white/[0.08] text-slate-100 font-mono text-xs px-3 py-2 rounded-xl focus:outline-none focus:border-emerald-400 w-full"
+                className="bg-[#0c1322] border border-white/[0.08] text-slate-100 font-mono text-sm sm:text-xs px-3.5 py-2.5 sm:py-2 rounded-xl focus:outline-none focus:border-emerald-400 w-full"
                 required
               />
               <button
                 type="submit"
-                className="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-xl text-xs transition shadow-sm flex items-center gap-1.5 whitespace-nowrap cursor-pointer"
+                className="px-4 py-2.5 sm:py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs transition shadow-sm flex items-center gap-1.5 whitespace-nowrap cursor-pointer"
               >
-                <Gauge className="w-3.5 h-3.5" /> Start Trip
+                <Gauge className="w-4 h-4" /> Start Trip
               </button>
             </div>
           </form>
@@ -498,14 +498,14 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
                 placeholder="End KM (e.g. 12512)..."
                 value={endKmInput}
                 onChange={e => setEndKmInput(e.target.value)}
-                className="bg-[#0c1322] border border-white/[0.08] text-slate-100 font-mono text-xs px-3 py-2 rounded-xl focus:outline-none focus:border-rose-400 w-full"
+                className="bg-[#0c1322] border border-white/[0.08] text-slate-100 font-mono text-sm sm:text-xs px-3.5 py-2.5 sm:py-2 rounded-xl focus:outline-none focus:border-rose-400 w-full"
                 required
               />
               <button
                 type="submit"
-                className="px-3.5 py-2 bg-rose-600 hover:bg-rose-500 text-white font-semibold rounded-xl text-xs transition shadow-sm flex items-center gap-1.5 whitespace-nowrap cursor-pointer"
+                className="px-4 py-2.5 sm:py-2 bg-rose-600 hover:bg-rose-500 text-white font-bold rounded-xl text-xs transition shadow-sm flex items-center gap-1.5 whitespace-nowrap cursor-pointer"
               >
-                <Flag className="w-3.5 h-3.5" /> End Trip
+                <Flag className="w-4 h-4" /> End Trip
               </button>
             </div>
           </form>
@@ -571,7 +571,7 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
             <select
               value={selectedLocation}
               onChange={(e) => setSelectedLocation(e.target.value)}
-              className="bg-[#070b14] border border-amber-500/40 text-amber-300 font-semibold rounded-xl text-xs px-3 py-2 focus:outline-none focus:border-amber-400 cursor-pointer"
+              className="bg-[#070b14] border border-amber-500/40 text-amber-300 font-semibold rounded-xl text-sm sm:text-xs px-3.5 py-2.5 sm:py-2 focus:outline-none focus:border-amber-400 cursor-pointer"
             >
               <option value="ALL">🌐 All Locations / All Cities</option>
               {availableLocations.cities.map((c, i) => (
@@ -581,13 +581,13 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
 
             {/* Type custom location / area search input */}
             <div className="relative">
-              <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" />
+              <Search className="w-4 h-4 sm:w-3.5 sm:h-3.5 text-slate-400 absolute left-3 top-3 sm:left-2.5 sm:top-2.5" />
               <input
                 type="text"
                 placeholder="Type City / Area..."
                 value={selectedLocation}
                 onChange={(e) => setSelectedLocation(e.target.value)}
-                className="bg-[#070b14] border border-white/[0.08] text-slate-200 text-xs pl-8 pr-3 py-2 rounded-xl focus:outline-none focus:border-amber-400 w-36 sm:w-44 font-medium"
+                className="bg-[#070b14] border border-white/[0.08] text-slate-200 text-sm sm:text-xs pl-9 sm:pl-8 pr-3 py-2.5 sm:py-2 rounded-xl focus:outline-none focus:border-amber-400 w-40 sm:w-44 font-medium"
               />
             </div>
           </div>
@@ -820,60 +820,60 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
               : 'Select or type a location above to see agencies.'}
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 max-h-80 overflow-y-auto pr-1">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 max-h-[38rem] sm:max-h-96 overflow-y-auto pr-1">
             {filteredLocationAgents.map((ag) => {
               const isVisited = Boolean(ag.last_visit_date);
               return (
-                <div key={ag.id} className={`p-3.5 rounded-xl border text-xs space-y-2.5 transition-all shadow-sm ${
+                <div key={ag.id} className={`p-4 sm:p-3.5 rounded-xl border text-sm sm:text-xs space-y-3 transition-all shadow-sm ${
                   isVisited
                     ? 'bg-[#070e1b]/80 border-white/[0.07] hover:border-emerald-500/40'
                     : 'bg-[#140b10]/60 border-rose-500/25 hover:border-rose-500/50'
                 }`}>
-                  <div className="flex items-start justify-between gap-1">
+                  <div className="flex items-start justify-between gap-1.5">
                     <div>
-                      <h4 className="font-bold text-slate-100 text-sm line-clamp-1">{ag.company_name}</h4>
-                      <p className="text-slate-400 text-[11px] font-medium mt-0.5">{ag.name} &bull; 📍 {ag.city} ({ag.area})</p>
+                      <h4 className="font-bold text-slate-100 text-base sm:text-sm line-clamp-1">{ag.company_name}</h4>
+                      <p className="text-slate-300 sm:text-slate-400 text-xs sm:text-[11px] font-medium mt-0.5">{ag.name} &bull; 📍 {ag.city} ({ag.area})</p>
                     </div>
                     {isVisited ? (
-                      <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 px-2 py-0.5 rounded-full text-[10px] font-mono font-bold whitespace-nowrap" title={`Visited on: ${ag.last_visit_date}`}>
+                      <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 px-2.5 py-1 sm:py-0.5 rounded-full text-xs sm:text-[10px] font-mono font-bold whitespace-nowrap" title={`Visited on: ${ag.last_visit_date}`}>
                         ✅ Visited ({ag.last_visit_date})
                       </span>
                     ) : (
-                      <span className="bg-rose-500/10 text-rose-400 border border-rose-500/25 px-2 py-0.5 rounded-full text-[10px] font-mono font-bold whitespace-nowrap animate-pulse">
+                      <span className="bg-rose-500/10 text-rose-400 border border-rose-500/25 px-2.5 py-1 sm:py-0.5 rounded-full text-xs sm:text-[10px] font-mono font-bold whitespace-nowrap animate-pulse">
                         🔴 Pending Visit
                       </span>
                     )}
                   </div>
 
-                  <div className="flex items-center justify-between border-t border-white/[0.06] pt-2">
+                  <div className="flex items-center justify-between border-t border-white/[0.06] pt-2.5 flex-wrap gap-2">
                     <a
                       href={`tel:${ag.mobile}`}
-                      className="text-sky-400 font-mono font-semibold hover:underline flex items-center gap-1"
+                      className="text-sky-400 font-mono font-bold text-sm sm:text-xs hover:underline flex items-center gap-1.5 py-1 px-2 rounded-lg bg-sky-500/10 border border-sky-500/20"
                     >
-                      <Phone className="w-3 h-3" /> {ag.mobile}
+                      <Phone className="w-3.5 h-3.5 text-sky-400" /> {ag.mobile}
                     </a>
 
                     <div className="flex items-center gap-1.5">
                       <button
                         onClick={() => onOpenModal('edit_agent', ag)}
-                        className="px-2 py-1 bg-white/[0.06] hover:bg-white/[0.1] text-slate-200 border border-white/[0.08] rounded-lg text-[11px] font-medium transition flex items-center gap-1 cursor-pointer"
+                        className="px-2.5 py-1.5 sm:px-2 sm:py-1 bg-white/[0.06] hover:bg-white/[0.1] text-slate-200 border border-white/[0.08] rounded-lg text-xs sm:text-[11px] font-medium transition flex items-center gap-1 cursor-pointer"
                         title="Edit Agent Details"
                       >
-                        <Edit className="w-3 h-3 text-sky-400" /> Edit
+                        <Edit className="w-3.5 h-3.5 text-sky-400" /> Edit
                       </button>
                       <button
                         onClick={() => onOpenModal('log_visit', { id: ag.id, company_name: ag.company_name, name: ag.name, mobile: ag.mobile, city: ag.city })}
-                        className="px-2.5 py-1 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white rounded-lg text-[11px] font-semibold transition flex items-center gap-1 shadow cursor-pointer"
+                        className="px-3 py-1.5 sm:px-2.5 sm:py-1 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white font-bold rounded-lg text-xs sm:text-[11px] transition flex items-center gap-1 shadow cursor-pointer"
                       >
-                        <Plus className="w-3 h-3" /> Log Visit
+                        <Plus className="w-3.5 h-3.5" /> Log Visit
                       </button>
                       {isAdmin && (
                         <button
                           onClick={() => handleRemoveLocationAgent(ag.id, ag.company_name)}
-                          className="px-2 py-1 bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/30 hover:border-rose-500/50 rounded-lg text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer"
+                          className="px-2 py-1.5 sm:px-2 sm:py-1 bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/30 hover:border-rose-500/50 rounded-lg text-xs sm:text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer"
                           title="Admin Only: Delete & Remove Agency from CRM"
                         >
-                          <Trash2 className="w-3 h-3 text-rose-400" /> Delete
+                          <Trash2 className="w-3.5 h-3.5 text-rose-400" /> Delete
                         </button>
                       )}
                     </div>
