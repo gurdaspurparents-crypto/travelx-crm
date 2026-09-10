@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-10T10:11:14.381Z",
+  "backed_up_at": "2026-09-10T10:11:20.996Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -1045,7 +1045,7 @@
       "city": "Galhri",
       "area": "Galhari",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -15589,6 +15589,26 @@
       "agent_id": "AGT-1209",
       "product": "International Flight",
       "query_details": "evn-del ",
+      "travel_date": "2026-09-25",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-09-11",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5060",
+      "query_date": "2026-09-10",
+      "agent_id": "AGT-1243",
+      "product": "International Flight",
+      "query_details": "del-dmm",
       "travel_date": "2026-09-25",
       "pax_details": "2 Adults",
       "estimated_value": 0,
