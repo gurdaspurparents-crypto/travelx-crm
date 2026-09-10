@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-10T08:20:59.271Z",
+  "backed_up_at": "2026-09-10T08:21:10.580Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -443,11 +443,11 @@
       "city": "Dhariwal",
       "area": "Near Railway Fatak, Fateh Nangal, Dhariwal",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "Advance Payment"
     },
     {
       "id": "AGT-1138",
@@ -14284,6 +14284,36 @@
       "remarks": "",
       "next_followup_date": "2026-09-12",
       "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 736,
+      "call_date": "2026-09-10",
+      "agent_id": "AGT-1137",
+      "visit_id": 594,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Not Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-12",
+      "payment_terms": "Advance Payment"
+    },
+    {
+      "id": 737,
+      "call_date": "2026-09-10",
+      "agent_id": "AGT-1137",
+      "visit_id": 594,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Not Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-12",
+      "payment_terms": "Advance Payment"
     }
   ],
   "queries": [
