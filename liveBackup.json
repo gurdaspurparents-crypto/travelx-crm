@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-10T07:41:37.964Z",
+  "backed_up_at": "2026-09-10T07:46:50.329Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7653,7 +7653,7 @@
       "city": "sunderchak",
       "area": "bhoaa",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-10",
@@ -9357,6 +9357,23 @@
       "remarks": "",
       "next_followup_date": "2026-09-11",
       "location": "Sunderchak",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 605,
+      "visit_date": "2026-09-10",
+      "agent_id": "AGT-1957",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "chaten",
+      "mobile": "8054887595",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Cruise\",\"International Flight\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-11",
+      "location": "sunderchak",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
@@ -13906,7 +13923,7 @@
       "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-12",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
