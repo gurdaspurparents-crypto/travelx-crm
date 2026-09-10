@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-10T07:27:15.573Z",
+  "backed_up_at": "2026-09-10T07:29:27.326Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7630,6 +7630,20 @@
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-09",
       "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-1956",
+      "name": "Harinder singh",
+      "company_name": "Khalsa enterprises",
+      "mobile": "+91 88473 89545",
+      "city": "Sunderchak",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-09-10",
+      "payment_terms": "Not Discussed"
     }
   ],
   "marketing_visits": [
@@ -13831,7 +13845,7 @@
       "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-12",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
