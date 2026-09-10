@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-10T08:01:24.080Z",
+  "backed_up_at": "2026-09-10T08:13:10.692Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -8206,23 +8206,6 @@
       "gps_address": null
     },
     {
-      "id": 536,
-      "visit_date": "2026-09-03",
-      "agent_id": "AGT-1622",
-      "executive_name": "Bikramjit Singh",
-      "person_met": "Mr. Harjit singh",
-      "mobile": "9855515957",
-      "is_new_agent": 0,
-      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\"]",
-      "response_level": "Interested / Warm",
-      "remarks": "",
-      "next_followup_date": "2026-09-04",
-      "location": "Naushera Majha Singh",
-      "gps_latitude": null,
-      "gps_longitude": null,
-      "gps_address": null
-    },
-    {
       "id": 537,
       "visit_date": "2026-09-03",
       "agent_id": "AGT-1929",
@@ -13983,7 +13966,7 @@
       "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-12",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
