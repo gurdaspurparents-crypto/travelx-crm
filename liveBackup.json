@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-10T07:39:31.957Z",
+  "backed_up_at": "2026-09-10T07:41:37.964Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -3271,7 +3271,7 @@
       "city": "Kalanour",
       "area": "Near Govt. School Kalanaur, Gsp",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -13887,6 +13887,21 @@
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
       "agent_requirement": "busyy",
+      "interest_level": "Interested / Warm",
+      "call_result": "No Response",
+      "remarks": "",
+      "next_followup_date": "2026-09-12",
+      "payment_terms": null
+    },
+    {
+      "id": 711,
+      "call_date": "2026-09-10",
+      "agent_id": "AGT-1532",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "busy",
       "interest_level": "Interested / Warm",
       "call_result": "No Response",
       "remarks": "",
