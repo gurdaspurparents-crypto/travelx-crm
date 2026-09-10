@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-10T08:18:47.337Z",
+  "backed_up_at": "2026-09-10T08:20:38.683Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -293,7 +293,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1117",
@@ -545,7 +545,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1167",
@@ -6141,11 +6141,11 @@
       "city": "kundha ",
       "area": "kundha",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-03",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "Advance Payment"
     },
     {
       "id": "AGT-1937",
@@ -14223,13 +14223,28 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-12",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 732,
       "call_date": "2026-09-10",
       "agent_id": "AGT-1115",
       "visit_id": 595,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-12",
+      "payment_terms": null
+    },
+    {
+      "id": 733,
+      "call_date": "2026-09-10",
+      "agent_id": "AGT-1936",
+      "visit_id": 596,
       "executive_name": "Simranjit Kaur",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
