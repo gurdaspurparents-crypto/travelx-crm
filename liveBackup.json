@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-10T06:59:02.000Z",
+  "backed_up_at": "2026-09-10T07:07:33.080Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -9275,6 +9275,23 @@
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Cruise\",\"Tour Packages\",\"International Flight\",\"Money Transfer\"]",
       "response_level": "Not Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-11",
+      "location": "Sunderchak",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 602,
+      "visit_date": "2026-09-10",
+      "agent_id": "AGT-1802",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Jaswinder singh",
+      "mobile": "9988660137",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Cruise\",\"International Flight\",\"Hotel Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-09-11",
       "location": "Sunderchak",
