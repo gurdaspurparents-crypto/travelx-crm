@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-10T09:48:08.236Z",
+  "backed_up_at": "2026-09-10T09:49:38.025Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -51,7 +51,7 @@
       "city": "Dera Baba Nanak",
       "area": "Dera Baba Nanak",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -14452,6 +14452,21 @@
       "agent_requirement": "maim kam nhi karde ",
       "interest_level": "Interested / Warm",
       "call_result": "Not Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-12",
+      "payment_terms": null
+    },
+    {
+      "id": 744,
+      "call_date": "2026-09-10",
+      "agent_id": "AGT-1087",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "busy ",
+      "interest_level": "Interested / Warm",
+      "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-12",
       "payment_terms": "Not Discussed"
