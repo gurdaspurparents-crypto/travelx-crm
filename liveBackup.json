@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-10T08:13:18.292Z",
+  "backed_up_at": "2026-09-10T08:13:28.700Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -2389,11 +2389,11 @@
       "city": "Gurdaspur",
       "area": "Hardochani Rd Gsp",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "Advance Payment"
     },
     {
       "id": "AGT-1426",
@@ -13988,6 +13988,21 @@
       "call_date": "2026-09-10",
       "agent_id": "AGT-1412",
       "visit_id": 563,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-12",
+      "payment_terms": "Advance Payment"
+    },
+    {
+      "id": 718,
+      "call_date": "2026-09-10",
+      "agent_id": "AGT-1425",
+      "visit_id": 565,
       "executive_name": "Simranjit Kaur",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
