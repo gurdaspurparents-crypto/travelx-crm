@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-10T10:05:03.267Z",
+  "backed_up_at": "2026-09-10T10:11:05.880Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7672,6 +7672,20 @@
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-10",
       "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-1959",
+      "name": "shammi",
+      "company_name": "csc centre ",
+      "mobile": "8727038578",
+      "city": "galhri",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-09-10",
+      "payment_terms": "Not Discussed"
     }
   ],
   "marketing_visits": [
@@ -14530,7 +14544,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-12",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
