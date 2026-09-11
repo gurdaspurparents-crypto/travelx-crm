@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-11T07:48:54.950Z",
+  "backed_up_at": "2026-09-11T07:52:36.823Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7696,6 +7696,20 @@
       "area": "kotli aman bhalla clg",
       "agent_type": "Retail Travel Agent",
       "stage": "Visited",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-09-11",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-1961",
+      "name": "sarinder",
+      "company_name": "csc center ",
+      "mobile": "7508249239",
+      "city": "Barth sahib",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-11",
