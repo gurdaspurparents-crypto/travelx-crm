@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-11T10:30:39.329Z",
+  "backed_up_at": "2026-09-11T10:31:38.315Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7734,6 +7734,20 @@
       "name": "Mr Deepak ",
       "company_name": "Deepak cafe",
       "mobile": "7888601986",
+      "city": "Gharota ",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-09-11",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-1964",
+      "name": "Mr Rakesh ",
+      "company_name": "Rakesh csc",
+      "mobile": "+91 884-7455391",
       "city": "Gharota ",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
