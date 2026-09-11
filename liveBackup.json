@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-11T12:55:56.006Z",
+  "backed_up_at": "2026-09-11T14:12:57.529Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -15167,7 +15167,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-13",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 762,
@@ -15182,7 +15182,7 @@
       "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-13",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 763,
@@ -15197,7 +15197,7 @@
       "call_result": "Requirement Received",
       "remarks": "",
       "next_followup_date": "2026-09-13",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 764,
@@ -15212,7 +15212,7 @@
       "call_result": "Not Interested",
       "remarks": "",
       "next_followup_date": "2026-09-13",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 765,
@@ -15227,7 +15227,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-13",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 766,
@@ -15242,7 +15242,7 @@
       "call_result": "Requirement Received",
       "remarks": "",
       "next_followup_date": "2026-09-13",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 767,
@@ -15257,7 +15257,7 @@
       "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-13",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 768,
@@ -15272,7 +15272,7 @@
       "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-13",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 769,
@@ -15287,7 +15287,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-13",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 770,
@@ -15302,7 +15302,7 @@
       "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-13",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 771,
@@ -15317,7 +15317,7 @@
       "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-13",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 772,
@@ -15332,7 +15332,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-13",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 773,
@@ -15347,7 +15347,7 @@
       "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-13",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 774,
@@ -15362,7 +15362,7 @@
       "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-13",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 775,
@@ -15377,7 +15377,7 @@
       "call_result": "Requirement Received",
       "remarks": "",
       "next_followup_date": "2026-09-13",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 776,
@@ -15392,7 +15392,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-13",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 777,
@@ -15407,7 +15407,7 @@
       "call_result": "Call Again Later",
       "remarks": "",
       "next_followup_date": "2026-09-13",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 778,
@@ -15422,7 +15422,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-13",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 779,
@@ -15437,7 +15437,7 @@
       "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-13",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 780,
@@ -15452,7 +15452,7 @@
       "call_result": "Call Again Later",
       "remarks": "",
       "next_followup_date": "2026-09-13",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 781,
@@ -15467,7 +15467,7 @@
       "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-13",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 782,
@@ -15482,7 +15482,7 @@
       "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-13",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 783,
@@ -15497,7 +15497,7 @@
       "call_result": "Not Interested",
       "remarks": "",
       "next_followup_date": "2026-09-13",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
