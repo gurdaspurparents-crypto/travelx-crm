@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-11T06:32:15.468Z",
+  "backed_up_at": "2026-09-11T06:32:50.092Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7695,7 +7695,7 @@
       "city": "Jahkolri",
       "area": "kotli aman bhalla clg",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-11",
@@ -9548,6 +9548,23 @@
       "mobile": "7973017074",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"Cruise\",\"International Flight\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-12",
+      "location": "Jahkolri",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 614,
+      "visit_date": "2026-09-11",
+      "agent_id": "AGT-1960",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Arun",
+      "mobile": "9888741617",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Money Transfer\",\"Bus Booking\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-09-12",
