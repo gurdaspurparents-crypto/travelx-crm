@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-11T07:59:20.716Z",
+  "backed_up_at": "2026-09-11T07:59:47.124Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7723,7 +7723,7 @@
       "city": "Barth sahib",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-11",
@@ -9665,6 +9665,23 @@
       "remarks": "",
       "next_followup_date": "2026-09-12",
       "location": "Barth Sahib",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 619,
+      "visit_date": "2026-09-11",
+      "agent_id": "AGT-1962",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "mr ",
+      "mobile": "9988810154",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"International Flight\",\"Money Transfer\",\"Tour Packages\",\"Travel Insurance\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-12",
+      "location": "Barth sahib",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
