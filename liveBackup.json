@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-11T10:32:11.952Z",
+  "backed_up_at": "2026-09-11T10:32:54.669Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7751,7 +7751,7 @@
       "city": "Gharota ",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-11",
@@ -9759,6 +9759,23 @@
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Money Transfer\",\"Bus Booking\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
+      "next_followup_date": "2026-09-12",
+      "location": "Gharota ",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 623,
+      "visit_date": "2026-09-11",
+      "agent_id": "AGT-1964",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr Rakesh ",
+      "mobile": "+91 884-7455391",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Cruise\",\"International Flight\",\"Money Transfer\",\"Travel Insurance\",\"Bus Booking\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "New",
       "next_followup_date": "2026-09-12",
       "location": "Gharota ",
       "gps_latitude": null,
