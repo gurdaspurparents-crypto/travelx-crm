@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-11T06:52:26.978Z",
+  "backed_up_at": "2026-09-11T06:54:55.177Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -4615,7 +4615,7 @@
       "city": "Qadian",
       "area": "Qadian",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -14870,6 +14870,21 @@
       "agent_requirement": "busy ",
       "interest_level": "Interested / Warm",
       "call_result": "Follow-up Required",
+      "remarks": "",
+      "next_followup_date": "2026-09-13",
+      "payment_terms": null
+    },
+    {
+      "id": 760,
+      "call_date": "2026-09-11",
+      "agent_id": "AGT-1688",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-13",
       "payment_terms": "Not Discussed"
