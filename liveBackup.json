@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-12T09:29:52.871Z",
+  "backed_up_at": "2026-09-12T09:29:57.000Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -2711,7 +2711,7 @@
       "city": "Jangal Bhawani",
       "area": "Jangal Bhawani",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -16667,6 +16667,21 @@
       "remarks": "",
       "next_followup_date": "2026-09-14",
       "payment_terms": "Advance Payment"
+    },
+    {
+      "id": 848,
+      "call_date": "2026-09-12",
+      "agent_id": "AGT-1464",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "busy ",
+      "interest_level": "Interested / Warm",
+      "call_result": "Follow-up Required",
+      "remarks": "",
+      "next_followup_date": "2026-09-14",
+      "payment_terms": "Not Discussed"
     }
   ],
   "queries": [
