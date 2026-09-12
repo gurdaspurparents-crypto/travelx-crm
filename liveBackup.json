@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-12T07:05:32.908Z",
+  "backed_up_at": "2026-09-12T07:08:14.183Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -10032,6 +10032,23 @@
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
+    },
+    {
+      "id": 633,
+      "visit_date": "2026-09-12",
+      "agent_id": "AGT-1827",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "mr.suresh",
+      "mobile": "9646031510",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Cruise\",\"International Flight\",\"Money Transfer\",\"Travel Insurance\",\"Hotel Booking\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-13",
+      "location": "Taragarh",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
     }
   ],
   "telephonic_calls": [
@@ -16031,6 +16048,21 @@
       "agent_requirement": "busy no call",
       "interest_level": "Interested / Warm",
       "call_result": "No Response",
+      "remarks": "",
+      "next_followup_date": "2026-09-14",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 809,
+      "call_date": "2026-09-12",
+      "agent_id": "AGT-1969",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "busy ",
+      "interest_level": "Interested / Warm",
+      "call_result": "Call Again Later",
       "remarks": "",
       "next_followup_date": "2026-09-14",
       "payment_terms": "Not Discussed"
