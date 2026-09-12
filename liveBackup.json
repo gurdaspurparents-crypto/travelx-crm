@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-12T07:55:14.817Z",
+  "backed_up_at": "2026-09-12T07:56:46.308Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -5091,11 +5091,11 @@
       "city": "Sarna",
       "area": "Gt Road, Sarna Distt Ptk",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "Advance Payment"
     },
     {
       "id": "AGT-1743",
@@ -16478,6 +16478,21 @@
       "call_date": "2026-09-12",
       "agent_id": "AGT-1749",
       "visit_id": 609,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-14",
+      "payment_terms": "Advance Payment"
+    },
+    {
+      "id": 836,
+      "call_date": "2026-09-12",
+      "agent_id": "AGT-1741",
+      "visit_id": 607,
       "executive_name": "Simranjit Kaur",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
