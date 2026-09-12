@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-12T09:53:12.981Z",
+  "backed_up_at": "2026-09-12T09:53:25.172Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7737,11 +7737,11 @@
       "city": "Gharota ",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-11",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "Advance Payment"
     },
     {
       "id": "AGT-1964",
@@ -16905,6 +16905,21 @@
       "call_date": "2026-09-12",
       "agent_id": "AGT-1962",
       "visit_id": 619,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-14",
+      "payment_terms": "Advance Payment"
+    },
+    {
+      "id": 859,
+      "call_date": "2026-09-12",
+      "agent_id": "AGT-1963",
+      "visit_id": 622,
       "executive_name": "Simranjit Kaur",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
