@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-12T10:01:49.666Z",
+  "backed_up_at": "2026-09-12T10:03:42.759Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -6911,7 +6911,7 @@
       "city": "Bakshiwal",
       "area": "Bakshiwal",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-02",
@@ -16988,6 +16988,21 @@
       "agent_requirement": "new   join     ",
       "interest_level": "Interested / Warm",
       "call_result": "Requirement Received",
+      "remarks": "",
+      "next_followup_date": "2026-09-14",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 863,
+      "call_date": "2026-09-12",
+      "agent_id": "AGT-1919",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "busy ",
+      "interest_level": "Interested / Warm",
+      "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-14",
       "payment_terms": "Not Discussed"
