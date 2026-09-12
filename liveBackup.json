@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-12T09:53:55.962Z",
+  "backed_up_at": "2026-09-12T09:58:49.945Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7611,7 +7611,7 @@
       "city": "wadla granthia",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-09",
@@ -16959,6 +16959,21 @@
       "remarks": "",
       "next_followup_date": "2026-09-14",
       "payment_terms": "Advance Payment"
+    },
+    {
+      "id": 862,
+      "call_date": "2026-09-12",
+      "agent_id": "AGT-1954",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "new   join     ",
+      "interest_level": "Interested / Warm",
+      "call_result": "Requirement Received",
+      "remarks": "",
+      "next_followup_date": "2026-09-14",
+      "payment_terms": "Not Discussed"
     }
   ],
   "queries": [
@@ -18254,13 +18269,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-09-13",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Price",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5073",
