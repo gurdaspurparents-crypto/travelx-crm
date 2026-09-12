@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-12T10:23:12.984Z",
+  "backed_up_at": "2026-09-12T10:26:58.310Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7890,6 +7890,20 @@
       "mobile": "+91 90411 44939",
       "city": "Dinanagar",
       "area": "Taragarh",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-09-12",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-1975",
+      "name": "DEEPAK",
+      "company_name": "RSR TRAVEL",
+      "mobile": "9781879920",
+      "city": "AUJLA BYE PASS",
+      "area": "Main Market",
       "agent_type": "Retail Travel Agent",
       "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
