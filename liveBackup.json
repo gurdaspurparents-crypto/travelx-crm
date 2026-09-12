@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-12T07:56:54.824Z",
+  "backed_up_at": "2026-09-12T07:57:40.115Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -2641,11 +2641,11 @@
       "city": "Jahkolri",
       "area": "Jhakolari",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "Advance Payment"
     },
     {
       "id": "AGT-1458",
@@ -16508,6 +16508,21 @@
       "call_date": "2026-09-12",
       "agent_id": "AGT-1744",
       "visit_id": 608,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-14",
+      "payment_terms": "Advance Payment"
+    },
+    {
+      "id": 838,
+      "call_date": "2026-09-12",
+      "agent_id": "AGT-1456",
+      "visit_id": 612,
       "executive_name": "Simranjit Kaur",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
