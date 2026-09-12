@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-12T07:10:31.589Z",
+  "backed_up_at": "2026-09-12T07:11:05.722Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7850,6 +7850,20 @@
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
       "stage": "QueryReceived",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-09-12",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-1972",
+      "name": "sunil",
+      "company_name": "Sunil computer",
+      "mobile": "836-0705191",
+      "city": "Taraghar",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-12",
