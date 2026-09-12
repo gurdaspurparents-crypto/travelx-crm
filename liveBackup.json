@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-12T09:27:53.830Z",
+  "backed_up_at": "2026-09-12T09:28:09.815Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -6869,7 +6869,7 @@
       "city": "Naranwali",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "QueryReceived",
+      "stage": "Active",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-01",
@@ -17892,11 +17892,11 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-09-13",
-      "status": "New",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
+      "status": "Converted",
+      "booking_date": "2026-08-29",
+      "booking_value": 1,
+      "booking_ref_no": "1",
+      "closing_employee": "Simranjit Kaur",
       "rejection_reason": null,
       "rejection_remarks": null
     }
