@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-12T10:53:12.987Z",
+  "backed_up_at": "2026-09-12T10:54:47.582Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7906,6 +7906,20 @@
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
       "stage": "QueryReceived",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-09-12",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-1976",
+      "name": "Krish",
+      "company_name": "Nk enterprises",
+      "mobile": "+91 70091 91501",
+      "city": "Dinanagar",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-12",
