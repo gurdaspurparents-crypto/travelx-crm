@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-12T07:40:29.018Z",
+  "backed_up_at": "2026-09-12T07:41:35.204Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7443,7 +7443,7 @@
       "city": "Dalam",
       "area": "Dalam",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -16334,6 +16334,21 @@
       "agent_requirement": "busy ",
       "interest_level": "Interested / Warm",
       "call_result": "No Response",
+      "remarks": "",
+      "next_followup_date": "2026-09-14",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 826,
+      "call_date": "2026-09-12",
+      "agent_id": "AGT-1069",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "busy ",
+      "interest_level": "Interested / Warm",
+      "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-09-14",
       "payment_terms": "Not Discussed"
