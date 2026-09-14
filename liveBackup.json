@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-14T11:28:26.907Z",
+  "backed_up_at": "2026-09-14T11:28:34.850Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -640,20 +640,6 @@
       "area": "Bus Stand, Dinanagar",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1186",
-      "name": "Mr.Satnam singh",
-      "company_name": "Ss trade test centre",
-      "mobile": "9463520250",
-      "city": "Dinanagar",
-      "area": "Dinanagar Bypass",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -10924,21 +10910,6 @@
       "interest_level": "Interested / Hot",
       "call_result": "Interested",
       "remarks": "Interested in Dubai group fares",
-      "next_followup_date": "2026-09-05",
-      "payment_terms": null
-    },
-    {
-      "id": 420,
-      "call_date": "2026-09-04",
-      "agent_id": "AGT-1186",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Warm",
-      "call_result": "Call Again Later",
-      "remarks": "Call again after 3 PM",
       "next_followup_date": "2026-09-05",
       "payment_terms": null
     },
