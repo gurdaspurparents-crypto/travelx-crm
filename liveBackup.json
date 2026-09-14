@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-14T07:17:23.278Z",
+  "backed_up_at": "2026-09-14T07:18:35.498Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7931,6 +7931,20 @@
       "company_name": "Sharma photostate ",
       "mobile": "+91 94787 07739",
       "city": "Gurdaspur",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-09-14",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-1981",
+      "name": "vikram sharma ",
+      "company_name": "Sharma photostate",
+      "mobile": "+91 94787 07739",
+      "city": "Dinanagar",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
       "stage": "Inactive",
