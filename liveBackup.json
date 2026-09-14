@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-14T11:42:04.130Z",
+  "backed_up_at": "2026-09-14T11:42:21.039Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -6912,20 +6912,6 @@
       "area": "Barth Sahib Puli, Sarna Distt Ptk",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1023",
-      "name": "Mr. Ravinder singh",
-      "company_name": "RK cyber caffa",
-      "mobile": "8171858979",
-      "city": "Barth Sahib",
-      "area": "Barthshib",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
