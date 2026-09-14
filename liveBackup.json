@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-12T19:27:52.824Z",
+  "backed_up_at": "2026-09-14T04:57:32.794Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -18446,6 +18446,26 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-09-13",
+      "status": "Rejected",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": "Agent Did Not Respond",
+      "rejection_remarks": ""
+    },
+    {
+      "id": "QRY-5076",
+      "query_date": "2026-09-14",
+      "agent_id": "AGT-1905",
+      "product": "International Flight",
+      "query_details": "atq-shj",
+      "travel_date": "2026-09-29",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-09-15",
       "status": "New",
       "booking_date": null,
       "booking_value": 0,
