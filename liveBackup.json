@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-14T06:53:55.109Z",
+  "backed_up_at": "2026-09-14T07:01:11.380Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7892,6 +7892,20 @@
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
       "stage": "Visited",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-09-14",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-1978",
+      "name": "vijay",
+      "company_name": "bk enterprises",
+      "mobile": "7652925401",
+      "city": "sidhwa",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-14",
