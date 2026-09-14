@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-14T11:39:07.192Z",
+  "backed_up_at": "2026-09-14T11:39:28.061Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -2514,20 +2514,6 @@
       "mobile": "9888938446",
       "city": "Jahkolri",
       "area": "Jahkolri",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1454",
-      "name": "SAGAR",
-      "company_name": "CSC CENTRE",
-      "mobile": "750888807",
-      "city": "Jahkolri",
-      "area": "Jakolari",
       "agent_type": "Retail Travel Agent",
       "stage": "Visited",
       "assigned_marketing_exec": "Bikram",
