@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-14T11:28:34.850Z",
+  "backed_up_at": "2026-09-14T11:28:39.365Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -652,20 +652,6 @@
       "mobile": "8847252675",
       "city": "Dinanagar",
       "area": "Near Punjab National Bank, Opp. Amul, G.t. Road Dinanaagr",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1190",
-      "name": "Mr. Jagjit singh",
-      "company_name": "Shiv Security",
-      "mobile": "9914976068",
-      "city": "Dinanagar",
-      "area": "Dinanagar",
       "agent_type": "Retail Travel Agent",
       "stage": "Visited",
       "assigned_marketing_exec": "Bikram",
