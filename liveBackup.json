@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-14T09:53:57.886Z",
+  "backed_up_at": "2026-09-14T09:57:08.660Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7989,7 +7989,7 @@
       "city": "wdla granthia",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-14",
@@ -18856,13 +18856,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-09-15",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Customer Did Not Confirm",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5079",
@@ -18890,6 +18890,26 @@
       "agent_id": "AGT-1484",
       "product": "International Flight",
       "query_details": "dxb-atq",
+      "travel_date": "2026-09-29",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-09-15",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5081",
+      "query_date": "2026-09-14",
+      "agent_id": "AGT-1984",
+      "product": "International Flight",
+      "query_details": "dxb-atq ",
       "travel_date": "2026-09-29",
       "pax_details": "2 Adults",
       "estimated_value": 0,
