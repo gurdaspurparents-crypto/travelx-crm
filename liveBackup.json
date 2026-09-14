@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-14T07:15:07.741Z",
+  "backed_up_at": "2026-09-14T07:17:23.278Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7919,7 +7919,7 @@
       "city": "Dinanagar",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-14",
@@ -10415,6 +10415,23 @@
       "mobile": "8847252675",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Cruise\",\"International Flight\",\"Money Transfer\",\"Hotel Booking\",\"Travel Insurance\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-15",
+      "location": "Dinanagar",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 651,
+      "visit_date": "2026-09-14",
+      "agent_id": "AGT-1979",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "sandeep ",
+      "mobile": "+91 98151 44901",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Money Transfer\",\"Bus Booking\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-09-15",
