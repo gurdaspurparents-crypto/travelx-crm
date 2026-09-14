@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-14T11:42:29.737Z",
+  "backed_up_at": "2026-09-14T11:42:41.442Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7556,20 +7556,6 @@
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
-      "assigned_marketing_exec": "Bikramjit Singh",
-      "assigned_telephonic_exec": "Simranjit Kaur",
-      "created_at": "2026-09-11",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1967",
-      "name": "prince ",
-      "company_name": "CSC",
-      "mobile": "+91 97808 58142",
-      "city": "Barth sahib",
-      "area": "Main Market",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-11",
