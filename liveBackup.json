@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-15T09:55:28.035Z",
+  "backed_up_at": "2026-09-15T09:56:21.573Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7805,6 +7805,20 @@
       "company_name": "Rajesh csc ",
       "mobile": "9876910054",
       "city": "kalanour",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-09-15",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-1989",
+      "name": "sanwar singh ",
+      "company_name": "Randhawa cafe ",
+      "mobile": "+91 79019 41466",
+      "city": "Kalanour",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
       "stage": "Inactive",
