@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-15T07:11:58.035Z",
+  "backed_up_at": "2026-09-15T07:17:16.773Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -10571,6 +10571,23 @@
       "remarks": "",
       "next_followup_date": "2026-09-16",
       "location": "Amipur",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 669,
+      "visit_date": "2026-09-15",
+      "agent_id": "AGT-1916",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "navjot",
+      "mobile": "8196948492",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Bus Booking\",\"Hotel Booking\",\"Forex\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-16",
+      "location": "Naranwali",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
