@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-15T09:48:52.755Z",
+  "backed_up_at": "2026-09-15T09:49:46.560Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -10720,6 +10720,23 @@
       "mobile": "8360311198",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-16",
+      "location": "Kalanour",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 678,
+      "visit_date": "2026-09-15",
+      "agent_id": "AGT-1541",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.sukhmeet singh",
+      "mobile": "9872114403",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"Cruise\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-09-16",
