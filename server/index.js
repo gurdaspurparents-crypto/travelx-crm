@@ -1038,7 +1038,9 @@ app.get('/api/calls', async (req, res) => {
       }
     }
 
-    query += ` ORDER BY tc.call_date DESC, tc.id DESC LIMIT 250`;
+    const limitVal = parseInt(req.query.limit, 10) || (executive ? 2500 : 500);
+    query += ` ORDER BY tc.call_date DESC, tc.id DESC LIMIT ?`;
+    params.push(limitVal);
 
     const calls = await dbAll(query, params);
     res.json({ success: true, calls });
@@ -1461,11 +1463,16 @@ app.get('/api/dashboard', async (req, res) => {
 
 app.get('/api/analytics/location', async (req, res) => {
   try {
+    const month = req.query.month || new Date().toISOString().slice(0, 7); // e.g. '2026-09'
+    const monthPattern = `${month}%`;
+
     const locations = await dbAll(`
       SELECT 
         a.city as location,
         COUNT(DISTINCT a.id) as total_agents,
         COUNT(DISTINCT mv.agent_id) as visited_count,
+        COUNT(DISTINCT CASE WHEN (tc.executive_name = 'Yug' OR tc.executive_name LIKE '%Yug%') AND tc.call_date LIKE ? THEN tc.agent_id END) as yug_called_month,
+        COUNT(DISTINCT CASE WHEN (tc.executive_name = 'Yug' OR tc.executive_name LIKE '%Yug%') THEN tc.agent_id END) as yug_called_all,
         COUNT(DISTINCT q.agent_id) as query_agents,
         COUNT(DISTINCT CASE WHEN q.status = 'Converted' THEN q.agent_id END) as active_agents,
         COUNT(DISTINCT q.id) as total_queries,
@@ -1473,19 +1480,30 @@ app.get('/api/analytics/location', async (req, res) => {
         COALESCE(SUM(CASE WHEN q.status = 'Converted' THEN q.booking_value ELSE 0 END), 0) as total_revenue
       FROM agents a
       LEFT JOIN marketing_visits mv ON a.id = mv.agent_id
+      LEFT JOIN telephonic_calls tc ON a.id = tc.agent_id
       LEFT JOIN queries q ON a.id = q.agent_id
       GROUP BY a.city
       ORDER BY total_agents DESC
-    `);
+    `, [monthPattern]);
 
-    // Calculate conversion rates
-    const formatted = locations.map(l => ({
-      ...l,
-      conversion_rate: l.query_agents > 0 ? Math.round((l.active_agents / l.query_agents) * 100) : 0,
-      visit_rate: Math.round((l.visited_count / l.total_agents) * 100)
-    }));
+    // Calculate conversion rates & calling coverage
+    const formatted = locations.map(l => {
+      const called = l.yug_called_month || 0;
+      const total = l.total_agents || 0;
+      const pending = Math.max(0, total - called);
+      const coverageRate = total > 0 ? Math.round((called / total) * 100) : 0;
 
-    res.json({ success: true, locations: formatted });
+      return {
+        ...l,
+        yug_called_month: called,
+        yug_pending_month: pending,
+        yug_coverage_rate: coverageRate,
+        conversion_rate: l.query_agents > 0 ? Math.round((l.active_agents / l.query_agents) * 100) : 0,
+        visit_rate: Math.round((l.visited_count / l.total_agents) * 100)
+      };
+    });
+
+    res.json({ success: true, locations: formatted, month });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }

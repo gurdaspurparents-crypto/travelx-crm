@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { LayoutDashboard, Flame, Users, MapPin, Phone, PhoneCall, FileText, BarChart3, Sparkles, Bell, Shield, X, AlertTriangle, Clock } from 'lucide-react';
+import { LayoutDashboard, Flame, Users, MapPin, Phone, PhoneCall, FileText, BarChart3, Sparkles, Bell, Shield, X, AlertTriangle, Clock, Plane } from 'lucide-react';
 import FollowupAlertModal from './FollowupAlertModal';
 import BackupRecoveryModal from './BackupRecoveryModal';
 
@@ -76,19 +76,20 @@ export default function Header({ activeTab, onSelectTab, role, onRoleChange, onO
     { id: 'visits', label: 'Marketing Visits', icon: MapPin },
     { id: 'calls', label: 'Follow-ups', icon: Phone },
     { id: 'queries', label: 'Queries & Sales', icon: FileText },
+    { id: 'flight_rates', label: 'Flight Rate Tracker', icon: Plane, badge: 'NEW' },
     { id: 'analytics', label: 'Territory & Reports', icon: BarChart3 },
     { id: 'ai', label: 'AI Assistant', icon: Sparkles, badge: 'AI' }
   ];
 
   const visibleTabs = tabs.filter(tab => {
     if (role === 'Marketing Executive') {
-      return tab.id === 'visits' || tab.id === 'agents' || tab.id === 'yug_desk';
+      return tab.id === 'visits' || tab.id === 'agents' || tab.id === 'yug_desk' || tab.id === 'flight_rates';
     }
     if (role === 'Telephonic Executive') {
-      return tab.id === 'agents' || tab.id === 'visits' || tab.id === 'calls' || tab.id === 'queries' || tab.id === 'analytics' || tab.id === 'yug_desk';
+      return tab.id === 'agents' || tab.id === 'visits' || tab.id === 'calls' || tab.id === 'queries' || tab.id === 'analytics' || tab.id === 'yug_desk' || tab.id === 'flight_rates';
     }
     if (role === 'Yug (Calling Executive)') {
-      return tab.id === 'yug_desk' || tab.id === 'agents' || tab.id === 'calls' || tab.id === 'queries';
+      return tab.id === 'yug_desk' || tab.id === 'agents' || tab.id === 'calls' || tab.id === 'queries' || tab.id === 'flight_rates';
     }
     return true;
   });

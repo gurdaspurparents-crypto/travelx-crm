@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Plane } from 'lucide-react';
 import Header from './components/Header';
 import ManagementDashboard from './components/ManagementDashboard';
 import FocusLists from './components/FocusLists';
@@ -207,6 +208,45 @@ export default function App() {
             key={refreshKey}
             onOpenModal={handleOpenModal}
           />
+        )}
+
+        {activeTab === 'flight_rates' && (
+          <div className="space-y-4">
+            <div className="bg-[#0b1120] border border-white/10 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-lg">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-500 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-sky-500/20">
+                  <Plane className="w-5 h-5 transform -rotate-45" />
+                </div>
+                <div>
+                  <h2 className="text-base font-extrabold text-white flex items-center gap-2">
+                    Flight Rate Tracker & Vendor Intelligence
+                    <span className="text-[10px] font-mono font-bold bg-sky-500/20 text-sky-300 border border-sky-500/30 px-2 py-0.5 rounded-full">
+                      LIVE
+                    </span>
+                  </h2>
+                  <p className="text-xs text-slate-400">Extract rates from WhatsApp images and compare vendor prices side-by-side.</p>
+                </div>
+              </div>
+
+              <a
+                href="http://localhost:5005"
+                target="_blank"
+                rel="noreferrer"
+                className="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-xl text-xs font-bold flex items-center gap-2 transition-all shadow-md shadow-sky-600/30 self-start sm:self-center"
+              >
+                <span>Open Full Screen</span>
+                <span>↗</span>
+              </a>
+            </div>
+
+            <div className="bg-[#0b1120] border border-white/10 rounded-2xl overflow-hidden shadow-2xl h-[780px]">
+              <iframe
+                src="http://localhost:5005"
+                className="w-full h-full border-0"
+                title="Flight Rate Tracker"
+              />
+            </div>
+          </div>
         )}
 
       </main>
