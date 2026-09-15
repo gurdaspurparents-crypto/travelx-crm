@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-15T12:04:25.010Z",
+  "backed_up_at": "2026-09-15T12:04:29.214Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -2600,20 +2600,6 @@
       "area": "Taragarh md dnn",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1467",
-      "name": "Mr.Iqbal singh",
-      "company_name": "Guru nanak photostate",
-      "mobile": "7589372162",
-      "city": "Jaura Chattran",
-      "area": "Jaura Chattran",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
