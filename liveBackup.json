@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-15T07:53:06.115Z",
+  "backed_up_at": "2026-09-15T08:06:37.535Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -10625,6 +10625,23 @@
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
+    },
+    {
+      "id": 672,
+      "visit_date": "2026-09-15",
+      "agent_id": "AGT-1557",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "mr.sharan",
+      "mobile": "8528598598",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"Cruise\",\"International Flight\",\"Bus Booking\",\"Forex\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-16",
+      "location": "Kalanour",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
     }
   ],
   "telephonic_calls": [
@@ -17496,7 +17513,7 @@
       "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-17",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 869,
@@ -17511,7 +17528,7 @@
       "call_result": "Not Interested",
       "remarks": "",
       "next_followup_date": "2026-09-17",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 870,
@@ -17526,7 +17543,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-17",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 871,
@@ -17541,7 +17558,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-09-17",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 872,
@@ -17556,7 +17573,7 @@
       "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-17",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 873,
@@ -17571,7 +17588,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-09-17",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 874,
@@ -17586,7 +17603,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-09-17",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 875,
@@ -17601,7 +17618,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-17",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 876,
@@ -17616,7 +17633,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-09-17",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 877,
@@ -17631,7 +17648,7 @@
       "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-17",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 878,
@@ -17646,7 +17663,7 @@
       "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-17",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 879,
@@ -17661,7 +17678,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-17",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 880,
@@ -17676,7 +17693,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-17",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 881,
@@ -17691,7 +17708,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-17",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
