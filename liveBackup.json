@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-15T05:58:39.800Z",
+  "backed_up_at": "2026-09-15T06:26:37.683Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -10554,6 +10554,23 @@
       "remarks": "",
       "next_followup_date": "2026-09-16",
       "location": "Jaura Chattran",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 668,
+      "visit_date": "2026-09-15",
+      "agent_id": "AGT-1008",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.nav sharma",
+      "mobile": "6239723536",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Bus Booking\",\"Hotel Booking\",\"Forex\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-16",
+      "location": "Amipur",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
