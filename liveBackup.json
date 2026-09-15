@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-15T05:49:56.010Z",
+  "backed_up_at": "2026-09-15T05:50:59.352Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -10503,6 +10503,23 @@
       "remarks": "",
       "next_followup_date": "2026-09-15",
       "location": "Dinanagar",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 665,
+      "visit_date": "2026-09-15",
+      "agent_id": "AGT-1480",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.rnbir",
+      "mobile": "8360819965",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Money Transfer\",\"Bus Booking\",\"Forex\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-16",
+      "location": "Jaura Chattran",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
