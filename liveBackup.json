@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-15T12:07:17.798Z",
+  "backed_up_at": "2026-09-15T12:08:10.925Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -3174,20 +3174,6 @@
       "area": "Kalanour",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1543",
-      "name": "Mr.vikas sharma ",
-      "company_name": "SVA VISA CONSULTANATS",
-      "mobile": "8558804978",
-      "city": "Kalanour",
-      "area": "Kalanour",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Active",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -14034,21 +14020,6 @@
       "payment_terms": null
     },
     {
-      "id": 625,
-      "call_date": "2026-09-09",
-      "agent_id": "AGT-1543",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "BUSY ",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
-      "remarks": "",
-      "next_followup_date": "2026-09-11",
-      "payment_terms": null
-    },
-    {
       "id": 626,
       "call_date": "2026-09-09",
       "agent_id": "AGT-1545",
@@ -15336,21 +15307,6 @@
       "call_result": "Call Again Later",
       "remarks": "Agent busy, requested to call back tomorrow",
       "next_followup_date": "2026-09-11",
-      "payment_terms": null
-    },
-    {
-      "id": 713,
-      "call_date": "2026-09-10",
-      "agent_id": "AGT-1543",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "busy ",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
-      "remarks": "",
-      "next_followup_date": "2026-09-12",
       "payment_terms": null
     },
     {
@@ -17996,26 +17952,6 @@
       "rejection_remarks": ""
     },
     {
-      "id": "QRY-5001",
-      "query_date": "2026-08-31",
-      "agent_id": "AGT-1543",
-      "product": "International Flight",
-      "query_details": "ATQ-DXB ",
-      "travel_date": "2026-09-15",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-09-01",
-      "status": "Converted",
-      "booking_date": "2026-08-29",
-      "booking_value": 48000,
-      "booking_ref_no": "SEYJUE",
-      "closing_employee": "Simranjit Kaur",
-      "rejection_reason": null,
-      "rejection_remarks": null
-    },
-    {
       "id": "QRY-5003",
       "query_date": "2026-08-31",
       "agent_id": "AGT-1323",
@@ -18714,26 +18650,6 @@
       "closing_employee": null,
       "rejection_reason": "Agent Did Not Respond",
       "rejection_remarks": ""
-    },
-    {
-      "id": "QRY-5047",
-      "query_date": "2026-09-09",
-      "agent_id": "AGT-1543",
-      "product": "International Flight",
-      "query_details": "mru-del",
-      "travel_date": "2026-09-24",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-09-10",
-      "status": "Converted",
-      "booking_date": "2026-08-29",
-      "booking_value": 1,
-      "booking_ref_no": "1",
-      "closing_employee": "Simranjit Kaur",
-      "rejection_reason": null,
-      "rejection_remarks": null
     },
     {
       "id": "QRY-5049",
