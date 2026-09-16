@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-16T07:42:53.752Z",
+  "backed_up_at": "2026-09-16T07:43:18.138Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -653,11 +653,11 @@
       "city": "Dinanagar",
       "area": "Dinanagar",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "Advance Payment"
     },
     {
       "id": "AGT-1192",
@@ -18366,6 +18366,21 @@
       "call_date": "2026-09-16",
       "agent_id": "AGT-1985",
       "visit_id": 661,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-18",
+      "payment_terms": "Advance Payment"
+    },
+    {
+      "id": 915,
+      "call_date": "2026-09-16",
+      "agent_id": "AGT-1191",
+      "visit_id": 662,
       "executive_name": "Simranjit Kaur",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
