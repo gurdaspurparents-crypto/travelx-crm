@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-16T08:34:07.629Z",
+  "backed_up_at": "2026-09-16T08:35:26.968Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7696,6 +7696,20 @@
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
       "stage": "Visited",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-09-16",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-1992",
+      "name": "ashwani",
+      "company_name": "ashwani kingdom",
+      "mobile": "9814902164",
+      "city": "amritsar",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-16",
