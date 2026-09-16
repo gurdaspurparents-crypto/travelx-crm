@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-16T07:59:03.405Z",
+  "backed_up_at": "2026-09-16T07:59:30.603Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7685,6 +7685,20 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-15",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-1991",
+      "name": "Abhi",
+      "company_name": "Abhi shalon center ",
+      "mobile": "76967 77209",
+      "city": "Kalanour",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-09-16",
       "payment_terms": "Not Discussed"
     }
   ],
