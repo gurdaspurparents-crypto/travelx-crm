@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-16T07:43:34.579Z",
+  "backed_up_at": "2026-09-16T07:45:01.807Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -2641,11 +2641,11 @@
       "city": "Jaura Chattran",
       "area": "Jaura Chittran",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "Advance Payment"
     },
     {
       "id": "AGT-1481",
@@ -18417,6 +18417,21 @@
       "agent_requirement": "",
       "interest_level": "Interested / Warm",
       "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-18",
+      "payment_terms": "Advance Payment"
+    },
+    {
+      "id": 918,
+      "call_date": "2026-09-16",
+      "agent_id": "AGT-1480",
+      "visit_id": 665,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "no..glt ",
+      "interest_level": "Interested / Warm",
+      "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-18",
       "payment_terms": "Advance Payment"
