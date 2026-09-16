@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-16T10:16:26.295Z",
+  "backed_up_at": "2026-09-16T10:17:00.894Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -11104,6 +11104,23 @@
       "remarks": "",
       "next_followup_date": "2026-09-17",
       "location": "wadala bangar ",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 702,
+      "visit_date": "2026-09-16",
+      "agent_id": "AGT-1874",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Love ghuman",
+      "mobile": "9779800724",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Bus Booking\",\"Forex\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-17",
+      "location": "Wadala Bangar",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
