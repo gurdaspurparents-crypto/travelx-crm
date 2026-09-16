@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-16T10:17:00.894Z",
+  "backed_up_at": "2026-09-16T10:17:49.444Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7751,7 +7751,7 @@
       "city": "wadala bangar ",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-16",
@@ -11121,6 +11121,23 @@
       "remarks": "",
       "next_followup_date": "2026-09-17",
       "location": "Wadala Bangar",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 703,
+      "visit_date": "2026-09-16",
+      "agent_id": "AGT-1995",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr Gagan ",
+      "mobile": "9779327538 ",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"Cruise\",\"Hotel Booking\",\"International Flight\",\"Forex\",\"Bus Booking\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-17",
+      "location": "wadala bangar ",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
