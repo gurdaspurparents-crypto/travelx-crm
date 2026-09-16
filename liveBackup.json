@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-15T12:44:31.280Z",
+  "backed_up_at": "2026-09-16T05:57:43.039Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -17741,7 +17741,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-17",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 883,
@@ -17756,7 +17756,7 @@
       "call_result": "Not Interested",
       "remarks": "",
       "next_followup_date": "2026-09-17",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 884,
@@ -17771,7 +17771,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-09-17",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 885,
@@ -17786,7 +17786,7 @@
       "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-17",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
