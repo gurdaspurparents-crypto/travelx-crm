@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-16T06:07:13.436Z",
+  "backed_up_at": "2026-09-16T06:08:39.721Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -1115,7 +1115,7 @@
       "city": "Ghuman",
       "area": "Ghoman",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -17857,6 +17857,21 @@
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
       "agent_requirement": "no call busy ",
+      "interest_level": "Interested / Warm",
+      "call_result": "No Response",
+      "remarks": "",
+      "next_followup_date": "2026-09-18",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 891,
+      "call_date": "2026-09-16",
+      "agent_id": "AGT-1266",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "no call busy   ",
       "interest_level": "Interested / Warm",
       "call_result": "No Response",
       "remarks": "",
