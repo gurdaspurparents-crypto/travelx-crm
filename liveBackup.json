@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-17T08:08:46.988Z",
+  "backed_up_at": "2026-09-17T08:09:20.439Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7779,7 +7779,7 @@
       "city": "Dera baba nanak",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-17",
@@ -11319,6 +11319,23 @@
       "remarks": "",
       "next_followup_date": "2026-09-18",
       "location": "Dera Baba Nanak",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 713,
+      "visit_date": "2026-09-17",
+      "agent_id": "AGT-1997",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr Aman ",
+      "mobile": "+91 98145 78148",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-18",
+      "location": "Dera baba nanak",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
