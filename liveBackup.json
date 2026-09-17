@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-17T14:26:26.071Z",
+  "backed_up_at": "2026-09-17T14:26:54.220Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7849,7 +7849,7 @@
       "city": "Dera baba nanak ",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-17",
@@ -11572,6 +11572,23 @@
       "mobile": "9592492292",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"Cruise\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-18",
+      "location": "Dera baba nanak ",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 724,
+      "visit_date": "2026-09-17",
+      "agent_id": "AGT-2002",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Honey ",
+      "mobile": "7087528678",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"Cruise\",\"International Flight\",\"Bus Booking\",\"Forex\",\"Hotel Booking\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-09-18",
