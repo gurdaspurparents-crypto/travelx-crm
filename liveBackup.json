@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-17T09:10:24.748Z",
+  "backed_up_at": "2026-09-17T09:24:46.030Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -11414,6 +11414,40 @@
       "mobile": "9855594360",
       "is_new_agent": 0,
       "products_pitched": "[\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Domestic Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-18",
+      "location": "Dera Baba Nanak",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 718,
+      "visit_date": "2026-09-17",
+      "agent_id": "AGT-1090",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.sham ",
+      "mobile": "8725800055",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-18",
+      "location": "Dera Baba Nanak",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 719,
+      "visit_date": "2026-09-17",
+      "agent_id": "AGT-1090",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.sham ",
+      "mobile": "8725800055",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-09-18",
