@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-18T10:01:20.088Z",
+  "backed_up_at": "2026-09-18T10:01:39.574Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -6589,7 +6589,7 @@
       "city": "Bhaini Mia Khan",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-02",
@@ -11790,6 +11790,23 @@
       "mobile": "9888800483",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Travel Insurance\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-19",
+      "location": "Bhaini Mia Khan",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 736,
+      "visit_date": "2026-09-18",
+      "agent_id": "AGT-1923",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "kuldeep",
+      "mobile": "9814740029",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"International Flight\",\"Hotel Booking\",\"Bus Booking\",\"Forex\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-09-19",
