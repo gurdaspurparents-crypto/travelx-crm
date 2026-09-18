@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-18T10:10:51.422Z",
+  "backed_up_at": "2026-09-18T10:14:57.426Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7737,11 +7737,11 @@
       "city": "wadala bangar",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-16",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "Advance Payment"
     },
     {
       "id": "AGT-1995",
@@ -20044,6 +20044,21 @@
       "call_date": "2026-09-18",
       "agent_id": "AGT-1995",
       "visit_id": 703,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Call Again Later",
+      "remarks": "",
+      "next_followup_date": "2026-09-20",
+      "payment_terms": "Advance Payment"
+    },
+    {
+      "id": 966,
+      "call_date": "2026-09-18",
+      "agent_id": "AGT-1994",
+      "visit_id": 704,
       "executive_name": "Simranjit Kaur",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
