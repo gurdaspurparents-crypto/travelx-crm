@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-18T10:00:43.079Z",
+  "backed_up_at": "2026-09-18T10:01:20.088Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -6575,7 +6575,7 @@
       "city": "Bhaini Mia Khan",
       "area": "Bhaini Mia Khan",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-02",
@@ -11777,6 +11777,23 @@
       "remarks": "",
       "next_followup_date": "2026-09-19",
       "location": "Kahnuwan",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 735,
+      "visit_date": "2026-09-18",
+      "agent_id": "AGT-1922",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "satnam singh ",
+      "mobile": "9888800483",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Travel Insurance\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-19",
+      "location": "Bhaini Mia Khan",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
