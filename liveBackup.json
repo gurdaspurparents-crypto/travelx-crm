@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-19T08:57:50.079Z",
+  "backed_up_at": "2026-09-19T08:58:13.218Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -6589,7 +6589,7 @@
       "city": "Bhaini Mia Khan",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-02",
@@ -21891,6 +21891,26 @@
       "agent_id": "AGT-1491",
       "product": "International Flight",
       "query_details": "mru-del",
+      "travel_date": "2026-10-04",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-09-20",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5104",
+      "query_date": "2026-09-19",
+      "agent_id": "AGT-1923",
+      "product": "International Flight",
+      "query_details": "auh-atqww",
       "travel_date": "2026-10-04",
       "pax_details": "2 Adults",
       "estimated_value": 0,
