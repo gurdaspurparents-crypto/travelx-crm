@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-21T07:09:55.079Z",
+  "backed_up_at": "2026-09-21T07:12:18.999Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -22450,6 +22450,26 @@
       "agent_id": "AGT-1823",
       "product": "International Flight",
       "query_details": "del-ruh",
+      "travel_date": "2026-10-06",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-09-22",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5110",
+      "query_date": "2026-09-21",
+      "agent_id": "AGT-1292",
+      "product": "International Flight",
+      "query_details": "zag-del",
       "travel_date": "2026-10-06",
       "pax_details": "2 Adults",
       "estimated_value": 0,
