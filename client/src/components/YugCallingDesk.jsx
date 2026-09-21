@@ -23,6 +23,7 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
   const [selectedMonth, setSelectedMonth] = useState(currentMonthStr);
   const [trackingDate, setTrackingDate] = useState('');
   
+  const [executiveFilter, setExecutiveFilter] = useState('all'); // 'all' or 'yug'
   const [showCallDetails, setShowCallDetails] = useState(false);
   const [callSearchTerm, setCallSearchTerm] = useState('');
   const [callResultFilter, setCallResultFilter] = useState('all');
@@ -100,37 +101,11 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
         }
       }
 
-      // 2. Fetch Call History Logged by Yug or All Telephonic Calls
-      const callRes = await fetch(`/api/calls?executive=Yug&limit=2500`);
-      const callJson = await callRes.json();
-      
-      let history = [];
-      if (callJson.success && callJson.calls && callJson.calls.length > 0) {
-        history = callJson.calls;
-      } else {
-        const allCallsRes = await fetch('/api/calls?limit=2500');
-        const allCallsJson = await allCallsRes.json();
-        if (allCallsJson.success) history = allCallsJson.calls || [];
-      }
-      
+      // 2. Fetch Full Call History (without limit 250 truncation)
+      const allCallsRes = await fetch('/api/calls?limit=10000');
+      const allCallsJson = await allCallsRes.json();
+      const history = (allCallsJson.success && allCallsJson.calls) ? allCallsJson.calls : [];
       setCallsHistory(history);
-
-      // Compute statistics
-      const todayDate = new Date().toISOString().split('T')[0];
-      const yugCalls = history.filter(c => c.executive_name === 'Yug' || c.executive_name?.toLowerCase().includes('yug'));
-      const activeHistory = yugCalls.length > 0 ? yugCalls : history;
-
-      const todayCount = activeHistory.filter(c => c.call_date === todayDate).length;
-      const connected = activeHistory.filter(c => c.is_connected || c.call_result?.includes('Connected') || c.call_result?.includes('Interested') || c.call_result?.includes('Requirement')).length;
-      const requirements = activeHistory.filter(c => c.agent_requirement || c.call_result?.includes('Requirement')).length;
-
-      setStats(prev => ({
-        ...prev,
-        totalCalls: activeHistory.length,
-        todayCalls: todayCount,
-        connectedCount: connected,
-        requirementsCount: requirements
-      }));
 
     } catch (err) {
       console.error('Error fetching Yug Calling Desk data:', err);
@@ -139,10 +114,14 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
     }
   };
 
+  const allCallsCount = callsHistory.length;
+  const yugCallsCount = useMemo(() => {
+    return callsHistory.filter(c => c.executive_name === 'Yug' || c.executive_name?.toLowerCase().includes('yug')).length;
+  }, [callsHistory]);
+
   const handleSelectCityFromMatrix = (cityName, filterMode = 'all') => {
     setSelectedCity(cityName);
     setQueueCallingFilter(filterMode);
-    setActiveMainTab('queue');
     // Smooth scroll down to calling queue
     const queueElement = document.getElementById('calling-queue-section');
     if (queueElement) {
@@ -150,11 +129,13 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
     }
   };
 
-  // Derived calls filtered strictly by Yug
+  // Derived calls filtered by executive mode ('all' vs 'yug')
   const yugOnlyCalls = useMemo(() => {
-    const yCalls = callsHistory.filter(c => c.executive_name === 'Yug' || c.executive_name?.toLowerCase().includes('yug'));
-    return yCalls.length > 0 ? yCalls : callsHistory;
-  }, [callsHistory]);
+    if (executiveFilter === 'yug') {
+      return callsHistory.filter(c => c.executive_name === 'Yug' || c.executive_name?.toLowerCase().includes('yug'));
+    }
+    return callsHistory;
+  }, [callsHistory, executiveFilter]);
 
   // Fast O(1) map of all calls made to each agent in the selected month
   const yugAgentMonthMap = useMemo(() => {
@@ -286,11 +267,26 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
   }, [dateFilteredCalls, callSearchTerm, callResultFilter, onlyWithComments]);
 
   const dateConnectedCount = useMemo(() => {
-    return dateFilteredCalls.filter(c => c.is_connected || c.call_result?.includes('Connected') || c.call_result?.includes('Interested') || c.call_result?.includes('Requirement') || c.call_result?.includes('Call Again')).length;
+    return dateFilteredCalls.filter(c => {
+      const res = (c.call_result || '').toLowerCase();
+      return (
+        res.includes('interested') ||
+        res.includes('requirement') ||
+        res.includes('call again') ||
+        res.includes('follow-up') ||
+        res.includes('connected')
+      ) && !res.includes('not interested') && !res.includes('no response');
+    }).length;
   }, [dateFilteredCalls]);
 
   const dateRequirementsCount = useMemo(() => {
-    return dateFilteredCalls.filter(c => c.agent_requirement || c.call_result?.includes('Requirement')).length;
+    return dateFilteredCalls.filter(c => {
+      const res = (c.call_result || '').toLowerCase();
+      const req = (c.agent_requirement || '').trim().toLowerCase();
+      const invalidPhrases = ['no specific remarks', 'busy', 'switch off', 'ghalat number', 'kam nhi', 'kam nahin', 'no visit', 'no call', 'ehnu call', 'cut call'];
+      const hasInvalid = invalidPhrases.some(p => req.includes(p));
+      return res.includes('requirement') || (req.length > 3 && !hasInvalid);
+    }).length;
   }, [dateFilteredCalls]);
 
   const dateWithCommentsCount = useMemo(() => {
@@ -370,6 +366,32 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
 
         {/* Date Filter Buttons — EXACTLY WHERE USER CIRCLED */}
         <div className="flex items-center gap-2 flex-wrap">
+          {/* Executive Mode Switcher: All Calls vs Yug Only */}
+          <div className="flex items-center bg-[#070b14] border border-white/[0.12] p-0.5 rounded-xl text-xs">
+            <button
+              onClick={() => setExecutiveFilter('all')}
+              className={`px-2.5 py-1 rounded-lg font-bold transition cursor-pointer flex items-center gap-1 ${
+                executiveFilter === 'all'
+                  ? 'bg-sky-600 text-white shadow-sm shadow-sky-600/30'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              <span>🌐 All Executives</span>
+              <span className="text-[10px] font-mono px-1 rounded bg-white/[0.1]">{allCallsCount}</span>
+            </button>
+            <button
+              onClick={() => setExecutiveFilter('yug')}
+              className={`px-2.5 py-1 rounded-lg font-bold transition cursor-pointer flex items-center gap-1 ${
+                executiveFilter === 'yug'
+                  ? 'bg-sky-600 text-white shadow-sm shadow-sky-600/30'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              <span>📱 Yug Only</span>
+              <span className="text-[10px] font-mono px-1 rounded bg-white/[0.1]">{yugCallsCount}</span>
+            </button>
+          </div>
+
           {/* 1. THIS MONTH BUTTON + PICKER (Directly visible, prominent, and vibrant) */}
           <div className={`flex items-center rounded-xl overflow-hidden border transition ${
             dateFilterMode === 'month'
@@ -428,8 +450,21 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
           >
             📅 Yesterday
           </button>
+
+          {/* 4. ALL DATES / TOTAL CALLS BUTTON */}
+          <button
+            onClick={() => { setDateFilterMode('all'); setTrackingDate(''); }}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer flex items-center gap-1.5 ${
+              dateFilterMode === 'all'
+                ? 'bg-sky-600 text-white shadow-md shadow-sky-600/30 font-extrabold'
+                : 'bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 border border-white/[0.08]'
+            }`}
+            title="Show all recorded calls across all dates (Total Calls)"
+          >
+            🌐 All Calls ({executiveFilter === 'all' ? allCallsCount : yugCallsCount})
+          </button>
           
-          {/* 4. CUSTOM DATE PICKER */}
+          {/* 5. CUSTOM DATE PICKER */}
           <div className="flex items-center gap-1.5 bg-[#070b14] border border-white/[0.08] px-2.5 py-1 rounded-xl text-xs">
             <Calendar className="w-3.5 h-3.5 text-slate-400" />
             <input
@@ -442,17 +477,6 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
               className="bg-transparent text-slate-200 font-mono text-xs focus:outline-none cursor-pointer"
             />
           </div>
-
-          {/* 5. ALL DATES BUTTON */}
-          {dateFilterMode !== 'all' && (
-            <button
-              onClick={() => { setDateFilterMode('all'); setTrackingDate(''); }}
-              className="px-2.5 py-1.5 rounded-xl text-xs font-medium bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 border border-white/[0.08] flex items-center gap-1 cursor-pointer"
-              title="Show all recorded dates"
-            >
-              <X className="w-3.5 h-3.5" /> All Dates
-            </button>
-          )}
 
           {/* 6. TOGGLE CALL DETAILS */}
           <button
@@ -470,9 +494,9 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
       </div>
 
       {/* ========================================================================= */}
-      {/* 📊 INTERACTIVE METRICS SUMMARY CARDS */}
+      {/* 📊 INTERACTIVE METRICS SUMMARY CARDS (Includes All-Time Total Calls) */}
       {/* ========================================================================= */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 sm:gap-4">
         {/* Card 1: Total Agencies */}
         <div className="bg-[#0c1322]/90 border border-white/[0.08] p-4 rounded-xl shadow-sm backdrop-blur-md">
           <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Total Punjab Agencies</div>
@@ -480,7 +504,31 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
           <div className="text-[11px] text-slate-400 mt-0.5">Across All Punjab Cities</div>
         </div>
 
-        {/* Card 2: Calls Logged (Dynamic Label for Month, Today, Yesterday, Date) */}
+        {/* Card 2: Lifetime Total Calls (ALL TIME) */}
+        <div 
+          onClick={() => { setDateFilterMode('all'); setTrackingDate(''); }}
+          className={`bg-[#0c1322]/90 border p-4 rounded-xl shadow-sm cursor-pointer transition-all duration-150 backdrop-blur-md ${
+            dateFilterMode === 'all' 
+              ? 'border-sky-500 ring-2 ring-sky-400/40 bg-sky-950/30' 
+              : 'border-white/[0.08] hover:border-sky-500/40'
+          }`}
+          title="Click to show all total calls"
+        >
+          <div className="flex items-center justify-between">
+            <div className="text-[11px] font-bold text-sky-400 uppercase tracking-wider">TOTAL CALLS (ALL-TIME)</div>
+            <span className="text-[9px] font-mono bg-sky-500/10 text-sky-300 border border-sky-500/20 px-1.5 py-0.5 rounded font-bold">
+              Lifetime
+            </span>
+          </div>
+          <div className="text-2xl font-extrabold font-mono text-sky-400 mt-1">
+            {executiveFilter === 'all' ? allCallsCount : yugCallsCount}
+          </div>
+          <div className="text-[11px] text-slate-400 mt-0.5">
+            {executiveFilter === 'all' ? 'All CRM Telephonic Calls' : 'Total Calls Logged by Yug'}
+          </div>
+        </div>
+
+        {/* Card 3: Calls Logged in Selected Period (Dynamic Label for Month, Today, Yesterday, Date) */}
         <div 
           onClick={() => setShowCallDetails(!showCallDetails)}
           className="bg-[#0c1322]/90 border border-emerald-500/30 hover:border-emerald-500/60 p-4 rounded-xl shadow-sm cursor-pointer transition-all duration-150 backdrop-blur-md relative group"
@@ -495,10 +543,10 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
                 ? "YESTERDAY'S CALLS"
                 : trackingDate
                 ? `CALLS ON ${trackingDate}`
-                : "TOTAL CALLS LOGGED"}
+                : "ALL RECORDED CALLS"}
             </div>
             <span className="text-[9px] font-mono bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 px-1.5 py-0.5 rounded font-bold">
-              {showCallDetails ? 'Hide ▲' : 'Details ▼'}
+              {showCallDetails ? 'Hide ▲' : 'Breakdown ▼'}
             </span>
           </div>
           <div className="text-2xl font-extrabold font-mono text-emerald-400 mt-1 flex items-baseline gap-2">
@@ -511,12 +559,12 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
           </div>
           <div className="text-[11px] text-emerald-400/80 mt-0.5 font-medium">
             {dateFilterMode === 'month' 
-              ? `${uniqueAgenciesCalledThisMonth} Agencies Called in ${selectedMonth}` 
-              : 'Completed (Click to View Breakdown)'}
+              ? `${uniqueAgenciesCalledThisMonth} Agencies in ${selectedMonth}` 
+              : 'Click to View Breakdown'}
           </div>
         </div>
 
-        {/* Card 3: Connected Calls */}
+        {/* Card 4: Connected Calls */}
         <div 
           onClick={() => setShowCallDetails(true)}
           className="bg-[#0c1322]/90 border border-white/[0.08] hover:border-amber-500/40 p-4 rounded-xl shadow-sm cursor-pointer transition-all duration-150 backdrop-blur-md"
@@ -528,12 +576,12 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
           </div>
         </div>
 
-        {/* Card 4: Requirements Recd */}
+        {/* Card 5: Requirements Recd */}
         <div className="bg-[#0c1322]/90 border border-white/[0.08] p-4 rounded-xl shadow-sm backdrop-blur-md">
           <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Requirements Recd</div>
           <div className="text-2xl font-extrabold font-mono text-indigo-400 mt-1">{dateRequirementsCount}</div>
           <div className="text-[11px] text-indigo-400/80 mt-0.5 font-medium">
-            Ready for Quoting
+            Inquiries Captured
           </div>
         </div>
       </div>

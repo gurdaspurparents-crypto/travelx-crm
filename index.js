@@ -1038,7 +1038,9 @@ app.get('/api/calls', async (req, res) => {
       }
     }
 
-    query += ` ORDER BY tc.call_date DESC, tc.id DESC LIMIT 250`;
+    const limitVal = parseInt(req.query.limit, 10) || 10000;
+    query += ` ORDER BY tc.call_date DESC, tc.id DESC LIMIT ?`;
+    params.push(limitVal);
 
     const calls = await dbAll(query, params);
     res.json({ success: true, calls });

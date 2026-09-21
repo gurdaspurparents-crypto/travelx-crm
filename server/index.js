@@ -1038,7 +1038,7 @@ app.get('/api/calls', async (req, res) => {
       }
     }
 
-    const limitVal = parseInt(req.query.limit, 10) || (executive ? 2500 : 500);
+    const limitVal = parseInt(req.query.limit, 10) || 10000;
     query += ` ORDER BY tc.call_date DESC, tc.id DESC LIMIT ?`;
     params.push(limitVal);
 
