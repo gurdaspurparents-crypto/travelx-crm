@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-21T11:34:25.765Z",
+  "backed_up_at": "2026-09-21T11:35:23.009Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -12136,6 +12136,23 @@
       "remarks": "",
       "next_followup_date": "2026-09-22",
       "location": "Saidowal",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 752,
+      "visit_date": "2026-09-21",
+      "agent_id": "AGT-1834",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.Hardev singh",
+      "mobile": "9872605411",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-22",
+      "location": "Tibri",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
