@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-21T08:45:28.128Z",
+  "backed_up_at": "2026-09-21T08:46:45.456Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -6575,11 +6575,11 @@
       "city": "Bhaini Mia Khan",
       "area": "Bhaini Mia Khan",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-02",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "Advance Payment"
     },
     {
       "id": "AGT-1923",
@@ -21334,6 +21334,21 @@
       "remarks": "",
       "next_followup_date": "2026-09-23",
       "payment_terms": "After Booking / Credit"
+    },
+    {
+      "id": 1050,
+      "call_date": "2026-09-21",
+      "agent_id": "AGT-1922",
+      "visit_id": 735,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Call Again Later",
+      "remarks": "",
+      "next_followup_date": "2026-09-23",
+      "payment_terms": "Advance Payment"
     }
   ],
   "queries": [
