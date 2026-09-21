@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-21T07:18:44.282Z",
+  "backed_up_at": "2026-09-21T07:21:36.771Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -4185,7 +4185,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "Advance Payment"
     },
     {
       "id": "AGT-1665",
@@ -20602,6 +20602,21 @@
       "call_date": "2026-09-21",
       "agent_id": "AGT-1909",
       "visit_id": 637,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-23",
+      "payment_terms": "Advance Payment"
+    },
+    {
+      "id": 1000,
+      "call_date": "2026-09-21",
+      "agent_id": "AGT-1662",
+      "visit_id": null,
       "executive_name": "Yug",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
