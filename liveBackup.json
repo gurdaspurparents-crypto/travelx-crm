@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-21T11:24:12.036Z",
+  "backed_up_at": "2026-09-21T11:27:03.129Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -12037,6 +12037,23 @@
       "remarks": "",
       "next_followup_date": "2026-09-22",
       "location": "Purana Shalla",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 747,
+      "visit_date": "2026-09-21",
+      "agent_id": "AGT-1063",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Anil ",
+      "mobile": "7837060012",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-22",
+      "location": "Chak Sharif",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
