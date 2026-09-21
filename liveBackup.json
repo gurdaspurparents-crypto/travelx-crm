@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-21T10:04:25.762Z",
+  "backed_up_at": "2026-09-21T10:04:56.109Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -11969,6 +11969,23 @@
       "remarks": "",
       "next_followup_date": "2026-09-22",
       "location": "Tibri ",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 743,
+      "visit_date": "2026-09-21",
+      "agent_id": "AGT-1646",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Vinod",
+      "mobile": "9888278272",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Hotel Booking\",\"International Flight\",\"Forex\",\"Bus Booking\",\"Travel Insurance\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-22",
+      "location": "Purana Shalla",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
