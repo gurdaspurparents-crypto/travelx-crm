@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-21T11:27:03.129Z",
+  "backed_up_at": "2026-09-21T11:27:42.083Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -6939,7 +6939,7 @@
       "city": "Chak Sharif",
       "area": "Chakk Shareef",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -12048,6 +12048,23 @@
       "executive_name": "Bikramjit Singh",
       "person_met": "Mr. Anil ",
       "mobile": "7837060012",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-22",
+      "location": "Chak Sharif",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 748,
+      "visit_date": "2026-09-21",
+      "agent_id": "AGT-1062",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.Vijay",
+      "mobile": "7341184754",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
