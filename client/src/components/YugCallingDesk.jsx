@@ -23,6 +23,9 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
   const [selectedMonth, setSelectedMonth] = useState(currentMonthStr);
   const [trackingDate, setTrackingDate] = useState('');
   
+  // Main View Navigation Tab ('queue', 'matrix', 'logs')
+  const [activeMainTab, setActiveMainTab] = useState('queue');
+  
   const [showCallDetails, setShowCallDetails] = useState(false);
   const [callSearchTerm, setCallSearchTerm] = useState('');
   const [callResultFilter, setCallResultFilter] = useState('all');
@@ -142,6 +145,7 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
   const handleSelectCityFromMatrix = (cityName, filterMode = 'all') => {
     setSelectedCity(cityName);
     setQueueCallingFilter(filterMode);
+    setActiveMainTab('queue');
     // Smooth scroll down to calling queue
     const queueElement = document.getElementById('calling-queue-section');
     if (queueElement) {
@@ -343,14 +347,15 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
         </div>
       </div>
 
+
       {/* ========================================================================= */}
-      {/* 📅 DATE FILTER & TRACKING TOOLBAR (Today / Yesterday / Custom Date Picker) */}
+      {/* 📅 DATE FILTER & TRACKING TOOLBAR */}
       {/* ========================================================================= */}
       <div className="bg-[#0c1322]/90 border border-white/[0.08] p-3.5 sm:p-4 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-lg backdrop-blur-md">
         <div className="flex items-center gap-2 flex-wrap">
           <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
             <Calendar className="w-4 h-4 text-sky-400" />
-            <span>Call Tracking Mode:</span>
+            <span>CALL TRACKING DATE:</span>
           </span>
           <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-sky-500/10 text-sky-300 border border-sky-500/20">
             {dateFilterMode === 'month' 
@@ -366,21 +371,23 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
           </span>
         </div>
 
-        {/* Date Filter Buttons */}
+        {/* Date Filter Buttons — EXACTLY WHERE USER CIRCLED */}
         <div className="flex items-center gap-2 flex-wrap">
-          {/* Month Button + Picker */}
+          {/* 1. THIS MONTH BUTTON + PICKER (Directly visible, prominent, and vibrant) */}
           <div className={`flex items-center rounded-xl overflow-hidden border transition ${
-            dateFilterMode === 'month' ? 'border-sky-500 bg-sky-950/40 shadow-sm shadow-sky-600/20' : 'border-white/[0.08] bg-[#070b14]'
+            dateFilterMode === 'month'
+              ? 'border-sky-500 bg-sky-950/60 shadow-md shadow-sky-600/30 ring-1 ring-sky-500'
+              : 'border-white/[0.08] bg-[#070b14] hover:border-white/[0.2]'
           }`}>
             <button
               onClick={() => { setDateFilterMode('month'); setTrackingDate(''); }}
-              className={`px-3 py-1.5 text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
+              className={`px-3 py-1.5 text-xs font-extrabold transition flex items-center gap-1.5 cursor-pointer ${
                 dateFilterMode === 'month'
                   ? 'bg-sky-600 text-white'
                   : 'bg-transparent text-slate-300 hover:bg-white/[0.05]'
               }`}
             >
-              <Calendar className="w-3.5 h-3.5" /> 🗓️ This Month
+              <Calendar className="w-3.5 h-3.5 text-white" /> 🗓️ This Month
             </button>
             <input
               type="month"
@@ -391,20 +398,23 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
                 setTrackingDate('');
               }}
               className="bg-slate-900 border-l border-white/[0.1] text-sky-300 font-mono text-xs px-2 py-1 focus:outline-none cursor-pointer"
-              title="Change Tracked Month"
+              title="Click to select any Month"
             />
           </div>
 
+          {/* 2. TODAY BUTTON */}
           <button
             onClick={() => { setDateFilterMode('today'); setTrackingDate(todayStr); }}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer ${
               dateFilterMode === 'today'
-                ? 'bg-sky-600 text-white shadow-sm shadow-sky-600/30'
+                ? 'bg-sky-600 text-white shadow-md shadow-sky-600/30'
                 : 'bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 border border-white/[0.08]'
             }`}
           >
             ⚡ Today
           </button>
+
+          {/* 3. YESTERDAY BUTTON */}
           <button
             onClick={() => {
               const y = new Date();
@@ -415,13 +425,14 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
             }}
             className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer ${
               dateFilterMode === 'yesterday'
-                ? 'bg-sky-600 text-white shadow-sm shadow-sky-600/30'
+                ? 'bg-sky-600 text-white shadow-md shadow-sky-600/30'
                 : 'bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 border border-white/[0.08]'
             }`}
           >
             📅 Yesterday
           </button>
           
+          {/* 4. CUSTOM DATE PICKER */}
           <div className="flex items-center gap-1.5 bg-[#070b14] border border-white/[0.08] px-2.5 py-1 rounded-xl text-xs">
             <Calendar className="w-3.5 h-3.5 text-slate-400" />
             <input
@@ -435,6 +446,7 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
             />
           </div>
 
+          {/* 5. ALL DATES BUTTON */}
           {dateFilterMode !== 'all' && (
             <button
               onClick={() => { setDateFilterMode('all'); setTrackingDate(''); }}
@@ -445,7 +457,7 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
             </button>
           )}
 
-          {/* Toggle Details Dropdown Button */}
+          {/* 6. TOGGLE CALL DETAILS */}
           <button
             onClick={() => setShowCallDetails(!showCallDetails)}
             className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 border shadow-sm cursor-pointer ${
@@ -471,21 +483,29 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
           <div className="text-[11px] text-slate-400 mt-0.5">Across All Punjab Cities</div>
         </div>
 
-        {/* Card 2: Calls Made (Month mode shows unique agencies covered + total calls) */}
+        {/* Card 2: Calls Logged (Dynamic Label for Month, Today, Yesterday, Date) */}
         <div 
           onClick={() => setShowCallDetails(!showCallDetails)}
           className="bg-[#0c1322]/90 border border-emerald-500/30 hover:border-emerald-500/60 p-4 rounded-xl shadow-sm cursor-pointer transition-all duration-150 backdrop-blur-md relative group"
         >
           <div className="flex items-center justify-between">
             <div className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider">
-              {dateFilterMode === 'month' ? "Agencies Called (Month)" : dateFilterMode === 'today' ? "Today's Calls" : "Calls Logged"}
+              {dateFilterMode === 'month' 
+                ? "THIS MONTH'S CALLS" 
+                : dateFilterMode === 'today' 
+                ? "TODAY'S CALLS" 
+                : dateFilterMode === 'yesterday'
+                ? "YESTERDAY'S CALLS"
+                : trackingDate
+                ? `CALLS ON ${trackingDate}`
+                : "TOTAL CALLS LOGGED"}
             </div>
             <span className="text-[9px] font-mono bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 px-1.5 py-0.5 rounded font-bold">
               {showCallDetails ? 'Hide ▲' : 'Details ▼'}
             </span>
           </div>
           <div className="text-2xl font-extrabold font-mono text-emerald-400 mt-1 flex items-baseline gap-2">
-            <span>{dateFilterMode === 'month' ? uniqueAgenciesCalledThisMonth : dateFilteredCalls.length}</span>
+            <span>{dateFilteredCalls.length}</span>
             {dateFilterMode === 'month' && (
               <span className="text-xs font-semibold text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded-full border border-emerald-700/60 font-mono">
                 {monthlyCoverageRate}%
@@ -493,74 +513,88 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
             )}
           </div>
           <div className="text-[11px] text-emerald-400/80 mt-0.5 font-medium">
-            {dateFilterMode === 'month' ? `${dateFilteredCalls.length} Calls Logged in ${selectedMonth}` : 'Click to View Breakdown'}
+            {dateFilterMode === 'month' 
+              ? `${uniqueAgenciesCalledThisMonth} Agencies Called in ${selectedMonth}` 
+              : 'Completed (Click to View Breakdown)'}
           </div>
         </div>
 
-        {/* Card 3: Pending Agencies (Month Mode) / Connected Calls (Day Mode) */}
-        {dateFilterMode === 'month' ? (
-          <div 
-            onClick={() => {
-              setMatrixSort('pending_desc');
-              const el = document.getElementById('location-matrix-section');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="bg-[#0c1322]/90 border border-rose-500/30 hover:border-rose-500/60 p-4 rounded-xl shadow-sm cursor-pointer transition-all duration-150 backdrop-blur-md"
-            title="Click to view pending cities in matrix"
-          >
-            <div className="flex items-center justify-between">
-              <div className="text-[11px] font-bold text-rose-400 uppercase tracking-wider">Agencies Pending (Month)</div>
-              <span className="text-[9px] font-mono bg-rose-500/10 text-rose-300 border border-rose-500/20 px-1.5 py-0.5 rounded font-bold">
-                To Call
-              </span>
-            </div>
-            <div className="text-2xl font-extrabold font-mono text-rose-400 mt-1">{uniqueAgenciesPendingThisMonth}</div>
-            <div className="text-[11px] text-rose-400/80 mt-0.5 font-medium">
-              Remaining to reach 100% target
-            </div>
+        {/* Card 3: Connected Calls */}
+        <div 
+          onClick={() => setShowCallDetails(true)}
+          className="bg-[#0c1322]/90 border border-white/[0.08] hover:border-amber-500/40 p-4 rounded-xl shadow-sm cursor-pointer transition-all duration-150 backdrop-blur-md"
+        >
+          <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Connected Calls</div>
+          <div className="text-2xl font-extrabold font-mono text-amber-400 mt-1">{dateConnectedCount}</div>
+          <div className="text-[11px] text-amber-400/80 mt-0.5 font-medium">
+            Interested & Connected
           </div>
-        ) : (
-          <div 
-            onClick={() => setShowCallDetails(true)}
-            className="bg-[#0c1322]/90 border border-white/[0.08] hover:border-amber-500/40 p-4 rounded-xl shadow-sm cursor-pointer transition-all duration-150 backdrop-blur-md"
-          >
-            <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Connected Calls</div>
-            <div className="text-2xl font-extrabold font-mono text-amber-400 mt-1">{dateConnectedCount}</div>
-            <div className="text-[11px] text-amber-400/80 mt-0.5 font-medium">
-              {trackingDate ? `Connected on ${trackingDate}` : 'Successful Connections'}
-            </div>
-          </div>
-        )}
+        </div>
 
-        {/* Card 4: Monthly Calling Coverage % (Month Mode) / Requirements (Day Mode) */}
-        {dateFilterMode === 'month' ? (
-          <div className="bg-[#0c1322]/90 border border-white/[0.08] p-4 rounded-xl shadow-sm backdrop-blur-md">
-            <div className="flex items-center justify-between">
-              <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Monthly Coverage</div>
-              <span className="text-[9px] font-mono bg-sky-500/10 text-sky-300 border border-sky-500/20 px-1.5 py-0.5 rounded font-bold">
-                {selectedMonth}
-              </span>
-            </div>
-            <div className="text-2xl font-extrabold font-mono text-sky-400 mt-1 flex items-baseline gap-1.5">
-              <span>{monthlyCoverageRate}%</span>
-              <span className="text-xs text-slate-400 font-sans font-normal">done</span>
-            </div>
-            <div className="w-full bg-slate-800 rounded-full h-1.5 mt-2 overflow-hidden">
-              <div 
-                className="bg-gradient-to-r from-sky-500 to-emerald-400 h-full rounded-full transition-all duration-500" 
-                style={{ width: `${Math.min(100, monthlyCoverageRate)}%` }} 
-              />
-            </div>
+        {/* Card 4: Requirements Recd */}
+        <div className="bg-[#0c1322]/90 border border-white/[0.08] p-4 rounded-xl shadow-sm backdrop-blur-md">
+          <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Requirements Recd</div>
+          <div className="text-2xl font-extrabold font-mono text-indigo-400 mt-1">{dateRequirementsCount}</div>
+          <div className="text-[11px] text-indigo-400/80 mt-0.5 font-medium">
+            Ready for Quoting
           </div>
-        ) : (
-          <div className="bg-[#0c1322]/90 border border-white/[0.08] p-4 rounded-xl shadow-sm backdrop-blur-md">
-            <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Requirements Recd</div>
-            <div className="text-2xl font-extrabold font-mono text-indigo-400 mt-1">{dateRequirementsCount}</div>
-            <div className="text-[11px] text-indigo-400/80 mt-0.5 font-medium">
-              {trackingDate ? `Received on ${trackingDate}` : 'Ready for Quoting'}
-            </div>
-          </div>
-        )}
+        </div>
+      </div>
+
+      {/* ========================================================================= */}
+      {/* 🚀 MODERN WORKSPACE TABS — MANAGE PAGE LENGTH PROFESSIONALLY */}
+      {/* ========================================================================= */}
+      <div className="flex items-center gap-2 border-b border-white/[0.08] pb-2 pt-1 flex-wrap">
+        <button
+          onClick={() => setActiveMainTab('queue')}
+          className={`px-4 py-2.5 rounded-xl text-xs font-extrabold transition flex items-center gap-2 cursor-pointer ${
+            activeMainTab === 'queue'
+              ? 'bg-sky-600 text-white shadow-lg shadow-sky-600/30'
+              : 'bg-[#0c1322] hover:bg-slate-800 text-slate-300 border border-white/[0.08]'
+          }`}
+        >
+          <Users className="w-4 h-4" />
+          <span>🎯 Calling Queue</span>
+          <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono font-bold ${
+            activeMainTab === 'queue' ? 'bg-sky-950 text-sky-200' : 'bg-slate-800 text-slate-400'
+          }`}>
+            {filteredAgentsList.length}
+          </span>
+        </button>
+
+        <button
+          onClick={() => setActiveMainTab('matrix')}
+          className={`px-4 py-2.5 rounded-xl text-xs font-extrabold transition flex items-center gap-2 cursor-pointer ${
+            activeMainTab === 'matrix'
+              ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/30'
+              : 'bg-[#0c1322] hover:bg-slate-800 text-slate-300 border border-white/[0.08]'
+          }`}
+        >
+          <MapPin className="w-4 h-4" />
+          <span>🗺️ City Coverage Matrix</span>
+          <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono font-bold ${
+            activeMainTab === 'matrix' ? 'bg-amber-950 text-amber-200' : 'bg-slate-800 text-slate-400'
+          }`}>
+            {monthlyCoverageRate}%
+          </span>
+        </button>
+
+        <button
+          onClick={() => setActiveMainTab('logs')}
+          className={`px-4 py-2.5 rounded-xl text-xs font-extrabold transition flex items-center gap-2 cursor-pointer ${
+            activeMainTab === 'logs'
+              ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/30'
+              : 'bg-[#0c1322] hover:bg-slate-800 text-slate-300 border border-white/[0.08]'
+          }`}
+        >
+          <PhoneCall className="w-4 h-4" />
+          <span>📋 Detailed Call Logs</span>
+          <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono font-bold ${
+            activeMainTab === 'logs' ? 'bg-emerald-950 text-emerald-200' : 'bg-slate-800 text-slate-400'
+          }`}>
+            {dateFilteredCalls.length}
+          </span>
+        </button>
       </div>
 
       {/* ========================================================================= */}
@@ -852,9 +886,10 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
       )}
 
       {/* ========================================================================= */}
-      {/* 📍 SCREENSHOT INTERFACE: LOCATION-WISE CALLING COVERAGE & CONVERSION MATRIX */}
+      {/* 📍 LOCATION-WISE CALLING COVERAGE & CONVERSION MATRIX TAB */}
       {/* ========================================================================= */}
-      <div id="location-matrix-section" className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4">
+      {activeMainTab === 'matrix' && (
+        <div id="location-matrix-section" className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4 animate-in fade-in duration-200">
         
         {/* Matrix Header & View Tabs */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-4">
@@ -1212,12 +1247,16 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
             </table>
           </div>
         )}
-      </div>
+        </div>
+      )}
 
       {/* ========================================================================= */}
-      {/* 🏙️ CITY QUICK FILTER TABS / PILLS BAR */}
+      {/* 🎯 B2B AGENT CALLING QUEUE TAB (CITY PILLS + SEARCH + AGENTS GRID) */}
       {/* ========================================================================= */}
-      <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-3">
+      {activeMainTab === 'queue' && (
+        <div className="space-y-4 animate-in fade-in duration-200">
+          {/* 🏙️ CITY QUICK FILTER TABS / PILLS BAR */}
+          <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-3">
         <div className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
           <span className="flex items-center gap-1.5">
             <MapPin className="w-4 h-4 text-sky-400" /> Quick City Selection Bar:
@@ -1542,17 +1581,22 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
             })}
           </div>
         )}
+        </div>
       </div>
+      )}
 
-      {/* Yug's Recent Calls Log Table */}
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 border-b border-slate-800 pb-3">
-          <div>
-            <h3 className="font-extrabold text-white text-base flex items-center gap-2">
-              <PhoneCall className="w-5 h-5 text-sky-400" /> Recent Calls History (Logged by Yug)
-            </h3>
-            <p className="text-xs text-slate-400">Complete telephonic log records and agent responses</p>
-          </div>
+      {/* ========================================================================= */}
+      {/* 📋 DETAILED CALL LOGS & REMARKS HISTORY TAB */}
+      {/* ========================================================================= */}
+      {activeMainTab === 'logs' && (
+        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4 animate-in fade-in duration-200">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 border-b border-slate-800 pb-3">
+            <div>
+              <h3 className="font-extrabold text-white text-base flex items-center gap-2">
+                <PhoneCall className="w-5 h-5 text-sky-400" /> Recent Calls History (Logged by Yug)
+              </h3>
+              <p className="text-xs text-slate-400">Complete telephonic log records and agent responses</p>
+            </div>
 
           {/* Date Filter Controls */}
           <div className="flex items-center gap-1.5 flex-wrap">
@@ -1668,7 +1712,8 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
             </table>
           </div>
         )}
-      </div>
+        </div>
+      )}
 
     </div>
   );
