@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-21T07:48:26.615Z",
+  "backed_up_at": "2026-09-21T07:49:26.418Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7881,6 +7881,20 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-19",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2005",
+      "name": "Atual ",
+      "company_name": "Punjab document ",
+      "mobile": "+91 80542 01510",
+      "city": "Tibri ",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-09-21",
       "payment_terms": "Not Discussed"
     }
   ],
