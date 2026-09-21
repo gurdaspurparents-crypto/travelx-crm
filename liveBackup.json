@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-21T08:04:25.758Z",
+  "backed_up_at": "2026-09-21T08:04:54.993Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -121,11 +121,11 @@
       "city": "Dera Baba Nanak",
       "area": "Dera Baba Nanak",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "Advance Payment"
     },
     {
       "id": "AGT-1093",
@@ -20989,6 +20989,21 @@
       "remarks": "",
       "next_followup_date": "2026-09-23",
       "payment_terms": "After Booking / Credit"
+    },
+    {
+      "id": 1019,
+      "call_date": "2026-09-21",
+      "agent_id": "AGT-1092",
+      "visit_id": 712,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-23",
+      "payment_terms": "Advance Payment"
     }
   ],
   "queries": [
