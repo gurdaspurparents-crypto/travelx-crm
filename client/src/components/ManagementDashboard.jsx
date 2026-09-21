@@ -166,6 +166,20 @@ export default function ManagementDashboard({ onNavigate, onOpenAgentDrawer, onO
           <div className="flex items-center gap-1.5 flex-wrap">
             <button
               onClick={() => {
+                const curMonth = new Date().toISOString().slice(0, 7);
+                setSelectedDate(curMonth);
+                fetchDashboardData(curMonth);
+              }}
+              className={`px-3 py-1 rounded-lg text-xs font-semibold transition cursor-pointer ${
+                selectedDate.length === 7
+                  ? 'bg-sky-600 text-white shadow-sm shadow-sky-600/30 font-bold'
+                  : 'bg-white/[0.04] text-slate-400 hover:text-slate-200 border border-white/[0.06]'
+              }`}
+            >
+              🗓️ This Month
+            </button>
+            <button
+              onClick={() => {
                 setSelectedDate(todayStr);
                 fetchDashboardData(todayStr);
               }}

@@ -23,9 +23,6 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
   const [selectedMonth, setSelectedMonth] = useState(currentMonthStr);
   const [trackingDate, setTrackingDate] = useState('');
   
-  // Main View Navigation Tab ('queue', 'matrix', 'logs')
-  const [activeMainTab, setActiveMainTab] = useState('queue');
-  
   const [showCallDetails, setShowCallDetails] = useState(false);
   const [callSearchTerm, setCallSearchTerm] = useState('');
   const [callResultFilter, setCallResultFilter] = useState('all');
@@ -541,61 +538,6 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
         </div>
       </div>
 
-      {/* ========================================================================= */}
-      {/* 🚀 MODERN WORKSPACE TABS — MANAGE PAGE LENGTH PROFESSIONALLY */}
-      {/* ========================================================================= */}
-      <div className="flex items-center gap-2 border-b border-white/[0.08] pb-2 pt-1 flex-wrap">
-        <button
-          onClick={() => setActiveMainTab('queue')}
-          className={`px-4 py-2.5 rounded-xl text-xs font-extrabold transition flex items-center gap-2 cursor-pointer ${
-            activeMainTab === 'queue'
-              ? 'bg-sky-600 text-white shadow-lg shadow-sky-600/30'
-              : 'bg-[#0c1322] hover:bg-slate-800 text-slate-300 border border-white/[0.08]'
-          }`}
-        >
-          <Users className="w-4 h-4" />
-          <span>🎯 Calling Queue</span>
-          <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono font-bold ${
-            activeMainTab === 'queue' ? 'bg-sky-950 text-sky-200' : 'bg-slate-800 text-slate-400'
-          }`}>
-            {filteredAgentsList.length}
-          </span>
-        </button>
-
-        <button
-          onClick={() => setActiveMainTab('matrix')}
-          className={`px-4 py-2.5 rounded-xl text-xs font-extrabold transition flex items-center gap-2 cursor-pointer ${
-            activeMainTab === 'matrix'
-              ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/30'
-              : 'bg-[#0c1322] hover:bg-slate-800 text-slate-300 border border-white/[0.08]'
-          }`}
-        >
-          <MapPin className="w-4 h-4" />
-          <span>🗺️ City Coverage Matrix</span>
-          <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono font-bold ${
-            activeMainTab === 'matrix' ? 'bg-amber-950 text-amber-200' : 'bg-slate-800 text-slate-400'
-          }`}>
-            {monthlyCoverageRate}%
-          </span>
-        </button>
-
-        <button
-          onClick={() => setActiveMainTab('logs')}
-          className={`px-4 py-2.5 rounded-xl text-xs font-extrabold transition flex items-center gap-2 cursor-pointer ${
-            activeMainTab === 'logs'
-              ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/30'
-              : 'bg-[#0c1322] hover:bg-slate-800 text-slate-300 border border-white/[0.08]'
-          }`}
-        >
-          <PhoneCall className="w-4 h-4" />
-          <span>📋 Detailed Call Logs</span>
-          <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono font-bold ${
-            activeMainTab === 'logs' ? 'bg-emerald-950 text-emerald-200' : 'bg-slate-800 text-slate-400'
-          }`}>
-            {dateFilteredCalls.length}
-          </span>
-        </button>
-      </div>
 
       {/* ========================================================================= */}
       {/* 📋 EXPANDABLE CALL TRACKING DETAILS DROPDOWN (Kisko call ki & kya remarks) */}
@@ -886,10 +828,9 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
       )}
 
       {/* ========================================================================= */}
-      {/* 📍 LOCATION-WISE CALLING COVERAGE & CONVERSION MATRIX TAB */}
+      {/* 📍 SCREENSHOT INTERFACE: LOCATION-WISE CALLING COVERAGE & CONVERSION MATRIX */}
       {/* ========================================================================= */}
-      {activeMainTab === 'matrix' && (
-        <div id="location-matrix-section" className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4 animate-in fade-in duration-200">
+      <div id="location-matrix-section" className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4">
         
         {/* Matrix Header & View Tabs */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-4">
@@ -1247,16 +1188,12 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
             </table>
           </div>
         )}
-        </div>
-      )}
+      </div>
 
       {/* ========================================================================= */}
-      {/* 🎯 B2B AGENT CALLING QUEUE TAB (CITY PILLS + SEARCH + AGENTS GRID) */}
+      {/* 🏙️ CITY QUICK FILTER TABS / PILLS BAR */}
       {/* ========================================================================= */}
-      {activeMainTab === 'queue' && (
-        <div className="space-y-4 animate-in fade-in duration-200">
-          {/* 🏙️ CITY QUICK FILTER TABS / PILLS BAR */}
-          <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-3">
+      <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-3">
         <div className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
           <span className="flex items-center gap-1.5">
             <MapPin className="w-4 h-4 text-sky-400" /> Quick City Selection Bar:
@@ -1581,16 +1518,11 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
             })}
           </div>
         )}
-        </div>
       </div>
-      )}
 
-      {/* ========================================================================= */}
-      {/* 📋 DETAILED CALL LOGS & REMARKS HISTORY TAB */}
-      {/* ========================================================================= */}
-      {activeMainTab === 'logs' && (
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4 animate-in fade-in duration-200">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 border-b border-slate-800 pb-3">
+      {/* Yug's Recent Calls Log Table */}
+      <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 border-b border-slate-800 pb-3">
             <div>
               <h3 className="font-extrabold text-white text-base flex items-center gap-2">
                 <PhoneCall className="w-5 h-5 text-sky-400" /> Recent Calls History (Logged by Yug)
@@ -1712,8 +1644,7 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
             </table>
           </div>
         )}
-        </div>
-      )}
+      </div>
 
     </div>
   );

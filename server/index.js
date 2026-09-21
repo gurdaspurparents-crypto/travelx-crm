@@ -1392,28 +1392,31 @@ app.get('/api/focus-list', async (req, res) => {
 app.get('/api/dashboard', async (req, res) => {
   try {
     const targetDate = req.query.date || new Date().toISOString().split('T')[0];
+    const isMonth = targetDate.length === 7;
+    const dateOp = isMonth ? 'LIKE ?' : '= ?';
+    const dateVal = isMonth ? `${targetDate}%` : targetDate;
 
-    // Activity Metrics for selected date (defaults to today)
-    const todayVisits = await dbGet(`SELECT COUNT(*) as count FROM marketing_visits WHERE visit_date = ?`, [targetDate]);
-    const todayNewAgents = await dbGet(`SELECT COUNT(*) as count FROM marketing_visits WHERE visit_date = ? AND is_new_agent = 1`, [targetDate]);
-    const todayCalls = await dbGet(`SELECT COUNT(*) as count FROM telephonic_calls WHERE call_date = ?`, [targetDate]);
+    // Activity Metrics for selected date or month
+    const todayVisits = await dbGet(`SELECT COUNT(*) as count FROM marketing_visits WHERE visit_date ${dateOp}`, [dateVal]);
+    const todayNewAgents = await dbGet(`SELECT COUNT(*) as count FROM marketing_visits WHERE visit_date ${dateOp} AND is_new_agent = 1`, [dateVal]);
+    const todayCalls = await dbGet(`SELECT COUNT(*) as count FROM telephonic_calls WHERE call_date ${dateOp}`, [dateVal]);
     
     // Yug Calling Desk metrics specifically
     const todayYugCalls = await dbGet(
       `SELECT COUNT(*) as count FROM telephonic_calls 
-       WHERE call_date = ? AND (executive_name = 'Yug' OR executive_name LIKE '%Yug%')`, 
-      [targetDate]
+       WHERE call_date ${dateOp} AND (executive_name = 'Yug' OR executive_name LIKE '%Yug%')`, 
+      [dateVal]
     );
     const todayYugConnected = await dbGet(
       `SELECT COUNT(*) as count FROM telephonic_calls 
-       WHERE call_date = ? AND (executive_name = 'Yug' OR executive_name LIKE '%Yug%') AND (is_connected = 1 OR call_result LIKE '%Connected%' OR call_result LIKE '%Interested%' OR call_result LIKE '%Requirement%')`, 
-      [targetDate]
+       WHERE call_date ${dateOp} AND (executive_name = 'Yug' OR executive_name LIKE '%Yug%') AND (is_connected = 1 OR call_result LIKE '%Connected%' OR call_result LIKE '%Interested%' OR call_result LIKE '%Requirement%')`, 
+      [dateVal]
     );
 
-    const todayQueries = await dbGet(`SELECT COUNT(*) as count FROM queries WHERE query_date = ?`, [targetDate]);
-    const todayConverted = await dbGet(`SELECT COUNT(*) as count FROM queries WHERE booking_date = ? AND status = 'Converted'`, [targetDate]);
+    const todayQueries = await dbGet(`SELECT COUNT(*) as count FROM queries WHERE query_date ${dateOp}`, [dateVal]);
+    const todayConverted = await dbGet(`SELECT COUNT(*) as count FROM queries WHERE booking_date ${dateOp} AND status = 'Converted'`, [dateVal]);
     const todayPending = await dbGet(`SELECT COUNT(*) as count FROM queries WHERE status IN ('New', 'Quoted', 'Pending', 'Follow-up')`);
-    const todayRevenue = await dbGet(`SELECT COALESCE(SUM(booking_value), 0) as total FROM queries WHERE booking_date = ? AND status = 'Converted'`, [targetDate]);
+    const todayRevenue = await dbGet(`SELECT COALESCE(SUM(booking_value), 0) as total FROM queries WHERE booking_date ${dateOp} AND status = 'Converted'`, [dateVal]);
 
     // Stage counts across all agents
     const totalAgents = await dbGet(`SELECT COUNT(*) as count FROM agents`);
