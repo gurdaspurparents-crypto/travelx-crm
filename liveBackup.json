@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-22T08:17:40.845Z",
+  "backed_up_at": "2026-09-22T08:18:33.647Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7975,6 +7975,20 @@
       "city": "Behrampur",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
+      "stage": "Visited",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-09-22",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2012",
+      "name": "Mr. Ajay ",
+      "company_name": "Cyber cafe ",
+      "mobile": "6280-302536",
+      "city": "Marara",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
       "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
@@ -12406,16 +12420,16 @@
     {
       "id": 765,
       "visit_date": "2026-09-22",
-      "agent_id": "AGT-1606",
+      "agent_id": "AGT-2011",
       "executive_name": "Bikramjit Singh",
-      "person_met": "Mr. Ravi",
-      "mobile": "9464575731",
+      "person_met": "Sameer ",
+      "mobile": "+91 98559 42011",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-09-23",
-      "location": "Marara",
+      "location": "Behrampur",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
@@ -12423,10 +12437,10 @@
     {
       "id": 766,
       "visit_date": "2026-09-22",
-      "agent_id": "AGT-1606",
+      "agent_id": "AGT-1607",
       "executive_name": "Bikramjit Singh",
-      "person_met": "Mr. Ravi",
-      "mobile": "9464575731",
+      "person_met": "Mr. Rajpal",
+      "mobile": "9592908575",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
