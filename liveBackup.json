@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-22T08:18:33.647Z",
+  "backed_up_at": "2026-09-22T08:19:10.135Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -5553,11 +5553,11 @@
       "city": "Tibri",
       "area": "Tibri Cant",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "Advance Payment"
     },
     {
       "id": "AGT-1851",
@@ -12443,6 +12443,23 @@
       "mobile": "9592908575",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-23",
+      "location": "Marara",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 767,
+      "visit_date": "2026-09-22",
+      "agent_id": "AGT-1606",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Ravi",
+      "mobile": "9464575731",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Bus Booking\",\"Forex\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-09-23",
@@ -22412,6 +22429,21 @@
       "remarks": "",
       "next_followup_date": "2026-09-24",
       "payment_terms": null
+    },
+    {
+      "id": 1091,
+      "call_date": "2026-09-22",
+      "agent_id": "AGT-1850",
+      "visit_id": 738,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-24",
+      "payment_terms": "Advance Payment"
     }
   ],
   "queries": [
