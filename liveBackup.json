@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-22T11:15:38.474Z",
+  "backed_up_at": "2026-09-22T11:15:49.046Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -4150,20 +4150,6 @@
       "name": "Mr. Arsh",
       "company_name": "Hari om cyber café",
       "mobile": "8558997990",
-      "city": "Purana Shalla",
-      "area": "Purana Shalla",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1662",
-      "name": "Mr.satpal ",
-      "company_name": "satpal jewellers ",
-      "mobile": "9872079972",
       "city": "Purana Shalla",
       "area": "Purana Shalla",
       "agent_type": "Retail Travel Agent",
@@ -16777,21 +16763,6 @@
       "payment_terms": null
     },
     {
-      "id": 702,
-      "call_date": "2026-09-10",
-      "agent_id": "AGT-1662",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-12",
-      "payment_terms": null
-    },
-    {
       "id": 704,
       "call_date": "2026-09-10",
       "agent_id": "AGT-1517",
@@ -21176,21 +21147,6 @@
       "call_date": "2026-09-21",
       "agent_id": "AGT-1909",
       "visit_id": 637,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-23",
-      "payment_terms": null
-    },
-    {
-      "id": 1000,
-      "call_date": "2026-09-21",
-      "agent_id": "AGT-1662",
-      "visit_id": null,
       "executive_name": "Yug",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
