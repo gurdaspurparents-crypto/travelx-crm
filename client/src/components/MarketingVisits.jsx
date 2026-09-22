@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { MapPin, Plus, Calendar, CheckCircle2, User, Phone, Tag, FileText, Filter, X, Trash2, Download, AlertCircle, Navigation, Search, Gauge, DollarSign, Flag, Clock, UserPlus, Edit, Compass, Sparkles } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { MapPin, Plus, Calendar, CheckCircle2, User, Phone, Tag, FileText, Filter, X, Trash2, Download, AlertCircle, Navigation, Search, Gauge, DollarSign, Flag, Clock, UserPlus, Edit, Compass, Sparkles, Users, ArrowUpDown, Eye } from 'lucide-react';
 import { exportToPDF } from '../utils/exportUtils';
 import BikramPwaInstallBanner from './BikramPwaInstallBanner';
 import RoutePlannerTester from './RoutePlannerTester';
 
-export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }) {
+export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, refreshTrigger }) {
   const isAdmin = role === 'Admin / Owner' || !role;
   const [visits, setVisits] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -14,9 +14,31 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
 
+  // Monthly Field Visit Matrix State (Bikram & Field Route Coverage)
+  const currentMonthStr = new Date().toISOString().slice(0, 7); // e.g. '2026-09'
+  const [matrixMonth, setMatrixMonth] = useState(currentMonthStr);
+  const [matrixLocations, setMatrixLocations] = useState([]);
+  const [loadingMatrix, setLoadingMatrix] = useState(false);
+  const [matrixSort, setMatrixSort] = useState('pending_desc'); // default sort by highest pending visits
+  const [matrixStatusFilter, setMatrixStatusFilter] = useState('all'); // 'all', 'in_progress', 'not_started', 'completed'
+  const [matrixExecFilter, setMatrixExecFilter] = useState('bikram'); // 'bikram' or 'all'
+
   // Location Agent Checklist state for field marketing route
   const [availableLocations, setAvailableLocations] = useState({ cities: [], areas: [] });
-  const [selectedLocation, setSelectedLocation] = useState('');
+  const [selectedLocation, setSelectedLocationState] = useState(() => {
+    return sessionStorage.getItem('bikram_selected_location') || 'ALL';
+  });
+
+  const setSelectedLocation = (loc) => {
+    const val = loc || 'ALL';
+    setSelectedLocationState(val);
+    if (val && val !== 'ALL') {
+      sessionStorage.setItem('bikram_selected_location', val);
+    } else {
+      sessionStorage.removeItem('bikram_selected_location');
+    }
+  };
+
   const [locationAgents, setLocationAgents] = useState([]);
   const [loadingLocationAgents, setLoadingLocationAgents] = useState(false);
   const [checklistStatusFilter, setChecklistStatusFilter] = useState('all'); // 'all' | 'visited' | 'pending'
@@ -152,6 +174,119 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
       }
     } catch (err) {
       console.error(err);
+    }
+  };
+
+  const fetchVisitMatrix = async (m = matrixMonth) => {
+    setLoadingMatrix(true);
+    try {
+      const res = await fetch(`/api/analytics/location?month=${encodeURIComponent(m || currentMonthStr)}`);
+      const json = await res.json();
+      if (json.success) {
+        setMatrixLocations(json.locations || []);
+      }
+    } catch (err) {
+      console.error('Error fetching visit matrix:', err);
+    } finally {
+      setLoadingMatrix(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchVisitMatrix(matrixMonth);
+  }, [matrixMonth]);
+
+  // When a modal logs a visit or trip ends, smoothly re-fetch without unmounting!
+  useEffect(() => {
+    if (refreshTrigger) {
+      fetchVisits();
+      fetchFieldTrips();
+      fetchDayReport();
+      fetchVisitMatrix(matrixMonth);
+      fetchLocationAgents(selectedLocation, checklistFromDate, checklistToDate);
+    }
+  }, [refreshTrigger]);
+
+  // Live visits stats derived from visits array
+  const liveLocationVisitStats = useMemo(() => {
+    const statsByCity = {};
+    const targetMonth = matrixMonth || currentMonthStr;
+
+    visits.forEach(v => {
+      const isBikram = !matrixExecFilter || matrixExecFilter === 'all' || v.executive_name === 'Bikramjit Singh' || v.executive_name?.toLowerCase().includes('bikram');
+      if (isBikram && v.visit_date && v.visit_date.startsWith(targetMonth) && v.agent_city) {
+        const cityKey = v.agent_city.trim().toLowerCase();
+        if (!statsByCity[cityKey]) {
+          statsByCity[cityKey] = new Set();
+        }
+        statsByCity[cityKey].add(v.agent_id);
+      }
+    });
+
+    const counts = {};
+    Object.keys(statsByCity).forEach(k => {
+      counts[k] = statsByCity[k].size;
+    });
+    return counts;
+  }, [visits, matrixMonth, currentMonthStr, matrixExecFilter]);
+
+  // Enhanced Matrix with Live Visit Counts
+  const enhancedVisitMatrix = useMemo(() => {
+    return matrixLocations.map(loc => {
+      const cityKey = (loc.location || '').trim().toLowerCase();
+      const liveVisited = liveLocationVisitStats[cityKey];
+      const visited = liveVisited !== undefined 
+        ? liveVisited 
+        : (matrixExecFilter === 'all' ? (loc.all_visited_month || loc.bikram_visited_month || 0) : (loc.bikram_visited_month || 0));
+      const total = loc.total_agents || 0;
+      const pending = Math.max(0, total - visited);
+      const rate = total > 0 ? Math.min(100, Math.round((visited / total) * 100)) : 0;
+
+      return {
+        ...loc,
+        bikram_visited_month: visited,
+        bikram_pending_month: pending,
+        bikram_coverage_rate: rate
+      };
+    });
+  }, [matrixLocations, liveLocationVisitStats, matrixExecFilter]);
+
+  // Sorted Matrix
+  const sortedVisitMatrix = useMemo(() => {
+    return [...enhancedVisitMatrix].sort((a, b) => {
+      if (matrixSort === 'loc_asc') return (a.location || '').localeCompare(b.location || '');
+      if (matrixSort === 'loc_desc') return (b.location || '').localeCompare(a.location || '');
+      if (matrixSort === 'visited_desc') return (b.bikram_visited_month || 0) - (a.bikram_visited_month || 0);
+      if (matrixSort === 'pending_desc') return (b.bikram_pending_month || 0) - (a.bikram_pending_month || 0);
+      if (matrixSort === 'coverage_desc') return (b.bikram_coverage_rate || 0) - (a.bikram_coverage_rate || 0);
+      return (b.total_agents || 0) - (a.total_agents || 0);
+    });
+  }, [enhancedVisitMatrix, matrixSort]);
+
+  // Filtered Matrix by status
+  const filteredVisitMatrix = useMemo(() => {
+    return sortedVisitMatrix.filter(loc => {
+      const visited = loc.bikram_visited_month || 0;
+      const rate = loc.bikram_coverage_rate || 0;
+      if (matrixStatusFilter === 'completed') return rate === 100;
+      if (matrixStatusFilter === 'in_progress') return visited > 0 && rate < 100;
+      if (matrixStatusFilter === 'not_started') return visited === 0;
+      return true;
+    });
+  }, [sortedVisitMatrix, matrixStatusFilter]);
+
+  // Status counts
+  const matrixCompletedCount = useMemo(() => sortedVisitMatrix.filter(l => (l.bikram_coverage_rate || 0) === 100).length, [sortedVisitMatrix]);
+  const matrixInProgressCount = useMemo(() => sortedVisitMatrix.filter(l => (l.bikram_visited_month || 0) > 0 && (l.bikram_coverage_rate || 0) < 100).length, [sortedVisitMatrix]);
+  const matrixNotStartedCount = useMemo(() => sortedVisitMatrix.filter(l => (l.bikram_visited_month || 0) === 0).length, [sortedVisitMatrix]);
+
+  const handleSelectCityFromMatrix = (cityName, filterMode = 'all') => {
+    setSelectedLocation(cityName);
+    setChecklistStatusFilter(filterMode);
+    // Smooth scroll down to checklist
+    const checklistElement = document.getElementById('field-location-checklist');
+    if (checklistElement) {
+      checklistElement.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -554,8 +689,306 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role }
 
       </div>
 
-      {/* 📍 Field Location Route & Agent Checklist */}
+      {/* ========================================================================= */}
+      {/* 🚗 BIKRAM'S MONTHLY FIELD VISIT COVERAGE MATRIX */}
+      {/* ========================================================================= */}
       <div className="bg-[#0c1322]/90 border border-amber-500/25 rounded-2xl p-5 shadow-xl space-y-4 backdrop-blur-md">
+        
+        {/* Top Header & Filters */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/[0.06] pb-4">
+          <div>
+            <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+              <span className="px-2.5 py-0.5 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-full text-[11px] font-mono font-bold uppercase tracking-wider flex items-center gap-1.5">
+                <Navigation className="w-3.5 h-3.5 text-amber-400" /> Field Marketing Route Head
+              </span>
+              <span className="px-2.5 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full text-[10px] font-mono font-medium">
+                Live Visit Tracking
+              </span>
+            </div>
+            <h3 className="text-xl sm:text-2xl font-black text-white flex items-center gap-2">
+              <span>📍🚗 Bikram's Monthly Field Visit Matrix ({matrixMonth})</span>
+            </h3>
+            <p className="text-xs text-slate-400 mt-1 max-w-2xl">
+              यहाँ देखें Bikram ne kis shahar mein kitne travel agents ko personally visit kar liya hai aur kitne pending hain:
+            </p>
+          </div>
+
+          {/* Month Picker & Executive Filter */}
+          <div className="flex flex-wrap items-center gap-2">
+            {/* Executive Switcher */}
+            <div className="flex items-center bg-[#070b14] border border-white/[0.08] p-1 rounded-xl text-xs">
+              <button
+                type="button"
+                onClick={() => setMatrixExecFilter('bikram')}
+                className={`px-2.5 py-1 rounded-lg font-bold transition cursor-pointer flex items-center gap-1 ${
+                  matrixExecFilter === 'bikram'
+                    ? 'bg-amber-600 text-white shadow-sm shadow-amber-600/30'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                <span>🚗 Bikram Only</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setMatrixExecFilter('all')}
+                className={`px-2.5 py-1 rounded-lg font-bold transition cursor-pointer flex items-center gap-1 ${
+                  matrixExecFilter === 'all'
+                    ? 'bg-amber-600 text-white shadow-sm shadow-amber-600/30'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                <span>🌐 All Executives</span>
+              </button>
+            </div>
+
+            {/* Month Picker */}
+            <div className="flex items-center gap-1.5 bg-[#070b14] border border-white/[0.08] px-3 py-1.5 rounded-xl text-xs">
+              <Calendar className="w-3.5 h-3.5 text-amber-400" />
+              <input
+                type="month"
+                value={matrixMonth}
+                onChange={e => setMatrixMonth(e.target.value)}
+                className="bg-transparent text-amber-300 font-mono font-bold focus:outline-none cursor-pointer text-xs"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* STATUS FILTERS & SORT CONTROLS BAR */}
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3 bg-[#070b14]/70 p-3 rounded-xl border border-white/[0.06]">
+          
+          {/* Status Filter Buttons */}
+          <div className="flex flex-wrap items-center gap-1.5 text-xs">
+            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mr-1">STATUS:</span>
+            <button
+              type="button"
+              onClick={() => setMatrixStatusFilter('all')}
+              className={`px-3 py-1 rounded-lg font-bold transition flex items-center gap-1 border cursor-pointer ${
+                matrixStatusFilter === 'all'
+                  ? 'bg-sky-600 text-white border-sky-500 shadow-md shadow-sky-600/30'
+                  : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-slate-200'
+              }`}
+            >
+              All ({sortedVisitMatrix.length})
+            </button>
+            <button
+              type="button"
+              onClick={() => setMatrixStatusFilter('in_progress')}
+              className={`px-3 py-1 rounded-lg font-bold transition flex items-center gap-1 border cursor-pointer ${
+                matrixStatusFilter === 'in_progress'
+                  ? 'bg-amber-600 text-white border-amber-500 shadow-md shadow-amber-600/30'
+                  : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-slate-200'
+              }`}
+            >
+              🟡 In Progress ({matrixInProgressCount})
+            </button>
+            <button
+              type="button"
+              onClick={() => setMatrixStatusFilter('not_started')}
+              className={`px-3 py-1 rounded-lg font-bold transition flex items-center gap-1 border cursor-pointer ${
+                matrixStatusFilter === 'not_started'
+                  ? 'bg-rose-600 text-white border-rose-500 shadow-md shadow-rose-600/30'
+                  : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-slate-200'
+              }`}
+            >
+              🔴 Not Started ({matrixNotStartedCount})
+            </button>
+            <button
+              type="button"
+              onClick={() => setMatrixStatusFilter('completed')}
+              className={`px-3 py-1 rounded-lg font-bold transition flex items-center gap-1 border cursor-pointer ${
+                matrixStatusFilter === 'completed'
+                  ? 'bg-emerald-600 text-white border-emerald-500 shadow-md shadow-emerald-600/30'
+                  : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-slate-200'
+              }`}
+            >
+              🟢 100% Done ({matrixCompletedCount})
+            </button>
+          </div>
+
+          {/* Sort Controls */}
+          <div className="flex flex-wrap items-center gap-1.5 text-xs">
+            <span className="text-slate-400 font-medium">Sort:</span>
+            <button
+              type="button"
+              onClick={() => setMatrixSort('pending_desc')}
+              className={`px-2.5 py-1 rounded-lg font-bold transition flex items-center gap-1 border cursor-pointer ${
+                matrixSort === 'pending_desc' ? 'bg-rose-950 text-rose-300 border-rose-700 shadow-sm' : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-slate-200'
+              }`}
+              title="Sort by highest pending agencies"
+            >
+              🔴 Pending Visits
+            </button>
+            <button
+              type="button"
+              onClick={() => setMatrixSort(matrixSort === 'visited_desc' ? 'visited_asc' : 'visited_desc')}
+              className={`px-2.5 py-1 rounded-lg font-bold transition flex items-center gap-1 border cursor-pointer ${
+                matrixSort.startsWith('visited') ? 'bg-emerald-950 text-emerald-300 border-emerald-700 shadow-sm' : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-slate-200'
+              }`}
+              title="Sort by highest visited agencies"
+            >
+              🟢 Visited
+            </button>
+            <button
+              type="button"
+              onClick={() => setMatrixSort('coverage_desc')}
+              className={`px-2.5 py-1 rounded-lg font-bold transition flex items-center gap-1 border cursor-pointer ${
+                matrixSort === 'coverage_desc' ? 'bg-amber-950 text-amber-300 border-amber-700 shadow-sm' : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-slate-200'
+              }`}
+            >
+              Coverage %
+            </button>
+            <button
+              type="button"
+              onClick={() => setMatrixSort(matrixSort === 'loc_asc' ? 'loc_desc' : 'loc_asc')}
+              className={`px-2.5 py-1 rounded-lg font-bold transition flex items-center gap-1 border cursor-pointer ${
+                matrixSort.startsWith('loc') ? 'bg-indigo-950 text-indigo-300 border-indigo-700 shadow-sm' : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-slate-200'
+              }`}
+            >
+              City ({matrixSort === 'loc_asc' ? 'A→Z' : 'Z→A'})
+            </button>
+          </div>
+
+        </div>
+
+        {/* Location Matrix Table */}
+        {loadingMatrix ? (
+          <div className="p-8 text-center text-slate-400 text-xs">⏳ Loading field visit matrix...</div>
+        ) : (
+          <div className="overflow-x-auto border border-white/[0.08] rounded-xl shadow-inner max-h-[480px] overflow-y-auto">
+            <table className="w-full text-left text-xs text-slate-300">
+              <thead className="sticky top-0 bg-[#090e1a] text-slate-400 uppercase font-bold text-[10px] tracking-wider border-b border-white/[0.08] z-10">
+                <tr>
+                  <th className="p-3.5">Territory / Location</th>
+                  <th className="p-3.5 text-center">Total Agents</th>
+                  <th className="p-3.5 text-center">{matrixExecFilter === 'all' ? 'All Visited' : 'Bikram Visited'} ({matrixMonth})</th>
+                  <th className="p-3.5 text-center">Pending Visits</th>
+                  <th className="p-3.5 text-center">Visit Coverage</th>
+                  <th className="p-3.5 text-center">Status</th>
+                  <th className="p-3.5 text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/[0.04] bg-[#0b101e]/60">
+                {filteredVisitMatrix.map((loc) => {
+                  const isCurrentSelected = selectedLocation === loc.location;
+                  const visited = loc.bikram_visited_month || 0;
+                  const pending = loc.bikram_pending_month != null ? loc.bikram_pending_month : Math.max(0, loc.total_agents - visited);
+                  const rate = loc.bikram_coverage_rate || 0;
+                  const isCompleted = rate === 100;
+                  const isNotStarted = visited === 0;
+
+                  return (
+                    <tr
+                      key={loc.location}
+                      onClick={() => handleSelectCityFromMatrix(loc.location, pending > 0 ? 'pending' : 'all')}
+                      className={`hover:bg-amber-950/30 cursor-pointer transition ${
+                        isCurrentSelected ? 'bg-amber-950/50 border-l-4 border-amber-400 font-semibold' : ''
+                      }`}
+                    >
+                      {/* Territory / Location */}
+                      <td className="p-3.5 font-bold text-white flex items-center gap-2">
+                        <MapPin className={`w-4 h-4 ${isCompleted ? 'text-emerald-400' : isNotStarted ? 'text-rose-400' : 'text-amber-400'}`} />
+                        <span className="text-sm">{loc.location}</span>
+                        {isCurrentSelected && (
+                          <span className="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/40 font-mono">Selected</span>
+                        )}
+                      </td>
+
+                      {/* Total Agents */}
+                      <td className="p-3.5 text-center font-bold text-slate-100 text-sm">{loc.total_agents}</td>
+
+                      {/* Visited This Month */}
+                      <td className="p-3.5 text-center">
+                        <span className="px-2.5 py-1 rounded-full text-xs font-black bg-emerald-950 text-emerald-400 border border-emerald-800/80 font-mono">
+                          🟢 {visited}
+                        </span>
+                      </td>
+
+                      {/* Pending Visits */}
+                      <td className="p-3.5 text-center">
+                        {pending > 0 ? (
+                          <span className="px-2.5 py-1 rounded-full text-xs font-black bg-rose-950 text-rose-400 border border-rose-800/80 font-mono">
+                            🔴 {pending} Pending
+                          </span>
+                        ) : (
+                          <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-slate-900 text-slate-400 border border-slate-800 font-mono">
+                            0 (Done)
+                          </span>
+                        )}
+                      </td>
+
+                      {/* Monthly Progress Bar */}
+                      <td className="p-3.5 text-center min-w-[140px]">
+                        <div className="flex items-center justify-center gap-2">
+                          <div className="w-24 bg-slate-800 rounded-full h-2 overflow-hidden">
+                            <div
+                              className={`h-full rounded-full transition-all duration-300 ${
+                                isCompleted ? 'bg-emerald-400' : rate > 0 ? 'bg-amber-400' : 'bg-slate-700'
+                              }`}
+                              style={{ width: `${rate}%` }}
+                            />
+                          </div>
+                          <span className="font-mono text-xs font-bold text-slate-200">{rate}%</span>
+                        </div>
+                      </td>
+
+                      {/* Status Badge */}
+                      <td className="p-3.5 text-center">
+                        {isCompleted ? (
+                          <span className="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-950 text-emerald-300 border border-emerald-700/80 flex items-center justify-center gap-1 mx-auto w-max">
+                            <CheckCircle2 className="w-3 h-3 text-emerald-400" /> 100% Complete
+                          </span>
+                        ) : isNotStarted ? (
+                          <span className="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-rose-950 text-rose-300 border border-rose-800/80 flex items-center justify-center gap-1 mx-auto w-max">
+                            <AlertCircle className="w-3 h-3 text-rose-400" /> Not Visited
+                          </span>
+                        ) : (
+                          <span className="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-amber-950 text-amber-300 border border-amber-700/80 flex items-center justify-center gap-1 mx-auto w-max">
+                            <Clock className="w-3 h-3 text-amber-400" /> In Progress
+                          </span>
+                        )}
+                      </td>
+
+                      {/* 1-Click Action Button */}
+                      <td className="p-3.5 text-center" onClick={e => e.stopPropagation()}>
+                        <button
+                          type="button"
+                          onClick={() => handleSelectCityFromMatrix(loc.location, pending > 0 ? 'pending' : 'all')}
+                          className={`px-3 py-1.5 rounded-xl font-bold text-xs transition shadow-sm flex items-center justify-center gap-1.5 mx-auto cursor-pointer ${
+                            isCurrentSelected
+                              ? 'bg-amber-500 text-slate-950 shadow-amber-500/40 font-extrabold'
+                              : pending > 0
+                              ? 'bg-amber-600 hover:bg-amber-500 text-white shadow-amber-600/30'
+                              : 'bg-emerald-700 hover:bg-emerald-600 text-white shadow-emerald-700/30'
+                          }`}
+                        >
+                          {isCurrentSelected ? (
+                            <>
+                              <Eye className="w-3.5 h-3.5" /> Selected Route
+                            </>
+                          ) : pending > 0 ? (
+                            <>
+                              <Navigation className="w-3.5 h-3.5" /> Visit {pending} Pending
+                            </>
+                          ) : (
+                            <>
+                              <CheckCircle2 className="w-3.5 h-3.5" /> View Route
+                            </>
+                          )}
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+      </div>
+
+      {/* 📍 Field Location Route & Agent Checklist */}
+      <div id="field-location-checklist" className="scroll-mt-24 bg-[#0c1322]/90 border border-amber-500/25 rounded-2xl p-5 shadow-xl space-y-4 backdrop-blur-md">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/[0.06] pb-3">
           <div>
             <h3 className="text-base font-bold text-amber-300 flex items-center gap-2">

@@ -1474,6 +1474,8 @@ app.get('/api/analytics/location', async (req, res) => {
         COUNT(DISTINCT a.id) as total_agents,
         COALESCE(calls.yug_called_month, 0) as yug_called_month,
         COALESCE(calls.all_called_month, 0) as all_called_month,
+        COALESCE(visits.bikram_visited_month, 0) as bikram_visited_month,
+        COALESCE(visits.all_visited_month, 0) as all_visited_month,
         COUNT(DISTINCT mv.agent_id) as visited_count,
         COUNT(DISTINCT q.agent_id) as query_agents,
         COUNT(DISTINCT CASE WHEN q.status = 'Converted' THEN q.agent_id END) as active_agents,
@@ -1491,27 +1493,57 @@ app.get('/api/analytics/location', async (req, res) => {
         WHERE tc.call_date LIKE ?
         GROUP BY TRIM(LOWER(ag.city))
       ) calls ON TRIM(LOWER(a.city)) = calls.match_city
+      LEFT JOIN (
+        SELECT 
+          TRIM(LOWER(ag.city)) as match_city,
+          COUNT(DISTINCT CASE WHEN (mv1.executive_name = 'Bikramjit Singh' OR mv1.executive_name LIKE '%bikram%') THEN mv1.agent_id END) as bikram_visited_month,
+          COUNT(DISTINCT mv1.agent_id) as all_visited_month
+        FROM marketing_visits mv1
+        JOIN agents ag ON mv1.agent_id = ag.id
+        WHERE mv1.visit_date LIKE ?
+        GROUP BY TRIM(LOWER(ag.city))
+      ) visits ON TRIM(LOWER(a.city)) = visits.match_city
       LEFT JOIN marketing_visits mv ON a.id = mv.agent_id
       LEFT JOIN queries q ON a.id = q.agent_id
       GROUP BY a.city
       ORDER BY total_agents DESC
-    `, [monthPattern]);
+    `, [monthPattern, monthPattern]);
 
-    // Calculate conversion rates and calling progress
+    // Calculate conversion rates and calling / visit progress
     const formatted = locations.map(l => {
       const yugCalled = l.yug_called_month || 0;
       const allCalled = l.all_called_month || 0;
+      const bikramVisited = l.bikram_visited_month || 0;
+      const allVisited = l.all_visited_month || 0;
       const total = l.total_agents || 0;
-      const pending = Math.max(0, total - yugCalled);
-      const covRate = total > 0 ? Math.round((yugCalled / total) * 100) : 0;
+
+      const yugPending = Math.max(0, total - yugCalled);
+      const yugCovRate = total > 0 ? Math.min(100, Math.round((yugCalled / total) * 100)) : 0;
+      const allCalledPending = Math.max(0, total - allCalled);
+      const allCalledCovRate = total > 0 ? Math.min(100, Math.round((allCalled / total) * 100)) : 0;
+
+      const bikramPending = Math.max(0, total - bikramVisited);
+      const bikramCovRate = total > 0 ? Math.min(100, Math.round((bikramVisited / total) * 100)) : 0;
+      const allVisitedPending = Math.max(0, total - allVisited);
+      const allVisitedCovRate = total > 0 ? Math.min(100, Math.round((allVisited / total) * 100)) : 0;
+
       return {
         ...l,
+        // Calling coverage stats
         yug_called_month: yugCalled,
-        yug_pending_month: pending,
-        yug_coverage_rate: covRate,
+        yug_pending_month: yugPending,
+        yug_coverage_rate: yugCovRate,
         all_called_month: allCalled,
-        all_pending_month: Math.max(0, total - allCalled),
-        all_coverage_rate: total > 0 ? Math.round((allCalled / total) * 100) : 0,
+        all_pending_month: allCalledPending,
+        all_coverage_rate: allCalledCovRate,
+        // Field visit coverage stats (Bikram & All)
+        bikram_visited_month: bikramVisited,
+        bikram_pending_month: bikramPending,
+        bikram_coverage_rate: bikramCovRate,
+        all_visited_month: allVisited,
+        all_visited_pending_month: allVisitedPending,
+        all_visited_coverage_rate: allVisitedCovRate,
+        // Conversion & visit rates
         conversion_rate: l.query_agents > 0 ? Math.round((l.active_agents / l.query_agents) * 100) : 0,
         visit_rate: total > 0 ? Math.round((l.visited_count / total) * 100) : 0
       };

@@ -169,7 +169,7 @@ export default function App() {
 
         {activeTab === 'visits' && (
           <MarketingVisits
-            key={refreshKey}
+            refreshTrigger={refreshKey}
             role={role}
             onOpenModal={handleOpenModal}
             onOpenAgentDrawer={setSelectedAgentId}
