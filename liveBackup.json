@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-22T08:43:50.495Z",
+  "backed_up_at": "2026-09-22T08:45:15.484Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -1665,7 +1665,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1338",
@@ -6197,11 +6197,11 @@
       "city": "Warsola",
       "area": "Warsola",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "Advance Payment"
     },
     {
       "id": "AGT-1895",
@@ -22563,6 +22563,66 @@
       "agent_requirement": "good relpy",
       "interest_level": "Interested / Warm",
       "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-24",
+      "payment_terms": null
+    },
+    {
+      "id": 1099,
+      "call_date": "2026-09-22",
+      "agent_id": "AGT-1889",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "busy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Follow-up Required",
+      "remarks": "",
+      "next_followup_date": "2026-09-24",
+      "payment_terms": "Advance Payment"
+    },
+    {
+      "id": 1100,
+      "call_date": "2026-09-22",
+      "agent_id": "AGT-1889",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "busy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Follow-up Required",
+      "remarks": "",
+      "next_followup_date": "2026-09-24",
+      "payment_terms": "Advance Payment"
+    },
+    {
+      "id": 1101,
+      "call_date": "2026-09-22",
+      "agent_id": "AGT-1889",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "busy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Follow-up Required",
+      "remarks": "",
+      "next_followup_date": "2026-09-24",
+      "payment_terms": "Advance Payment"
+    },
+    {
+      "id": 1102,
+      "call_date": "2026-09-22",
+      "agent_id": "AGT-1889",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "busy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-09-24",
       "payment_terms": "Advance Payment"
