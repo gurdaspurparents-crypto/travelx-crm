@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-22T11:24:23.979Z",
+  "backed_up_at": "2026-09-22T11:58:55.574Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7906,6 +7906,20 @@
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
       "stage": "Visited",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-09-22",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2013",
+      "name": "JASKARAN SINGH",
+      "company_name": "BHANGU ADHAR  CENTRE ",
+      "mobile": "7009828340",
+      "city": "WDLA  BANGAR",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-22",
