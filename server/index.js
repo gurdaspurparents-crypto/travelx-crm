@@ -1461,52 +1461,62 @@ app.get('/api/dashboard', async (req, res) => {
     res.status(500).json({ success: false, error: err.message });
   }
 });
-
 // ==================== 7. LOCATION & EMPLOYEE ANALYTICS ====================
 
 app.get('/api/analytics/location', async (req, res) => {
   try {
-    const month = req.query.month || new Date().toISOString().slice(0, 7); // e.g. '2026-09'
+    const month = req.query.month || new Date().toISOString().slice(0, 7);
     const monthPattern = `${month}%`;
-
     const locations = await dbAll(`
       SELECT 
         a.city as location,
         COUNT(DISTINCT a.id) as total_agents,
+        COALESCE(calls.yug_called_month, 0) as yug_called_month,
+        COALESCE(calls.all_called_month, 0) as all_called_month,
         COUNT(DISTINCT mv.agent_id) as visited_count,
-        COUNT(DISTINCT CASE WHEN (tc.executive_name = 'Yug' OR tc.executive_name LIKE '%Yug%') AND tc.call_date LIKE ? THEN tc.agent_id END) as yug_called_month,
-        COUNT(DISTINCT CASE WHEN (tc.executive_name = 'Yug' OR tc.executive_name LIKE '%Yug%') THEN tc.agent_id END) as yug_called_all,
         COUNT(DISTINCT q.agent_id) as query_agents,
         COUNT(DISTINCT CASE WHEN q.status = 'Converted' THEN q.agent_id END) as active_agents,
         COUNT(DISTINCT q.id) as total_queries,
         COUNT(DISTINCT CASE WHEN q.status = 'Converted' THEN q.id END) as converted_queries,
         COALESCE(SUM(CASE WHEN q.status = 'Converted' THEN q.booking_value ELSE 0 END), 0) as total_revenue
       FROM agents a
+      LEFT JOIN (
+        SELECT 
+          TRIM(LOWER(ag.city)) as match_city,
+          COUNT(DISTINCT CASE WHEN (tc.executive_name = 'Yug' OR tc.executive_name LIKE '%yug%') THEN tc.agent_id END) as yug_called_month,
+          COUNT(DISTINCT tc.agent_id) as all_called_month
+        FROM telephonic_calls tc
+        JOIN agents ag ON tc.agent_id = ag.id
+        WHERE tc.call_date LIKE ?
+        GROUP BY TRIM(LOWER(ag.city))
+      ) calls ON TRIM(LOWER(a.city)) = calls.match_city
       LEFT JOIN marketing_visits mv ON a.id = mv.agent_id
-      LEFT JOIN telephonic_calls tc ON a.id = tc.agent_id
       LEFT JOIN queries q ON a.id = q.agent_id
       GROUP BY a.city
       ORDER BY total_agents DESC
     `, [monthPattern]);
 
-    // Calculate conversion rates & calling coverage
+    // Calculate conversion rates and calling progress
     const formatted = locations.map(l => {
-      const called = l.yug_called_month || 0;
+      const yugCalled = l.yug_called_month || 0;
+      const allCalled = l.all_called_month || 0;
       const total = l.total_agents || 0;
-      const pending = Math.max(0, total - called);
-      const coverageRate = total > 0 ? Math.round((called / total) * 100) : 0;
-
+      const pending = Math.max(0, total - yugCalled);
+      const covRate = total > 0 ? Math.round((yugCalled / total) * 100) : 0;
       return {
         ...l,
-        yug_called_month: called,
+        yug_called_month: yugCalled,
         yug_pending_month: pending,
-        yug_coverage_rate: coverageRate,
+        yug_coverage_rate: covRate,
+        all_called_month: allCalled,
+        all_pending_month: Math.max(0, total - allCalled),
+        all_coverage_rate: total > 0 ? Math.round((allCalled / total) * 100) : 0,
         conversion_rate: l.query_agents > 0 ? Math.round((l.active_agents / l.query_agents) * 100) : 0,
-        visit_rate: Math.round((l.visited_count / l.total_agents) * 100)
+        visit_rate: total > 0 ? Math.round((l.visited_count / total) * 100) : 0
       };
     });
 
-    res.json({ success: true, locations: formatted, month });
+    res.json({ success: true, locations: formatted });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Phone, PhoneCall, Plus, Search, Filter, Calendar, MapPin, CheckCircle2, MessageSquare, Flame, FileText, UserCheck, AlertCircle, RefreshCw, Users, Eye, ArrowUpDown, DollarSign, Award, ChevronRight, X, ChevronDown, ChevronUp, Clock, Sparkles, Target, Zap, BarChart3, Check } from 'lucide-react';
 
-export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role }) {
+export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, refreshTrigger }) {
   const [agents, setAgents] = useState([]);
   const [callsHistory, setCallsHistory] = useState([]);
   const [locationsMatrix, setLocationsMatrix] = useState([]);
@@ -10,7 +10,20 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
   
   // Search & Filter States
   const [search, setSearch] = useState('');
-  const [selectedCity, setSelectedCity] = useState('');
+  const [selectedCity, setSelectedCityState] = useState(() => {
+    return sessionStorage.getItem('yug_desk_selected_city') || '';
+  });
+
+  const setSelectedCity = (city) => {
+    const val = city || '';
+    setSelectedCityState(val);
+    if (val) {
+      sessionStorage.setItem('yug_desk_selected_city', val);
+    } else {
+      sessionStorage.removeItem('yug_desk_selected_city');
+    }
+  };
+
   const [selectedStage, setSelectedStage] = useState('');
   const [callDateFilter, setCallDateFilter] = useState('');
   const [locationsList, setLocationsList] = useState([]);
@@ -57,6 +70,14 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
   useEffect(() => {
     fetchYugDeskData();
   }, [search, selectedCity, selectedStage]);
+
+  // When a modal logs a call or update occurs, re-fetch data smoothly without unmounting or losing selected city!
+  useEffect(() => {
+    if (refreshTrigger) {
+      fetchYugDeskData();
+      fetchLocationMatrix(selectedMonth);
+    }
+  }, [refreshTrigger]);
 
   const fetchLocationsList = async () => {
     try {
@@ -157,9 +178,52 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
   const uniqueAgenciesPendingThisMonth = Math.max(0, totalDbAgencies - uniqueAgenciesCalledThisMonth);
   const monthlyCoverageRate = totalDbAgencies > 0 ? Math.round((uniqueAgenciesCalledThisMonth / totalDbAgencies) * 100) : 0;
 
+  // Derive calling counts per location from callsHistory and agents
+  const locationCallingStats = useMemo(() => {
+    const statsByCity = {};
+    const targetMonth = selectedMonth || currentMonthStr;
+    
+    // Count called unique agents per city
+    yugOnlyCalls.forEach(c => {
+      if (c.call_date && c.call_date.startsWith(targetMonth) && c.agent_city) {
+        const cityKey = c.agent_city.trim().toLowerCase();
+        if (!statsByCity[cityKey]) {
+          statsByCity[cityKey] = new Set();
+        }
+        statsByCity[cityKey].add(c.agent_id);
+      }
+    });
+
+    const counts = {};
+    Object.keys(statsByCity).forEach(k => {
+      counts[k] = statsByCity[k].size;
+    });
+    return counts;
+  }, [yugOnlyCalls, selectedMonth, currentMonthStr]);
+
+  // Enhanced Matrix with Live Calling Counts
+  const enhancedMatrix = useMemo(() => {
+    return locationsMatrix.map(loc => {
+      const cityKey = (loc.location || '').trim().toLowerCase();
+      const called = locationCallingStats[cityKey] !== undefined
+        ? locationCallingStats[cityKey]
+        : (executiveFilter === 'all' ? (loc.all_called_month || loc.yug_called_month || 0) : (loc.yug_called_month || 0));
+      const total = loc.total_agents || 0;
+      const pending = Math.max(0, total - called);
+      const rate = total > 0 ? Math.round((called / total) * 100) : 0;
+
+      return {
+        ...loc,
+        yug_called_month: called,
+        yug_pending_month: pending,
+        yug_coverage_rate: rate
+      };
+    });
+  }, [locationsMatrix, locationCallingStats, executiveFilter]);
+
   // Sort Location Matrix Data
   const sortedMatrix = useMemo(() => {
-    return [...locationsMatrix].sort((a, b) => {
+    return [...enhancedMatrix].sort((a, b) => {
       if (matrixSort === 'loc_asc') return (a.location || '').localeCompare(b.location || '');
       if (matrixSort === 'loc_desc') return (b.location || '').localeCompare(a.location || '');
       if (matrixSort === 'revenue_desc') return (b.total_revenue || 0) - (a.total_revenue || 0);
@@ -168,7 +232,7 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
       if (matrixSort === 'coverage_desc') return (b.yug_coverage_rate || 0) - (a.yug_coverage_rate || 0);
       return (b.total_agents || 0) - (a.total_agents || 0);
     });
-  }, [locationsMatrix, matrixSort]);
+  }, [enhancedMatrix, matrixSort]);
 
   // Filtered Matrix by Calling Progress Status
   const filteredMatrix = useMemo(() => {
@@ -1056,7 +1120,7 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
                 <tr>
                   <th className="p-3.5">Territory / Location</th>
                   <th className="p-3.5 text-center">Total Agents</th>
-                  <th className="p-3.5 text-center">Yug Called ({selectedMonth})</th>
+                  <th className="p-3.5 text-center">{executiveFilter === 'all' ? 'All Called' : 'Yug Called'} ({selectedMonth})</th>
                   <th className="p-3.5 text-center">Pending Calls</th>
                   <th className="p-3.5 text-center">Calling Coverage</th>
                   <th className="p-3.5 text-center">Status</th>
@@ -1238,66 +1302,7 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role })
         )}
       </div>
 
-      {/* ========================================================================= */}
-      {/* 🏙️ CITY QUICK FILTER TABS / PILLS BAR */}
-      {/* ========================================================================= */}
-      <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-3">
-        <div className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
-          <span className="flex items-center gap-1.5">
-            <MapPin className="w-4 h-4 text-sky-400" /> Quick City Selection Bar:
-          </span>
-          {selectedCity && (
-            <button
-              onClick={() => setSelectedCity('')}
-              className="text-sky-400 hover:underline text-xs font-semibold cursor-pointer"
-            >
-              Show All Cities ({stats.totalAgenciesCount} Agencies)
-            </button>
-          )}
-        </div>
 
-        <div className="flex flex-wrap gap-2">
-          <button
-            onClick={() => setSelectedCity('')}
-            className={`px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 ${
-              !selectedCity
-                ? 'bg-sky-600 text-white shadow-lg shadow-sky-600/30'
-                : 'bg-slate-950 text-slate-300 hover:bg-slate-800 border border-slate-800'
-            }`}
-          >
-            🌐 All Cities ({stats.totalAgenciesCount || 700})
-          </button>
-
-          {sortedMatrix.map(loc => {
-            const pending = loc.yug_pending_month != null ? loc.yug_pending_month : Math.max(0, loc.total_agents - (loc.yug_called_month || 0));
-            const isCompleted = loc.yug_coverage_rate === 100;
-            return (
-              <button
-                key={loc.location}
-                onClick={() => setSelectedCity(loc.location)}
-                className={`px-3 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
-                  selectedCity === loc.location
-                    ? 'bg-sky-600 text-white shadow-lg shadow-sky-600/30 border border-sky-400'
-                    : isCompleted
-                    ? 'bg-emerald-950/40 text-emerald-300 hover:bg-emerald-900/50 border border-emerald-800/40'
-                    : 'bg-slate-950 text-slate-300 hover:bg-slate-800 border border-slate-800'
-                }`}
-              >
-                <span>📍 {loc.location}</span>
-                <span className={`text-[10px] px-1.5 py-0.2 rounded font-mono ${
-                  selectedCity === loc.location
-                    ? 'bg-sky-900 text-sky-100'
-                    : isCompleted 
-                    ? 'bg-emerald-900 text-emerald-200' 
-                    : 'bg-slate-800 text-slate-300'
-                }`}>
-                  {isCompleted ? '✅ 100%' : `${loc.yug_called_month || 0}/${loc.total_agents}`}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
 
       {/* ========================================================================= */}
       {/* SEARCH & STAGE FILTERS BAR */}

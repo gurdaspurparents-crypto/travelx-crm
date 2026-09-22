@@ -149,7 +149,7 @@ export default function App() {
 
         {activeTab === 'yug_desk' && (
           <YugCallingDesk
-            key={refreshKey}
+            refreshTrigger={refreshKey}
             role={role}
             onOpenModal={handleOpenModal}
             onOpenAgentDrawer={setSelectedAgentId}
