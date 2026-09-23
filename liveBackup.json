@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-23T11:00:09.585Z",
+  "backed_up_at": "2026-09-23T11:07:04.018Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7762,7 +7762,7 @@
       "name": "sandeep",
       "company_name": "mahjan cafe ",
       "mobile": "7009379365",
-      "city": "gurdaspr",
+      "city": "Gurdaspur",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
@@ -26848,13 +26848,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-09-24",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Customer Did Not Confirm",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5120",
@@ -26908,13 +26908,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-09-24",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Customer Did Not Confirm",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5123",
@@ -26928,13 +26928,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-09-24",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Customer Did Not Confirm",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5124",
