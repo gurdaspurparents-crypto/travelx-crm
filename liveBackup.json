@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-23T07:47:30.290Z",
+  "backed_up_at": "2026-09-23T07:48:35.562Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -6859,7 +6859,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "After Booking / Credit"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1063",
@@ -7849,11 +7849,11 @@
       "city": "Chak sharif",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-21",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "Advance Payment"
     },
     {
       "id": "AGT-2009",
@@ -23861,7 +23861,22 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-25",
-      "payment_terms": "After Booking / Credit"
+      "payment_terms": null
+    },
+    {
+      "id": 1176,
+      "call_date": "2026-09-23",
+      "agent_id": "AGT-2008",
+      "visit_id": 749,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-25",
+      "payment_terms": "Advance Payment"
     }
   ],
   "queries": [
