@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-23T10:29:26.564Z",
+  "backed_up_at": "2026-09-23T10:31:47.474Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -4055,7 +4055,7 @@
       "city": "Panj Grahiyan",
       "area": "Panj Grahiyan",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -24408,7 +24408,7 @@
       "call_result": "Call Again Later",
       "remarks": "",
       "next_followup_date": "2026-09-25",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1207,
@@ -24421,6 +24421,21 @@
       "agent_requirement": "bussy ",
       "interest_level": "Interested / Warm",
       "call_result": "No Response",
+      "remarks": "",
+      "next_followup_date": "2026-09-25",
+      "payment_terms": null
+    },
+    {
+      "id": 1208,
+      "call_date": "2026-09-23",
+      "agent_id": "AGT-1643",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "not interested",
+      "interest_level": "Interested / Warm",
+      "call_result": "Not Interested",
       "remarks": "",
       "next_followup_date": "2026-09-25",
       "payment_terms": "Not Discussed"
