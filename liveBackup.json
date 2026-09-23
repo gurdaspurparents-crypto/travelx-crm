@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-23T06:57:49.794Z",
+  "backed_up_at": "2026-09-23T06:58:33.887Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -5427,11 +5427,11 @@
       "city": "Tibri",
       "area": "Tibri Cant",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "Advance Payment"
     },
     {
       "id": "AGT-1839",
@@ -23233,6 +23233,21 @@
       "remarks": "",
       "next_followup_date": "2026-09-25",
       "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 1141,
+      "call_date": "2026-09-23",
+      "agent_id": "AGT-1838",
+      "visit_id": 739,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Call Again Later",
+      "remarks": "",
+      "next_followup_date": "2026-09-25",
+      "payment_terms": "Advance Payment"
     }
   ],
   "queries": [
