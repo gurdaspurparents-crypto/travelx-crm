@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-23T10:09:06.376Z",
+  "backed_up_at": "2026-09-23T10:10:48.175Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -3709,7 +3709,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "After Booking / Credit"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1606",
@@ -6397,7 +6397,7 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-01",
-      "payment_terms": "After Booking / Credit"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1916",
@@ -12721,6 +12721,23 @@
       "executive_name": "Bikramjit Singh",
       "person_met": "Mr.tarsem singh",
       "mobile": "9915379630",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-24",
+      "location": "Wadala Granthia",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 782,
+      "visit_date": "2026-09-23",
+      "agent_id": "AGT-1875",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "mr.parminder singh",
+      "mobile": "8427939374",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
@@ -24206,7 +24223,7 @@
       "call_result": "Call Again Later",
       "remarks": "",
       "next_followup_date": "2026-09-25",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1199,
@@ -24221,7 +24238,7 @@
       "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-25",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1200,
@@ -24236,7 +24253,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-25",
-      "payment_terms": "After Booking / Credit"
+      "payment_terms": null
     },
     {
       "id": 1201,
@@ -24251,7 +24268,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-25",
-      "payment_terms": "After Booking / Credit"
+      "payment_terms": null
     }
   ],
   "queries": [
