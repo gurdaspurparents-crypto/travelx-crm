@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-23T06:08:10.369Z",
+  "backed_up_at": "2026-09-23T06:09:26.494Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -1269,7 +1269,7 @@
       "city": "Ghuman",
       "area": "Ghuman",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -22852,7 +22852,7 @@
       "call_result": "Requirement Received",
       "remarks": "",
       "next_followup_date": "2026-09-25",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1123,
@@ -22867,12 +22867,12 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-09-25",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1124,
       "call_date": "2026-09-23",
-      "agent_id": "AGT-1277",
+      "agent_id": "AGT-1278",
       "visit_id": null,
       "executive_name": "Yug",
       "is_connected": 1,
