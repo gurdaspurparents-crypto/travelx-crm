@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-23T09:55:16.552Z",
+  "backed_up_at": "2026-09-23T09:55:41.133Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -3313,7 +3313,7 @@
       "city": "Kalanour",
       "area": "Kalnour",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -4689,7 +4689,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1738",
@@ -24041,22 +24041,22 @@
       "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-25",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1188,
       "call_date": "2026-09-23",
-      "agent_id": "AGT-1736",
-      "visit_id": 751,
-      "executive_name": "Simranjit Kaur",
+      "agent_id": "AGT-1562",
+      "visit_id": null,
+      "executive_name": "Yug",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
+      "agent_requirement": "bussy ",
       "interest_level": "Interested / Warm",
-      "call_result": "Interested",
+      "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-09-25",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     }
   ],
   "queries": [
