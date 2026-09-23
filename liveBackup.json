@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-23T09:57:56.000Z",
+  "backed_up_at": "2026-09-23T10:01:03.272Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -5403,7 +5403,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1836",
@@ -12217,23 +12217,6 @@
       "remarks": "",
       "next_followup_date": "2026-09-22",
       "location": "Gunopur",
-      "gps_latitude": null,
-      "gps_longitude": null,
-      "gps_address": null
-    },
-    {
-      "id": 751,
-      "visit_date": "2026-09-21",
-      "agent_id": "AGT-1736",
-      "executive_name": "Bikramjit Singh",
-      "person_met": "Mr.Simon",
-      "mobile": "9877535929",
-      "is_new_agent": 0,
-      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"Cruise\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
-      "response_level": "Interested / Warm",
-      "remarks": "",
-      "next_followup_date": "2026-09-22",
-      "location": "Saidowal",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
@@ -24071,7 +24054,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-25",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     }
   ],
   "queries": [
