@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-23T05:44:24.509Z",
+  "backed_up_at": "2026-09-23T05:47:49.276Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -2109,7 +2109,7 @@
       "city": "Gurdaspur",
       "area": "Gsp",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -22745,7 +22745,7 @@
       "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-25",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1117,
@@ -22758,6 +22758,21 @@
       "agent_requirement": "good relpy",
       "interest_level": "Interested / Warm",
       "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-25",
+      "payment_terms": null
+    },
+    {
+      "id": 1118,
+      "call_date": "2026-09-23",
+      "agent_id": "AGT-1407",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "no good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Not Interested",
       "remarks": "",
       "next_followup_date": "2026-09-25",
       "payment_terms": "Not Discussed"
