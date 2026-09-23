@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-23T10:07:17.609Z",
+  "backed_up_at": "2026-09-23T10:07:45.296Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -6397,7 +6397,7 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-01",
-      "payment_terms": "After Booking / Credit"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1916",
@@ -6467,7 +6467,7 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-02",
-      "payment_terms": "After Booking / Credit"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1921",
@@ -6621,7 +6621,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "After Booking / Credit"
     },
     {
       "id": "AGT-1022",
@@ -7181,7 +7181,7 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-10",
-      "payment_terms": "After Booking / Credit"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1960",
@@ -12710,6 +12710,23 @@
       "remarks": "",
       "next_followup_date": "2026-09-24",
       "location": "seikhwan ",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 781,
+      "visit_date": "2026-09-23",
+      "agent_id": "AGT-1876",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.tarsem singh",
+      "mobile": "9915379630",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-24",
+      "location": "Wadala Granthia",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
@@ -24129,7 +24146,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-25",
-      "payment_terms": "After Booking / Credit"
+      "payment_terms": null
     },
     {
       "id": 1195,
@@ -24144,7 +24161,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-25",
-      "payment_terms": "After Booking / Credit"
+      "payment_terms": null
     },
     {
       "id": 1196,
@@ -24159,13 +24176,13 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-25",
-      "payment_terms": "After Booking / Credit"
+      "payment_terms": null
     },
     {
       "id": 1197,
       "call_date": "2026-09-23",
-      "agent_id": "AGT-1915",
-      "visit_id": 759,
+      "agent_id": "AGT-1021",
+      "visit_id": 755,
       "executive_name": "Simranjit Kaur",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
