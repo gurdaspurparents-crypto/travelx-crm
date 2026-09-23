@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-23T07:11:32.081Z",
+  "backed_up_at": "2026-09-23T07:11:58.157Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7793,7 +7793,7 @@
       "city": "gurdaspr",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-19",
@@ -7975,7 +7975,7 @@
       "city": "Gurdaspur",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "QueryReceived",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-23",
@@ -23384,6 +23384,21 @@
       "remarks": "",
       "next_followup_date": "2026-09-25",
       "payment_terms": null
+    },
+    {
+      "id": 1149,
+      "call_date": "2026-09-23",
+      "agent_id": "AGT-2004",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "bussy call",
+      "interest_level": "Interested / Warm",
+      "call_result": "No Response",
+      "remarks": "",
+      "next_followup_date": "2026-09-25",
+      "payment_terms": "Not Discussed"
     }
   ],
   "queries": [
@@ -25593,26 +25608,6 @@
       "agent_id": "AGT-1982",
       "product": "International Flight",
       "query_details": "del-lhr",
-      "travel_date": "2026-10-08",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-09-24",
-      "status": "New",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
-    },
-    {
-      "id": "QRY-5124",
-      "query_date": "2026-09-23",
-      "agent_id": "AGT-2017",
-      "product": "International Flight",
-      "query_details": "atq-dxb",
       "travel_date": "2026-10-08",
       "pax_details": "2 Adults",
       "estimated_value": 0,
