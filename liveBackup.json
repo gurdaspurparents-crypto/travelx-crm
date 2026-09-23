@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-23T05:51:44.113Z",
+  "backed_up_at": "2026-09-23T06:01:46.758Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -6967,7 +6967,7 @@
       "city": "Dehriwal",
       "area": "Dehriwal, Distt Shekwa",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -22790,7 +22790,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-25",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1120,
@@ -22805,7 +22805,7 @@
       "call_result": "Call Again Later",
       "remarks": "",
       "next_followup_date": "2026-09-25",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1121,
@@ -22820,7 +22820,7 @@
       "call_result": "Call Again Later",
       "remarks": "",
       "next_followup_date": "2026-09-25",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
@@ -24970,6 +24970,26 @@
       "agent_id": "AGT-1915",
       "product": "International Flight",
       "query_details": "mad-del",
+      "travel_date": "2026-10-08",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-09-24",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5121",
+      "query_date": "2026-09-23",
+      "agent_id": "AGT-1071",
+      "product": "International Flight",
+      "query_details": "per-atq",
       "travel_date": "2026-10-08",
       "pax_details": "2 Adults",
       "estimated_value": 0,
