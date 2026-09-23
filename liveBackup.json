@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-23T06:54:42.757Z",
+  "backed_up_at": "2026-09-23T06:57:49.794Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -3635,7 +3635,7 @@
       "city": "Maan Kaur Singh",
       "area": "Maan Kaur Singh",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -23218,6 +23218,21 @@
       "remarks": "",
       "next_followup_date": "2026-09-25",
       "payment_terms": null
+    },
+    {
+      "id": 1140,
+      "call_date": "2026-09-23",
+      "agent_id": "AGT-1599",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "busy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Call Again Later",
+      "remarks": "",
+      "next_followup_date": "2026-09-25",
+      "payment_terms": "Not Discussed"
     }
   ],
   "queries": [
