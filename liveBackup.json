@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-23T10:40:27.663Z",
+  "backed_up_at": "2026-09-23T10:41:24.178Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -6691,7 +6691,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1037",
@@ -6733,7 +6733,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1041",
@@ -6743,11 +6743,11 @@
       "city": "Behrampur",
       "area": "Behrampur",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "Advance Payment"
     },
     {
       "id": "AGT-1048",
@@ -24678,7 +24678,7 @@
       "call_result": "Call Again Later",
       "remarks": "",
       "next_followup_date": "2026-09-25",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 1225,
@@ -24693,7 +24693,7 @@
       "call_result": "Call Again Later",
       "remarks": "",
       "next_followup_date": "2026-09-25",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 1226,
@@ -24708,7 +24708,7 @@
       "call_result": "Call Again Later",
       "remarks": "",
       "next_followup_date": "2026-09-25",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 1227,
@@ -24721,6 +24721,36 @@
       "agent_requirement": "",
       "interest_level": "Interested / Warm",
       "call_result": "No Response",
+      "remarks": "",
+      "next_followup_date": "2026-09-25",
+      "payment_terms": null
+    },
+    {
+      "id": 1228,
+      "call_date": "2026-09-23",
+      "agent_id": "AGT-1041",
+      "visit_id": 763,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-25",
+      "payment_terms": "Advance Payment"
+    },
+    {
+      "id": 1229,
+      "call_date": "2026-09-23",
+      "agent_id": "AGT-1041",
+      "visit_id": 763,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-25",
       "payment_terms": "Advance Payment"
