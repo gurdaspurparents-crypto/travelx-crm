@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-23T07:26:41.892Z",
+  "backed_up_at": "2026-09-23T07:27:33.367Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -1451,7 +1451,7 @@
       "city": "Gogowal",
       "area": "Gogowal",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -23639,6 +23639,21 @@
       "remarks": "",
       "next_followup_date": "2026-09-25",
       "payment_terms": "Advance Payment"
+    },
+    {
+      "id": 1166,
+      "call_date": "2026-09-23",
+      "agent_id": "AGT-1290",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "not connted",
+      "interest_level": "Interested / Warm",
+      "call_result": "No Response",
+      "remarks": "",
+      "next_followup_date": "2026-09-25",
+      "payment_terms": "Not Discussed"
     }
   ],
   "queries": [
