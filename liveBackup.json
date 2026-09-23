@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-23T10:12:49.203Z",
+  "backed_up_at": "2026-09-23T10:13:09.676Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -6037,8 +6037,8 @@
     },
     {
       "id": "AGT-1879",
-      "name": "Mr.varun",
-      "company_name": "Varun travel",
+      "name": "Mr.arun",
+      "company_name": "arun travel",
       "mobile": "9872805532",
       "city": "Wadala Granthia",
       "area": "Wadla Granthia",
@@ -12757,6 +12757,23 @@
       "mobile": "7814638088",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-24",
+      "location": "Wadala Granthia",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 784,
+      "visit_date": "2026-09-23",
+      "agent_id": "AGT-1879",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.varun",
+      "mobile": "9872805532",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Visa Services\",\"Domestic Flight\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-09-24",
@@ -24300,7 +24317,7 @@
       "call_result": "Not Interested",
       "remarks": "",
       "next_followup_date": "2026-09-25",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
