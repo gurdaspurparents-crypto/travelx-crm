@@ -14,6 +14,7 @@ import AIAssistant from './components/AIAssistant';
 import Agent360Drawer from './components/Agent360Drawer';
 import EntryModals from './components/EntryModals';
 import ImportExcelModal from './components/ImportExcelModal';
+import ErrorBoundary from './components/ErrorBoundary';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -130,6 +131,7 @@ export default function App() {
 
       {/* Main App Workspace View */}
       <main className="relative z-10 flex-1 max-w-[1720px] w-full mx-auto px-3 sm:px-6 py-4 sm:py-6">
+        <ErrorBoundary>
         
         {activeTab === 'dashboard' && role === 'Admin / Owner' && (
           <ManagementDashboard
@@ -251,6 +253,7 @@ export default function App() {
           </div>
         )}
 
+        </ErrorBoundary>
       </main>
 
       {/* Enterprise SaaS Footer */}

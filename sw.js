@@ -1,20 +1,14 @@
-// Minimal PWA Service Worker for Travelx Marketing App
-const CACHE_NAME = 'travelx-pwa-v11';
-
+// Self-destructing worker: the old PWA SW was blanking the CRM
+// by reloading on every update. Unregister and stop intercepting.
 self.addEventListener('install', (event) => {
   self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((keys) => Promise.all(keys.map((k) => caches.delete(k))))
+    caches.keys()
+      .then((keys) => Promise.all(keys.map((k) => caches.delete(k))))
+      .then(() => self.registration.unregister())
       .then(() => self.clients.claim())
-  );
-});
-
-self.addEventListener('fetch', (event) => {
-  // Pass-through to network
-  event.respondWith(
-    fetch(event.request).catch(() => caches.match(event.request))
   );
 });

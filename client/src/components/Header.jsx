@@ -139,9 +139,13 @@ export default function Header({ activeTab, onSelectTab, role, onRoleChange, onO
               const timeLabel = lastSuccess
                 ? (() => {
                     const d = new Date(lastSuccess);
-                    // Convert UTC to IST (+5:30)
+                    if (Number.isNaN(d.getTime())) return 'Never';
                     const ist = new Date(d.getTime() + 5.5 * 60 * 60 * 1000);
-                    return ist.toISOString().replace('T', ' ').substring(0, 16) + ' IST';
+                    try {
+                      return ist.toISOString().replace('T', ' ').substring(0, 16) + ' IST';
+                    } catch (_) {
+                      return 'Never';
+                    }
                   })()
                 : 'Never';
               return (

@@ -123,11 +123,18 @@ export default function ManagementDashboard({ onNavigate, onOpenAgentDrawer, onO
     );
   }
 
-  const { today, funnel, territory_targets = [], business_results = {} } = data || {};
+  const today = data?.today || {};
+  const funnel = data?.funnel || {};
+  const territoryTargets = Array.isArray(data?.territory_targets) ? data.territory_targets : [];
+  const business_results = data?.business_results || {};
 
-  const totalUnvisitedNextMonth = territory_targets.reduce((acc, t) => acc + (t.unvisited_count || 0), 0);
-  const winRate = Math.round(((business_results.converted_bookings_count || 0) / (business_results.total_queries_count || 1)) * 100);
-  const activeRate = Math.round(((funnel?.active || 0) / (funnel?.total || 1)) * 100);
+  const totalUnvisitedNextMonth = territoryTargets.reduce((acc, t) => acc + (t.unvisited_count || 0), 0);
+  const winRate = (business_results.total_queries_count && business_results.total_queries_count > 0)
+    ? Math.round(((business_results.converted_bookings_count || 0) / business_results.total_queries_count) * 100)
+    : 0;
+  const activeRate = (funnel?.total && funnel?.total > 0)
+    ? Math.round(((funnel?.active || 0) / funnel?.total) * 100)
+    : 0;
 
   return (
     <div className="space-y-6 animate-in fade-in duration-300">

@@ -2084,6 +2084,17 @@ app.get('/api/export/conveyance', async (req, res) => {
 
 // SPA Fallback Route for Client-side Routing (Express v5 compatible)
 app.use((req, res) => {
+  const urlPath = (req.path || '').toLowerCase();
+  if (
+    urlPath.startsWith('/api') ||
+    urlPath.startsWith('/assets') ||
+    urlPath.endsWith('.js') ||
+    urlPath.endsWith('.css') ||
+    urlPath.endsWith('sw.js') ||
+    urlPath.endsWith('.map')
+  ) {
+    return res.status(404).type('text/plain').send('Not found');
+  }
   const distIndex = path.join(__dirname, 'dist', 'index.html');
   const parentDistIndex = path.join(__dirname, '../dist', 'index.html');
   const clientDistIndex = path.join(__dirname, 'client', 'dist', 'index.html');
