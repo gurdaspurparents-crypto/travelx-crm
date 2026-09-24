@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-24T11:45:24.876Z",
+  "backed_up_at": "2026-09-24T11:46:54.354Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -2596,8 +2596,8 @@
       "name": "Mr.rahul",
       "company_name": "pannu jogi cafe ",
       "mobile": "9888636692",
-      "city": "Old Bus Stand",
-      "area": "Gsp",
+      "city": "Gurdaspur",
+      "area": "Back side Bus Stand ",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
