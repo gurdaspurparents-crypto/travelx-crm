@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-24T11:43:32.838Z",
+  "backed_up_at": "2026-09-24T11:44:00.326Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -346,20 +346,6 @@
       "area": "Chaksharif",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1064",
-      "name": "Mr. Gurbachan singh",
-      "company_name": "Sant baba hazara singh enterprises",
-      "mobile": "7837106334",
-      "city": "Nikke Ghuman",
-      "area": "Nikke Ghuman",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
