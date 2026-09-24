@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { MapPin, Plus, Calendar, CheckCircle2, User, Phone, Tag, FileText, Filter, X, Trash2, Download, AlertCircle, Navigation, Search, Gauge, DollarSign, Flag, Clock, UserPlus, Edit, Compass, Sparkles, Users, ArrowUpDown, Eye, RotateCcw } from 'lucide-react';
+import { MapPin, Plus, Calendar, CheckCircle2, User, Phone, Tag, FileText, Filter, X, Trash2, Download, AlertCircle, Navigation, Search, Gauge, DollarSign, Flag, Clock, UserPlus, Edit, Compass, Sparkles, Users, ArrowUpDown, Eye, RotateCcw, ChevronDown, ChevronUp } from 'lucide-react';
 import { exportToPDF } from '../utils/exportUtils';
 import BikramPwaInstallBanner from './BikramPwaInstallBanner';
 import RoutePlannerTester from './RoutePlannerTester';
@@ -54,6 +54,12 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
   const [dayReport, setDayReport] = useState([]);
   const [startKmInput, setStartKmInput] = useState('');
   const [endKmInput, setEndKmInput] = useState('');
+
+  // Collapsible Dropdown Section States
+  const [showOdometer, setShowOdometer] = useState(false);
+  const [showMatrix, setShowMatrix] = useState(true);
+  const [showChecklist, setShowChecklist] = useState(true);
+  const [showVisitsLog, setShowVisitsLog] = useState(true);
 
   // Safe Beta Tester state for Nearby Agents Route Planner
   const [showRouteTester, setShowRouteTester] = useState(false);
@@ -548,19 +554,119 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
         />
       )}
 
-      {/* 🏍️ ODOMETER & CONVEYANCE TRACKER CARD */}
-      <div className="bg-[#0c1322]/90 border border-white/[0.08] rounded-2xl p-5 shadow-xl space-y-4 backdrop-blur-md">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/[0.06] pb-3">
+      {/* Target Quick Section Jump Command Bar */}
+      <div className="bg-[#0b1220]/90 border border-white/[0.08] p-3 rounded-2xl flex flex-wrap items-center justify-between gap-3 shadow-lg backdrop-blur-md">
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider px-2 flex items-center gap-1">
+            <Compass className="w-3.5 h-3.5 text-amber-400" /> Focus Sections:
+          </span>
+
+          <button
+            type="button"
+            onClick={() => {
+              setShowOdometer(true);
+              document.getElementById('marketing-odometer-section')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 border cursor-pointer ${
+              showOdometer
+                ? 'bg-sky-500/20 text-sky-300 border-sky-500/40 ring-1 ring-sky-400/30'
+                : 'bg-white/[0.04] text-slate-400 hover:text-white border-white/[0.06]'
+            }`}
+          >
+            <Gauge className="w-3.5 h-3.5 text-sky-400" /> 🏍️ Odometer ({totalKmSum} KM)
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              setShowMatrix(true);
+              document.getElementById('marketing-matrix-section')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 border cursor-pointer ${
+              showMatrix
+                ? 'bg-amber-500/20 text-amber-300 border-amber-500/40 ring-1 ring-amber-400/30'
+                : 'bg-white/[0.04] text-slate-400 hover:text-white border-white/[0.06]'
+            }`}
+          >
+            <Navigation className="w-3.5 h-3.5 text-amber-400" /> 📍 City Matrix ({matrixLocations.length})
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              setShowChecklist(true);
+              document.getElementById('field-location-checklist')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 border cursor-pointer ${
+              showChecklist
+                ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40 ring-1 ring-emerald-400/30'
+                : 'bg-white/[0.04] text-slate-400 hover:text-white border-white/[0.06]'
+            }`}
+          >
+            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> 📋 Agent Checklist ({locationAgents.length})
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              setShowVisitsLog(true);
+              document.getElementById('marketing-visits-log')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 border cursor-pointer ${
+              showVisitsLog
+                ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/40 ring-1 ring-indigo-400/30'
+                : 'bg-white/[0.04] text-slate-400 hover:text-white border-white/[0.06]'
+            }`}
+          >
+            <FileText className="w-3.5 h-3.5 text-indigo-400" /> 📜 Visits Log ({visits.length})
+          </button>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => {
+              setShowOdometer(true);
+              setShowMatrix(true);
+              setShowChecklist(true);
+              setShowVisitsLog(true);
+            }}
+            className="px-2.5 py-1 text-[11px] font-semibold text-slate-400 hover:text-slate-200 transition"
+          >
+            Expand All
+          </button>
+          <span className="text-slate-700">|</span>
+          <button
+            type="button"
+            onClick={() => {
+              setShowOdometer(false);
+              setShowMatrix(false);
+              setShowChecklist(false);
+              setShowVisitsLog(false);
+            }}
+            className="px-2.5 py-1 text-[11px] font-semibold text-slate-400 hover:text-slate-200 transition"
+          >
+            Collapse All
+          </button>
+        </div>
+      </div>
+
+      {/* 🏍️ ODOMETER & CONVEYANCE TRACKER CARD (Collapsible Section Accordion) */}
+      <div id="marketing-odometer-section" className="bg-[#0c1322]/90 border border-white/[0.08] rounded-2xl overflow-hidden shadow-xl backdrop-blur-md">
+        <div 
+          onClick={() => setShowOdometer(!showOdometer)}
+          className="p-4 sm:p-5 bg-gradient-to-r from-slate-900 via-slate-900 to-sky-950/30 border-b border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-3 cursor-pointer select-none hover:bg-slate-850 transition"
+        >
           <div>
             <h3 className="text-base font-bold text-slate-100 flex items-center gap-2">
               <Gauge className="w-4 h-4 text-sky-400" /> 🏍️ Motorcycle Odometer & Conveyance Tracker (Bikramjit Singh)
             </h3>
             <p className="text-xs text-slate-400 mt-0.5">
-              Log motorcycle meter reading on leaving & returning to office for 100% exact conveyance calculation!
+              Log motorcycle meter reading on departure & return to office for exact conveyance calculation
             </p>
           </div>
 
-          <div className="flex items-center gap-2 flex-wrap">
+          <div className="flex items-center gap-2 flex-wrap" onClick={(e) => e.stopPropagation()}>
             <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-lg border border-emerald-500/20">
               Total KM: {totalKmSum} KM
             </span>
@@ -573,11 +679,29 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
                 className="px-2.5 py-1 bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 rounded-lg text-xs transition border border-rose-500/20 flex items-center gap-1 font-semibold cursor-pointer"
                 title="Admin Only: Clear all conveyance trip logs"
               >
-                <Trash2 className="w-3 h-3 text-rose-400" /> Clear Conveyance
+                <Trash2 className="w-3 h-3 text-rose-400" /> Clear
               </button>
             )}
+            <button
+              type="button"
+              onClick={() => setShowOdometer(!showOdometer)}
+              className="px-3 py-1 bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 border border-sky-500/30 rounded-lg text-xs font-bold transition flex items-center gap-1"
+            >
+              {showOdometer ? (
+                <>
+                  <ChevronUp className="w-4 h-4 text-sky-400" /> Collapse
+                </>
+              ) : (
+                <>
+                  <ChevronDown className="w-4 h-4 text-sky-400" /> Open Odometer
+                </>
+              )}
+            </button>
           </div>
         </div>
+
+        {showOdometer && (
+          <div className="p-4 sm:p-5 space-y-4">
 
         {/* 2-SECTION ENTRY FORMS (Departure Start KM & Return End KM) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -706,16 +830,20 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
             </div>
           )}
         </div>
-
+      </div>
+      )}
       </div>
 
       {/* ========================================================================= */}
-      {/* 🚗 BIKRAM'S MONTHLY FIELD VISIT COVERAGE MATRIX */}
+      {/* 🚗 BIKRAM'S MONTHLY FIELD VISIT COVERAGE MATRIX (Collapsible Section Accordion) */}
       {/* ========================================================================= */}
-      <div className="bg-[#0c1322]/90 border border-amber-500/25 rounded-2xl p-5 shadow-xl space-y-4 backdrop-blur-md">
+      <div id="marketing-matrix-section" className="bg-[#0c1322]/90 border border-amber-500/25 rounded-2xl overflow-hidden shadow-xl backdrop-blur-md">
         
-        {/* Top Header & Filters */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/[0.06] pb-4">
+        {/* Top Header & Accordion Toggle */}
+        <div 
+          onClick={() => setShowMatrix(!showMatrix)}
+          className="p-4 sm:p-5 bg-gradient-to-r from-slate-900 via-slate-900 to-amber-950/30 border-b border-white/[0.06] flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer select-none hover:bg-slate-850 transition"
+        >
           <div>
             <div className="flex items-center gap-2 mb-1.5 flex-wrap">
               <span className="px-2.5 py-0.5 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-full text-[11px] font-mono font-bold uppercase tracking-wider flex items-center gap-1.5">
@@ -729,12 +857,12 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
               <span>📍🚗 Bikram's Monthly Field Visit Matrix ({matrixMonth})</span>
             </h3>
             <p className="text-xs text-slate-400 mt-1 max-w-2xl">
-              यहाँ देखें Bikram ne kis shahar mein kitne travel agents ko personally visit kar liya hai aur kitne pending hain:
+              Track visits city-wise: see where travel agents have been visited vs pending visits
             </p>
           </div>
 
           {/* Month Picker & Executive Filter */}
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2" onClick={(e) => e.stopPropagation()}>
             {/* Executive Switcher */}
             <div className="flex items-center bg-[#070b14] border border-white/[0.08] p-1 rounded-xl text-xs">
               <button
@@ -784,11 +912,29 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
                 <RotateCcw className={`w-3.5 h-3.5 ${loadingMatrix ? 'animate-spin' : ''}`} />
               </button>
             </div>
+
+            <button
+              type="button"
+              onClick={() => setShowMatrix(!showMatrix)}
+              className="px-3 py-1.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 rounded-xl text-xs font-bold transition flex items-center gap-1"
+            >
+              {showMatrix ? (
+                <>
+                  <ChevronUp className="w-4 h-4 text-amber-400" /> Collapse
+                </>
+              ) : (
+                <>
+                  <ChevronDown className="w-4 h-4 text-amber-400" /> Open Matrix
+                </>
+              )}
+            </button>
           </div>
         </div>
 
-        {/* STATUS FILTERS & SORT CONTROLS BAR */}
-        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3 bg-[#070b14]/70 p-3 rounded-xl border border-white/[0.06]">
+        {showMatrix && (
+          <div className="p-4 sm:p-5 space-y-4">
+            {/* STATUS FILTERS & SORT CONTROLS BAR */}
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3 bg-[#070b14]/70 p-3 rounded-xl border border-white/[0.06]">
           
           {/* Status Filter Buttons */}
           <div className="flex flex-wrap items-center gap-1.5 text-xs">
@@ -1017,12 +1163,16 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
             </table>
           </div>
         )}
-
+      </div>
+      )}
       </div>
 
-      {/* 📍 Field Location Route & Agent Checklist */}
-      <div id="field-location-checklist" className="scroll-mt-24 bg-[#0c1322]/90 border border-amber-500/25 rounded-2xl p-5 shadow-xl space-y-4 backdrop-blur-md">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/[0.06] pb-3">
+      {/* 📍 Field Location Route & Agent Checklist (Collapsible Section Accordion) */}
+      <div id="field-location-checklist" className="scroll-mt-24 bg-[#0c1322]/90 border border-amber-500/25 rounded-2xl overflow-hidden shadow-xl backdrop-blur-md">
+        <div 
+          onClick={() => setShowChecklist(!showChecklist)}
+          className="p-4 sm:p-5 bg-gradient-to-r from-slate-900 via-slate-900 to-emerald-950/30 border-b border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-3 cursor-pointer select-none hover:bg-slate-850 transition"
+        >
           <div>
             <h3 className="text-base font-bold text-amber-300 flex items-center gap-2">
               <Navigation className="w-4 h-4 text-amber-400" /> 📍 Field Location Agent Checklist (Zero Missed Visits)
@@ -1032,7 +1182,7 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2" onClick={(e) => e.stopPropagation()}>
             {/* Quick Location Select Dropdown from DB (Preserved original un-grouped format) */}
             <select
               value={selectedLocation}
@@ -1056,8 +1206,27 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
                 className="bg-[#070b14] border border-white/[0.08] text-slate-200 text-sm sm:text-xs pl-9 sm:pl-8 pr-3 py-2.5 sm:py-2 rounded-xl focus:outline-none focus:border-amber-400 w-40 sm:w-44 font-medium"
               />
             </div>
+
+            <button
+              type="button"
+              onClick={() => setShowChecklist(!showChecklist)}
+              className="px-3 py-1.5 bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/30 rounded-xl text-xs font-bold transition flex items-center gap-1"
+            >
+              {showChecklist ? (
+                <>
+                  <ChevronUp className="w-4 h-4 text-emerald-400" /> Collapse
+                </>
+              ) : (
+                <>
+                  <ChevronDown className="w-4 h-4 text-emerald-400" /> Open Checklist ({locationAgents.length})
+                </>
+              )}
+            </button>
           </div>
         </div>
+
+        {showChecklist && (
+          <div className="p-4 sm:p-5 space-y-4">
 
         {/* 🔍 DATE RANGE & STATUS FILTERS TOOLBAR */}
         <div className="bg-[#070b14]/70 border border-white/[0.06] p-3.5 rounded-xl space-y-3">
@@ -1350,22 +1519,63 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
           </div>
         )}
       </div>
+      )}
+      </div>
 
-      {/* General Filters with Date Selection */}
-      <div className="bg-[#0c1322]/90 border border-white/[0.08] p-4 rounded-2xl flex flex-wrap gap-4 items-center backdrop-blur-md">
-        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
-          <Filter className="w-3.5 h-3.5 text-sky-400" /> Logged Visits Filter:
-        </span>
-
-        {/* Executive Filter */}
-        <select
-          value={execFilter}
-          onChange={(e) => setExecFilter(e.target.value)}
-          className="bg-[#070b14] border border-white/[0.08] text-slate-300 rounded-xl text-xs p-2.5 focus:outline-none focus:border-sky-500 cursor-pointer"
+      {/* 📜 Logged Field Visits Registry & Audit History (Collapsible Section Accordion) */}
+      <div id="marketing-visits-log" className="bg-[#0c1322]/90 border border-white/[0.08] rounded-2xl overflow-hidden shadow-xl backdrop-blur-md">
+        <div 
+          onClick={() => setShowVisitsLog(!showVisitsLog)}
+          className="p-4 sm:p-5 bg-gradient-to-r from-slate-900 via-slate-900 to-indigo-950/30 border-b border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-3 cursor-pointer select-none hover:bg-slate-850 transition"
         >
-          <option value="">All Field Executives</option>
-          <option value="Bikramjit Singh">Bikramjit Singh</option>
-        </select>
+          <div>
+            <h3 className="text-base font-bold text-slate-100 flex items-center gap-2">
+              <FileText className="w-4 h-4 text-indigo-400" /> 📜 Logged Field Visits Registry & Audit History
+            </h3>
+            <p className="text-xs text-slate-400 mt-0.5">
+              Comprehensive log of physical marketing visits, geo-coordinates, photos & executive feedback
+            </p>
+          </div>
+
+          <div className="flex items-center gap-2 flex-wrap" onClick={(e) => e.stopPropagation()}>
+            <span className="text-xs font-mono font-bold text-sky-400 bg-sky-500/10 px-2.5 py-1 rounded-lg border border-sky-500/20">
+              {visits.length} Visits Logged
+            </span>
+            <button
+              type="button"
+              onClick={() => setShowVisitsLog(!showVisitsLog)}
+              className="px-3 py-1.5 bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-300 border border-indigo-500/30 rounded-xl text-xs font-bold transition flex items-center gap-1"
+            >
+              {showVisitsLog ? (
+                <>
+                  <ChevronUp className="w-4 h-4 text-indigo-400" /> Collapse Log
+                </>
+              ) : (
+                <>
+                  <ChevronDown className="w-4 h-4 text-indigo-400" /> Open Log ({visits.length})
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+
+        {showVisitsLog && (
+          <div className="p-4 sm:p-5 space-y-4">
+            {/* General Filters with Date Selection */}
+            <div className="bg-[#070b14]/70 border border-white/[0.08] p-4 rounded-xl flex flex-wrap gap-4 items-center">
+              <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                <Filter className="w-3.5 h-3.5 text-sky-400" /> Logged Visits Filter:
+              </span>
+
+              {/* Executive Filter */}
+              <select
+                value={execFilter}
+                onChange={(e) => setExecFilter(e.target.value)}
+                className="bg-[#0c1322] border border-white/[0.08] text-slate-300 rounded-xl text-xs p-2.5 focus:outline-none focus:border-sky-500 cursor-pointer"
+              >
+                <option value="">All Field Executives</option>
+                <option value="Bikramjit Singh">Bikramjit Singh</option>
+              </select>
 
         {/* Single Date Picker */}
         <div className="flex items-center gap-2">
@@ -1538,6 +1748,9 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
             </tbody>
           </table>
         </div>
+      </div>
+      </div>
+      )}
       </div>
 
     </div>

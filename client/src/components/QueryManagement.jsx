@@ -250,10 +250,45 @@ export default function QueryManagement({ onOpenModal, onOpenAgentDrawer }) {
                 <th className="p-3.5">Query ID</th>
                 <th className="p-3.5">Date</th>
                 <th className="p-3.5">Agent Agency</th>
-                <th className="p-3.5">Product & Details</th>
+                <th className="py-2.5 px-3 whitespace-nowrap">
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">Product</span>
+                    <select
+                      value={productFilter}
+                      onChange={(e) => setProductFilter(e.target.value)}
+                      className="bg-slate-900 border border-slate-700/80 text-sky-300 font-semibold rounded-lg text-xs py-1 px-1.5 focus:outline-none focus:border-sky-500 cursor-pointer max-w-[160px] truncate"
+                    >
+                      <option value="">All Products</option>
+                      <option value="Domestic Flight">Domestic Flight</option>
+                      <option value="International Flight">International Flight</option>
+                      <option value="Tour Packages">Tour Packages</option>
+                      <option value="Hotel Booking">Hotel Booking</option>
+                      <option value="Visa Services">Visa Services</option>
+                      <option value="Forex">Forex</option>
+                      <option value="Travel Insurance">Travel Insurance</option>
+                    </select>
+                  </div>
+                </th>
                 <th className="p-3.5">Quoted Amount</th>
                 <th className="p-3.5">Handling Exec</th>
-                <th className="p-3.5">Status</th>
+                <th className="py-2.5 px-3 whitespace-nowrap">
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">Status</span>
+                    <select
+                      value={statusFilter}
+                      onChange={(e) => setStatusFilter(e.target.value)}
+                      className="bg-slate-900 border border-slate-700/80 text-amber-300 font-semibold rounded-lg text-xs py-1 px-1.5 focus:outline-none focus:border-amber-500 cursor-pointer max-w-[140px] truncate"
+                    >
+                      <option value="">All Statuses</option>
+                      <option value="New">New</option>
+                      <option value="Quoted">Quoted</option>
+                      <option value="Follow-up">Follow-up</option>
+                      <option value="Pending">Pending</option>
+                      <option value="Converted">🟢 Converted</option>
+                      <option value="Rejected">🔴 Rejected</option>
+                    </select>
+                  </div>
+                </th>
                 <th className="p-3.5 text-right">Actions</th>
               </tr>
             </thead>

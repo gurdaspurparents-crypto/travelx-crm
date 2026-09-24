@@ -219,8 +219,39 @@ export default function AgentMaster({ onOpenAgentDrawer, onOpenModal, onOpenImpo
                 <th className="p-3.5">Agent ID</th>
                 <th className="p-3.5">Company / Firm Name</th>
                 <th className="p-3.5">Contact Person</th>
-                <th className="p-3.5">Location</th>
-                <th className="p-3.5">Current Stage</th>
+                <th className="py-2.5 px-3 whitespace-nowrap">
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">Location</span>
+                    <select
+                      value={selectedCity}
+                      onChange={(e) => { setSelectedCity(e.target.value); setPage(1); }}
+                      className="bg-slate-900 border border-slate-700/80 text-sky-300 font-semibold rounded-lg text-xs py-1 px-1.5 focus:outline-none focus:border-sky-500 cursor-pointer max-w-[140px] truncate"
+                    >
+                      <option value="">All Cities</option>
+                      {availableLocations.map((loc, idx) => (
+                        <option key={idx} value={loc}>📍 {loc}</option>
+                      ))}
+                    </select>
+                  </div>
+                </th>
+                <th className="py-2.5 px-3 whitespace-nowrap">
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">Current Stage</span>
+                    <select
+                      value={selectedStage}
+                      onChange={(e) => { setSelectedStage(e.target.value); setPage(1); }}
+                      className="bg-slate-900 border border-slate-700/80 text-amber-300 font-semibold rounded-lg text-xs py-1 px-1.5 focus:outline-none focus:border-amber-500 cursor-pointer max-w-[140px] truncate"
+                    >
+                      <option value="">All Stages</option>
+                      <option value="Active">🟢 Active</option>
+                      <option value="QueryReceived">🟠 Query Received</option>
+                      <option value="Followup">🔵 Follow-up</option>
+                      <option value="Visited">🟡 Visited</option>
+                      <option value="Dormant">⚠️ Dormant</option>
+                      <option value="Inactive">🔴 Inactive</option>
+                    </select>
+                  </div>
+                </th>
                 <th className="p-3.5">Payment Terms</th>
                 <th className="p-3.5 text-center">Queries</th>
                 <th className="p-3.5 text-center">Bookings</th>

@@ -1,5 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Phone, Plus, Calendar, FileText, CheckCircle2, AlertCircle, PhoneCall, PhoneOff, Eye, Trash2, Filter, X, Download, MapPin, Clock, MessageSquare, Zap, ArrowRight, Target, Sparkles, UserCheck, XCircle } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { 
+  Phone, Plus, Calendar, FileText, CheckCircle2, AlertCircle, PhoneCall, PhoneOff, 
+  Eye, Trash2, Filter, X, Download, MapPin, Clock, MessageSquare, Zap, ArrowRight, 
+  Target, Sparkles, UserCheck, XCircle, ChevronDown, ChevronUp, Search, SlidersHorizontal 
+} from 'lucide-react';
 import { exportToPDF } from '../utils/exportUtils';
 
 export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) {
@@ -10,6 +14,16 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
   const [dateFilter, setDateFilter] = useState('');
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
+
+  // Search & Column Filters
+  const [searchTerm, setSearchTerm] = useState('');
+  const [connectivityFilter, setConnectivityFilter] = useState('');
+  const [paymentFilter, setPaymentFilter] = useState('');
+  const [cityFilter, setCityFilter] = useState('');
+
+  // Collapsible Dropdown Section Headers
+  const [showKpiStrip, setShowKpiStrip] = useState(true);
+  const [showCallsDesk, setShowCallsDesk] = useState(true);
 
   // Bikramjit Physical Visit Queue for Simranjit Next-Day Feedback
   const [visitQueue, setVisitQueue] = useState([]);
@@ -62,7 +76,7 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
     try {
       const params = new URLSearchParams();
       if (execFilter) params.append('executive', execFilter);
-      if (resultFilter) params.append('result', resultFilter);
+      if (resultFilter && resultFilter.toLowerCase() !== 'due today') params.append('result', resultFilter);
       if (dateFilter) params.append('date', dateFilter);
       if (fromDate) params.append('from_date', fromDate);
       if (toDate) params.append('to_date', toDate);
@@ -210,28 +224,87 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
     setToDate('');
   };
 
-  const filteredCalls = calls.filter(c => {
-    if (!resultFilter) return true;
-    const resStr = (c.call_result || '').toLowerCase();
-    const filterLower = resultFilter.toLowerCase();
+  const resetAllFilters = () => {
+    setExecFilter('');
+    setResultFilter('');
+    setDateFilter('');
+    setFromDate('');
+    setToDate('');
+    setSearchTerm('');
+    setConnectivityFilter('');
+    setPaymentFilter('');
+    setCityFilter('');
+  };
 
-    if (filterLower === 'not interested') {
-      return resStr.includes('not interested') || resStr.includes("don't call");
-    }
-    if (filterLower === 'closed') {
-      return resStr.includes('closed');
-    }
-    if (filterLower === 'interested') {
-      return resStr.includes('interested') && !resStr.includes('not interested') && !resStr.includes('closed');
-    }
-    if (filterLower === 'call again') {
-      return resStr.includes('call again') || resStr.includes('again') || resStr.includes('follow-up') || resStr.includes('followup') || resStr.includes('later');
-    }
-    if (filterLower === 'requirement received') {
-      return resStr.includes('requirement') || resStr.includes('received');
-    }
-    return resStr.includes(filterLower);
-  });
+  const todayStr = useMemo(() => new Date().toISOString().split('T')[0], []);
+
+  const distinctCities = useMemo(() => {
+    const set = new Set();
+    calls.forEach(c => {
+      if (c.agent_city && c.agent_city.trim()) set.add(c.agent_city.trim());
+    });
+    return Array.from(set).sort();
+  }, [calls]);
+
+  const dueTodayCalls = useMemo(() => {
+    return calls.filter(c => {
+      const isCallAgain = (c.call_result || '').toLowerCase().includes('again') || (c.call_result || '').toLowerCase().includes('later') || (c.call_result || '').toLowerCase().includes('follow');
+      return isCallAgain && c.next_followup_date && c.next_followup_date <= todayStr;
+    });
+  }, [calls, todayStr]);
+
+  const filteredCalls = useMemo(() => {
+    return calls.filter(c => {
+      if (resultFilter) {
+        const resStr = (c.call_result || '').toLowerCase();
+        const filterLower = resultFilter.toLowerCase();
+
+        if (filterLower === 'due today') {
+          const isCallAgain = resStr.includes('again') || resStr.includes('later') || resStr.includes('follow');
+          if (!isCallAgain || !c.next_followup_date || c.next_followup_date > todayStr) return false;
+        } else if (filterLower === 'not interested') {
+          if (!resStr.includes('not interested') && !resStr.includes("don't call")) return false;
+        } else if (filterLower === 'closed') {
+          if (!resStr.includes('closed')) return false;
+        } else if (filterLower === 'interested') {
+          if (!resStr.includes('interested') || resStr.includes('not interested') || resStr.includes('closed')) return false;
+        } else if (filterLower === 'call again') {
+          if (!resStr.includes('call again') && !resStr.includes('again') && !resStr.includes('follow-up') && !resStr.includes('followup') && !resStr.includes('later')) return false;
+        } else if (filterLower === 'requirement received') {
+          if (!resStr.includes('requirement') && !resStr.includes('received')) return false;
+        } else if (!resStr.includes(filterLower)) {
+          return false;
+        }
+      }
+
+      if (connectivityFilter) {
+        if (connectivityFilter === 'connected' && !c.is_connected) return false;
+        if (connectivityFilter === 'not_connected' && c.is_connected) return false;
+      }
+
+      if (paymentFilter) {
+        if (!(c.payment_terms || '').toLowerCase().includes(paymentFilter.toLowerCase())) return false;
+      }
+
+      if (cityFilter) {
+        if ((c.agent_city || '').toLowerCase() !== cityFilter.toLowerCase()) return false;
+      }
+
+      if (searchTerm.trim()) {
+        const q = searchTerm.toLowerCase();
+        const matches = 
+          (c.company_name || '').toLowerCase().includes(q) ||
+          (c.agent_name || '').toLowerCase().includes(q) ||
+          (c.agent_mobile || '').toLowerCase().includes(q) ||
+          (c.agent_city || '').toLowerCase().includes(q) ||
+          (c.remarks || '').toLowerCase().includes(q) ||
+          (c.agent_requirement || '').toLowerCase().includes(q);
+        if (!matches) return false;
+      }
+
+      return true;
+    });
+  }, [calls, resultFilter, connectivityFilter, paymentFilter, cityFilter, searchTerm, todayStr]);
 
   const handleExportPDF = () => {
     const headers = ['Call Date', 'Executive', 'Agency Firm', 'Mobile', 'Connectivity', 'Result', 'Captured Requirement', 'Remarks'];
@@ -363,13 +436,13 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
         </div>
       </div>
 
-      {/* 🎯 TOP RESULT METRICS STRIP FOR SIMRANJIT */}
+      {/* 🎯 Executive Target & Work-Focus Command Bar */}
       {(() => {
         const pendingQueue = visitQueue.filter(v => !v.call_id);
         const calledQueue = visitQueue.filter(v => !!v.call_id);
         const requirementsCount = calls.filter(c => (c.call_result || '').toLowerCase().includes('requirement')).length;
         const connectedCallsCount = calls.filter(c => c.is_connected).length;
-        const scheduledCallbacksCount = calls.filter(c => (c.call_result || '').toLowerCase().includes('again') || (c.call_result || '').toLowerCase().includes('follow')).length;
+        const scheduledCallbacksCount = calls.filter(c => (c.call_result || '').toLowerCase().includes('again') || (c.call_result || '').toLowerCase().includes('follow') || (c.call_result || '').toLowerCase().includes('later')).length;
 
         const displayedQueue = queueTab === 'pending'
           ? pendingQueue
@@ -377,123 +450,264 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
 
         return (
           <>
-            {/* 4-Card Result KPI Strip */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-              <div className="bg-[#0c1322] border border-emerald-500/30 p-3.5 rounded-xl flex items-center justify-between shadow-lg shadow-emerald-950/20">
-                <div>
-                  <span className="text-[10px] uppercase font-bold text-emerald-400 tracking-wider flex items-center gap-1">
-                    <Zap className="w-3.5 h-3.5 text-emerald-400" /> Queries / Enquiries Won
-                  </span>
-                  <div className="text-2xl font-extrabold text-white font-mono mt-0.5">{requirementsCount}</div>
-                  <span className="text-[11px] text-emerald-400/80 font-medium">Direct B2B Business Generated</span>
-                </div>
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
-                  <Target className="w-5 h-5" />
-                </div>
+            {/* Quick Target Mode Focus Bar */}
+            <div className="bg-[#0b1120] border border-white/[0.08] p-2.5 rounded-2xl flex flex-wrap items-center justify-between gap-2 shadow-lg">
+              <div className="flex items-center gap-1.5 text-xs text-slate-300 font-semibold pl-1">
+                <Target className="w-4 h-4 text-sky-400" />
+                <span className="hidden sm:inline">Active Target Focus:</span>
               </div>
+              
+              <div className="flex flex-wrap items-center gap-1.5">
+                {/* 1. Due Today Callbacks */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowCallsDesk(true);
+                    setResultFilter('Due Today');
+                    setDateFilter('');
+                  }}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
+                    resultFilter === 'Due Today'
+                      ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
+                      : 'bg-white/[0.04] hover:bg-amber-500/20 text-amber-300 border border-amber-500/30'
+                  }`}
+                  title="Filter to callbacks scheduled for Today or Overdue"
+                >
+                  <Clock className="w-3.5 h-3.5" />
+                  <span>⏰ Due Callbacks ({dueTodayCalls.length})</span>
+                </button>
 
-              <div className="bg-[#0c1322] border border-amber-500/30 p-3.5 rounded-xl flex items-center justify-between shadow-lg shadow-amber-950/20">
-                <div>
-                  <span className="text-[10px] uppercase font-bold text-amber-400 tracking-wider flex items-center gap-1">
-                    <Clock className="w-3.5 h-3.5 text-amber-400" /> Pending Action Today
-                  </span>
-                  <div className="text-2xl font-extrabold text-white font-mono mt-0.5">{pendingQueue.length}</div>
-                  <span className="text-[11px] text-amber-400/80 font-medium">Visited Agents To Call</span>
-                </div>
-                <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
-                  <PhoneCall className="w-5 h-5" />
-                </div>
-              </div>
+                {/* 2. Field Handover Pending */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowQueue(true);
+                    setQueueTab('pending');
+                  }}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
+                    showQueue && queueTab === 'pending'
+                      ? 'bg-sky-600 text-white shadow-md shadow-sky-600/30'
+                      : 'bg-white/[0.04] hover:bg-sky-500/20 text-sky-300 border border-sky-500/30'
+                  }`}
+                  title="View Visited Agents Waiting for Simranjit Calling"
+                >
+                  <PhoneCall className="w-3.5 h-3.5" />
+                  <span>🚗 Visited Queue ({pendingQueue.length})</span>
+                </button>
 
-              <div className="bg-[#0c1322] border border-blue-500/30 p-3.5 rounded-xl flex items-center justify-between shadow-lg shadow-blue-950/20">
-                <div>
-                  <span className="text-[10px] uppercase font-bold text-blue-400 tracking-wider flex items-center gap-1">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-400" /> Connected Calls Logged
-                  </span>
-                  <div className="text-2xl font-extrabold text-white font-mono mt-0.5">{connectedCallsCount}</div>
-                  <span className="text-[11px] text-blue-400/80 font-medium">Successful Interactions</span>
-                </div>
-                <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
-                  <Phone className="w-5 h-5" />
-                </div>
-              </div>
+                {/* 3. Won Enquiries */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowCallsDesk(true);
+                    setResultFilter('Requirement Received');
+                  }}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
+                    resultFilter === 'Requirement Received'
+                      ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/30'
+                      : 'bg-white/[0.04] hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+                  }`}
+                  title="View requirements captured / won"
+                >
+                  <Zap className="w-3.5 h-3.5" />
+                  <span>⚡ Won Enquiries ({requirementsCount})</span>
+                </button>
 
-              <div className="bg-[#0c1322] border border-white/[0.08] p-3.5 rounded-xl flex items-center justify-between shadow-lg">
-                <div>
-                  <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider flex items-center gap-1">
-                    <MapPin className="w-3.5 h-3.5 text-slate-400" /> Total Handed-Over Visits
-                  </span>
-                  <div className="text-2xl font-extrabold text-white font-mono mt-0.5">{visitQueue.length}</div>
-                  <span className="text-[11px] text-slate-400 font-medium">From Bikramjit's Field Route</span>
-                </div>
-                <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-slate-300">
-                  <Sparkles className="w-5 h-5" />
-                </div>
+                {/* 4. City Coverage Matrix */}
+                <button
+                  type="button"
+                  onClick={() => setShowCoverageCard(!showCoverageCard)}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
+                    showCoverageCard
+                      ? 'bg-indigo-600 text-white shadow-md'
+                      : 'bg-white/[0.04] hover:bg-indigo-500/20 text-indigo-300 border border-indigo-500/30'
+                  }`}
+                  title="View City-Wise Visited vs Missed Agent Matrix"
+                >
+                  <MapPin className="w-3.5 h-3.5" />
+                  <span>📍 City Matrix</span>
+                </button>
+
+                {/* 5. All Calls History */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowCallsDesk(true);
+                    setResultFilter('');
+                    setSearchTerm('');
+                  }}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
+                    showCallsDesk && !resultFilter && !searchTerm
+                      ? 'bg-slate-700 text-white'
+                      : 'bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 border border-white/[0.08]'
+                  }`}
+                  title="View All Telephonic Follow-up Call Logs"
+                >
+                  <Phone className="w-3.5 h-3.5" />
+                  <span>📞 All Calls ({calls.length})</span>
+                </button>
               </div>
             </div>
 
-            {/* 🚗 Visited Agents Queue for Telephonic Follow-up */}
-            <div className="bg-[#0c1322]/90 border border-white/[0.08] rounded-2xl p-5 shadow-xl space-y-4 backdrop-blur-md">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/[0.06] pb-3">
-                <div>
-                  <div className="flex items-center gap-2 text-sky-400 text-xs font-bold uppercase tracking-wider mb-0.5">
-                    <Zap className="w-3.5 h-3.5 text-amber-400" /> Result Desk • Next-Day Feedback Queue
+            {/* 🎯 Section 1: KPI Targets Strip (Collapsible Accordion) */}
+            <div className="bg-[#0b1120] border border-white/[0.08] rounded-2xl overflow-hidden shadow-lg transition-all">
+              <div 
+                onClick={() => setShowKpiStrip(!showKpiStrip)}
+                className="p-4 bg-[#080d19] hover:bg-[#0d1627] flex items-center justify-between cursor-pointer border-b border-white/[0.04] transition select-none"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                    <Target className="w-4 h-4" />
                   </div>
-                  <h3 className="text-base sm:text-lg font-extrabold text-white flex items-center gap-2">
-                    🚗 Visited Travel Agents Queue (Bikramjit ➔ Simranjit Handover)
-                  </h3>
-                  <p className="text-xs text-slate-400 mt-0.5">
-                    Call yesterday's visited agents, capture flight & tour inquiries, and convert visits into paying bookings!
-                  </p>
+                  <div>
+                    <h2 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+                      🎯 Daily Telephonic Conversion Targets & Performance KPIs
+                    </h2>
+                    <p className="text-[11px] text-slate-400">Track inquiries won, pending callbacks, and successful agent discussions</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-950/80 text-emerald-300 border border-emerald-800/80">
+                    ⚡ {requirementsCount} Won
+                  </span>
+                  <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-950/80 text-amber-300 border border-amber-800/80">
+                    ⏰ {pendingQueue.length} Pending
+                  </span>
+                  <span className="px-2.5 py-1 rounded-lg bg-white/[0.05] text-slate-300 hover:text-white text-xs font-semibold flex items-center gap-1">
+                    {showKpiStrip ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                    <span>{showKpiStrip ? 'Collapse' : 'Open'}</span>
+                  </span>
+                </div>
+              </div>
+
+              {showKpiStrip && (
+                <div className="p-4 border-t border-white/[0.04] grid grid-cols-2 lg:grid-cols-4 gap-3 bg-[#0a0f1d]/60">
+                  <div className="bg-[#0c1322] border border-emerald-500/30 p-3.5 rounded-xl flex items-center justify-between shadow-lg shadow-emerald-950/20">
+                    <div>
+                      <span className="text-[10px] uppercase font-bold text-emerald-400 tracking-wider flex items-center gap-1">
+                        <Zap className="w-3.5 h-3.5 text-emerald-400" /> Queries / Enquiries Won
+                      </span>
+                      <div className="text-2xl font-extrabold text-white font-mono mt-0.5">{requirementsCount}</div>
+                      <span className="text-[11px] text-emerald-400/80 font-medium">Direct B2B Business Generated</span>
+                    </div>
+                    <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                      <Target className="w-5 h-5" />
+                    </div>
+                  </div>
+
+                  <div className="bg-[#0c1322] border border-amber-500/30 p-3.5 rounded-xl flex items-center justify-between shadow-lg shadow-amber-950/20">
+                    <div>
+                      <span className="text-[10px] uppercase font-bold text-amber-400 tracking-wider flex items-center gap-1">
+                        <Clock className="w-3.5 h-3.5 text-amber-400" /> Pending Action Today
+                      </span>
+                      <div className="text-2xl font-extrabold text-white font-mono mt-0.5">{pendingQueue.length}</div>
+                      <span className="text-[11px] text-amber-400/80 font-medium">Visited Agents To Call</span>
+                    </div>
+                    <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+                      <PhoneCall className="w-5 h-5" />
+                    </div>
+                  </div>
+
+                  <div className="bg-[#0c1322] border border-blue-500/30 p-3.5 rounded-xl flex items-center justify-between shadow-lg shadow-blue-950/20">
+                    <div>
+                      <span className="text-[10px] uppercase font-bold text-blue-400 tracking-wider flex items-center gap-1">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-blue-400" /> Connected Calls Logged
+                      </span>
+                      <div className="text-2xl font-extrabold text-white font-mono mt-0.5">{connectedCallsCount}</div>
+                      <span className="text-[11px] text-blue-400/80 font-medium">Successful Interactions</span>
+                    </div>
+                    <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                      <Phone className="w-5 h-5" />
+                    </div>
+                  </div>
+
+                  <div className="bg-[#0c1322] border border-white/[0.08] p-3.5 rounded-xl flex items-center justify-between shadow-lg">
+                    <div>
+                      <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider flex items-center gap-1">
+                        <MapPin className="w-3.5 h-3.5 text-slate-400" /> Total Handed-Over Visits
+                      </span>
+                      <div className="text-2xl font-extrabold text-white font-mono mt-0.5">{visitQueue.length}</div>
+                      <span className="text-[11px] text-slate-400 font-medium">From Bikramjit's Field Route</span>
+                    </div>
+                    <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-slate-300">
+                      <Sparkles className="w-5 h-5" />
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* 🚗 Section 2: Visited Agents Queue (Collapsible Accordion) */}
+            <div className="bg-[#0b1120] border border-white/[0.08] rounded-2xl overflow-hidden shadow-xl transition-all">
+              <div 
+                onClick={() => setShowQueue(!showQueue)}
+                className="p-4 bg-[#080d19] hover:bg-[#0d1627] flex flex-col sm:flex-row sm:items-center justify-between gap-3 cursor-pointer border-b border-white/[0.04] transition select-none"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+                    <PhoneCall className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h2 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+                      🚗 Visited Travel Agents Queue (Bikramjit ➔ Simranjit Handover)
+                    </h2>
+                    <p className="text-[11px] text-slate-400">Call agents visited yesterday by Bikramjit to capture inquiries and lock bookings</p>
+                  </div>
                 </div>
 
-                {/* Queue Filter Tabs */}
-                <div className="flex items-center gap-1.5 bg-[#070b14] p-1 rounded-xl border border-white/[0.06] self-start sm:self-auto">
+                <div className="flex items-center gap-2 self-start sm:self-auto" onClick={e => e.stopPropagation()}>
+                  {/* Queue Filter Tabs */}
+                  <div className="flex items-center gap-1 bg-[#070b14] p-1 rounded-xl border border-white/[0.06]">
+                    <button
+                      type="button"
+                      onClick={() => { setQueueTab('pending'); setShowQueue(true); }}
+                      className={`px-2.5 py-1 rounded-lg text-xs font-bold transition flex items-center gap-1 cursor-pointer ${
+                        queueTab === 'pending'
+                          ? 'bg-amber-500 text-slate-950 shadow-sm'
+                          : 'text-slate-400 hover:text-slate-200'
+                      }`}
+                    >
+                      <Clock className="w-3 h-3" />
+                      <span>Pending ({pendingQueue.length})</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => { setQueueTab('completed'); setShowQueue(true); }}
+                      className={`px-2.5 py-1 rounded-lg text-xs font-bold transition flex items-center gap-1 cursor-pointer ${
+                        queueTab === 'completed'
+                          ? 'bg-emerald-600 text-white shadow-sm'
+                          : 'text-slate-400 hover:text-slate-200'
+                      }`}
+                    >
+                      <CheckCircle2 className="w-3 h-3" />
+                      <span>Logged ({calledQueue.length})</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => { setQueueTab('all'); setShowQueue(true); }}
+                      className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer ${
+                        queueTab === 'all'
+                          ? 'bg-white/[0.1] text-white'
+                          : 'text-slate-400 hover:text-slate-200'
+                      }`}
+                    >
+                      All ({visitQueue.length})
+                    </button>
+                  </div>
+
                   <button
                     type="button"
-                    onClick={() => setQueueTab('pending')}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
-                      queueTab === 'pending'
-                        ? 'bg-amber-500 text-slate-950 shadow-sm'
-                        : 'text-slate-400 hover:text-slate-200'
-                    }`}
-                  >
-                    <Clock className="w-3 h-3" />
-                    <span>Pending Calls ({pendingQueue.length})</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setQueueTab('completed')}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
-                      queueTab === 'completed'
-                        ? 'bg-emerald-600 text-white shadow-sm'
-                        : 'text-slate-400 hover:text-slate-200'
-                    }`}
-                  >
-                    <CheckCircle2 className="w-3 h-3" />
-                    <span>Results Logged ({calledQueue.length})</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setQueueTab('all')}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
-                      queueTab === 'all'
-                        ? 'bg-white/[0.1] text-white'
-                        : 'text-slate-400 hover:text-slate-200'
-                    }`}
-                  >
-                    All ({visitQueue.length})
-                  </button>
-                  <button
                     onClick={() => setShowQueue(!showQueue)}
-                    className="px-2.5 py-1 text-slate-400 hover:text-slate-200 text-xs ml-1"
+                    className="px-2.5 py-1.5 rounded-lg bg-white/[0.05] text-slate-300 hover:text-white text-xs font-semibold flex items-center gap-1 cursor-pointer"
                   >
-                    {showQueue ? 'Hide' : 'Show'}
+                    {showQueue ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                    <span>{showQueue ? 'Collapse' : 'Open'}</span>
                   </button>
                 </div>
               </div>
 
               {showQueue && (
+                <div className="p-4 border-t border-white/[0.04]">
                 <div className="overflow-x-auto border border-white/[0.06] rounded-xl">
                   <table className="w-full table-fixed min-w-[1100px] text-left text-xs text-slate-300 border-collapse">
                     <colgroup>
@@ -829,6 +1043,7 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                     </tbody>
                   </table>
                 </div>
+                </div>
               )}
             </div>
 
@@ -917,22 +1132,25 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
         );
       })()}
 
-      {/* 📍 City-Wise Bikramjit Visit & Missed Agent Tracker (For Simranjit) */}
-      <div className="bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border border-indigo-500/40 rounded-2xl p-5 shadow-xl space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-3">
-          <div>
-            <div className="flex items-center gap-2 text-indigo-400 text-xs font-bold uppercase tracking-wider mb-0.5">
-              <Eye className="w-4 h-4" /> Full City Coverage Tracking
+      {/* 📍 Section 3: City-Wise Bikramjit Visit & Missed Agent Tracker (Collapsible Accordion) */}
+      <div className="bg-[#0b1120] border border-indigo-500/30 rounded-2xl overflow-hidden shadow-xl transition-all">
+        <div 
+          onClick={() => setShowCoverageCard(!showCoverageCard)}
+          className="p-4 bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 hover:from-slate-800 hover:to-indigo-950/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3 cursor-pointer border-b border-indigo-500/20 transition select-none"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+              <MapPin className="w-4 h-4" />
             </div>
-            <h3 className="text-xl font-extrabold text-white flex items-center gap-2">
-              📍 City-Wise Agent Visit Matrix (Bikramjit Visited vs Missed Agents)
-            </h3>
-            <p className="text-xs text-slate-400 mt-1">
-              Select any city to see ALL travel agents. See who Bikramjit MET (🟢) and who he MISSED (🔴) so Simranjit can follow up with 100% coverage!
-            </p>
+            <div>
+              <h2 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+                📍 City-Wise Agent Visit Matrix (Bikramjit Visited vs Missed Agents)
+              </h2>
+              <p className="text-[11px] text-slate-400">See who Bikramjit MET (🟢) and who he MISSED (🔴) in each city for 100% market coverage</p>
+            </div>
           </div>
 
-          <div className="flex items-center gap-2 self-start sm:self-auto">
+          <div className="flex items-center gap-2 self-start sm:self-auto" onClick={e => e.stopPropagation()}>
             {/* City Selector */}
             <select
               value={selectedCityCoverage}
@@ -940,7 +1158,7 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                 setSelectedCityCoverage(e.target.value);
                 fetchLocationCoverage(e.target.value, coverageFilter);
               }}
-              className="bg-slate-950 border border-indigo-500 text-indigo-300 font-extrabold rounded-xl text-xs p-2 focus:outline-none"
+              className="bg-slate-950 border border-indigo-500/60 text-indigo-300 font-bold rounded-xl text-xs px-2.5 py-1.5 focus:outline-none cursor-pointer"
             >
               <option value="ALL">🌐 All Locations / All Cities</option>
               {(coverageData?.cities || ['Gurdaspur']).map(c => (
@@ -949,16 +1167,18 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
             </select>
 
             <button
+              type="button"
               onClick={() => setShowCoverageCard(!showCoverageCard)}
-              className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-bold border border-slate-700"
+              className="px-2.5 py-1.5 rounded-lg bg-white/[0.05] text-slate-300 hover:text-white text-xs font-semibold flex items-center gap-1 cursor-pointer"
             >
-              {showCoverageCard ? 'Hide Matrix' : 'Show Matrix'}
+              {showCoverageCard ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              <span>{showCoverageCard ? 'Collapse' : 'Open Matrix'}</span>
             </button>
           </div>
         </div>
 
         {showCoverageCard && (
-          <div className="space-y-3">
+          <div className="p-4 border-t border-indigo-500/10 space-y-3 bg-[#0a0f1d]/60">
             {/* City Summary Badges & Filter Tabs */}
             <div className="flex flex-wrap items-center justify-between gap-3 bg-slate-950/60 p-3 rounded-xl border border-slate-800">
               <div className="flex flex-wrap items-center gap-2 text-xs font-bold">
@@ -1085,419 +1305,667 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
         )}
       </div>
 
-      {/* Filter Bar with Date Filters */}
-      <div className="bg-slate-900 border border-slate-800 p-4 rounded-2xl flex flex-wrap gap-4 items-center">
-        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
-          <Filter className="w-3.5 h-3.5" /> Filters:
-        </span>
-
-        {/* Executive Filter */}
-        <select
-          value={execFilter}
-          onChange={(e) => setExecFilter(e.target.value)}
-          className="bg-slate-950 border border-slate-800 text-slate-300 rounded-xl text-sm p-2.5 focus:outline-none focus:border-sky-500"
+      {/* SECTION 4: TELEPHONIC CALLING DESK & ACTION LOGS (Collapsible Section Accordion) */}
+      <div className="bg-slate-900/90 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+        {/* Clickable Header Accordion Toggle */}
+        <div 
+          onClick={() => setShowCallsDesk(!showCallsDesk)}
+          className="p-4 sm:p-5 bg-gradient-to-r from-slate-900 via-slate-900 to-sky-950/30 border-b border-slate-800/80 flex flex-wrap items-center justify-between gap-3 cursor-pointer select-none hover:bg-slate-850 transition"
         >
-          <option value="">All Telephonic Executives</option>
-          <option value="Simranjit Kaur">Simranjit Kaur</option>
-          <option value="Yug">Yug (Calling Exec)</option>
-        </select>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 shrink-0">
+              <PhoneCall className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2 flex-wrap">
+                <h3 className="text-base font-bold text-white flex items-center gap-2">
+                  Telephonic Calling Desk & Action Logs
+                </h3>
+                <span className="bg-sky-500/10 text-sky-400 border border-sky-500/20 text-xs px-2.5 py-0.5 rounded-full font-bold">
+                  {filteredCalls.length} Showing / {calls.length} Total
+                </span>
+                {dueTodayCalls.length > 0 && (
+                  <span className="bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs px-2.5 py-0.5 rounded-full font-bold animate-pulse flex items-center gap-1">
+                    <Clock className="w-3 h-3 text-amber-400" /> {dueTodayCalls.length} Due Today
+                  </span>
+                )}
+              </div>
+              <p className="text-xs text-slate-400 mt-0.5">
+                Full call registry with table header dropdowns, live search, 1-click dials & follow-up reschedules
+              </p>
+            </div>
+          </div>
 
-        {/* Call Result Filter Dropdown */}
-        <select
-          value={resultFilter}
-          onChange={(e) => setResultFilter(e.target.value)}
-          className="bg-slate-950 border border-blue-500/60 text-blue-300 font-bold rounded-xl text-sm p-2.5 focus:outline-none focus:border-blue-400"
-        >
-          <option value="">📞 All Call Results (Everything)</option>
-          <option value="Interested">🔥 Interested / Hot</option>
-          <option value="Not Interested">🚫 Not Interested / Don't Call</option>
-          <option value="Requirement Received">⚡ Requirement Received</option>
-          <option value="Call Again">🔄 Call Again / Follow-up</option>
-          <option value="Not Picked">📵 Not Picked / Ringing</option>
-          <option value="Wrong Number">❌ Wrong Number / Switched Off</option>
-        </select>
+          <div className="flex items-center gap-2">
+            {(execFilter || resultFilter || dateFilter || fromDate || toDate || searchTerm || connectivityFilter || paymentFilter || cityFilter) && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  resetAllFilters();
+                }}
+                className="px-3 py-1.5 bg-rose-950/60 hover:bg-rose-900 text-rose-300 border border-rose-800/80 rounded-xl text-xs font-bold transition flex items-center gap-1 shadow"
+              >
+                <X className="w-3.5 h-3.5" /> Reset Filters
+              </button>
+            )}
 
-        {/* Quick Date Presets */}
-        <div className="flex items-center gap-1.5 flex-wrap">
-          <button
-            onClick={() => {
-              const today = new Date().toISOString().split('T')[0];
-              setDateFilter(today);
-              setFromDate('');
-              setToDate('');
-            }}
-            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition ${
-              dateFilter === new Date().toISOString().split('T')[0]
-                ? 'bg-sky-600 text-white'
-                : 'bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800'
-            }`}
-          >
-            ⚡ Today
-          </button>
-          <button
-            onClick={() => {
-              const y = new Date();
-              y.setDate(y.getDate() - 1);
-              const yStr = y.toISOString().split('T')[0];
-              setDateFilter(yStr);
-              setFromDate('');
-              setToDate('');
-            }}
-            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition ${
-              (() => {
-                const y = new Date();
-                y.setDate(y.getDate() - 1);
-                return dateFilter === y.toISOString().split('T')[0];
-              })()
-                ? 'bg-sky-600 text-white'
-                : 'bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800'
-            }`}
-          >
-            Yesterday
-          </button>
-        </div>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleExportPDF();
+              }}
+              className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 transition flex items-center gap-1.5 shadow"
+            >
+              <Download className="w-3.5 h-3.5 text-sky-400" /> Export PDF
+            </button>
 
-        {/* Single Date Picker */}
-        <div className="flex items-center gap-2">
-          <Calendar className="w-4 h-4 text-slate-500" />
-          <span className="text-xs text-slate-400 font-semibold">Call Date:</span>
-          <input
-            type="date"
-            value={dateFilter}
-            onChange={(e) => {
-              setDateFilter(e.target.value);
-              setFromDate('');
-              setToDate('');
-            }}
-            className="bg-slate-950 border border-slate-800 text-slate-200 px-3 py-2 rounded-xl text-sm focus:outline-none focus:border-sky-500"
-          />
-        </div>
-
-        {/* Date Range Option (From - To) */}
-        <div className="flex items-center gap-2">
-          <span className="text-xs text-slate-400 font-semibold">From:</span>
-          <input
-            type="date"
-            value={fromDate}
-            onChange={(e) => {
-              setFromDate(e.target.value);
-              setDateFilter('');
-            }}
-            className="bg-slate-950 border border-slate-800 text-slate-200 px-2.5 py-2 rounded-xl text-xs focus:outline-none focus:border-sky-500"
-          />
-          <span className="text-xs text-slate-400 font-semibold">To:</span>
-          <input
-            type="date"
-            value={toDate}
-            onChange={(e) => {
-              setToDate(e.target.value);
-              setDateFilter('');
-            }}
-            className="bg-slate-950 border border-slate-800 text-slate-200 px-2.5 py-2 rounded-xl text-xs focus:outline-none focus:border-sky-500"
-          />
-        </div>
-
-        {(dateFilter || fromDate || toDate) && (
-          <button
-            onClick={clearDateFilters}
-            className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs transition border border-slate-700 flex items-center gap-1"
-          >
-            <X className="w-3.5 h-3.5" /> Clear Date
-          </button>
-        )}
-      </div>
-
-      {/* 1-Click Quick Filter Pills */}
-      <div className="flex flex-wrap gap-2 items-center">
-        <button
-          onClick={() => setResultFilter('')}
-          className={`px-3 py-1.5 rounded-full text-xs font-bold transition shadow ${
-            !resultFilter ? 'bg-sky-500 text-slate-950' : 'bg-slate-900 text-slate-400 hover:bg-slate-800 border border-slate-800'
-          }`}
-        >
-          All Calls ({calls.length})
-        </button>
-        <button
-          onClick={() => setResultFilter('Interested')}
-          className={`px-3 py-1.5 rounded-full text-xs font-bold transition shadow ${
-            resultFilter === 'Interested' ? 'bg-amber-500 text-slate-950' : 'bg-amber-950/60 text-amber-300 hover:bg-amber-900 border border-amber-800/60'
-          }`}
-        >
-          🔥 Interested / Hot
-        </button>
-        <button
-          onClick={() => setResultFilter('Not Interested')}
-          className={`px-3 py-1.5 rounded-full text-xs font-bold transition shadow ${
-            resultFilter === 'Not Interested' ? 'bg-rose-500 text-white' : 'bg-rose-950/60 text-rose-300 hover:bg-rose-900 border border-rose-800/60'
-          }`}
-        >
-          🚫 Not Interested / Don't Call
-        </button>
-        <button
-          onClick={() => setResultFilter('Requirement Received')}
-          className={`px-3 py-1.5 rounded-full text-xs font-bold transition shadow ${
-            resultFilter === 'Requirement Received' ? 'bg-emerald-500 text-slate-950' : 'bg-emerald-950/60 text-emerald-300 hover:bg-emerald-900 border border-emerald-800/60'
-          }`}
-        >
-          ⚡ Requirement Received
-        </button>
-        <button
-          onClick={() => setResultFilter('Call Again')}
-          className={`px-3 py-1.5 rounded-full text-xs font-bold transition shadow ${
-            resultFilter === 'Call Again' ? 'bg-blue-500 text-white' : 'bg-blue-950/60 text-blue-300 hover:bg-blue-900 border border-blue-800/60'
-          }`}
-        >
-          🔄 Call Again / Follow-up ({calls.filter(c => (c.call_result || '').toLowerCase().includes('again') || (c.call_result || '').toLowerCase().includes('follow')).length})
-        </button>
-        <button
-          onClick={() => setResultFilter('Closed')}
-          className={`px-3 py-1.5 rounded-full text-xs font-bold transition shadow ${
-            resultFilter === 'Closed' ? 'bg-rose-500 text-white' : 'bg-rose-950/60 text-rose-300 hover:bg-rose-900 border border-rose-800/60'
-          }`}
-        >
-          ❌ Closed ({calls.filter(c => (c.call_result || '').toLowerCase().includes('closed')).length})
-        </button>
-      </div>
-
-      {/* Calls Log Table */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
-        <div className="p-3.5 bg-slate-950/60 border-b border-slate-800 flex justify-between items-center text-xs text-slate-400">
-          <span>Filtered Telephonic Calls Logged: <strong className="text-sky-400 font-bold">{filteredCalls.length}</strong> / {calls.length} Total</span>
-        </div>
-
-        <div className="overflow-x-auto">
-          <table className="w-full table-fixed min-w-[1420px] text-left text-xs text-slate-300 border-collapse">
-            <colgroup>
-              <col className="w-[100px]" />
-              <col className="w-[130px]" />
-              <col className="w-[200px]" />
-              <col className="w-[110px]" />
-              <col className="w-[170px]" />
-              <col className="w-[115px]" />
-              <col className="w-[185px]" />
-              <col />
-              <col className="w-[230px]" />
-            </colgroup>
-            <thead className="bg-[#090e1a] text-xs text-slate-400 uppercase tracking-wider font-semibold border-b border-slate-800">
-              <tr>
-                <th className="py-3 px-3 whitespace-nowrap">Call Date</th>
-                <th className="py-3 px-3 whitespace-nowrap">Executive</th>
-                <th className="py-3 px-3 whitespace-nowrap">Agent & Contact</th>
-                <th className="py-3 px-3 whitespace-nowrap">Connectivity</th>
-                <th className="py-3 px-3 whitespace-nowrap">Call Result / Due</th>
-                <th className="py-3 px-3 whitespace-nowrap">Payment Terms</th>
-                <th className="py-3 px-3 whitespace-nowrap">Captured Requirement</th>
-                <th className="py-3 px-3">Remarks</th>
-                <th className="py-3 px-3 text-right whitespace-nowrap sticky right-0 bg-[#090e1a] z-20 shadow-[-8px_0_12px_-4px_rgba(0,0,0,0.7)] border-b border-slate-800">
-                  Quick Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-800/60 bg-slate-950/40">
-              {loading ? (
-                <tr>
-                  <td colSpan="9" className="text-center p-8">
-                    <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
-                  </td>
-                </tr>
-              ) : filteredCalls.length === 0 ? (
-                <tr>
-                  <td colSpan="9" className="text-center p-8 text-slate-500">
-                    No telephonic follow-up calls found for selected filters.
-                  </td>
-                </tr>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowCallsDesk(!showCallsDesk);
+              }}
+              className="px-3.5 py-1.5 bg-sky-600/20 hover:bg-sky-600/30 text-sky-300 border border-sky-500/30 rounded-xl text-xs font-bold transition flex items-center gap-1.5"
+            >
+              {showCallsDesk ? (
+                <>
+                  <ChevronUp className="w-4 h-4 text-sky-400" />
+                  <span>Collapse Desk</span>
+                </>
               ) : (
-                filteredCalls.map((c) => (
-                  <tr key={c.id} className="hover:bg-slate-800/40 transition group">
-                    <td className="py-3 px-3 font-mono text-slate-200 font-bold whitespace-nowrap align-middle truncate">
-                      {c.call_date}
-                    </td>
-                    <td className="py-3 px-3 font-semibold text-slate-200 whitespace-nowrap align-middle truncate" title={c.executive_name || 'Simranjit Kaur'}>
-                      {c.executive_name || 'Simranjit Kaur'}
-                    </td>
-                    <td className="py-3 px-3 align-middle truncate">
-                      <button
-                        type="button"
-                        onClick={() => onOpenAgentDrawer(c.agent_id)}
-                        className="font-bold text-sky-400 hover:text-sky-300 text-left hover:underline block truncate max-w-full cursor-pointer"
-                        title={c.company_name}
-                      >
-                        {c.company_name}
-                      </button>
-                      <div className="flex items-center gap-1.5 mt-0.5 text-[11px] whitespace-nowrap">
-                        {c.agent_mobile && (
-                          <a
-                            href={`tel:${c.agent_mobile}`}
-                            className="text-emerald-400 hover:text-emerald-300 font-mono font-semibold flex items-center gap-0.5"
-                            title="Click to dial"
-                          >
-                            <Phone className="w-3 h-3 text-emerald-400 shrink-0" /> {c.agent_mobile}
-                          </a>
-                        )}
-                        {c.agent_city && (
-                          <span className="text-slate-400 bg-slate-800/80 px-1.5 py-0.5 rounded text-[10px] truncate max-w-[80px]">
-                            {c.agent_city}
-                          </span>
-                        )}
-                      </div>
-                    </td>
-                    <td className="py-3 px-3 whitespace-nowrap align-middle">
-                      {c.is_connected ? (
-                        <span className="bg-emerald-950/80 text-emerald-400 border border-emerald-800/80 px-2 py-0.5 rounded-full text-[11px] font-semibold inline-flex items-center gap-1">
-                          <PhoneCall className="w-3 h-3" /> Connected
-                        </span>
-                      ) : (
-                        <span className="bg-rose-950/80 text-rose-400 border border-rose-800/80 px-2 py-0.5 rounded-full text-[11px] font-semibold inline-flex items-center gap-1">
-                          <PhoneOff className="w-3 h-3" /> Not Connected
-                        </span>
-                      )}
-                    </td>
-                    <td className="py-3 px-3 whitespace-nowrap align-middle">
-                      {(c.call_result || '').toLowerCase().includes('again') || (c.call_result || '').toLowerCase().includes('later') ? (
-                        <div className="space-y-1">
-                          <span className="bg-amber-950/90 text-amber-300 border border-amber-800/90 px-2.5 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1.5 shadow-sm whitespace-nowrap">
-                            <Clock className="w-3.5 h-3.5 text-amber-400 shrink-0" /> Call Again Later
-                          </span>
-                          {c.next_followup_date && (
-                            <div className="text-[11px] font-mono text-amber-400/90 flex items-center gap-1 font-semibold whitespace-nowrap">
-                              <Calendar className="w-3 h-3 shrink-0" /> Due: {c.next_followup_date}
-                            </div>
-                          )}
-                        </div>
-                      ) : (c.call_result || '').toLowerCase().includes('closed') ? (
-                        <span className="bg-rose-950/90 text-rose-300 border border-rose-800/90 px-2.5 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1.5 shadow-sm whitespace-nowrap">
-                          <XCircle className="w-3.5 h-3.5 text-rose-400 shrink-0" /> {c.call_result}
-                        </span>
-                      ) : (c.call_result || '').toLowerCase().includes('requirement') ? (
-                        <span className="bg-emerald-950/90 text-emerald-300 border border-emerald-800/90 px-2.5 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1.5 shadow-sm whitespace-nowrap">
-                          <Zap className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> Requirement Received
-                        </span>
-                      ) : (
-                        <span className="bg-slate-800/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-full text-xs font-semibold inline-flex items-center gap-1 whitespace-nowrap">
-                          {c.call_result || 'Call Logged'}
-                        </span>
-                      )}
-                    </td>
-                    <td className="py-3 px-3 whitespace-nowrap align-middle">
-                      {c.payment_terms ? (
-                        <span className={`px-2 py-0.5 rounded text-xs font-bold whitespace-nowrap ${
-                          c.payment_terms.includes('Advance') ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' :
-                          c.payment_terms.includes('Credit') || c.payment_terms.includes('After') ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30' :
-                          'bg-blue-500/20 text-blue-400 border border-blue-500/30'
-                        }`}>
-                          {c.payment_terms}
-                        </span>
-                      ) : (
-                        <span className="text-slate-500 text-xs">—</span>
-                      )}
-                    </td>
-                    <td className="py-3 px-3 align-middle overflow-hidden">
-                      {c.agent_requirement && (
-                        <div className="text-xs text-emerald-300 font-semibold mb-1 flex items-center gap-1 truncate" title={c.agent_requirement}>
-                          <Zap className="w-3 h-3 text-amber-400 shrink-0" />
-                          <span className="truncate">{c.agent_requirement}</span>
-                        </div>
-                      )}
-                      {renderPitchedServices(c.services_discussed)}
-                      {!c.agent_requirement && !c.services_discussed && (
-                        <span className="text-slate-500 text-xs">—</span>
-                      )}
-                    </td>
-                    <td className="py-3 px-3 align-middle text-xs text-slate-300 overflow-hidden">
-                      <div className="line-clamp-2 break-words" title={c.remarks}>{c.remarks || '—'}</div>
-                    </td>
-                    <td className="py-2.5 px-3 text-right whitespace-nowrap align-middle sticky right-0 bg-[#070b14] group-hover:bg-[#0f172a] transition-colors z-10 shadow-[-8px_0_12px_-4px_rgba(0,0,0,0.7)]">
-                      <div className="flex flex-col gap-1 items-end">
-                        {/* Row 1: Primary 3 Follow-up Action Buttons */}
-                        <div className="flex items-center gap-1">
-                          <button
-                            type="button"
-                            onClick={() => onOpenModal('log_call', {
-                              agent_id: c.agent_id,
-                              company_name: c.company_name,
-                              name: c.agent_name,
-                              mobile: c.agent_mobile,
-                              city: c.agent_city,
-                              call_date: new Date().toISOString().split('T')[0],
-                              executive_name: c.executive_name || 'Simranjit Kaur',
-                              call_result: 'Call Connected / In Discussion'
-                            })}
-                            title="Start Calling: Log Fresh Call Today"
-                            className="px-2 py-1 bg-sky-600 hover:bg-sky-500 text-white rounded text-[11px] font-bold transition flex items-center gap-1 shadow cursor-pointer whitespace-nowrap"
-                          >
-                            <PhoneCall className="w-3 h-3" /> Calling
-                          </button>
-
-                          <button
-                            type="button"
-                            onClick={() => handleQuickReschedule(c)}
-                            title="Reschedule Next Call"
-                            className="px-2 py-1 bg-amber-950/90 hover:bg-amber-900 text-amber-300 border border-amber-800/80 rounded text-[11px] font-bold transition flex items-center gap-1 cursor-pointer whitespace-nowrap"
-                          >
-                            <Clock className="w-3 h-3 text-amber-400" /> Again
-                          </button>
-
-                          <button
-                            type="button"
-                            onClick={() => handleQuickClose(c)}
-                            title="Mark Follow-up Closed / Not Interested"
-                            className="px-2 py-1 bg-rose-950/90 hover:bg-rose-900 text-rose-300 border border-rose-800/80 rounded text-[11px] font-bold transition flex items-center gap-1 cursor-pointer whitespace-nowrap"
-                          >
-                            <XCircle className="w-3 h-3 text-rose-400" /> Closed
-                          </button>
-                        </div>
-
-                        {/* Row 2: Secondary Utilities (Query, Edit, 360, Delete) */}
-                        <div className="flex items-center gap-1 text-[10px]">
-                          {c.call_result === 'Requirement Received' && (
-                            <button
-                              type="button"
-                              onClick={() => onOpenModal('create_query', { id: c.agent_id, company_name: c.company_name, name: c.agent_name })}
-                              className="px-1.5 py-0.5 bg-amber-600 hover:bg-amber-500 text-white rounded font-bold transition flex items-center gap-0.5 whitespace-nowrap"
-                              title="Create Stage 3 Sales Query"
-                            >
-                              <FileText className="w-2.5 h-2.5" /> Query
-                            </button>
-                          )}
-                          <button
-                            type="button"
-                            onClick={() => onOpenModal('log_call', {
-                              ...c,
-                              call_id: c.id,
-                              id: c.id,
-                              agent_id: c.agent_id,
-                              visit_id: c.visit_id
-                            })}
-                            title="Edit Full Call Details"
-                            className="px-1.5 py-0.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded font-medium border border-slate-700 transition"
-                          >
-                            ✏️ Edit
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => onOpenAgentDrawer(c.agent_id)}
-                            title="View 360 Agent Profile"
-                            className="px-1.5 py-0.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded font-medium border border-slate-700 transition"
-                          >
-                            👁️ 360°
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => handleDeleteCall(c.id)}
-                            title="Delete Wrong Call Entry"
-                            className="p-1 bg-rose-950/40 hover:bg-rose-900 text-rose-400 rounded border border-rose-800/60 transition"
-                          >
-                            <Trash2 className="w-2.5 h-2.5" />
-                          </button>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                ))
+                <>
+                  <ChevronDown className="w-4 h-4 text-sky-400" />
+                  <span>Open Desk ({filteredCalls.length})</span>
+                </>
               )}
-            </tbody>
-          </table>
+            </button>
+          </div>
         </div>
+
+        {showCallsDesk && (
+          <div className="p-4 sm:p-5 space-y-4">
+            {/* Live Search & Quick Target Focus Toolbar */}
+            <div className="bg-slate-950/70 border border-slate-800 p-3.5 rounded-xl space-y-3">
+              {/* Search Bar */}
+              <div className="relative">
+                <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="Instant live search by Agency Name, Contact Person, Mobile, City, Requirements, Remarks..."
+                  className="w-full bg-slate-900 border border-slate-800 focus:border-sky-500 rounded-xl pl-10 pr-9 py-2 text-xs sm:text-sm text-slate-200 placeholder-slate-500 focus:outline-none transition shadow-inner"
+                />
+                {searchTerm && (
+                  <button
+                    onClick={() => setSearchTerm('')}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                )}
+              </div>
+
+              {/* Quick Target Filter Pills */}
+              <div className="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-slate-800/60">
+                <div className="flex flex-wrap gap-1.5 items-center">
+                  <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider mr-1 flex items-center gap-1">
+                    <Target className="w-3 h-3 text-sky-400" /> Status:
+                  </span>
+
+                  <button
+                    onClick={() => setResultFilter('')}
+                    className={`px-3 py-1 rounded-full text-xs font-bold transition shadow ${
+                      !resultFilter ? 'bg-sky-500 text-slate-950 font-black' : 'bg-slate-900 text-slate-400 hover:bg-slate-800 border border-slate-800'
+                    }`}
+                  >
+                    All Calls ({calls.length})
+                  </button>
+
+                  <button
+                    onClick={() => setResultFilter('Due Today')}
+                    className={`px-3 py-1 rounded-full text-xs font-bold transition shadow flex items-center gap-1 ${
+                      resultFilter === 'Due Today'
+                        ? 'bg-amber-500 text-slate-950 font-black ring-2 ring-amber-400/50'
+                        : 'bg-amber-950/60 text-amber-300 hover:bg-amber-900 border border-amber-800/60'
+                    }`}
+                  >
+                    <Clock className="w-3 h-3 text-amber-400" /> ⏰ Due Today ({dueTodayCalls.length})
+                  </button>
+
+                  <button
+                    onClick={() => setResultFilter('Requirement Received')}
+                    className={`px-3 py-1 rounded-full text-xs font-bold transition shadow flex items-center gap-1 ${
+                      resultFilter === 'Requirement Received'
+                        ? 'bg-emerald-500 text-slate-950 font-black'
+                        : 'bg-emerald-950/60 text-emerald-300 hover:bg-emerald-900 border border-emerald-800/60'
+                    }`}
+                  >
+                    <Zap className="w-3 h-3 text-emerald-400" /> ⚡ Got Query ({calls.filter(c => (c.call_result || '').toLowerCase().includes('requirement')).length})
+                  </button>
+
+                  <button
+                    onClick={() => setResultFilter('Call Again')}
+                    className={`px-3 py-1 rounded-full text-xs font-bold transition shadow flex items-center gap-1 ${
+                      resultFilter === 'Call Again'
+                        ? 'bg-blue-500 text-white font-black'
+                        : 'bg-blue-950/60 text-blue-300 hover:bg-blue-900 border border-blue-800/60'
+                    }`}
+                  >
+                    🔄 Call Again ({calls.filter(c => (c.call_result || '').toLowerCase().includes('again') || (c.call_result || '').toLowerCase().includes('follow')).length})
+                  </button>
+
+                  <button
+                    onClick={() => setResultFilter('Interested')}
+                    className={`px-3 py-1 rounded-full text-xs font-bold transition shadow ${
+                      resultFilter === 'Interested'
+                        ? 'bg-amber-500 text-slate-950 font-black'
+                        : 'bg-amber-950/60 text-amber-300 hover:bg-amber-900 border border-amber-800/60'
+                    }`}
+                  >
+                    🔥 Interested
+                  </button>
+
+                  <button
+                    onClick={() => setResultFilter('Closed')}
+                    className={`px-3 py-1 rounded-full text-xs font-bold transition shadow ${
+                      resultFilter === 'Closed'
+                        ? 'bg-rose-500 text-white font-black'
+                        : 'bg-rose-950/60 text-rose-300 hover:bg-rose-900 border border-rose-800/60'
+                    }`}
+                  >
+                    ❌ Closed ({calls.filter(c => (c.call_result || '').toLowerCase().includes('closed') || (c.call_result || '').toLowerCase().includes('not interested')).length})
+                  </button>
+                </div>
+
+                {/* Date Controls */}
+                <div className="flex items-center gap-2 flex-wrap text-xs">
+                  <button
+                    onClick={() => {
+                      const today = new Date().toISOString().split('T')[0];
+                      setDateFilter(today);
+                      setFromDate('');
+                      setToDate('');
+                    }}
+                    className={`px-2.5 py-1 rounded-lg font-bold transition ${
+                      dateFilter === new Date().toISOString().split('T')[0]
+                        ? 'bg-sky-600 text-white'
+                        : 'bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800'
+                    }`}
+                  >
+                    Today
+                  </button>
+                  <button
+                    onClick={() => {
+                      const y = new Date();
+                      y.setDate(y.getDate() - 1);
+                      const yStr = y.toISOString().split('T')[0];
+                      setDateFilter(yStr);
+                      setFromDate('');
+                      setToDate('');
+                    }}
+                    className={`px-2.5 py-1 rounded-lg font-bold transition ${
+                      (() => {
+                        const y = new Date();
+                        y.setDate(y.getDate() - 1);
+                        return dateFilter === y.toISOString().split('T')[0];
+                      })()
+                        ? 'bg-sky-600 text-white'
+                        : 'bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800'
+                    }`}
+                  >
+                    Yesterday
+                  </button>
+
+                  <div className="flex items-center gap-1 text-slate-400">
+                    <span>Date:</span>
+                    <input
+                      type="date"
+                      value={dateFilter}
+                      onChange={(e) => {
+                        setDateFilter(e.target.value);
+                        setFromDate('');
+                        setToDate('');
+                      }}
+                      className="bg-slate-900 border border-slate-800 text-slate-200 px-2 py-1 rounded-lg text-xs focus:outline-none focus:border-sky-500"
+                    />
+                  </div>
+
+                  <div className="flex items-center gap-1 text-slate-400">
+                    <span>From:</span>
+                    <input
+                      type="date"
+                      value={fromDate}
+                      onChange={(e) => {
+                        setFromDate(e.target.value);
+                        setDateFilter('');
+                      }}
+                      className="bg-slate-900 border border-slate-800 text-slate-200 px-2 py-1 rounded-lg text-xs focus:outline-none focus:border-sky-500"
+                    />
+                    <span>To:</span>
+                    <input
+                      type="date"
+                      value={toDate}
+                      onChange={(e) => {
+                        setToDate(e.target.value);
+                        setDateFilter('');
+                      }}
+                      className="bg-slate-900 border border-slate-800 text-slate-200 px-2 py-1 rounded-lg text-xs focus:outline-none focus:border-sky-500"
+                    />
+                  </div>
+
+                  {(dateFilter || fromDate || toDate) && (
+                    <button
+                      onClick={clearDateFilters}
+                      className="p-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-xs transition border border-slate-700"
+                      title="Clear Date Filter"
+                    >
+                      <X className="w-3.5 h-3.5" />
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Calling Table with Dropdown Filter Headers */}
+            <div className="bg-slate-950/60 border border-slate-800 rounded-xl overflow-hidden shadow-inner">
+              <div className="p-2.5 bg-slate-950 border-b border-slate-800/80 flex justify-between items-center text-xs text-slate-400">
+                <span className="flex items-center gap-1.5">
+                  <SlidersHorizontal className="w-3.5 h-3.5 text-sky-400" />
+                  <span>Filtered Calls: <strong className="text-sky-400 font-bold">{filteredCalls.length}</strong> / {calls.length} Total</span>
+                </span>
+                <span className="text-[11px] text-slate-500">
+                  Tip: Use column dropdowns to filter directly on table headers
+                </span>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full table-fixed min-w-[1480px] text-left text-xs text-slate-300 border-collapse">
+                  <colgroup>
+                    <col className="w-[105px]" />
+                    <col className="w-[145px]" />
+                    <col className="w-[215px]" />
+                    <col className="w-[130px]" />
+                    <col className="w-[185px]" />
+                    <col className="w-[130px]" />
+                    <col className="w-[185px]" />
+                    <col />
+                    <col className="w-[225px]" />
+                  </colgroup>
+                  <thead className="bg-[#090e1a] text-xs text-slate-400 uppercase tracking-wider font-semibold border-b border-slate-800">
+                    <tr>
+                      {/* Call Date Header */}
+                      <th className="py-2.5 px-3 whitespace-nowrap">
+                        <span className="text-[10px] text-slate-400 font-semibold tracking-wider uppercase block">Call Date</span>
+                        <span className="text-[11px] font-mono text-slate-300 font-bold">
+                          {dateFilter ? dateFilter : 'Latest First'}
+                        </span>
+                      </th>
+
+                      {/* Executive Dropdown Header */}
+                      <th className="py-2 px-2.5 whitespace-nowrap">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">Executive</span>
+                          <select
+                            value={execFilter}
+                            onChange={(e) => setExecFilter(e.target.value)}
+                            className="bg-slate-900 border border-slate-700/80 text-sky-300 font-semibold rounded-lg text-xs py-1 px-1.5 focus:outline-none focus:border-sky-500 cursor-pointer"
+                          >
+                            <option value="">All Execs</option>
+                            <option value="Simranjit Kaur">Simranjit Kaur</option>
+                            <option value="Yug">Yug</option>
+                          </select>
+                        </div>
+                      </th>
+
+                      {/* Agent & City Dropdown Header */}
+                      <th className="py-2 px-2.5 whitespace-nowrap">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">Agent & City</span>
+                          <select
+                            value={cityFilter}
+                            onChange={(e) => setCityFilter(e.target.value)}
+                            className="bg-slate-900 border border-slate-700/80 text-sky-300 font-semibold rounded-lg text-xs py-1 px-1.5 focus:outline-none focus:border-sky-500 cursor-pointer max-w-[200px] truncate"
+                          >
+                            <option value="">All Cities ({distinctCities.length})</option>
+                            {distinctCities.map((ct) => (
+                              <option key={ct} value={ct}>{ct}</option>
+                            ))}
+                          </select>
+                        </div>
+                      </th>
+
+                      {/* Connectivity Dropdown Header */}
+                      <th className="py-2 px-2.5 whitespace-nowrap">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">Connectivity</span>
+                          <select
+                            value={connectivityFilter}
+                            onChange={(e) => setConnectivityFilter(e.target.value)}
+                            className="bg-slate-900 border border-slate-700/80 text-sky-300 font-semibold rounded-lg text-xs py-1 px-1.5 focus:outline-none focus:border-sky-500 cursor-pointer"
+                          >
+                            <option value="">All Calls</option>
+                            <option value="connected">Connected</option>
+                            <option value="not_connected">Not Connected</option>
+                          </select>
+                        </div>
+                      </th>
+
+                      {/* Result / Due Dropdown Header */}
+                      <th className="py-2 px-2.5 whitespace-nowrap">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">Result / Due</span>
+                          <select
+                            value={resultFilter}
+                            onChange={(e) => setResultFilter(e.target.value)}
+                            className="bg-slate-900 border border-amber-500/60 text-amber-300 font-semibold rounded-lg text-xs py-1 px-1.5 focus:outline-none focus:border-amber-400 cursor-pointer max-w-[175px] truncate"
+                          >
+                            <option value="">All Results</option>
+                            <option value="Due Today">⏰ Due Today ({dueTodayCalls.length})</option>
+                            <option value="Call Again">🔄 Call Again / Later</option>
+                            <option value="Requirement Received">⚡ Requirement Won</option>
+                            <option value="Interested">🔥 Interested</option>
+                            <option value="Not Interested">🚫 Not Interested</option>
+                            <option value="Closed">❌ Closed</option>
+                            <option value="Not Picked">📵 Not Picked</option>
+                            <option value="Wrong Number">⚠️ Wrong / Switched Off</option>
+                          </select>
+                        </div>
+                      </th>
+
+                      {/* Payment Terms Dropdown Header */}
+                      <th className="py-2 px-2.5 whitespace-nowrap">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">Payment</span>
+                          <select
+                            value={paymentFilter}
+                            onChange={(e) => setPaymentFilter(e.target.value)}
+                            className="bg-slate-900 border border-slate-700/80 text-sky-300 font-semibold rounded-lg text-xs py-1 px-1.5 focus:outline-none focus:border-sky-500 cursor-pointer"
+                          >
+                            <option value="">All Terms</option>
+                            <option value="advance">Advance</option>
+                            <option value="credit">Credit / After</option>
+                            <option value="50%">50% Advance</option>
+                          </select>
+                        </div>
+                      </th>
+
+                      {/* Requirement Header */}
+                      <th className="py-2.5 px-3 whitespace-nowrap">
+                        <span className="text-[10px] text-slate-400 font-semibold tracking-wider uppercase block">Requirement</span>
+                        <span className="text-[11px] text-emerald-400 font-bold">Services & Enquiries</span>
+                      </th>
+
+                      {/* Remarks Header */}
+                      <th className="py-2.5 px-3">
+                        <span className="text-[10px] text-slate-400 font-semibold tracking-wider uppercase block">Remarks</span>
+                        <span className="text-[11px] text-slate-500 font-normal">Discussion Log</span>
+                      </th>
+
+                      {/* Quick Actions Sticky Header */}
+                      <th className="py-2.5 px-3 text-right whitespace-nowrap sticky right-0 bg-[#090e1a] z-20 shadow-[-12px_0_15px_-4px_rgba(0,0,0,0.8)] border-b border-slate-800">
+                        <span className="text-[10px] text-sky-400 font-semibold tracking-wider uppercase block">Quick Actions</span>
+                        <span className="text-[11px] text-slate-300 font-bold">Calling & Follow-up</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-800/60 bg-slate-950/40">
+                    {loading ? (
+                      <tr>
+                        <td colSpan="9" className="text-center p-8">
+                          <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+                        </td>
+                      </tr>
+                    ) : filteredCalls.length === 0 ? (
+                      <tr>
+                        <td colSpan="9" className="text-center p-8 text-slate-500">
+                          <p className="font-semibold text-slate-400">No telephonic follow-up calls found matching active filters.</p>
+                          <button
+                            onClick={resetAllFilters}
+                            className="mt-2 px-3 py-1 bg-sky-600 hover:bg-sky-500 text-white rounded-lg text-xs font-bold transition shadow"
+                          >
+                            Reset All Filters
+                          </button>
+                        </td>
+                      </tr>
+                    ) : (
+                      filteredCalls.map((c) => {
+                        const isCallAgain = (c.call_result || '').toLowerCase().includes('again') || (c.call_result || '').toLowerCase().includes('later') || (c.call_result || '').toLowerCase().includes('follow');
+                        const isDueToday = isCallAgain && c.next_followup_date && c.next_followup_date === todayStr;
+                        const isOverdue = isCallAgain && c.next_followup_date && c.next_followup_date < todayStr;
+
+                        return (
+                          <tr 
+                            key={c.id} 
+                            className={`hover:bg-slate-800/40 transition group ${
+                              isDueToday 
+                                ? 'bg-amber-950/20 border-l-4 border-l-amber-500' 
+                                : isOverdue 
+                                ? 'bg-rose-950/15 border-l-4 border-l-rose-500' 
+                                : ''
+                            }`}
+                          >
+                            <td className="py-3 px-3 font-mono text-slate-200 font-bold whitespace-nowrap align-middle truncate">
+                              {c.call_date}
+                            </td>
+
+                            <td className="py-3 px-2.5 font-semibold text-slate-200 whitespace-nowrap align-middle truncate" title={c.executive_name || 'Simranjit Kaur'}>
+                              {c.executive_name || 'Simranjit Kaur'}
+                            </td>
+
+                            <td className="py-3 px-2.5 align-middle truncate">
+                              <button
+                                type="button"
+                                onClick={() => onOpenAgentDrawer(c.agent_id)}
+                                className="font-bold text-sky-400 hover:text-sky-300 text-left hover:underline block truncate max-w-full cursor-pointer"
+                                title={c.company_name}
+                              >
+                                {c.company_name}
+                              </button>
+                              <div className="flex items-center gap-1.5 mt-0.5 text-[11px] whitespace-nowrap">
+                                {c.agent_mobile && (
+                                  <a
+                                    href={`tel:${c.agent_mobile}`}
+                                    className="text-emerald-400 hover:text-emerald-300 font-mono font-semibold flex items-center gap-0.5"
+                                    title="Click to dial"
+                                  >
+                                    <Phone className="w-3 h-3 text-emerald-400 shrink-0" /> {c.agent_mobile}
+                                  </a>
+                                )}
+                                {c.agent_city && (
+                                  <span className="text-slate-400 bg-slate-800/80 px-1.5 py-0.5 rounded text-[10px] truncate max-w-[85px]">
+                                    {c.agent_city}
+                                  </span>
+                                )}
+                              </div>
+                            </td>
+
+                            <td className="py-3 px-2.5 whitespace-nowrap align-middle">
+                              {c.is_connected ? (
+                                <span className="bg-emerald-950/80 text-emerald-400 border border-emerald-800/80 px-2 py-0.5 rounded-full text-[11px] font-semibold inline-flex items-center gap-1">
+                                  <PhoneCall className="w-3 h-3" /> Connected
+                                </span>
+                              ) : (
+                                <span className="bg-rose-950/80 text-rose-400 border border-rose-800/80 px-2 py-0.5 rounded-full text-[11px] font-semibold inline-flex items-center gap-1">
+                                  <PhoneOff className="w-3 h-3" /> Not Connected
+                                </span>
+                              )}
+                            </td>
+
+                            <td className="py-3 px-2.5 whitespace-nowrap align-middle">
+                              {isDueToday ? (
+                                <div className="space-y-1">
+                                  <span className="bg-amber-500/20 text-amber-300 border border-amber-500/50 px-2 py-0.5 rounded-full text-[11px] font-bold inline-flex items-center gap-1 animate-pulse shadow-sm whitespace-nowrap">
+                                    <Clock className="w-3 h-3 text-amber-400 shrink-0" /> ⏰ Due Today
+                                  </span>
+                                  <div className="text-[10px] font-mono text-amber-400/90 font-bold whitespace-nowrap">
+                                    Follow-up Today
+                                  </div>
+                                </div>
+                              ) : isOverdue ? (
+                                <div className="space-y-1">
+                                  <span className="bg-rose-500/20 text-rose-300 border border-rose-500/50 px-2 py-0.5 rounded-full text-[11px] font-bold inline-flex items-center gap-1 shadow-sm whitespace-nowrap">
+                                    <AlertCircle className="w-3 h-3 text-rose-400 shrink-0" /> ⚠️ Overdue
+                                  </span>
+                                  <div className="text-[10px] font-mono text-rose-400/90 font-bold whitespace-nowrap">
+                                    Due: {c.next_followup_date}
+                                  </div>
+                                </div>
+                              ) : isCallAgain ? (
+                                <div className="space-y-1">
+                                  <span className="bg-amber-950/90 text-amber-300 border border-amber-800/90 px-2 py-0.5 rounded-full text-[11px] font-bold inline-flex items-center gap-1 shadow-sm whitespace-nowrap">
+                                    <Clock className="w-3 h-3 text-amber-400 shrink-0" /> Call Again
+                                  </span>
+                                  {c.next_followup_date && (
+                                    <div className="text-[10px] font-mono text-amber-400/90 flex items-center gap-0.5 font-semibold whitespace-nowrap">
+                                      <Calendar className="w-2.5 h-2.5 shrink-0" /> Due: {c.next_followup_date}
+                                    </div>
+                                  )}
+                                </div>
+                              ) : (c.call_result || '').toLowerCase().includes('closed') ? (
+                                <span className="bg-rose-950/90 text-rose-300 border border-rose-800/90 px-2.5 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1.5 shadow-sm whitespace-nowrap">
+                                  <XCircle className="w-3.5 h-3.5 text-rose-400 shrink-0" /> {c.call_result}
+                                </span>
+                              ) : (c.call_result || '').toLowerCase().includes('requirement') ? (
+                                <span className="bg-emerald-950/90 text-emerald-300 border border-emerald-800/90 px-2.5 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1.5 shadow-sm whitespace-nowrap">
+                                  <Zap className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> Requirement Won
+                                </span>
+                              ) : (
+                                <span className="bg-slate-800/90 text-slate-300 border border-slate-700/80 px-2 py-0.5 rounded-full text-[11px] font-semibold inline-flex items-center gap-1 whitespace-nowrap">
+                                  {c.call_result || 'Call Logged'}
+                                </span>
+                              )}
+                            </td>
+
+                            <td className="py-3 px-2.5 whitespace-nowrap align-middle">
+                              {c.payment_terms ? (
+                                <span className={`px-2 py-0.5 rounded text-xs font-bold whitespace-nowrap ${
+                                  c.payment_terms.includes('Advance') ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' :
+                                  c.payment_terms.includes('Credit') || c.payment_terms.includes('After') ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30' :
+                                  'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                                }`}>
+                                  {c.payment_terms}
+                                </span>
+                              ) : (
+                                <span className="text-slate-500 text-xs">—</span>
+                              )}
+                            </td>
+
+                            <td className="py-3 px-3 align-middle overflow-hidden">
+                              {c.agent_requirement && (
+                                <div className="text-xs text-emerald-300 font-semibold mb-1 flex items-center gap-1 truncate" title={c.agent_requirement}>
+                                  <Zap className="w-3 h-3 text-amber-400 shrink-0" />
+                                  <span className="truncate">{c.agent_requirement}</span>
+                                </div>
+                              )}
+                              {renderPitchedServices(c.services_discussed)}
+                              {!c.agent_requirement && !c.services_discussed && (
+                                <span className="text-slate-500 text-xs">—</span>
+                              )}
+                            </td>
+
+                            <td className="py-3 px-3 align-middle text-xs text-slate-300 overflow-hidden">
+                              <div className="line-clamp-2 break-words" title={c.remarks}>{c.remarks || '—'}</div>
+                            </td>
+
+                            <td className="py-2.5 px-3 text-right whitespace-nowrap align-middle sticky right-0 bg-[#070b14] group-hover:bg-[#0f172a] transition-colors z-10 shadow-[-12px_0_15px_-4px_rgba(0,0,0,0.8)]">
+                              <div className="flex flex-col gap-1 items-end">
+                                {/* Row 1: Primary 3 Follow-up Action Buttons */}
+                                <div className="flex items-center gap-1">
+                                  <button
+                                    type="button"
+                                    onClick={() => onOpenModal('log_call', {
+                                      agent_id: c.agent_id,
+                                      company_name: c.company_name,
+                                      name: c.agent_name,
+                                      mobile: c.agent_mobile,
+                                      city: c.agent_city,
+                                      call_date: new Date().toISOString().split('T')[0],
+                                      executive_name: c.executive_name || 'Simranjit Kaur',
+                                      call_result: 'Call Connected / In Discussion'
+                                    })}
+                                    title="Start Calling: Log Fresh Call Today"
+                                    className="px-2 py-1 bg-sky-600 hover:bg-sky-500 text-white rounded text-[11px] font-bold transition flex items-center gap-1 shadow cursor-pointer whitespace-nowrap"
+                                  >
+                                    <PhoneCall className="w-3 h-3" /> Calling
+                                  </button>
+
+                                  <button
+                                    type="button"
+                                    onClick={() => handleQuickReschedule(c)}
+                                    title="Reschedule Next Call"
+                                    className="px-2 py-1 bg-amber-950/90 hover:bg-amber-900 text-amber-300 border border-amber-800/80 rounded text-[11px] font-bold transition flex items-center gap-1 cursor-pointer whitespace-nowrap"
+                                  >
+                                    <Clock className="w-3 h-3 text-amber-400" /> Again
+                                  </button>
+
+                                  <button
+                                    type="button"
+                                    onClick={() => handleQuickClose(c)}
+                                    title="Mark Follow-up Closed / Not Interested"
+                                    className="px-2 py-1 bg-rose-950/90 hover:bg-rose-900 text-rose-300 border border-rose-800/80 rounded text-[11px] font-bold transition flex items-center gap-1 cursor-pointer whitespace-nowrap"
+                                  >
+                                    <XCircle className="w-3 h-3 text-rose-400" /> Closed
+                                  </button>
+                                </div>
+
+                                {/* Row 2: Secondary Utilities (Query, Edit, 360, Delete) */}
+                                <div className="flex items-center gap-1 text-[10px]">
+                                  {c.call_result === 'Requirement Received' && (
+                                    <button
+                                      type="button"
+                                      onClick={() => onOpenModal('create_query', { id: c.agent_id, company_name: c.company_name, name: c.agent_name })}
+                                      className="px-1.5 py-0.5 bg-amber-600 hover:bg-amber-500 text-white rounded font-bold transition flex items-center gap-0.5 whitespace-nowrap"
+                                      title="Create Stage 3 Sales Query"
+                                    >
+                                      <FileText className="w-2.5 h-2.5" /> Query
+                                    </button>
+                                  )}
+                                  <button
+                                    type="button"
+                                    onClick={() => onOpenModal('log_call', {
+                                      ...c,
+                                      call_id: c.id,
+                                      id: c.id,
+                                      agent_id: c.agent_id,
+                                      visit_id: c.visit_id
+                                    })}
+                                    title="Edit Full Call Details"
+                                    className="px-1.5 py-0.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded font-medium border border-slate-700 transition"
+                                  >
+                                    ✏️ Edit
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={() => onOpenAgentDrawer(c.agent_id)}
+                                    title="View 360 Agent Profile"
+                                    className="px-1.5 py-0.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded font-medium border border-slate-700 transition"
+                                  >
+                                    👁️ 360°
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={() => handleDeleteCall(c.id)}
+                                    title="Delete Wrong Call Entry"
+                                    className="p-1 bg-rose-950/40 hover:bg-rose-900 text-rose-400 rounded border border-rose-800/60 transition"
+                                  >
+                                    <Trash2 className="w-2.5 h-2.5" />
+                                  </button>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
     </div>
