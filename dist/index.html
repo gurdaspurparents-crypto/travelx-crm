@@ -1,6 +1,22 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script>
+      window.addEventListener('error', function(e) {
+        if (e.message && (e.message.indexOf('Unexpected token') !== -1 || e.message.indexOf('Loading chunk') !== -1 || e.message.indexOf('Failed to fetch') !== -1)) {
+          if ('caches' in window) {
+            caches.keys().then(function(keys) {
+              return Promise.all(keys.map(function(k) { return caches.delete(k); }));
+            }).then(function() {
+              window.location.reload();
+            });
+          } else {
+            window.location.reload();
+          }
+        }
+      });
+    </script>
+
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />

@@ -40,6 +40,11 @@ app.use(express.static(path.join(__dirname, '../dist'), staticOptions));
 app.use(express.static(path.join(__dirname, 'client/dist'), staticOptions));
 app.use(express.static(path.join(__dirname, '../client/dist'), staticOptions));
 
+// Never return HTML index for missing /assets requests
+app.use('/assets', (req, res) => {
+  res.status(404).type('text/plain').send('Asset not found');
+});
+
 // Explicit root route - always serve latest compiled React app
 app.get('/', (req, res) => {
   res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
