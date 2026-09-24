@@ -41,6 +41,7 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
 
   const [locationAgents, setLocationAgents] = useState([]);
   const [loadingLocationAgents, setLoadingLocationAgents] = useState(false);
+  const [checklistStatusFilter, setChecklistStatusFilter] = useState('all'); // 'all' | 'visited' | 'pending'
   const [checklistFromDate, setChecklistFromDate] = useState(() => `${new Date().toISOString().slice(0, 7)}-01`);
   const [checklistToDate, setChecklistToDate] = useState(() => {
     const d = new Date();
