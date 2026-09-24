@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { LayoutDashboard, Flame, Users, MapPin, Phone, PhoneCall, FileText, BarChart3, Sparkles, Bell, Shield, X, AlertTriangle, Clock, Plane } from 'lucide-react';
+import { LayoutDashboard, Flame, Users, MapPin, Phone, PhoneCall, FileText, BarChart3, Sparkles, Bell, Shield, X, AlertTriangle, Clock, Plane, RotateCw } from 'lucide-react';
 import FollowupAlertModal from './FollowupAlertModal';
 import BackupRecoveryModal from './BackupRecoveryModal';
 
@@ -198,6 +198,29 @@ export default function Header({ activeTab, onSelectTab, role, onRoleChange, onO
                 <option value="Marketing Executive" className="bg-[#0b1120] text-slate-200">🚗 Field Marketing (Bikram)</option>
               </select>
             </div>
+
+            {/* Cache Flush / Refresh App */}
+            <button
+              onClick={() => {
+                if ('serviceWorker' in navigator) {
+                  navigator.serviceWorker.getRegistrations().then(regs => {
+                    for (const r of regs) r.unregister();
+                  });
+                }
+                if ('caches' in window) {
+                  caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k)))).then(() => {
+                    window.location.reload(true);
+                  });
+                } else {
+                  window.location.reload(true);
+                }
+              }}
+              className="p-2 rounded-xl bg-white/[0.04] hover:bg-sky-500/20 border border-white/[0.08] hover:border-sky-500/40 text-sky-400 hover:text-sky-300 transition-all cursor-pointer flex items-center gap-1.5"
+              title="Click to Clear Browser Cache and Load Latest Version"
+            >
+              <RotateCw className="w-4 h-4" />
+              <span className="hidden md:inline text-xs font-bold text-sky-300">Reload</span>
+            </button>
 
             {/* Notification Bell */}
             <button

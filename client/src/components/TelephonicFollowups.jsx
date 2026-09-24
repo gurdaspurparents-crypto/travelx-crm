@@ -495,15 +495,23 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
 
               {showQueue && (
                 <div className="overflow-x-auto border border-white/[0.06] rounded-xl">
-                  <table className="w-full min-w-[1100px] text-left text-xs text-slate-300 border-collapse">
+                  <table className="w-full table-fixed min-w-[1100px] text-left text-xs text-slate-300 border-collapse">
+                    <colgroup>
+                      <col className="w-[105px]" />
+                      <col className="w-[230px]" />
+                      <col className="w-[140px]" />
+                      <col className="w-[200px]" />
+                      <col className="w-[170px]" />
+                      <col className="w-[255px]" />
+                    </colgroup>
                     <thead className="bg-[#090e1a] text-[11px] text-slate-400 uppercase tracking-wider font-semibold border-b border-slate-800">
                       <tr>
-                        <th className="p-3 w-[110px] whitespace-nowrap">Visit Date</th>
-                        <th className="p-3 w-[240px] whitespace-nowrap">Visited Agency & 1-Click Connect</th>
-                        <th className="p-3 w-[140px] whitespace-nowrap">Location & Area</th>
-                        <th className="p-3 min-w-[200px]">Bikramjit Pitched & Remarks</th>
-                        <th className="p-3 w-[180px] whitespace-nowrap">Result / Status</th>
-                        <th className="p-3 w-[280px] text-right whitespace-nowrap sticky right-0 bg-[#090e1a] z-20 shadow-[-8px_0_12px_-4px_rgba(0,0,0,0.7)] border-b border-slate-800">Result Action for Simranjit</th>
+                        <th className="p-3 whitespace-nowrap">Visit Date</th>
+                        <th className="p-3 whitespace-nowrap">Visited Agency & 1-Click Connect</th>
+                        <th className="p-3 whitespace-nowrap">Location & Area</th>
+                        <th className="p-3">Bikramjit Pitched & Remarks</th>
+                        <th className="p-3 whitespace-nowrap">Result / Status</th>
+                        <th className="p-3 text-right whitespace-nowrap sticky right-0 bg-[#090e1a] z-20 shadow-[-8px_0_12px_-4px_rgba(0,0,0,0.7)] border-b border-slate-800">Result Action for Simranjit</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-800/60 bg-slate-950/40">
@@ -596,28 +604,11 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                                   </span>
                                 )}
                               </td>
-                              <td className="p-3 text-right whitespace-nowrap align-middle sticky right-0 bg-[#070b14] group-hover:bg-[#0f172a] transition-colors z-10 shadow-[-8px_0_12px_-4px_rgba(0,0,0,0.7)]">
-                                <div className="flex items-center justify-end gap-1.5 flex-nowrap">
-                                  {isCalled ? (
-                                    <>
-                                      {/* Direct Convert to Stage 3 Query Button if requirement received */}
-                                      {(v.call_result || '').includes('Requirement') && (
-                                        <button
-                                          type="button"
-                                          onClick={() => onOpenModal('create_query', {
-                                            agent_id: v.agent_id,
-                                            company_name: v.company_name,
-                                            handling_employee: 'Simranjit Kaur',
-                                            notes: v.agent_requirement || v.call_feedback || ''
-                                          })}
-                                          className="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white shadow-sm transition flex items-center gap-1 cursor-pointer"
-                                          title="Convert directly to Stage 3 Sales Query"
-                                        >
-                                          <Zap className="w-3 h-3" /> 🚀 Create Query
-                                        </button>
-                                      )}
-
-                                      {/* 📞 Calling / Call Again */}
+                              <td className="p-2.5 text-right whitespace-nowrap align-middle sticky right-0 bg-[#070b14] group-hover:bg-[#0f172a] transition-colors z-10 shadow-[-8px_0_12px_-4px_rgba(0,0,0,0.7)]">
+                                {isCalled ? (
+                                  <div className="flex flex-col gap-1 items-end">
+                                    {/* Row 1: Calling, Again, Closed */}
+                                    <div className="flex items-center gap-1">
                                       <button
                                         type="button"
                                         onClick={() => onOpenModal('log_call', {
@@ -631,13 +622,12 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                                           executive_name: 'Simranjit Kaur',
                                           call_result: 'Call Connected / In Discussion'
                                         })}
-                                        className="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-sky-600 hover:bg-sky-500 text-white shadow-sm transition flex items-center gap-1 cursor-pointer"
+                                        className="px-2 py-1 rounded bg-sky-600 hover:bg-sky-500 text-white text-[11px] font-bold shadow-sm transition flex items-center gap-1 cursor-pointer whitespace-nowrap"
                                         title="Call Agent Again / Log New Call Today"
                                       >
-                                        <PhoneCall className="w-3 h-3" /> 📞 Call Again
+                                        <PhoneCall className="w-3 h-3" /> Calling
                                       </button>
 
-                                      {/* 🔄 Again Call / Quick Reschedule to Tomorrow */}
                                       <button
                                         type="button"
                                         onClick={async () => {
@@ -660,13 +650,12 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                                             }
                                           } catch (e) { alert(e.message); }
                                         }}
-                                        className="px-2 py-1.5 rounded-lg text-xs font-semibold bg-amber-950/80 hover:bg-amber-900 text-amber-300 border border-amber-800/80 transition flex items-center gap-1 cursor-pointer"
+                                        className="px-2 py-1 rounded text-[11px] font-bold bg-amber-950/90 hover:bg-amber-900 text-amber-300 border border-amber-800/80 transition flex items-center gap-1 cursor-pointer whitespace-nowrap"
                                         title="Quick Reschedule: Call Tomorrow"
                                       >
-                                        <Clock className="w-3 h-3 text-amber-400" /> 🔄 Again Call
+                                        <Clock className="w-3 h-3 text-amber-400" /> Again
                                       </button>
 
-                                      {/* ❌ Closed: Mark Closed / Inactive */}
                                       <button
                                         type="button"
                                         onClick={async () => {
@@ -690,12 +679,30 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                                             } catch (e) { alert(e.message); }
                                           }
                                         }}
-                                        className="px-2 py-1.5 rounded-lg text-xs font-semibold bg-rose-950/80 hover:bg-rose-900 text-rose-300 border border-rose-800/80 transition flex items-center gap-1 cursor-pointer"
+                                        className="px-2 py-1 rounded text-[11px] font-bold bg-rose-950/90 hover:bg-rose-900 text-rose-300 border border-rose-800/80 transition flex items-center gap-1 cursor-pointer whitespace-nowrap"
                                         title="Mark as Closed / Not Interested"
                                       >
-                                        <XCircle className="w-3 h-3 text-rose-400" /> ❌ Closed
+                                        <XCircle className="w-3 h-3 text-rose-400" /> Closed
                                       </button>
+                                    </div>
 
+                                    {/* Row 2: Secondary Utilities (Query, Edit, 360, Delete) */}
+                                    <div className="flex items-center gap-1 text-[10px]">
+                                      {(v.call_result || '').includes('Requirement') && (
+                                        <button
+                                          type="button"
+                                          onClick={() => onOpenModal('create_query', {
+                                            agent_id: v.agent_id,
+                                            company_name: v.company_name,
+                                            handling_employee: 'Simranjit Kaur',
+                                            notes: v.agent_requirement || v.call_feedback || ''
+                                          })}
+                                          className="px-1.5 py-0.5 rounded font-bold bg-emerald-600 hover:bg-emerald-500 text-white shadow-sm transition flex items-center gap-0.5 whitespace-nowrap"
+                                          title="Convert directly to Stage 3 Sales Query"
+                                        >
+                                          <Zap className="w-2.5 h-2.5" /> Query
+                                        </button>
+                                      )}
                                       <button
                                         type="button"
                                         onClick={() => onOpenModal('log_call', {
@@ -717,23 +724,33 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                                           is_connected: v.is_connected,
                                           next_followup_date: v.next_followup_date
                                         })}
-                                        className="px-2 py-1.5 rounded-lg text-xs font-semibold bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 border border-white/[0.08] transition flex items-center gap-1 cursor-pointer"
+                                        className="px-1.5 py-0.5 rounded font-medium bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition"
                                         title="Edit Call Log"
                                       >
                                         ✏️ Edit
                                       </button>
                                       <button
                                         type="button"
+                                        onClick={() => onOpenAgentDrawer(v.agent_id)}
+                                        className="px-1.5 py-0.5 rounded font-medium bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition"
+                                        title="View 360 Agent Profile"
+                                      >
+                                        👁️ 360°
+                                      </button>
+                                      <button
+                                        type="button"
                                         onClick={() => handleDeleteCallFromQueue(v.call_id, v.company_name)}
-                                        className="p-1.5 rounded-lg text-xs font-bold bg-white/[0.04] hover:bg-rose-950/60 text-slate-400 hover:text-rose-300 border border-white/[0.08] transition cursor-pointer"
+                                        className="p-1 rounded font-bold bg-rose-950/40 hover:bg-rose-900 text-rose-400 border border-rose-800/60 transition"
                                         title="Delete Call Log (Revert to Pending)"
                                       >
-                                        <Trash2 className="w-3.5 h-3.5" />
+                                        <Trash2 className="w-2.5 h-2.5" />
                                       </button>
-                                    </>
-                                  ) : (
-                                    <>
-                                      {/* ⚡ 1-Click RESULT: Got Requirement */}
+                                    </div>
+                                  </div>
+                                ) : (
+                                  <div className="flex flex-col gap-1 items-end">
+                                    {/* Row 1: Fast Log Buttons */}
+                                    <div className="flex items-center gap-1">
                                       <button
                                         type="button"
                                         onClick={() => {
@@ -741,33 +758,33 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                                           setQuickReqText('');
                                           setQuickPaymentTerms('Advance Payment');
                                         }}
-                                        className="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white shadow-sm transition flex items-center gap-1 cursor-pointer"
+                                        className="px-2 py-1 rounded text-[11px] font-bold bg-emerald-600 hover:bg-emerald-500 text-white shadow-sm transition flex items-center gap-1 cursor-pointer whitespace-nowrap"
                                         title="Agent shared enquiry/requirement"
                                       >
-                                        <Zap className="w-3.5 h-3.5 text-amber-300" /> ⚡ Got Query
+                                        <Zap className="w-3 h-3 text-amber-300" /> Got Query
                                       </button>
 
-                                      {/* 📅 1-Click RESULT: Call Tomorrow */}
                                       <button
                                         type="button"
                                         onClick={() => handleQuickLog(v, 'call_tomorrow')}
-                                        className="px-2 py-1.5 rounded-lg text-xs font-medium bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 border border-white/[0.08] transition flex items-center gap-1 cursor-pointer"
+                                        className="px-2 py-1 rounded text-[11px] font-bold bg-amber-950/90 hover:bg-amber-900 text-amber-300 border border-amber-800/80 transition flex items-center gap-1 cursor-pointer whitespace-nowrap"
                                         title="Agent asked to call back tomorrow"
                                       >
                                         <Clock className="w-3 h-3 text-amber-400" /> Tomorrow
                                       </button>
+                                    </div>
 
-                                      {/* 📵 1-Click RESULT: No Answer */}
+                                    {/* Row 2: Secondary Options */}
+                                    <div className="flex items-center gap-1 text-[10px]">
                                       <button
                                         type="button"
                                         onClick={() => handleQuickLog(v, 'not_picked')}
-                                        className="px-2 py-1.5 rounded-lg text-xs font-medium bg-white/[0.04] hover:bg-rose-950/40 text-slate-400 hover:text-rose-300 border border-white/[0.08] transition flex items-center gap-1 cursor-pointer"
+                                        className="px-1.5 py-0.5 rounded font-medium bg-rose-950/50 hover:bg-rose-900 text-rose-300 border border-rose-800/70 transition flex items-center gap-0.5 cursor-pointer whitespace-nowrap"
                                         title="Phone ringing / Not answered"
                                       >
-                                        <PhoneOff className="w-3 h-3 text-rose-400" /> No Answer
+                                        <PhoneOff className="w-2.5 h-2.5 text-rose-400" /> No Answer
                                       </button>
 
-                                      {/* ⚙️ Full Detailed Modal */}
                                       <button
                                         type="button"
                                         onClick={() => onOpenModal('log_call', {
@@ -778,24 +795,32 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                                           mobile: v.contact_mobile,
                                           city: v.agent_city
                                         })}
-                                        className="p-1.5 rounded-lg text-xs font-semibold bg-white/[0.04] hover:bg-white/[0.08] text-slate-400 hover:text-slate-200 border border-white/[0.08] transition cursor-pointer"
+                                        className="px-1.5 py-0.5 rounded font-medium bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition flex items-center gap-0.5"
                                         title="Open Full Form"
                                       >
-                                        <Plus className="w-3.5 h-3.5" />
+                                        <Plus className="w-2.5 h-2.5" /> Full Log
                                       </button>
 
-                                      {/* 🗑️ Delete Pending Visit Record */}
+                                      <button
+                                        type="button"
+                                        onClick={() => onOpenAgentDrawer(v.agent_id)}
+                                        className="px-1.5 py-0.5 rounded font-medium bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition"
+                                        title="View 360 Agent Profile"
+                                      >
+                                        👁️ 360°
+                                      </button>
+
                                       <button
                                         type="button"
                                         onClick={() => handleDeleteVisit(v.visit_id, v.company_name)}
-                                        className="p-1.5 rounded-lg text-xs font-bold bg-white/[0.04] hover:bg-rose-950/60 text-slate-500 hover:text-rose-400 border border-white/[0.08] transition cursor-pointer"
-                                        title="Delete Visit Record"
+                                        className="p-1 rounded font-bold bg-rose-950/40 hover:bg-rose-900 text-rose-400 border border-rose-800/60 transition"
+                                        title="Delete Visit"
                                       >
-                                        <Trash2 className="w-3.5 h-3.5" />
+                                        <Trash2 className="w-2.5 h-2.5" />
                                       </button>
-                                    </>
-                                  )}
-                                </div>
+                                    </div>
+                                  </div>
+                                )}
                               </td>
                             </tr>
                           );
@@ -1241,18 +1266,29 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[1280px] text-left text-xs text-slate-300 border-collapse">
+          <table className="w-full table-fixed min-w-[1420px] text-left text-xs text-slate-300 border-collapse">
+            <colgroup>
+              <col className="w-[100px]" />
+              <col className="w-[130px]" />
+              <col className="w-[200px]" />
+              <col className="w-[110px]" />
+              <col className="w-[170px]" />
+              <col className="w-[115px]" />
+              <col className="w-[185px]" />
+              <col />
+              <col className="w-[230px]" />
+            </colgroup>
             <thead className="bg-[#090e1a] text-xs text-slate-400 uppercase tracking-wider font-semibold border-b border-slate-800">
               <tr>
-                <th className="py-3 px-3 w-[105px] whitespace-nowrap">Call Date</th>
-                <th className="py-3 px-3 w-[135px] whitespace-nowrap">Executive</th>
-                <th className="py-3 px-3 w-[210px] whitespace-nowrap">Agent & Contact</th>
-                <th className="py-3 px-3 w-[115px] whitespace-nowrap">Connectivity</th>
-                <th className="py-3 px-3 w-[180px] whitespace-nowrap">Call Result / Due</th>
-                <th className="py-3 px-3 w-[125px] whitespace-nowrap">Payment Terms</th>
-                <th className="py-3 px-3 w-[190px] whitespace-nowrap">Captured Requirement</th>
-                <th className="py-3 px-3 min-w-[150px]">Remarks</th>
-                <th className="py-3 px-3 w-[270px] text-right whitespace-nowrap sticky right-0 bg-[#090e1a] z-20 shadow-[-8px_0_12px_-4px_rgba(0,0,0,0.7)] border-b border-slate-800">
+                <th className="py-3 px-3 whitespace-nowrap">Call Date</th>
+                <th className="py-3 px-3 whitespace-nowrap">Executive</th>
+                <th className="py-3 px-3 whitespace-nowrap">Agent & Contact</th>
+                <th className="py-3 px-3 whitespace-nowrap">Connectivity</th>
+                <th className="py-3 px-3 whitespace-nowrap">Call Result / Due</th>
+                <th className="py-3 px-3 whitespace-nowrap">Payment Terms</th>
+                <th className="py-3 px-3 whitespace-nowrap">Captured Requirement</th>
+                <th className="py-3 px-3">Remarks</th>
+                <th className="py-3 px-3 text-right whitespace-nowrap sticky right-0 bg-[#090e1a] z-20 shadow-[-8px_0_12px_-4px_rgba(0,0,0,0.7)] border-b border-slate-800">
                   Quick Actions
                 </th>
               </tr>
@@ -1273,17 +1309,17 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
               ) : (
                 filteredCalls.map((c) => (
                   <tr key={c.id} className="hover:bg-slate-800/40 transition group">
-                    <td className="py-3 px-3 font-mono text-slate-200 font-bold whitespace-nowrap align-middle">
+                    <td className="py-3 px-3 font-mono text-slate-200 font-bold whitespace-nowrap align-middle truncate">
                       {c.call_date}
                     </td>
-                    <td className="py-3 px-3 font-semibold text-slate-200 whitespace-nowrap align-middle">
+                    <td className="py-3 px-3 font-semibold text-slate-200 whitespace-nowrap align-middle truncate" title={c.executive_name || 'Simranjit Kaur'}>
                       {c.executive_name || 'Simranjit Kaur'}
                     </td>
-                    <td className="py-3 px-3 align-middle">
+                    <td className="py-3 px-3 align-middle truncate">
                       <button
                         type="button"
                         onClick={() => onOpenAgentDrawer(c.agent_id)}
-                        className="font-bold text-sky-400 hover:text-sky-300 text-left hover:underline block truncate max-w-[200px] cursor-pointer"
+                        className="font-bold text-sky-400 hover:text-sky-300 text-left hover:underline block truncate max-w-full cursor-pointer"
                         title={c.company_name}
                       >
                         {c.company_name}
@@ -1299,7 +1335,7 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                           </a>
                         )}
                         {c.agent_city && (
-                          <span className="text-slate-400 bg-slate-800/80 px-1.5 py-0.5 rounded text-[10px]">
+                          <span className="text-slate-400 bg-slate-800/80 px-1.5 py-0.5 rounded text-[10px] truncate max-w-[80px]">
                             {c.agent_city}
                           </span>
                         )}
@@ -1355,11 +1391,11 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                         <span className="text-slate-500 text-xs">—</span>
                       )}
                     </td>
-                    <td className="py-3 px-3 align-middle max-w-xs">
+                    <td className="py-3 px-3 align-middle overflow-hidden">
                       {c.agent_requirement && (
-                        <div className="text-xs text-emerald-300 font-semibold mb-1 flex items-center gap-1">
+                        <div className="text-xs text-emerald-300 font-semibold mb-1 flex items-center gap-1 truncate" title={c.agent_requirement}>
                           <Zap className="w-3 h-3 text-amber-400 shrink-0" />
-                          <span>{c.agent_requirement}</span>
+                          <span className="truncate">{c.agent_requirement}</span>
                         </div>
                       )}
                       {renderPitchedServices(c.services_discussed)}
@@ -1367,96 +1403,93 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                         <span className="text-slate-500 text-xs">—</span>
                       )}
                     </td>
-                    <td className="py-3 px-3 align-middle max-w-xs text-xs text-slate-300">
-                      <div className="line-clamp-2" title={c.remarks}>{c.remarks || '—'}</div>
+                    <td className="py-3 px-3 align-middle text-xs text-slate-300 overflow-hidden">
+                      <div className="line-clamp-2 break-words" title={c.remarks}>{c.remarks || '—'}</div>
                     </td>
-                    <td className="py-3 px-3 text-right whitespace-nowrap align-middle sticky right-0 bg-[#070b14] group-hover:bg-[#0f172a] transition-colors z-10 shadow-[-8px_0_12px_-4px_rgba(0,0,0,0.7)]">
-                      <div className="flex items-center justify-end gap-1.5 flex-nowrap">
-                        {c.call_result === 'Requirement Received' && (
+                    <td className="py-2.5 px-3 text-right whitespace-nowrap align-middle sticky right-0 bg-[#070b14] group-hover:bg-[#0f172a] transition-colors z-10 shadow-[-8px_0_12px_-4px_rgba(0,0,0,0.7)]">
+                      <div className="flex flex-col gap-1 items-end">
+                        {/* Row 1: Primary 3 Follow-up Action Buttons */}
+                        <div className="flex items-center gap-1">
                           <button
                             type="button"
-                            onClick={() => onOpenModal('create_query', { id: c.agent_id, company_name: c.company_name, name: c.agent_name })}
-                            className="px-2.5 py-1.5 bg-amber-600 hover:bg-amber-500 text-white rounded-lg text-xs font-bold transition flex items-center gap-1 shadow cursor-pointer whitespace-nowrap"
-                            title="Create Stage 3 Sales Query"
+                            onClick={() => onOpenModal('log_call', {
+                              agent_id: c.agent_id,
+                              company_name: c.company_name,
+                              name: c.agent_name,
+                              mobile: c.agent_mobile,
+                              city: c.agent_city,
+                              call_date: new Date().toISOString().split('T')[0],
+                              executive_name: c.executive_name || 'Simranjit Kaur',
+                              call_result: 'Call Connected / In Discussion'
+                            })}
+                            title="Start Calling: Log Fresh Call Today"
+                            className="px-2 py-1 bg-sky-600 hover:bg-sky-500 text-white rounded text-[11px] font-bold transition flex items-center gap-1 shadow cursor-pointer whitespace-nowrap"
                           >
-                            <FileText className="w-3 h-3" /> Create Query
+                            <PhoneCall className="w-3 h-3" /> Calling
                           </button>
-                        )}
 
-                        {/* 📞 Calling / Log New Call Today */}
-                        <button
-                          type="button"
-                          onClick={() => onOpenModal('log_call', {
-                            agent_id: c.agent_id,
-                            company_name: c.company_name,
-                            name: c.agent_name,
-                            mobile: c.agent_mobile,
-                            city: c.agent_city,
-                            call_date: new Date().toISOString().split('T')[0],
-                            executive_name: c.executive_name || 'Simranjit Kaur',
-                            call_result: 'Call Connected / In Discussion'
-                          })}
-                          title="Start Calling: Log Fresh Call Today"
-                          className="px-2.5 py-1.5 bg-sky-600 hover:bg-sky-500 text-white rounded-lg text-xs font-bold transition flex items-center gap-1 shadow cursor-pointer whitespace-nowrap"
-                        >
-                          <PhoneCall className="w-3.5 h-3.5" /> 📞 Calling
-                        </button>
+                          <button
+                            type="button"
+                            onClick={() => handleQuickReschedule(c)}
+                            title="Reschedule Next Call"
+                            className="px-2 py-1 bg-amber-950/90 hover:bg-amber-900 text-amber-300 border border-amber-800/80 rounded text-[11px] font-bold transition flex items-center gap-1 cursor-pointer whitespace-nowrap"
+                          >
+                            <Clock className="w-3 h-3 text-amber-400" /> Again
+                          </button>
 
-                        {/* 🔄 Again Call / Quick Reschedule */}
-                        <button
-                          type="button"
-                          onClick={() => handleQuickReschedule(c)}
-                          title="Reschedule Next Call"
-                          className="px-2.5 py-1.5 bg-amber-950/80 hover:bg-amber-900 text-amber-300 border border-amber-800/80 rounded-lg text-xs font-bold transition flex items-center gap-1 cursor-pointer whitespace-nowrap"
-                        >
-                          <Clock className="w-3.5 h-3.5 text-amber-400" /> 🔄 Again Call
-                        </button>
+                          <button
+                            type="button"
+                            onClick={() => handleQuickClose(c)}
+                            title="Mark Follow-up Closed / Not Interested"
+                            className="px-2 py-1 bg-rose-950/90 hover:bg-rose-900 text-rose-300 border border-rose-800/80 rounded text-[11px] font-bold transition flex items-center gap-1 cursor-pointer whitespace-nowrap"
+                          >
+                            <XCircle className="w-3 h-3 text-rose-400" /> Closed
+                          </button>
+                        </div>
 
-                        {/* ❌ Closed: Mark Closed / Inactive */}
-                        <button
-                          type="button"
-                          onClick={() => handleQuickClose(c)}
-                          title="Mark Follow-up Closed / Not Interested"
-                          className="px-2.5 py-1.5 bg-rose-950/80 hover:bg-rose-900 text-rose-300 border border-rose-800/80 rounded-lg text-xs font-bold transition flex items-center gap-1 cursor-pointer whitespace-nowrap"
-                        >
-                          <XCircle className="w-3.5 h-3.5 text-rose-400" /> ❌ Closed
-                        </button>
-
-                        {/* ✏️ Edit */}
-                        <button
-                          type="button"
-                          onClick={() => onOpenModal('log_call', {
-                            ...c,
-                            call_id: c.id,
-                            id: c.id,
-                            agent_id: c.agent_id,
-                            visit_id: c.visit_id
-                          })}
-                          title="Edit Full Call Details"
-                          className="p-1.5 bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 rounded-lg text-xs font-semibold transition border border-white/[0.08] flex items-center gap-1 cursor-pointer"
-                        >
-                          ✏️ Edit
-                        </button>
-
-                        {/* 👁️ 360° */}
-                        <button
-                          type="button"
-                          onClick={() => onOpenAgentDrawer(c.agent_id)}
-                          title="View 360 Agent Profile"
-                          className="p-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs transition border border-slate-700 cursor-pointer"
-                        >
-                          <Eye className="w-3.5 h-3.5" />
-                        </button>
-
-                        {/* 🗑️ Delete */}
-                        <button
-                          type="button"
-                          onClick={() => handleDeleteCall(c.id)}
-                          title="Delete Wrong Call Entry"
-                          className="p-1.5 bg-rose-950/40 hover:bg-rose-900 text-rose-400 rounded-lg text-xs transition border border-rose-800/60 cursor-pointer"
-                        >
-                          <Trash2 className="w-3.5 h-3.5" />
-                        </button>
+                        {/* Row 2: Secondary Utilities (Query, Edit, 360, Delete) */}
+                        <div className="flex items-center gap-1 text-[10px]">
+                          {c.call_result === 'Requirement Received' && (
+                            <button
+                              type="button"
+                              onClick={() => onOpenModal('create_query', { id: c.agent_id, company_name: c.company_name, name: c.agent_name })}
+                              className="px-1.5 py-0.5 bg-amber-600 hover:bg-amber-500 text-white rounded font-bold transition flex items-center gap-0.5 whitespace-nowrap"
+                              title="Create Stage 3 Sales Query"
+                            >
+                              <FileText className="w-2.5 h-2.5" /> Query
+                            </button>
+                          )}
+                          <button
+                            type="button"
+                            onClick={() => onOpenModal('log_call', {
+                              ...c,
+                              call_id: c.id,
+                              id: c.id,
+                              agent_id: c.agent_id,
+                              visit_id: c.visit_id
+                            })}
+                            title="Edit Full Call Details"
+                            className="px-1.5 py-0.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded font-medium border border-slate-700 transition"
+                          >
+                            ✏️ Edit
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => onOpenAgentDrawer(c.agent_id)}
+                            title="View 360 Agent Profile"
+                            className="px-1.5 py-0.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded font-medium border border-slate-700 transition"
+                          >
+                            👁️ 360°
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteCall(c.id)}
+                            title="Delete Wrong Call Entry"
+                            className="p-1 bg-rose-950/40 hover:bg-rose-900 text-rose-400 rounded border border-rose-800/60 transition"
+                          >
+                            <Trash2 className="w-2.5 h-2.5" />
+                          </button>
+                        </div>
                       </div>
                     </td>
                   </tr>

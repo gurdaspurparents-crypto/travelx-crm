@@ -1137,31 +1137,42 @@ app.post('/api/calls', async (req, res) => {
 app.put('/api/calls/:id', async (req, res) => {
   try {
     const { call_date, executive_name, is_connected, services_discussed, agent_requirement, interest_level, call_result, remarks, next_followup_date, payment_terms } = req.body;
-    const servicesJson = Array.isArray(services_discussed) ? JSON.stringify(services_discussed) : services_discussed;
+    const servicesJson = services_discussed !== undefined ? (Array.isArray(services_discussed) ? JSON.stringify(services_discussed) : services_discussed) : undefined;
 
-    const existingCall = await dbGet(`SELECT agent_id FROM telephonic_calls WHERE id = ?`, [req.params.id]);
+    const existingCall = await dbGet(`SELECT * FROM telephonic_calls WHERE id = ?`, [req.params.id]);
     if (!existingCall) {
       return res.status(404).json({ success: false, error: 'Call log not found' });
     }
 
+    const updatedCallDate = call_date !== undefined ? call_date : existingCall.call_date;
+    const updatedExecName = executive_name !== undefined ? executive_name : existingCall.executive_name;
+    const updatedIsConn = is_connected !== undefined ? (is_connected ? 1 : 0) : existingCall.is_connected;
+    const updatedServices = servicesJson !== undefined ? servicesJson : existingCall.services_discussed;
+    const updatedAgentReq = agent_requirement !== undefined ? agent_requirement : existingCall.agent_requirement;
+    const updatedIntLevel = interest_level !== undefined ? interest_level : existingCall.interest_level;
+    const updatedCallResult = call_result !== undefined ? call_result : existingCall.call_result;
+    const updatedRemarks = remarks !== undefined ? remarks : existingCall.remarks;
+    const updatedNextDate = next_followup_date !== undefined ? next_followup_date : existingCall.next_followup_date;
+    const updatedPaymentTerms = payment_terms !== undefined ? payment_terms : existingCall.payment_terms;
+
     await dbRun(
       `UPDATE telephonic_calls 
-       SET call_date = COALESCE(?, call_date),
-           executive_name = COALESCE(?, executive_name),
+       SET call_date = ?,
+           executive_name = ?,
            is_connected = ?,
-           services_discussed = COALESCE(?, services_discussed),
+           services_discussed = ?,
            agent_requirement = ?,
-           interest_level = COALESCE(?, interest_level),
-           call_result = COALESCE(?, call_result),
+           interest_level = ?,
+           call_result = ?,
            remarks = ?,
            next_followup_date = ?,
-           payment_terms = COALESCE(?, payment_terms)
+           payment_terms = ?
        WHERE id = ?`,
-      [call_date, executive_name, is_connected ? 1 : 0, servicesJson, agent_requirement, interest_level, call_result, remarks, next_followup_date, payment_terms, req.params.id]
+      [updatedCallDate, updatedExecName, updatedIsConn, updatedServices, updatedAgentReq, updatedIntLevel, updatedCallResult, updatedRemarks, updatedNextDate, updatedPaymentTerms, req.params.id]
     );
 
-    if (payment_terms && existingCall.agent_id) {
-      await dbRun(`UPDATE agents SET payment_terms = ? WHERE id = ?`, [payment_terms, existingCall.agent_id]);
+    if (updatedPaymentTerms && existingCall.agent_id) {
+      await dbRun(`UPDATE agents SET payment_terms = ? WHERE id = ?`, [updatedPaymentTerms, existingCall.agent_id]);
     }
 
     await refreshAgentStage(existingCall.agent_id);

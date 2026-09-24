@@ -1,0 +1,19 @@
+{
+  "name": "Travelx Marketing - Bikramjit",
+  "short_name": "Travelx Field",
+  "description": "Travelx Field Marketing & Agency Visit App for Bikramjit Singh",
+  "start_url": "/?role=bikramjit",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#d97706",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "192x192 512x512 any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
