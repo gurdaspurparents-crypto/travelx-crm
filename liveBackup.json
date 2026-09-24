@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-24T11:54:29.236Z",
+  "backed_up_at": "2026-09-24T11:54:50.712Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -2568,8 +2568,8 @@
       "name": "mr.ravinder singh",
       "company_name": "sonu photostate ",
       "mobile": "9915688840",
-      "city": "Jail Road",
-      "area": "Gsp",
+      "city": "Gurdaspur",
+      "area": "Jail Road",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
