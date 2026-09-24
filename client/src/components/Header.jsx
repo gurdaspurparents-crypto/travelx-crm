@@ -96,7 +96,7 @@ export default function Header({ activeTab, onSelectTab, role, onRoleChange, onO
 
   return (
     <header className="sticky top-0 z-40 bg-[#070b14]/85 backdrop-blur-xl border-b border-white/[0.08] shadow-lg shadow-black/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-[1720px] mx-auto px-3 sm:px-6">
         
         {/* Top Navbar Row */}
         <div className="flex items-center justify-between h-16 border-b border-white/[0.06]">

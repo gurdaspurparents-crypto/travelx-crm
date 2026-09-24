@@ -503,7 +503,7 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                         <th className="p-3 w-[140px] whitespace-nowrap">Location & Area</th>
                         <th className="p-3 min-w-[200px]">Bikramjit Pitched & Remarks</th>
                         <th className="p-3 w-[180px] whitespace-nowrap">Result / Status</th>
-                        <th className="p-3 min-w-[280px] text-right whitespace-nowrap">Result Action for Simranjit</th>
+                        <th className="p-3 w-[280px] text-right whitespace-nowrap sticky right-0 bg-[#090e1a] z-20 shadow-[-8px_0_12px_-4px_rgba(0,0,0,0.7)] border-b border-slate-800">Result Action for Simranjit</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-800/60 bg-slate-950/40">
@@ -530,7 +530,7 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                           const waGreeting = encodeURIComponent(`Hello ${v.person_met || 'Sir'}, Bikramjit from TravelX visited your office yesterday. Do you have any flight ticket or tour package requirement today?`);
 
                           return (
-                            <tr key={v.visit_id} className="hover:bg-slate-800/30 transition">
+                            <tr key={v.visit_id} className="hover:bg-slate-800/30 transition group">
                               <td className="p-3 font-mono font-bold text-slate-200 whitespace-nowrap align-middle">{v.visit_date}</td>
                               <td className="p-3 align-middle">
                                 <div className="font-bold text-sky-400 text-sm">{v.company_name}</div>
@@ -596,7 +596,7 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                                   </span>
                                 )}
                               </td>
-                              <td className="p-3 text-right whitespace-nowrap align-middle">
+                              <td className="p-3 text-right whitespace-nowrap align-middle sticky right-0 bg-[#070b14] group-hover:bg-[#0f172a] transition-colors z-10 shadow-[-8px_0_12px_-4px_rgba(0,0,0,0.7)]">
                                 <div className="flex items-center justify-end gap-1.5 flex-nowrap">
                                   {isCalled ? (
                                     <>
@@ -1241,18 +1241,20 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[1300px] text-left text-xs text-slate-300 border-collapse">
+          <table className="w-full min-w-[1280px] text-left text-xs text-slate-300 border-collapse">
             <thead className="bg-[#090e1a] text-xs text-slate-400 uppercase tracking-wider font-semibold border-b border-slate-800">
               <tr>
-                <th className="py-3.5 px-3 w-[110px] whitespace-nowrap">Call Date</th>
-                <th className="py-3.5 px-3 w-[140px] whitespace-nowrap">Executive</th>
-                <th className="py-3.5 px-3 w-[220px] whitespace-nowrap">Agent & Contact</th>
-                <th className="py-3.5 px-3 w-[120px] whitespace-nowrap">Connectivity</th>
-                <th className="py-3.5 px-3 w-[190px] whitespace-nowrap">Call Result / Due</th>
-                <th className="py-3.5 px-3 w-[130px] whitespace-nowrap">Payment Terms</th>
-                <th className="py-3.5 px-3 w-[200px] whitespace-nowrap">Captured Requirement</th>
-                <th className="py-3.5 px-3 min-w-[180px]">Remarks</th>
-                <th className="py-3.5 px-3 min-w-[280px] text-right whitespace-nowrap">Quick Actions</th>
+                <th className="py-3 px-3 w-[105px] whitespace-nowrap">Call Date</th>
+                <th className="py-3 px-3 w-[135px] whitespace-nowrap">Executive</th>
+                <th className="py-3 px-3 w-[210px] whitespace-nowrap">Agent & Contact</th>
+                <th className="py-3 px-3 w-[115px] whitespace-nowrap">Connectivity</th>
+                <th className="py-3 px-3 w-[180px] whitespace-nowrap">Call Result / Due</th>
+                <th className="py-3 px-3 w-[125px] whitespace-nowrap">Payment Terms</th>
+                <th className="py-3 px-3 w-[190px] whitespace-nowrap">Captured Requirement</th>
+                <th className="py-3 px-3 min-w-[150px]">Remarks</th>
+                <th className="py-3 px-3 w-[270px] text-right whitespace-nowrap sticky right-0 bg-[#090e1a] z-20 shadow-[-8px_0_12px_-4px_rgba(0,0,0,0.7)] border-b border-slate-800">
+                  Quick Actions
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800/60 bg-slate-950/40">
@@ -1270,18 +1272,18 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                 </tr>
               ) : (
                 filteredCalls.map((c) => (
-                  <tr key={c.id} className="hover:bg-slate-800/40 transition">
-                    <td className="py-3.5 px-3 font-mono text-slate-200 font-bold whitespace-nowrap align-middle">
+                  <tr key={c.id} className="hover:bg-slate-800/40 transition group">
+                    <td className="py-3 px-3 font-mono text-slate-200 font-bold whitespace-nowrap align-middle">
                       {c.call_date}
                     </td>
-                    <td className="py-3.5 px-3 font-semibold text-slate-200 whitespace-nowrap align-middle">
+                    <td className="py-3 px-3 font-semibold text-slate-200 whitespace-nowrap align-middle">
                       {c.executive_name || 'Simranjit Kaur'}
                     </td>
-                    <td className="py-3.5 px-3 align-middle">
+                    <td className="py-3 px-3 align-middle">
                       <button
                         type="button"
                         onClick={() => onOpenAgentDrawer(c.agent_id)}
-                        className="font-bold text-sky-400 hover:text-sky-300 text-left hover:underline block truncate max-w-[210px] cursor-pointer"
+                        className="font-bold text-sky-400 hover:text-sky-300 text-left hover:underline block truncate max-w-[200px] cursor-pointer"
                         title={c.company_name}
                       >
                         {c.company_name}
@@ -1303,7 +1305,7 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                         )}
                       </div>
                     </td>
-                    <td className="py-3.5 px-3 whitespace-nowrap align-middle">
+                    <td className="py-3 px-3 whitespace-nowrap align-middle">
                       {c.is_connected ? (
                         <span className="bg-emerald-950/80 text-emerald-400 border border-emerald-800/80 px-2 py-0.5 rounded-full text-[11px] font-semibold inline-flex items-center gap-1">
                           <PhoneCall className="w-3 h-3" /> Connected
@@ -1314,7 +1316,7 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                         </span>
                       )}
                     </td>
-                    <td className="py-3.5 px-3 whitespace-nowrap align-middle">
+                    <td className="py-3 px-3 whitespace-nowrap align-middle">
                       {(c.call_result || '').toLowerCase().includes('again') || (c.call_result || '').toLowerCase().includes('later') ? (
                         <div className="space-y-1">
                           <span className="bg-amber-950/90 text-amber-300 border border-amber-800/90 px-2.5 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1.5 shadow-sm whitespace-nowrap">
@@ -1340,7 +1342,7 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                         </span>
                       )}
                     </td>
-                    <td className="py-3.5 px-3 whitespace-nowrap align-middle">
+                    <td className="py-3 px-3 whitespace-nowrap align-middle">
                       {c.payment_terms ? (
                         <span className={`px-2 py-0.5 rounded text-xs font-bold whitespace-nowrap ${
                           c.payment_terms.includes('Advance') ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' :
@@ -1353,7 +1355,7 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                         <span className="text-slate-500 text-xs">—</span>
                       )}
                     </td>
-                    <td className="py-3.5 px-3 align-middle max-w-xs">
+                    <td className="py-3 px-3 align-middle max-w-xs">
                       {c.agent_requirement && (
                         <div className="text-xs text-emerald-300 font-semibold mb-1 flex items-center gap-1">
                           <Zap className="w-3 h-3 text-amber-400 shrink-0" />
@@ -1365,10 +1367,10 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                         <span className="text-slate-500 text-xs">—</span>
                       )}
                     </td>
-                    <td className="py-3.5 px-3 align-middle max-w-xs text-xs text-slate-300">
+                    <td className="py-3 px-3 align-middle max-w-xs text-xs text-slate-300">
                       <div className="line-clamp-2" title={c.remarks}>{c.remarks || '—'}</div>
                     </td>
-                    <td className="py-3.5 px-3 text-right whitespace-nowrap align-middle">
+                    <td className="py-3 px-3 text-right whitespace-nowrap align-middle sticky right-0 bg-[#070b14] group-hover:bg-[#0f172a] transition-colors z-10 shadow-[-8px_0_12px_-4px_rgba(0,0,0,0.7)]">
                       <div className="flex items-center justify-end gap-1.5 flex-nowrap">
                         {c.call_result === 'Requirement Received' && (
                           <button

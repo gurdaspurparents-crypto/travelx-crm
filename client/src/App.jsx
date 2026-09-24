@@ -129,7 +129,7 @@ export default function App() {
       />
 
       {/* Main App Workspace View */}
-      <main className="relative z-10 flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
+      <main className="relative z-10 flex-1 max-w-[1720px] w-full mx-auto px-3 sm:px-6 py-4 sm:py-6">
         
         {activeTab === 'dashboard' && role === 'Admin / Owner' && (
           <ManagementDashboard
@@ -255,7 +255,7 @@ export default function App() {
 
       {/* Enterprise SaaS Footer */}
       <footer className="relative z-10 border-t border-white/[0.06] bg-[#060911]/90 backdrop-blur py-5 text-center text-xs text-slate-400">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <div className="max-w-[1720px] mx-auto px-3 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block shadow-sm shadow-emerald-400/50"></span>
             <span className="font-semibold text-slate-300">TravelX Enterprise B2B CRM</span>
