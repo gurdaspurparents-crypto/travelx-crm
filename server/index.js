@@ -14,6 +14,16 @@ const upload = multer({ storage: multer.memoryStorage() });
 app.use(cors());
 app.use(express.json());
 
+// Prevent browser/PWA from caching API requests or HTML pages
+app.use((req, res, next) => {
+  if (req.path.startsWith('/api') || req.path === '/' || req.path.endsWith('.html') || req.path.endsWith('sw.js')) {
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+  }
+  next();
+});
+
 const staticOptions = {
   setHeaders: (res, filePath) => {
     if (filePath.endsWith('.html') || filePath.endsWith('sw.js')) {

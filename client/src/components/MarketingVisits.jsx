@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { MapPin, Plus, Calendar, CheckCircle2, User, Phone, Tag, FileText, Filter, X, Trash2, Download, AlertCircle, Navigation, Search, Gauge, DollarSign, Flag, Clock, UserPlus, Edit, Compass, Sparkles, Users, ArrowUpDown, Eye } from 'lucide-react';
+import { MapPin, Plus, Calendar, CheckCircle2, User, Phone, Tag, FileText, Filter, X, Trash2, Download, AlertCircle, Navigation, Search, Gauge, DollarSign, Flag, Clock, UserPlus, Edit, Compass, Sparkles, Users, ArrowUpDown, Eye, RotateCcw } from 'lucide-react';
 import { exportToPDF } from '../utils/exportUtils';
 import BikramPwaInstallBanner from './BikramPwaInstallBanner';
 import RoutePlannerTester from './RoutePlannerTester';
@@ -760,15 +760,28 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
               </button>
             </div>
 
-            {/* Month Picker */}
-            <div className="flex items-center gap-1.5 bg-[#070b14] border border-white/[0.08] px-3 py-1.5 rounded-xl text-xs">
-              <Calendar className="w-3.5 h-3.5 text-amber-400" />
-              <input
-                type="month"
-                value={matrixMonth}
-                onChange={e => setMatrixMonth(e.target.value)}
-                className="bg-transparent text-amber-300 font-mono font-bold focus:outline-none cursor-pointer text-xs"
-              />
+            {/* Month Picker & Refresh */}
+            <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 bg-[#070b14] border border-white/[0.08] px-3 py-1.5 rounded-xl text-xs">
+                <Calendar className="w-3.5 h-3.5 text-amber-400" />
+                <input
+                  type="month"
+                  value={matrixMonth}
+                  onChange={e => setMatrixMonth(e.target.value)}
+                  className="bg-transparent text-amber-300 font-mono font-bold focus:outline-none cursor-pointer text-xs"
+                />
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  fetchVisitMatrix(matrixMonth);
+                  fetchLocationAgents(selectedLocation, checklistFromDate, checklistToDate);
+                }}
+                className="p-2 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 rounded-xl transition border border-amber-500/30 cursor-pointer"
+                title="Refresh Matrix & Checklist Data"
+              >
+                <RotateCcw className={`w-3.5 h-3.5 ${loadingMatrix ? 'animate-spin' : ''}`} />
+              </button>
             </div>
           </div>
         </div>
