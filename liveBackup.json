@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-24T11:34:37.006Z",
+  "backed_up_at": "2026-09-24T11:39:49.581Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -5176,20 +5176,6 @@
       "area": "Gunopur",
       "agent_type": "Retail Travel Agent",
       "stage": "QueryReceived",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1735",
-      "name": "Mr.gurjit singh",
-      "company_name": "csc centre",
-      "mobile": "9888994045",
-      "city": "Saidowal",
-      "area": "Saidowal",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -19231,21 +19217,6 @@
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
       "agent_requirement": "busy ",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
-      "remarks": "",
-      "next_followup_date": "2026-09-14",
-      "payment_terms": null
-    },
-    {
-      "id": 854,
-      "call_date": "2026-09-12",
-      "agent_id": "AGT-1735",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "busy",
       "interest_level": "Interested / Warm",
       "call_result": "No Response",
       "remarks": "",
