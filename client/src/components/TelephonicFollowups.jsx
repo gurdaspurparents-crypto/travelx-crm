@@ -248,6 +248,85 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
     exportToPDF('Stage 2 - Telephonic Follow-up Call Logs Report', headers, rows, 'Travelx_Telephonic_Calls_Report.pdf');
   };
 
+  const renderPitchedServices = (services) => {
+    if (!services) return null;
+    let list = [];
+    if (Array.isArray(services)) {
+      list = services;
+    } else if (typeof services === 'string') {
+      try {
+        const parsed = JSON.parse(services);
+        if (Array.isArray(parsed)) list = parsed;
+        else list = [services];
+      } catch (e) {
+        list = services.split(',').map(s => s.trim());
+      }
+    }
+    return (
+      <div className="flex flex-wrap gap-1 mt-1">
+        {list.map((s, idx) => (
+          <span key={idx} className="bg-slate-800/90 text-sky-300 text-[10px] font-semibold px-2 py-0.5 rounded-full border border-slate-700/80">
+            {s}
+          </span>
+        ))}
+      </div>
+    );
+  };
+
+  const handleQuickReschedule = async (callItem) => {
+    const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
+    const newDate = window.prompt(`🔄 Reschedule "Call Again Later" for ${callItem.company_name}:\n\nEnter next follow-up date (YYYY-MM-DD):`, tomorrow);
+    if (!newDate) return;
+    try {
+      const res = await fetch(`/api/calls/${callItem.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          call_result: 'Call Again Later',
+          next_followup_date: newDate.trim(),
+          remarks: callItem.remarks ? `${callItem.remarks} | Rescheduled` : 'Rescheduled to Call Again Later'
+        })
+      });
+      const j = await res.json();
+      if (j.success) {
+        fetchCalls();
+        fetchVisitQueue();
+        alert(`✅ Rescheduled callback for ${newDate.trim()} successfully!`);
+      } else {
+        alert(j.error || 'Failed to reschedule');
+      }
+    } catch (err) {
+      alert('Error: ' + err.message);
+    }
+  };
+
+  const handleQuickClose = async (callItem) => {
+    if (!window.confirm(`Are you sure you want to mark follow-up for "${callItem.company_name}" as CLOSED / NOT INTERESTED?`)) {
+      return;
+    }
+    try {
+      const res = await fetch(`/api/calls/${callItem.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          call_result: 'Closed - Not Interested',
+          next_followup_date: '',
+          remarks: callItem.remarks ? `${callItem.remarks} | Marked Closed` : 'Marked Closed by executive'
+        })
+      });
+      const j = await res.json();
+      if (j.success) {
+        fetchCalls();
+        fetchVisitQueue();
+        alert(`❌ Follow-up for "${callItem.company_name}" marked as Closed!`);
+      } else {
+        alert(j.error || 'Failed to close call');
+      }
+    } catch (err) {
+      alert('Error: ' + err.message);
+    }
+  };
+
   return (
     <div className="space-y-6 animate-in fade-in duration-300">
       
@@ -416,15 +495,15 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
 
               {showQueue && (
                 <div className="overflow-x-auto border border-white/[0.06] rounded-xl">
-                  <table className="w-full text-left text-xs text-slate-300">
-                    <thead className="bg-[#090e1a] text-[11px] text-slate-400 uppercase tracking-wider">
+                  <table className="w-full min-w-[1100px] text-left text-xs text-slate-300 border-collapse">
+                    <thead className="bg-[#090e1a] text-[11px] text-slate-400 uppercase tracking-wider font-semibold border-b border-slate-800">
                       <tr>
-                        <th className="p-3">Visit Date</th>
-                        <th className="p-3">Visited Agency & 1-Click Connect</th>
-                        <th className="p-3">Location & Area</th>
-                        <th className="p-3">Bikramjit Pitched & Remarks</th>
-                        <th className="p-3">Result / Status</th>
-                        <th className="p-3 text-right">Result Action for Simranjit</th>
+                        <th className="p-3 w-[110px] whitespace-nowrap">Visit Date</th>
+                        <th className="p-3 w-[240px] whitespace-nowrap">Visited Agency & 1-Click Connect</th>
+                        <th className="p-3 w-[140px] whitespace-nowrap">Location & Area</th>
+                        <th className="p-3 min-w-[200px]">Bikramjit Pitched & Remarks</th>
+                        <th className="p-3 w-[180px] whitespace-nowrap">Result / Status</th>
+                        <th className="p-3 min-w-[280px] text-right whitespace-nowrap">Result Action for Simranjit</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-800/60 bg-slate-950/40">
@@ -452,13 +531,13 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
 
                           return (
                             <tr key={v.visit_id} className="hover:bg-slate-800/30 transition">
-                              <td className="p-3 font-mono font-bold text-slate-200">{v.visit_date}</td>
-                              <td className="p-3">
+                              <td className="p-3 font-mono font-bold text-slate-200 whitespace-nowrap align-middle">{v.visit_date}</td>
+                              <td className="p-3 align-middle">
                                 <div className="font-bold text-sky-400 text-sm">{v.company_name}</div>
                                 <div className="text-slate-300 font-medium">{v.person_met}</div>
                                 
                                 {/* 1-Click Dial & WhatsApp Shortcuts */}
-                                <div className="flex items-center gap-1.5 mt-1.5">
+                                <div className="flex items-center gap-1.5 mt-1.5 whitespace-nowrap">
                                   {v.contact_mobile && (
                                     <>
                                       <a
@@ -483,11 +562,11 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                                   )}
                                 </div>
                               </td>
-                              <td className="p-3">
+                              <td className="p-3 whitespace-nowrap align-middle">
                                 <div className="text-slate-200 font-medium">{v.agent_city}</div>
                                 <div className="text-slate-400 text-[11px]">{v.agent_area}</div>
                               </td>
-                              <td className="p-3 max-w-xs">
+                              <td className="p-3 max-w-xs align-middle">
                                 <div className="flex flex-wrap gap-1 mb-1">
                                   {pitched.map((p, i) => (
                                     <span key={i} className="bg-slate-800/80 text-slate-300 text-[10px] px-1.5 py-0.5 rounded border border-slate-700/60 font-medium">
@@ -497,10 +576,10 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                                 </div>
                                 <div className="text-xs text-slate-400 truncate" title={v.visit_remarks}>{v.visit_remarks || 'No notes'}</div>
                               </td>
-                              <td className="p-3">
+                              <td className="p-3 whitespace-nowrap align-middle">
                                 {isCalled ? (
                                   <div className="space-y-1">
-                                    <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold inline-flex items-center gap-1 border ${
+                                    <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold inline-flex items-center gap-1 border whitespace-nowrap ${
                                       (v.call_result || '').includes('Requirement')
                                         ? 'bg-emerald-950 text-emerald-300 border-emerald-800'
                                         : (v.call_result || '').includes('Not')
@@ -512,13 +591,13 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                                     {v.call_feedback && <div className="text-[11px] text-slate-400 italic max-w-xs">"{v.call_feedback}"</div>}
                                   </div>
                                 ) : (
-                                  <span className="bg-amber-950/80 text-amber-300 border border-amber-800/80 px-2.5 py-1 rounded-full text-[11px] font-bold inline-flex items-center gap-1">
+                                  <span className="bg-amber-950/80 text-amber-300 border border-amber-800/80 px-2.5 py-1 rounded-full text-[11px] font-bold inline-flex items-center gap-1 whitespace-nowrap">
                                     <Clock className="w-3 h-3 text-amber-400" /> 🟡 Call Pending
                                   </span>
                                 )}
                               </td>
-                              <td className="p-3 text-right">
-                                <div className="flex items-center justify-end gap-1.5 flex-wrap">
+                              <td className="p-3 text-right whitespace-nowrap align-middle">
+                                <div className="flex items-center justify-end gap-1.5 flex-nowrap">
                                   {isCalled ? (
                                     <>
                                       {/* Direct Convert to Stage 3 Query Button if requirement received */}
@@ -1162,21 +1241,21 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm text-slate-300">
-            <thead className="bg-slate-800/80 text-xs text-slate-400 uppercase">
+          <table className="w-full min-w-[1300px] text-left text-xs text-slate-300 border-collapse">
+            <thead className="bg-[#090e1a] text-xs text-slate-400 uppercase tracking-wider font-semibold border-b border-slate-800">
               <tr>
-                <th className="p-3.5">Call Date</th>
-                <th className="p-3.5">Telephonic Executive</th>
-                <th className="p-3.5">Agent & Mobile</th>
-                <th className="p-3.5">Connectivity</th>
-                <th className="p-3.5">Call Result</th>
-                <th className="p-3.5">Payment Terms</th>
-                <th className="p-3.5">Captured Requirement</th>
-                <th className="p-3.5">Call Remarks</th>
-                <th className="p-3.5 text-right">Quick Action</th>
+                <th className="py-3.5 px-3 w-[110px] whitespace-nowrap">Call Date</th>
+                <th className="py-3.5 px-3 w-[140px] whitespace-nowrap">Executive</th>
+                <th className="py-3.5 px-3 w-[220px] whitespace-nowrap">Agent & Contact</th>
+                <th className="py-3.5 px-3 w-[120px] whitespace-nowrap">Connectivity</th>
+                <th className="py-3.5 px-3 w-[190px] whitespace-nowrap">Call Result / Due</th>
+                <th className="py-3.5 px-3 w-[130px] whitespace-nowrap">Payment Terms</th>
+                <th className="py-3.5 px-3 w-[200px] whitespace-nowrap">Captured Requirement</th>
+                <th className="py-3.5 px-3 min-w-[180px]">Remarks</th>
+                <th className="py-3.5 px-3 min-w-[280px] text-right whitespace-nowrap">Quick Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-slate-800/60 bg-slate-950/40">
               {loading ? (
                 <tr>
                   <td colSpan="9" className="text-center p-8">
@@ -1192,52 +1271,78 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
               ) : (
                 filteredCalls.map((c) => (
                   <tr key={c.id} className="hover:bg-slate-800/40 transition">
-                    <td className="p-3.5 font-mono text-slate-300 font-bold">{c.call_date}</td>
-                    <td className="p-3.5 font-semibold text-slate-200">{c.executive_name}</td>
-                    <td className="p-3.5">
-                      <div className="font-semibold text-sky-400">{c.company_name}</div>
-                      <div className="text-xs text-slate-400 font-mono">{c.agent_mobile} ({c.agent_city})</div>
+                    <td className="py-3.5 px-3 font-mono text-slate-200 font-bold whitespace-nowrap align-middle">
+                      {c.call_date}
                     </td>
-                    <td className="p-3.5">
+                    <td className="py-3.5 px-3 font-semibold text-slate-200 whitespace-nowrap align-middle">
+                      {c.executive_name || 'Simranjit Kaur'}
+                    </td>
+                    <td className="py-3.5 px-3 align-middle">
+                      <button
+                        type="button"
+                        onClick={() => onOpenAgentDrawer(c.agent_id)}
+                        className="font-bold text-sky-400 hover:text-sky-300 text-left hover:underline block truncate max-w-[210px] cursor-pointer"
+                        title={c.company_name}
+                      >
+                        {c.company_name}
+                      </button>
+                      <div className="flex items-center gap-1.5 mt-0.5 text-[11px] whitespace-nowrap">
+                        {c.agent_mobile && (
+                          <a
+                            href={`tel:${c.agent_mobile}`}
+                            className="text-emerald-400 hover:text-emerald-300 font-mono font-semibold flex items-center gap-0.5"
+                            title="Click to dial"
+                          >
+                            <Phone className="w-3 h-3 text-emerald-400 shrink-0" /> {c.agent_mobile}
+                          </a>
+                        )}
+                        {c.agent_city && (
+                          <span className="text-slate-400 bg-slate-800/80 px-1.5 py-0.5 rounded text-[10px]">
+                            {c.agent_city}
+                          </span>
+                        )}
+                      </div>
+                    </td>
+                    <td className="py-3.5 px-3 whitespace-nowrap align-middle">
                       {c.is_connected ? (
-                        <span className="bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded text-xs font-semibold flex items-center gap-1 w-fit">
+                        <span className="bg-emerald-950/80 text-emerald-400 border border-emerald-800/80 px-2 py-0.5 rounded-full text-[11px] font-semibold inline-flex items-center gap-1">
                           <PhoneCall className="w-3 h-3" /> Connected
                         </span>
                       ) : (
-                        <span className="bg-rose-950 text-rose-400 border border-rose-800 px-2 py-0.5 rounded text-xs font-semibold flex items-center gap-1 w-fit">
+                        <span className="bg-rose-950/80 text-rose-400 border border-rose-800/80 px-2 py-0.5 rounded-full text-[11px] font-semibold inline-flex items-center gap-1">
                           <PhoneOff className="w-3 h-3" /> Not Connected
                         </span>
                       )}
                     </td>
-                    <td className="p-3.5">
+                    <td className="py-3.5 px-3 whitespace-nowrap align-middle">
                       {(c.call_result || '').toLowerCase().includes('again') || (c.call_result || '').toLowerCase().includes('later') ? (
                         <div className="space-y-1">
-                          <span className="bg-amber-950 text-amber-300 border border-amber-800 px-2.5 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1">
-                            <Clock className="w-3 h-3 text-amber-400" /> ⏰ Call Again Later
+                          <span className="bg-amber-950/90 text-amber-300 border border-amber-800/90 px-2.5 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1.5 shadow-sm whitespace-nowrap">
+                            <Clock className="w-3.5 h-3.5 text-amber-400 shrink-0" /> Call Again Later
                           </span>
                           {c.next_followup_date && (
-                            <div className="text-[11px] font-mono text-amber-400/90 flex items-center gap-1 font-semibold">
-                              <Calendar className="w-3 h-3" /> Due: {c.next_followup_date}
+                            <div className="text-[11px] font-mono text-amber-400/90 flex items-center gap-1 font-semibold whitespace-nowrap">
+                              <Calendar className="w-3 h-3 shrink-0" /> Due: {c.next_followup_date}
                             </div>
                           )}
                         </div>
                       ) : (c.call_result || '').toLowerCase().includes('closed') ? (
-                        <span className="bg-rose-950 text-rose-300 border border-rose-800 px-2.5 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1">
-                          <XCircle className="w-3 h-3 text-rose-400" /> {c.call_result}
+                        <span className="bg-rose-950/90 text-rose-300 border border-rose-800/90 px-2.5 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1.5 shadow-sm whitespace-nowrap">
+                          <XCircle className="w-3.5 h-3.5 text-rose-400 shrink-0" /> {c.call_result}
+                        </span>
+                      ) : (c.call_result || '').toLowerCase().includes('requirement') ? (
+                        <span className="bg-emerald-950/90 text-emerald-300 border border-emerald-800/90 px-2.5 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1.5 shadow-sm whitespace-nowrap">
+                          <Zap className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> Requirement Received
                         </span>
                       ) : (
-                        <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${
-                          c.call_result === 'Requirement Received' ? 'bg-amber-950 text-amber-400 border border-amber-800' :
-                          c.call_result === 'Followup Scheduled' ? 'bg-blue-950 text-blue-400 border border-blue-800' :
-                          'bg-slate-800 text-slate-400 border border-slate-700'
-                        }`}>
-                          {c.call_result}
+                        <span className="bg-slate-800/90 text-slate-300 border border-slate-700/80 px-2.5 py-1 rounded-full text-xs font-semibold inline-flex items-center gap-1 whitespace-nowrap">
+                          {c.call_result || 'Call Logged'}
                         </span>
                       )}
                     </td>
-                    <td className="p-3.5">
+                    <td className="py-3.5 px-3 whitespace-nowrap align-middle">
                       {c.payment_terms ? (
-                        <span className={`px-2 py-0.5 rounded text-xs font-bold ${
+                        <span className={`px-2 py-0.5 rounded text-xs font-bold whitespace-nowrap ${
                           c.payment_terms.includes('Advance') ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' :
                           c.payment_terms.includes('Credit') || c.payment_terms.includes('After') ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30' :
                           'bg-blue-500/20 text-blue-400 border border-blue-500/30'
@@ -1245,27 +1350,40 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                           {c.payment_terms}
                         </span>
                       ) : (
-                        <span className="text-slate-500 text-xs">-</span>
+                        <span className="text-slate-500 text-xs">—</span>
                       )}
                     </td>
-                    <td className="p-3.5 max-w-xs">
-                      <div className="text-xs text-slate-200 font-medium">{c.agent_requirement || '—'}</div>
-                      <div className="text-[11px] text-slate-500 truncate">{c.services_discussed}</div>
+                    <td className="py-3.5 px-3 align-middle max-w-xs">
+                      {c.agent_requirement && (
+                        <div className="text-xs text-emerald-300 font-semibold mb-1 flex items-center gap-1">
+                          <Zap className="w-3 h-3 text-amber-400 shrink-0" />
+                          <span>{c.agent_requirement}</span>
+                        </div>
+                      )}
+                      {renderPitchedServices(c.services_discussed)}
+                      {!c.agent_requirement && !c.services_discussed && (
+                        <span className="text-slate-500 text-xs">—</span>
+                      )}
                     </td>
-                    <td className="p-3.5 max-w-xs text-xs text-slate-400 truncate">{c.remarks}</td>
-                    <td className="p-3.5 text-right">
-                      <div className="flex justify-end gap-1.5 flex-wrap">
+                    <td className="py-3.5 px-3 align-middle max-w-xs text-xs text-slate-300">
+                      <div className="line-clamp-2" title={c.remarks}>{c.remarks || '—'}</div>
+                    </td>
+                    <td className="py-3.5 px-3 text-right whitespace-nowrap align-middle">
+                      <div className="flex items-center justify-end gap-1.5 flex-nowrap">
                         {c.call_result === 'Requirement Received' && (
                           <button
+                            type="button"
                             onClick={() => onOpenModal('create_query', { id: c.agent_id, company_name: c.company_name, name: c.agent_name })}
-                            className="px-2.5 py-1 bg-amber-600 hover:bg-amber-500 text-white rounded text-xs font-semibold transition flex items-center gap-1 shadow"
+                            className="px-2.5 py-1.5 bg-amber-600 hover:bg-amber-500 text-white rounded-lg text-xs font-bold transition flex items-center gap-1 shadow cursor-pointer whitespace-nowrap"
+                            title="Create Stage 3 Sales Query"
                           >
                             <FileText className="w-3 h-3" /> Create Query
                           </button>
                         )}
 
-                        {/* 📞 Calling / Call Again */}
+                        {/* 📞 Calling / Log New Call Today */}
                         <button
+                          type="button"
                           onClick={() => onOpenModal('log_call', {
                             agent_id: c.agent_id,
                             company_name: c.company_name,
@@ -1276,70 +1394,35 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                             executive_name: c.executive_name || 'Simranjit Kaur',
                             call_result: 'Call Connected / In Discussion'
                           })}
-                          title="Log New Call Today (Calling)"
-                          className="px-2 py-1 bg-sky-600 hover:bg-sky-500 text-white rounded text-xs font-bold transition flex items-center gap-1 shadow cursor-pointer"
+                          title="Start Calling: Log Fresh Call Today"
+                          className="px-2.5 py-1.5 bg-sky-600 hover:bg-sky-500 text-white rounded-lg text-xs font-bold transition flex items-center gap-1 shadow cursor-pointer whitespace-nowrap"
                         >
-                          <PhoneCall className="w-3 h-3" /> 📞 Call
+                          <PhoneCall className="w-3.5 h-3.5" /> 📞 Calling
                         </button>
 
-                        {/* 🔄 Again Call / Call Later */}
+                        {/* 🔄 Again Call / Quick Reschedule */}
                         <button
-                          onClick={async () => {
-                            const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
-                            try {
-                              const res = await fetch(`/api/calls/${c.id}`, {
-                                method: 'PUT',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({
-                                  call_result: 'Call Again Later',
-                                  next_followup_date: tomorrow,
-                                  remarks: c.remarks || 'Rescheduled to Call Again Later'
-                                })
-                              });
-                              const j = await res.json();
-                              if (j.success) {
-                                fetchCalls();
-                                fetchVisitQueue();
-                                alert(`🔄 Call Again Later rescheduled for Tomorrow (${tomorrow})!`);
-                              }
-                            } catch (e) { alert(e.message); }
-                          }}
-                          title="Quick Reschedule: Call Tomorrow"
-                          className="px-2 py-1 bg-amber-950/80 hover:bg-amber-900 text-amber-300 border border-amber-800/80 rounded text-xs font-semibold transition flex items-center gap-1 cursor-pointer"
+                          type="button"
+                          onClick={() => handleQuickReschedule(c)}
+                          title="Reschedule Next Call"
+                          className="px-2.5 py-1.5 bg-amber-950/80 hover:bg-amber-900 text-amber-300 border border-amber-800/80 rounded-lg text-xs font-bold transition flex items-center gap-1 cursor-pointer whitespace-nowrap"
                         >
-                          <Clock className="w-3 h-3 text-amber-400" /> 🔄 Again Call
+                          <Clock className="w-3.5 h-3.5 text-amber-400" /> 🔄 Again Call
                         </button>
 
-                        {/* ❌ Closed / Mark Closed */}
+                        {/* ❌ Closed: Mark Closed / Inactive */}
                         <button
-                          onClick={async () => {
-                            if (window.confirm(`Mark follow-up for "${c.company_name}" as CLOSED?`)) {
-                              try {
-                                const res = await fetch(`/api/calls/${c.id}`, {
-                                  method: 'PUT',
-                                  headers: { 'Content-Type': 'application/json' },
-                                  body: JSON.stringify({
-                                    call_result: 'Closed - Not Interested',
-                                    next_followup_date: '',
-                                    remarks: 'Marked as Closed'
-                                  })
-                                });
-                                const j = await res.json();
-                                if (j.success) {
-                                  fetchCalls();
-                                  fetchVisitQueue();
-                                  alert('❌ Call/Follow-up marked as Closed!');
-                                }
-                              } catch (e) { alert(e.message); }
-                            }
-                          }}
-                          title="Mark Follow-up as Closed"
-                          className="px-2 py-1 bg-rose-950/80 hover:bg-rose-900 text-rose-300 border border-rose-800/80 rounded text-xs font-semibold transition flex items-center gap-1 cursor-pointer"
+                          type="button"
+                          onClick={() => handleQuickClose(c)}
+                          title="Mark Follow-up Closed / Not Interested"
+                          className="px-2.5 py-1.5 bg-rose-950/80 hover:bg-rose-900 text-rose-300 border border-rose-800/80 rounded-lg text-xs font-bold transition flex items-center gap-1 cursor-pointer whitespace-nowrap"
                         >
-                          <XCircle className="w-3 h-3 text-rose-400" /> ❌ Closed
+                          <XCircle className="w-3.5 h-3.5 text-rose-400" /> ❌ Closed
                         </button>
 
+                        {/* ✏️ Edit */}
                         <button
+                          type="button"
                           onClick={() => onOpenModal('log_call', {
                             ...c,
                             call_id: c.id,
@@ -1348,20 +1431,27 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                             visit_id: c.visit_id
                           })}
                           title="Edit Full Call Details"
-                          className="px-2 py-1 bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 rounded text-xs font-semibold transition border border-white/[0.08] flex items-center gap-1 cursor-pointer"
+                          className="p-1.5 bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 rounded-lg text-xs font-semibold transition border border-white/[0.08] flex items-center gap-1 cursor-pointer"
                         >
                           ✏️ Edit
                         </button>
+
+                        {/* 👁️ 360° */}
                         <button
+                          type="button"
                           onClick={() => onOpenAgentDrawer(c.agent_id)}
-                          className="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-xs transition border border-slate-700"
+                          title="View 360 Agent Profile"
+                          className="p-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs transition border border-slate-700 cursor-pointer"
                         >
-                          View 360°
+                          <Eye className="w-3.5 h-3.5" />
                         </button>
+
+                        {/* 🗑️ Delete */}
                         <button
+                          type="button"
                           onClick={() => handleDeleteCall(c.id)}
                           title="Delete Wrong Call Entry"
-                          className="p-1.5 bg-rose-950/40 hover:bg-rose-900 text-rose-400 rounded text-xs transition border border-rose-800/60"
+                          className="p-1.5 bg-rose-950/40 hover:bg-rose-900 text-rose-400 rounded-lg text-xs transition border border-rose-800/60 cursor-pointer"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>

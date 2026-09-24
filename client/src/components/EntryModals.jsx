@@ -251,7 +251,36 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
         executive_name: 'Bikramjit Singh'
       }));
 
-      if (modalType !== 'log_call' && modalType !== 'edit_call') {
+      if (modalType === 'log_call' || modalType === 'edit_call') {
+        let services = ['Domestic Flight', 'Tour Packages'];
+        if (data.services_discussed) {
+          if (Array.isArray(data.services_discussed)) services = data.services_discussed;
+          else if (typeof data.services_discussed === 'string') {
+            try {
+              const p = JSON.parse(data.services_discussed);
+              if (Array.isArray(p)) services = p;
+              else services = [data.services_discussed];
+            } catch (e) {
+              services = data.services_discussed.split(',').map(s => s.trim());
+            }
+          }
+        }
+        setCallForm({
+          id: data.call_id || data.id || null,
+          call_date: data.call_date || new Date().toISOString().split('T')[0],
+          agent_id: data.agent_id || data.id || '',
+          visit_id: data.visit_id || null,
+          executive_name: data.executive_name || data.call_executive || 'Simranjit Kaur',
+          is_connected: data.is_connected !== undefined ? !!data.is_connected : true,
+          services_discussed: services,
+          agent_requirement: data.agent_requirement || '',
+          interest_level: data.interest_level || 'Interested / Warm',
+          call_result: data.call_result || 'Call Connected / In Discussion',
+          payment_terms: data.payment_terms || 'Advance Payment',
+          remarks: data.remarks || data.call_feedback || '',
+          next_followup_date: data.next_followup_date || new Date(Date.now() + 86400000).toISOString().split('T')[0]
+        });
+      } else {
         setCallForm(prev => ({
           ...prev,
           agent_id: data.agent_id || data.id || prev.agent_id,
@@ -265,7 +294,7 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
         handling_employee: 'Simranjit Kaur'
       }));
     }
-  }, [data]);
+  }, [data, modalType]);
 
   useEffect(() => {
     if (modalType === 'log_visit') {
