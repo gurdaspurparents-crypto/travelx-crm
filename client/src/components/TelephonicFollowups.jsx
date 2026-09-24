@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Plus, Calendar, FileText, CheckCircle2, AlertCircle, PhoneCall, PhoneOff, Eye, Trash2, Filter, X, Download, MapPin, Clock, MessageSquare, Zap, ArrowRight, Target, Sparkles, UserCheck } from 'lucide-react';
+import { Phone, Plus, Calendar, FileText, CheckCircle2, AlertCircle, PhoneCall, PhoneOff, Eye, Trash2, Filter, X, Download, MapPin, Clock, MessageSquare, Zap, ArrowRight, Target, Sparkles, UserCheck, XCircle } from 'lucide-react';
 import { exportToPDF } from '../utils/exportUtils';
 
 export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) {
@@ -218,11 +218,14 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
     if (filterLower === 'not interested') {
       return resStr.includes('not interested') || resStr.includes("don't call");
     }
+    if (filterLower === 'closed') {
+      return resStr.includes('closed');
+    }
     if (filterLower === 'interested') {
-      return resStr.includes('interested') && !resStr.includes('not interested');
+      return resStr.includes('interested') && !resStr.includes('not interested') && !resStr.includes('closed');
     }
     if (filterLower === 'call again') {
-      return resStr.includes('call again') || resStr.includes('follow-up') || resStr.includes('followup');
+      return resStr.includes('call again') || resStr.includes('again') || resStr.includes('follow-up') || resStr.includes('followup') || resStr.includes('later');
     }
     if (filterLower === 'requirement received') {
       return resStr.includes('requirement') || resStr.includes('received');
@@ -534,6 +537,86 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                                           <Zap className="w-3 h-3" /> 🚀 Create Query
                                         </button>
                                       )}
+
+                                      {/* 📞 Calling / Call Again */}
+                                      <button
+                                        type="button"
+                                        onClick={() => onOpenModal('log_call', {
+                                          agent_id: v.agent_id,
+                                          visit_id: v.visit_id,
+                                          company_name: v.company_name,
+                                          name: v.person_met,
+                                          mobile: v.contact_mobile,
+                                          city: v.agent_city,
+                                          call_date: new Date().toISOString().split('T')[0],
+                                          executive_name: 'Simranjit Kaur',
+                                          call_result: 'Call Connected / In Discussion'
+                                        })}
+                                        className="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-sky-600 hover:bg-sky-500 text-white shadow-sm transition flex items-center gap-1 cursor-pointer"
+                                        title="Call Agent Again / Log New Call Today"
+                                      >
+                                        <PhoneCall className="w-3 h-3" /> 📞 Call Again
+                                      </button>
+
+                                      {/* 🔄 Again Call / Quick Reschedule to Tomorrow */}
+                                      <button
+                                        type="button"
+                                        onClick={async () => {
+                                          const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
+                                          try {
+                                            const res = await fetch(`/api/calls/${v.call_id}`, {
+                                              method: 'PUT',
+                                              headers: { 'Content-Type': 'application/json' },
+                                              body: JSON.stringify({
+                                                call_result: 'Call Again Later',
+                                                next_followup_date: tomorrow,
+                                                remarks: 'Scheduled to Call Again Later'
+                                              })
+                                            });
+                                            const j = await res.json();
+                                            if (j.success) {
+                                              fetchVisitQueue();
+                                              fetchCalls();
+                                              alert(`🔄 Rescheduled Call Again Later for Tomorrow (${tomorrow})!`);
+                                            }
+                                          } catch (e) { alert(e.message); }
+                                        }}
+                                        className="px-2 py-1.5 rounded-lg text-xs font-semibold bg-amber-950/80 hover:bg-amber-900 text-amber-300 border border-amber-800/80 transition flex items-center gap-1 cursor-pointer"
+                                        title="Quick Reschedule: Call Tomorrow"
+                                      >
+                                        <Clock className="w-3 h-3 text-amber-400" /> 🔄 Again Call
+                                      </button>
+
+                                      {/* ❌ Closed: Mark Closed / Inactive */}
+                                      <button
+                                        type="button"
+                                        onClick={async () => {
+                                          if (window.confirm(`Mark follow-up for "${v.company_name}" as CLOSED?`)) {
+                                            try {
+                                              const res = await fetch(`/api/calls/${v.call_id}`, {
+                                                method: 'PUT',
+                                                headers: { 'Content-Type': 'application/json' },
+                                                body: JSON.stringify({
+                                                  call_result: 'Closed - Not Interested',
+                                                  next_followup_date: '',
+                                                  remarks: 'Follow-up marked as Closed'
+                                                })
+                                              });
+                                              const j = await res.json();
+                                              if (j.success) {
+                                                fetchVisitQueue();
+                                                fetchCalls();
+                                                alert('❌ Follow-up closed successfully!');
+                                              }
+                                            } catch (e) { alert(e.message); }
+                                          }
+                                        }}
+                                        className="px-2 py-1.5 rounded-lg text-xs font-semibold bg-rose-950/80 hover:bg-rose-900 text-rose-300 border border-rose-800/80 transition flex items-center gap-1 cursor-pointer"
+                                        title="Mark as Closed / Not Interested"
+                                      >
+                                        <XCircle className="w-3 h-3 text-rose-400" /> ❌ Closed
+                                      </button>
+
                                       <button
                                         type="button"
                                         onClick={() => onOpenModal('log_call', {
@@ -1060,7 +1143,15 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
             resultFilter === 'Call Again' ? 'bg-blue-500 text-white' : 'bg-blue-950/60 text-blue-300 hover:bg-blue-900 border border-blue-800/60'
           }`}
         >
-          🔄 Call Again / Follow-up
+          🔄 Call Again / Follow-up ({calls.filter(c => (c.call_result || '').toLowerCase().includes('again') || (c.call_result || '').toLowerCase().includes('follow')).length})
+        </button>
+        <button
+          onClick={() => setResultFilter('Closed')}
+          className={`px-3 py-1.5 rounded-full text-xs font-bold transition shadow ${
+            resultFilter === 'Closed' ? 'bg-rose-500 text-white' : 'bg-rose-950/60 text-rose-300 hover:bg-rose-900 border border-rose-800/60'
+          }`}
+        >
+          ❌ Closed ({calls.filter(c => (c.call_result || '').toLowerCase().includes('closed')).length})
         </button>
       </div>
 
@@ -1119,13 +1210,30 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                       )}
                     </td>
                     <td className="p-3.5">
-                      <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${
-                        c.call_result === 'Requirement Received' ? 'bg-amber-950 text-amber-400 border border-amber-800' :
-                        c.call_result === 'Followup Scheduled' ? 'bg-blue-950 text-blue-400 border border-blue-800' :
-                        'bg-slate-800 text-slate-400 border border-slate-700'
-                      }`}>
-                        {c.call_result}
-                      </span>
+                      {(c.call_result || '').toLowerCase().includes('again') || (c.call_result || '').toLowerCase().includes('later') ? (
+                        <div className="space-y-1">
+                          <span className="bg-amber-950 text-amber-300 border border-amber-800 px-2.5 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1">
+                            <Clock className="w-3 h-3 text-amber-400" /> ⏰ Call Again Later
+                          </span>
+                          {c.next_followup_date && (
+                            <div className="text-[11px] font-mono text-amber-400/90 flex items-center gap-1 font-semibold">
+                              <Calendar className="w-3 h-3" /> Due: {c.next_followup_date}
+                            </div>
+                          )}
+                        </div>
+                      ) : (c.call_result || '').toLowerCase().includes('closed') ? (
+                        <span className="bg-rose-950 text-rose-300 border border-rose-800 px-2.5 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1">
+                          <XCircle className="w-3 h-3 text-rose-400" /> {c.call_result}
+                        </span>
+                      ) : (
+                        <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${
+                          c.call_result === 'Requirement Received' ? 'bg-amber-950 text-amber-400 border border-amber-800' :
+                          c.call_result === 'Followup Scheduled' ? 'bg-blue-950 text-blue-400 border border-blue-800' :
+                          'bg-slate-800 text-slate-400 border border-slate-700'
+                        }`}>
+                          {c.call_result}
+                        </span>
+                      )}
                     </td>
                     <td className="p-3.5">
                       {c.payment_terms ? (
@@ -1146,7 +1254,7 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                     </td>
                     <td className="p-3.5 max-w-xs text-xs text-slate-400 truncate">{c.remarks}</td>
                     <td className="p-3.5 text-right">
-                      <div className="flex justify-end gap-2">
+                      <div className="flex justify-end gap-1.5 flex-wrap">
                         {c.call_result === 'Requirement Received' && (
                           <button
                             onClick={() => onOpenModal('create_query', { id: c.agent_id, company_name: c.company_name, name: c.agent_name })}
@@ -1155,6 +1263,82 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                             <FileText className="w-3 h-3" /> Create Query
                           </button>
                         )}
+
+                        {/* 📞 Calling / Call Again */}
+                        <button
+                          onClick={() => onOpenModal('log_call', {
+                            agent_id: c.agent_id,
+                            company_name: c.company_name,
+                            name: c.agent_name,
+                            mobile: c.agent_mobile,
+                            city: c.agent_city,
+                            call_date: new Date().toISOString().split('T')[0],
+                            executive_name: c.executive_name || 'Simranjit Kaur',
+                            call_result: 'Call Connected / In Discussion'
+                          })}
+                          title="Log New Call Today (Calling)"
+                          className="px-2 py-1 bg-sky-600 hover:bg-sky-500 text-white rounded text-xs font-bold transition flex items-center gap-1 shadow cursor-pointer"
+                        >
+                          <PhoneCall className="w-3 h-3" /> 📞 Call
+                        </button>
+
+                        {/* 🔄 Again Call / Call Later */}
+                        <button
+                          onClick={async () => {
+                            const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
+                            try {
+                              const res = await fetch(`/api/calls/${c.id}`, {
+                                method: 'PUT',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                  call_result: 'Call Again Later',
+                                  next_followup_date: tomorrow,
+                                  remarks: c.remarks || 'Rescheduled to Call Again Later'
+                                })
+                              });
+                              const j = await res.json();
+                              if (j.success) {
+                                fetchCalls();
+                                fetchVisitQueue();
+                                alert(`🔄 Call Again Later rescheduled for Tomorrow (${tomorrow})!`);
+                              }
+                            } catch (e) { alert(e.message); }
+                          }}
+                          title="Quick Reschedule: Call Tomorrow"
+                          className="px-2 py-1 bg-amber-950/80 hover:bg-amber-900 text-amber-300 border border-amber-800/80 rounded text-xs font-semibold transition flex items-center gap-1 cursor-pointer"
+                        >
+                          <Clock className="w-3 h-3 text-amber-400" /> 🔄 Again Call
+                        </button>
+
+                        {/* ❌ Closed / Mark Closed */}
+                        <button
+                          onClick={async () => {
+                            if (window.confirm(`Mark follow-up for "${c.company_name}" as CLOSED?`)) {
+                              try {
+                                const res = await fetch(`/api/calls/${c.id}`, {
+                                  method: 'PUT',
+                                  headers: { 'Content-Type': 'application/json' },
+                                  body: JSON.stringify({
+                                    call_result: 'Closed - Not Interested',
+                                    next_followup_date: '',
+                                    remarks: 'Marked as Closed'
+                                  })
+                                });
+                                const j = await res.json();
+                                if (j.success) {
+                                  fetchCalls();
+                                  fetchVisitQueue();
+                                  alert('❌ Call/Follow-up marked as Closed!');
+                                }
+                              } catch (e) { alert(e.message); }
+                            }
+                          }}
+                          title="Mark Follow-up as Closed"
+                          className="px-2 py-1 bg-rose-950/80 hover:bg-rose-900 text-rose-300 border border-rose-800/80 rounded text-xs font-semibold transition flex items-center gap-1 cursor-pointer"
+                        >
+                          <XCircle className="w-3 h-3 text-rose-400" /> ❌ Closed
+                        </button>
+
                         <button
                           onClick={() => onOpenModal('log_call', {
                             ...c,
@@ -1163,14 +1347,14 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                             agent_id: c.agent_id,
                             visit_id: c.visit_id
                           })}
-                          title="Edit Call Log Details"
-                          className="px-2.5 py-1 bg-amber-900/40 hover:bg-amber-800/70 text-amber-300 rounded text-xs font-semibold transition border border-amber-700/60 flex items-center gap-1 cursor-pointer"
+                          title="Edit Full Call Details"
+                          className="px-2 py-1 bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 rounded text-xs font-semibold transition border border-white/[0.08] flex items-center gap-1 cursor-pointer"
                         >
                           ✏️ Edit
                         </button>
                         <button
                           onClick={() => onOpenAgentDrawer(c.agent_id)}
-                          className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-xs transition border border-slate-700"
+                          className="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-xs transition border border-slate-700"
                         >
                           View 360°
                         </button>

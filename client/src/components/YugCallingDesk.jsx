@@ -921,11 +921,62 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
                               </>
                             )}
                             <button
-                              onClick={() => onOpenModal('log_call', { ...call, id: call.agent_id, executive_name: 'Yug' })}
-                              className="px-2.5 py-1 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-bold text-[11px] transition shadow cursor-pointer"
-                              title="Update Followup"
+                              onClick={() => onOpenModal('log_call', { ...call, id: call.agent_id, executive_name: 'Yug', call_result: 'Call Connected / In Discussion' })}
+                              className="px-2.5 py-1 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-bold text-[11px] transition shadow cursor-pointer flex items-center gap-1"
+                              title="Log Call / Follow-up"
                             >
-                              Follow-up
+                              <PhoneCall className="w-3 h-3" /> 📞 Follow-up
+                            </button>
+                            <button
+                              onClick={async () => {
+                                const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
+                                try {
+                                  const res = await fetch(`/api/calls/${call.id}`, {
+                                    method: 'PUT',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({
+                                      call_result: 'Call Again Later',
+                                      next_followup_date: tomorrow,
+                                      remarks: call.remarks || 'Rescheduled to Call Again Later'
+                                    })
+                                  });
+                                  const j = await res.json();
+                                  if (j.success) {
+                                    fetchYugDeskData();
+                                    alert(`🔄 Rescheduled Call Again Later for Tomorrow (${tomorrow})!`);
+                                  }
+                                } catch (e) { alert(e.message); }
+                              }}
+                              className="px-2 py-1 rounded-lg bg-amber-950/80 hover:bg-amber-900 text-amber-300 border border-amber-800/80 font-semibold text-[11px] transition cursor-pointer flex items-center gap-1"
+                              title="Reschedule to Call Tomorrow"
+                            >
+                              <Clock className="w-3 h-3 text-amber-400" /> 🔄 Again Call
+                            </button>
+                            <button
+                              onClick={async () => {
+                                if (window.confirm(`Mark follow-up for "${call.company_name}" as CLOSED?`)) {
+                                  try {
+                                    const res = await fetch(`/api/calls/${call.id}`, {
+                                      method: 'PUT',
+                                      headers: { 'Content-Type': 'application/json' },
+                                      body: JSON.stringify({
+                                        call_result: 'Closed - Not Interested',
+                                        next_followup_date: '',
+                                        remarks: 'Marked as Closed'
+                                      })
+                                    });
+                                    const j = await res.json();
+                                    if (j.success) {
+                                      fetchYugDeskData();
+                                      alert('❌ Follow-up marked as Closed!');
+                                    }
+                                  } catch (e) { alert(e.message); }
+                                }
+                              }}
+                              className="px-2 py-1 rounded-lg bg-rose-950/80 hover:bg-rose-900 text-rose-300 border border-rose-800/80 font-semibold text-[11px] transition cursor-pointer flex items-center gap-1"
+                              title="Mark as Closed"
+                            >
+                              <X className="w-3 h-3 text-rose-400" /> ❌ Closed
                             </button>
                           </div>
                         </td>
@@ -1677,6 +1728,7 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
                   <th className="p-3">Result</th>
                   <th className="p-3">Payment Terms</th>
                   <th className="p-3">Requirement / Remarks</th>
+                  <th className="p-3 text-right">Quick Action</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-800/60">
@@ -1688,11 +1740,54 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
                         {c.executive_name || 'Yug'}
                       </span>
                     </td>
-                    <td className="p-3 font-bold text-white">{c.company_name || c.agent_id}</td>
+                    <td className="p-3 font-bold text-white cursor-pointer hover:text-sky-400" onClick={() => onOpenAgentDrawer && onOpenAgentDrawer(c.agent_id)}>
+                      {c.company_name || c.agent_id}
+                    </td>
                     <td className="p-3 font-mono text-slate-300">{c.agent_mobile || c.mobile || '-'}</td>
-                    <td className="p-3 font-semibold text-amber-400">{c.call_result}</td>
+                    <td className="p-3">
+                      <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                        (c.call_result || '').toLowerCase().includes('again')
+                          ? 'bg-amber-950 text-amber-300 border border-amber-800'
+                          : (c.call_result || '').toLowerCase().includes('closed')
+                          ? 'bg-rose-950 text-rose-300 border border-rose-800'
+                          : 'text-amber-400'
+                      }`}>
+                        {c.call_result}
+                      </span>
+                    </td>
                     <td className="p-3 font-semibold text-emerald-400">{c.payment_terms || 'Advance Payment'}</td>
                     <td className="p-3 max-w-xs truncate text-slate-400">{c.agent_requirement || c.remarks || '-'}</td>
+                    <td className="p-3 text-right">
+                      <div className="flex items-center justify-end gap-1.5">
+                        <button
+                          onClick={() => onOpenModal('log_call', {
+                            agent_id: c.agent_id,
+                            company_name: c.company_name,
+                            mobile: c.agent_mobile || c.mobile,
+                            executive_name: 'Yug',
+                            call_date: new Date().toISOString().split('T')[0],
+                            call_result: 'Call Connected / In Discussion'
+                          })}
+                          className="px-2 py-0.5 rounded bg-sky-600 hover:bg-sky-500 text-white font-bold text-[10px] transition cursor-pointer"
+                          title="Log New Call Today"
+                        >
+                          📞 Call
+                        </button>
+                        <button
+                          onClick={() => onOpenModal('log_call', {
+                            ...c,
+                            call_id: c.id,
+                            id: c.id,
+                            agent_id: c.agent_id,
+                            executive_name: c.executive_name || 'Yug'
+                          })}
+                          className="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium text-[10px] transition border border-slate-700 cursor-pointer"
+                          title="Edit Call Record"
+                        >
+                          ✏️ Edit
+                        </button>
+                      </div>
+                    </td>
                   </tr>
                 ))}
               </tbody>

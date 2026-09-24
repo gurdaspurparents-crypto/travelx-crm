@@ -96,12 +96,14 @@ export default function App() {
 
   const handleDrawerAction = (actionType, agentData) => {
     setSelectedAgentId(null);
-    if (actionType === 'log_call') {
-      handleOpenModal('log_call', agentData);
+    if (actionType === 'log_call' || actionType === 'edit_call') {
+      handleOpenModal(actionType, agentData);
     } else if (actionType === 'create_query') {
       handleOpenModal('create_query', agentData);
     } else if (actionType === 'log_visit') {
       handleOpenModal('log_visit', agentData);
+    } else if (actionType === 'edit_agent') {
+      handleOpenModal('edit_agent', agentData);
     }
   };
 

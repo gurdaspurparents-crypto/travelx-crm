@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, MapPin, Phone, FileText, UserPlus, CheckCircle2, Search, Plus } from 'lucide-react';
+import { X, MapPin, Phone, FileText, UserPlus, CheckCircle2, Search, Plus, Clock, PhoneCall, XCircle, Calendar, ArrowRight } from 'lucide-react';
 
 // Searchable Combobox Component for selecting agency by typing
 function AgentCombobox({ agentsList, selectedAgentId, onSelectAgent }) {
@@ -292,17 +292,23 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
     }
   };
 
-  const handleCallSubmit = async (e) => {
-    e.preventDefault();
+  const handleCallSubmit = async (e, forceNew = false) => {
+    if (e && e.preventDefault) e.preventDefault();
     try {
-      const isEdit = !!callForm.id;
+      const isEdit = !forceNew && !!callForm.id;
       const url = isEdit ? `/api/calls/${callForm.id}` : '/api/calls';
       const method = isEdit ? 'PUT' : 'POST';
+
+      const payload = { ...callForm };
+      if (forceNew) {
+        delete payload.id;
+        payload.call_date = new Date().toISOString().split('T')[0];
+      }
 
       const res = await fetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(callForm)
+        body: JSON.stringify(payload)
       });
       const json = await res.json();
       if (json.success) {
@@ -366,6 +372,7 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
   if (!modalType) return null;
 
   const productsList = ['Domestic Flight', 'International Flight', 'Tour Packages', 'Hotel Booking', 'Visa Services', 'Forex', 'Travel Insurance', 'Bus Booking', 'Cruise', 'Money Transfer'];
+  const selectedAgent = agentsList.find(a => a.id === callForm.agent_id) || data;
 
   return (
     <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
@@ -578,19 +585,159 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
               }}
             />
 
+            {/* 3-WAY QUICK ACTION BUTTONS: Calling / Closed / Again Call */}
             <div>
-              <label className="block text-xs font-semibold text-slate-400 mb-1">Call Result</label>
+              <label className="block text-xs font-bold text-slate-300 mb-1.5 flex items-center justify-between">
+                <span>Select Follow-up Action:</span>
+                {selectedAgent?.mobile && (
+                  <a
+                    href={`tel:${selectedAgent.mobile}`}
+                    className="text-[11px] text-emerald-400 hover:text-emerald-300 font-mono font-bold flex items-center gap-1 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800"
+                  >
+                    <PhoneCall className="w-3 h-3" /> Dial {selectedAgent.mobile}
+                  </a>
+                )}
+              </label>
+
+              <div className="grid grid-cols-3 gap-2 bg-slate-950 p-1.5 rounded-xl border border-slate-800">
+                {/* 📞 Calling Option */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setCallForm(prev => ({
+                      ...prev,
+                      call_result: 'Call Connected / In Discussion',
+                      is_connected: true,
+                      call_date: new Date().toISOString().split('T')[0]
+                    }));
+                  }}
+                  className={`py-2 px-2 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 cursor-pointer ${
+                    (callForm.call_result || '').toLowerCase().includes('connected') || (callForm.call_result || '').toLowerCase().includes('discussion')
+                      ? 'bg-sky-600 text-white shadow-md'
+                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
+                  }`}
+                >
+                  <PhoneCall className="w-3.5 h-3.5 text-sky-300" />
+                  <span>📞 Calling / Done</span>
+                </button>
+
+                {/* 🔄 Again Call Option */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
+                    setCallForm(prev => ({
+                      ...prev,
+                      call_result: 'Call Again Later',
+                      is_connected: true,
+                      next_followup_date: prev.next_followup_date || tomorrow
+                    }));
+                  }}
+                  className={`py-2 px-2 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 cursor-pointer ${
+                    (callForm.call_result || '').toLowerCase().includes('again') || (callForm.call_result || '').toLowerCase().includes('later')
+                      ? 'bg-amber-600 text-white shadow-md'
+                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
+                  }`}
+                >
+                  <Clock className="w-3.5 h-3.5 text-amber-300" />
+                  <span>🔄 Again Call</span>
+                </button>
+
+                {/* ❌ Closed Option */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setCallForm(prev => ({
+                      ...prev,
+                      call_result: 'Closed - Not Interested',
+                      next_followup_date: '',
+                      remarks: prev.remarks || 'Follow-up marked as Closed'
+                    }));
+                  }}
+                  className={`py-2 px-2 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 cursor-pointer ${
+                    (callForm.call_result || '').toLowerCase().includes('closed')
+                      ? 'bg-rose-600 text-white shadow-md'
+                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
+                  }`}
+                >
+                  <XCircle className="w-3.5 h-3.5 text-rose-300" />
+                  <span>❌ Closed</span>
+                </button>
+              </div>
+
+              {/* Quick Presets for "Again Call" */}
+              {((callForm.call_result || '').toLowerCase().includes('again') || (callForm.call_result || '').toLowerCase().includes('later')) && (
+                <div className="mt-2 p-2 bg-amber-950/30 border border-amber-800/40 rounded-lg flex items-center gap-2 flex-wrap">
+                  <span className="text-[11px] font-bold text-amber-300 flex items-center gap-1">
+                    <Calendar className="w-3 h-3" /> Quick Reschedule:
+                  </span>
+                  {[
+                    { label: 'Tomorrow (+1d)', days: 1 },
+                    { label: 'In 2 Days', days: 2 },
+                    { label: 'In 3 Days', days: 3 },
+                    { label: 'Next Week (+7d)', days: 7 }
+                  ].map(p => {
+                    const targetDate = new Date(Date.now() + p.days * 86400000).toISOString().split('T')[0];
+                    const isSelected = callForm.next_followup_date === targetDate;
+                    return (
+                      <button
+                        key={p.label}
+                        type="button"
+                        onClick={() => setCallForm(prev => ({ ...prev, next_followup_date: targetDate }))}
+                        className={`text-[10px] font-bold px-2 py-0.5 rounded transition ${
+                          isSelected ? 'bg-amber-500 text-slate-950' : 'bg-slate-800 text-amber-300 hover:bg-amber-900/60'
+                        }`}
+                      >
+                        {p.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+
+              {/* Quick Sub-reasons for "Closed" */}
+              {(callForm.call_result || '').toLowerCase().includes('closed') && (
+                <div className="mt-2 p-2 bg-rose-950/30 border border-rose-800/40 rounded-lg flex items-center gap-2 flex-wrap">
+                  <span className="text-[11px] font-bold text-rose-300 flex items-center gap-1">
+                    <XCircle className="w-3 h-3" /> Closing Status:
+                  </span>
+                  {[
+                    'Closed - Not Interested',
+                    'Closed - Converted / Won',
+                    'Closed - Follow-up Completed'
+                  ].map(opt => (
+                    <button
+                      key={opt}
+                      type="button"
+                      onClick={() => setCallForm(prev => ({ ...prev, call_result: opt, next_followup_date: '' }))}
+                      className={`text-[10px] font-bold px-2 py-0.5 rounded transition ${
+                        callForm.call_result === opt ? 'bg-rose-500 text-white' : 'bg-slate-800 text-rose-300 hover:bg-rose-900/60'
+                      }`}
+                    >
+                      {opt.replace('Closed - ', '')}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-400 mb-1">Call Result (Full Status)</label>
               <select
                 value={callForm.call_result}
                 onChange={e => setCallForm({ ...callForm, call_result: e.target.value })}
                 className="w-full bg-slate-950 border border-slate-800 text-slate-200 p-2.5 rounded-xl text-sm font-semibold"
               >
-                <option value="Requirement Received">Requirement Received 🎯</option>
-                <option value="Interested">Interested 👍</option>
-                <option value="Follow-up Required">Follow-up Required 📞</option>
-                <option value="No Response">No Response / Not Connected 🔴</option>
-                <option value="Call Again Later">Call Again Later ⏰</option>
-                <option value="Not Interested">Not Interested ❌</option>
+                <option value="Call Connected / In Discussion">📞 Calling: Connected / In Discussion</option>
+                <option value="Call Again Later">⏰ Again Call: Call Again Later / Reschedule</option>
+                <option value="Closed - Not Interested">❌ Closed: Not Interested</option>
+                <option value="Closed - Converted / Won">🏆 Closed: Converted / Won</option>
+                <option value="Closed - Follow-up Completed">📁 Closed: Follow-up Completed</option>
+                <option value="Requirement Received">🎯 Requirement Received</option>
+                <option value="Interested">👍 Interested</option>
+                <option value="Follow-up Required">📞 Follow-up Required</option>
+                <option value="No Response">🔴 No Response / Ringing</option>
+                <option value="Not Interested">🚫 Not Interested / Don't Call</option>
               </select>
             </div>
 
@@ -644,12 +791,32 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
               ></textarea>
             </div>
 
-            <button
-              type="submit"
-              className={`w-full py-3 ${callForm.id ? 'bg-amber-600 hover:bg-amber-500 shadow-amber-600/30' : 'bg-blue-600 hover:bg-blue-500 shadow-blue-600/30'} text-white font-bold rounded-xl text-sm transition shadow-lg cursor-pointer`}
-            >
-              {callForm.id ? '💾 Update Call Record' : '✅ Save Call Log'}
-            </button>
+            {callForm.id ? (
+              <div className="grid grid-cols-2 gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={(e) => handleCallSubmit(e, true)}
+                  className="py-3 bg-sky-600 hover:bg-sky-500 text-white font-bold rounded-xl text-xs sm:text-sm transition shadow-lg shadow-sky-600/30 flex items-center justify-center gap-1.5 cursor-pointer"
+                  title="Logs a fresh call entry today for this follow-up, keeping call history intact"
+                >
+                  <PhoneCall className="w-4 h-4" /> 📞 Log As New Call Today
+                </button>
+                <button
+                  type="submit"
+                  className="py-3 bg-amber-600 hover:bg-amber-500 text-white font-bold rounded-xl text-xs sm:text-sm transition shadow-lg shadow-amber-600/30 flex items-center justify-center gap-1.5 cursor-pointer"
+                  title="Overwrites / edits this existing call record"
+                >
+                  <span>💾 Update Existing Record</span>
+                </button>
+              </div>
+            ) : (
+              <button
+                type="submit"
+                className="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl text-sm transition shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <span>✅ Save Telephonic Call Log</span>
+              </button>
+            )}
           </form>
         )}
 

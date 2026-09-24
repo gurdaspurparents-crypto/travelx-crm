@@ -149,7 +149,7 @@ async function initDb() {
 async function refreshAgentStage(agentId) {
   const bookings = await dbAll(`SELECT * FROM queries WHERE agent_id = ? AND status = 'Converted'`, [agentId]);
   const queries = await dbAll(`SELECT * FROM queries WHERE agent_id = ?`, [agentId]);
-  const calls = await dbAll(`SELECT * FROM telephonic_calls WHERE agent_id = ?`, [agentId]);
+  const calls = await dbAll(`SELECT * FROM telephonic_calls WHERE agent_id = ? ORDER BY call_date DESC, id DESC`, [agentId]);
   const visits = await dbAll(`SELECT * FROM marketing_visits WHERE agent_id = ?`, [agentId]);
 
   let newStage = 'Visited';
@@ -157,7 +157,7 @@ async function refreshAgentStage(agentId) {
   if (bookings.length > 0) {
     // Check if dormant (last booking > 30 days ago and no recent queries)
     const latestBookingDate = bookings.map(b => b.booking_date).sort().pop();
-    const daysSinceLastBooking = Math.floor((new Date('2026-08-29') - new Date(latestBookingDate)) / (1000 * 60 * 60 * 24));
+    const daysSinceLastBooking = Math.floor((new Date() - new Date(latestBookingDate)) / (1000 * 60 * 60 * 24));
     if (daysSinceLastBooking > 30) {
       newStage = 'Dormant'; // Previously Active but Now Inactive
     } else {
@@ -165,8 +165,17 @@ async function refreshAgentStage(agentId) {
     }
   } else if (queries.length > 0) {
     newStage = 'QueryReceived';
-  } else if (calls.some(c => c.is_connected)) {
-    newStage = 'Followup';
+  } else if (calls.length > 0) {
+    const latestCall = calls[0];
+    const isClosedOrNotInterested = (latestCall.call_result || '').toLowerCase().includes('closed') || 
+                                   (latestCall.call_result || '').toLowerCase().includes('not interested');
+    if (isClosedOrNotInterested) {
+      newStage = 'Inactive';
+    } else if (calls.some(c => c.is_connected)) {
+      newStage = 'Followup';
+    } else {
+      newStage = visits.length > 0 ? 'Visited' : 'Inactive';
+    }
   } else if (visits.length > 0) {
     newStage = 'Visited';
   } else {
@@ -179,11 +188,14 @@ async function refreshAgentStage(agentId) {
 
 // Data Seeder for ~700 agents across Punjab cities
 async function seedDatabase() {
+  const liveBackupPath = path.resolve(__dirname, 'liveBackup.json');
   const seedPath = path.resolve(__dirname, 'seedData.json');
-  if (fs.existsSync(seedPath)) {
-    console.log('Found seedData.json! Loading exact master database of 533 agents, calls, visits, and queries...');
+  const targetFile = fs.existsSync(liveBackupPath) ? liveBackupPath : seedPath;
+
+  if (fs.existsSync(targetFile)) {
+    console.log(`Found ${path.basename(targetFile)}! Loading master database of agents, visits, calls, and queries...`);
     try {
-      const seed = JSON.parse(fs.readFileSync(seedPath, 'utf8'));
+      const seed = JSON.parse(fs.readFileSync(targetFile, 'utf8'));
 
       if (seed.agents && seed.agents.length > 0) {
         for (const a of seed.agents) {
@@ -195,8 +207,9 @@ async function seedDatabase() {
         }
       }
 
-      if (seed.visits && seed.visits.length > 0) {
-        for (const v of seed.visits) {
+      const visits = seed.marketing_visits || seed.visits;
+      if (visits && visits.length > 0) {
+        for (const v of visits) {
           await dbRun(
             `INSERT OR REPLACE INTO marketing_visits (id, visit_date, agent_id, executive_name, person_met, mobile, is_new_agent, products_pitched, response_level, remarks, next_followup_date, location, gps_latitude, gps_longitude, gps_address)
              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -205,8 +218,9 @@ async function seedDatabase() {
         }
       }
 
-      if (seed.calls && seed.calls.length > 0) {
-        for (const c of seed.calls) {
+      const calls = seed.telephonic_calls || seed.calls;
+      if (calls && calls.length > 0) {
+        for (const c of calls) {
           await dbRun(
             `INSERT OR REPLACE INTO telephonic_calls (id, call_date, agent_id, visit_id, executive_name, is_connected, services_discussed, agent_requirement, interest_level, call_result, remarks, next_followup_date)
              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,

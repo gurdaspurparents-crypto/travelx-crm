@@ -636,6 +636,22 @@ app.put('/api/agents/:id', async (req, res) => {
   }
 });
 
+// Update Agent Stage Directly (Active / Inactive / Closed / Dormant)
+app.put('/api/agents/:id/stage', async (req, res) => {
+  try {
+    const { stage } = req.body;
+    const agentId = req.params.id;
+    if (!stage) {
+      return res.status(400).json({ success: false, error: 'Stage is required' });
+    }
+    await dbRun(`UPDATE agents SET stage = ? WHERE id = ?`, [stage, agentId]);
+    scheduleBackup(db);
+    res.json({ success: true, message: `Agent stage updated to ${stage}` });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 // Delete Agent
 app.delete('/api/agents/:id', async (req, res) => {
   try {

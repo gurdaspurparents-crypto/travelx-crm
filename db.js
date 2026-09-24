@@ -149,7 +149,7 @@ async function initDb() {
 async function refreshAgentStage(agentId) {
   const bookings = await dbAll(`SELECT * FROM queries WHERE agent_id = ? AND status = 'Converted'`, [agentId]);
   const queries = await dbAll(`SELECT * FROM queries WHERE agent_id = ?`, [agentId]);
-  const calls = await dbAll(`SELECT * FROM telephonic_calls WHERE agent_id = ?`, [agentId]);
+  const calls = await dbAll(`SELECT * FROM telephonic_calls WHERE agent_id = ? ORDER BY call_date DESC, id DESC`, [agentId]);
   const visits = await dbAll(`SELECT * FROM marketing_visits WHERE agent_id = ?`, [agentId]);
 
   let newStage = 'Visited';
@@ -157,7 +157,7 @@ async function refreshAgentStage(agentId) {
   if (bookings.length > 0) {
     // Check if dormant (last booking > 30 days ago and no recent queries)
     const latestBookingDate = bookings.map(b => b.booking_date).sort().pop();
-    const daysSinceLastBooking = Math.floor((new Date('2026-08-29') - new Date(latestBookingDate)) / (1000 * 60 * 60 * 24));
+    const daysSinceLastBooking = Math.floor((new Date() - new Date(latestBookingDate)) / (1000 * 60 * 60 * 24));
     if (daysSinceLastBooking > 30) {
       newStage = 'Dormant'; // Previously Active but Now Inactive
     } else {
@@ -165,8 +165,17 @@ async function refreshAgentStage(agentId) {
     }
   } else if (queries.length > 0) {
     newStage = 'QueryReceived';
-  } else if (calls.some(c => c.is_connected)) {
-    newStage = 'Followup';
+  } else if (calls.length > 0) {
+    const latestCall = calls[0];
+    const isClosedOrNotInterested = (latestCall.call_result || '').toLowerCase().includes('closed') || 
+                                   (latestCall.call_result || '').toLowerCase().includes('not interested');
+    if (isClosedOrNotInterested) {
+      newStage = 'Inactive';
+    } else if (calls.some(c => c.is_connected)) {
+      newStage = 'Followup';
+    } else {
+      newStage = visits.length > 0 ? 'Visited' : 'Inactive';
+    }
   } else if (visits.length > 0) {
     newStage = 'Visited';
   } else {
