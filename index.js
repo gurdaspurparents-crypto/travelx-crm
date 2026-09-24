@@ -383,7 +383,7 @@ app.post('/api/agents/clear', async (req, res) => {
 // List agents with search, filter, and pagination
 app.get('/api/agents', async (req, res) => {
   try {
-    const { search, city, stage, agent_type, exec, visit_from_date, visit_to_date, limit = 100, offset = 0 } = req.query;
+    const { search, city, stage, agent_type, exec, visit_from_date, visit_to_date, visit_executive, limit = 100, offset = 0 } = req.query;
 
     const mvWhere = [];
     const mvParams = [];
@@ -394,6 +394,10 @@ app.get('/api/agents', async (req, res) => {
     if (visit_to_date) {
       mvWhere.push(`mv1.visit_date <= ?`);
       mvParams.push(visit_to_date);
+    }
+    if (visit_executive && visit_executive !== 'all') {
+      mvWhere.push(`(mv1.executive_name = ? OR mv1.executive_name LIKE ?)`);
+      mvParams.push(visit_executive, `%${visit_executive}%`);
     }
 
     const mvJoinClause = mvWhere.length > 0
@@ -429,8 +433,8 @@ app.get('/api/agents', async (req, res) => {
     }
 
     if (city) {
-      query += ` AND (a.city = ? OR a.area = ?)`;
-      params.push(city, city);
+      query += ` AND (TRIM(LOWER(a.city)) = TRIM(LOWER(?)))`;
+      params.push(city);
     }
 
     const { location } = req.query;
@@ -505,7 +509,7 @@ app.get('/api/agents', async (req, res) => {
 // Endpoint to fetch dynamic distinct cities and areas from imported agents DB
 app.get('/api/agents/locations', async (req, res) => {
   try {
-    const rawCities = await dbAll(`SELECT DISTINCT city FROM agents WHERE city IS NOT NULL AND city != '' ORDER BY city ASC`);
+    const rawCities = await dbAll(`SELECT DISTINCT TRIM(city) as city FROM agents WHERE city IS NOT NULL AND city != '' ORDER BY city ASC`);
     const rawAreas = await dbAll(`SELECT DISTINCT area FROM agents WHERE area IS NOT NULL AND area != '' ORDER BY area ASC`);
 
     function toTitleCase(str) {
@@ -513,10 +517,14 @@ app.get('/api/agents/locations', async (req, res) => {
       return str.trim().replace(/\s+/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
     }
 
-    const citiesSet = new Set();
+    // Deduplicate cities: use Map keyed on lowercase to ensure no case-duplicates
+    const citiesMap = new Map();
     rawCities.forEach(c => {
       const clean = toTitleCase(c.city);
-      if (clean) citiesSet.add(clean);
+      if (clean) {
+        const key = clean.toLowerCase();
+        if (!citiesMap.has(key)) citiesMap.set(key, clean);
+      }
     });
 
     const areasSet = new Set();
@@ -527,7 +535,7 @@ app.get('/api/agents/locations', async (req, res) => {
 
     res.json({
       success: true,
-      cities: Array.from(citiesSet).sort((a, b) => a.localeCompare(b)),
+      cities: Array.from(citiesMap.values()).sort((a, b) => a.localeCompare(b)),
       areas: Array.from(areasSet).sort((a, b) => a.localeCompare(b))
     });
   } catch (err) {
@@ -729,8 +737,14 @@ app.get('/api/location-coverage', async (req, res) => {
   try {
     const { city, filter } = req.query;
     
-    const citiesRaw = await dbAll(`SELECT DISTINCT city FROM agents WHERE city IS NOT NULL AND city != '' ORDER BY city ASC`);
-    const citiesList = citiesRaw.map(c => c.city);
+    const citiesRaw = await dbAll(`SELECT DISTINCT TRIM(city) as city FROM agents WHERE city IS NOT NULL AND city != '' ORDER BY city ASC`);
+    // Deduplicate by lowercase key so casing variants don't produce duplicate entries
+    const citiesDeduped = new Map();
+    citiesRaw.forEach(c => {
+      const key = c.city.trim().toLowerCase();
+      if (!citiesDeduped.has(key)) citiesDeduped.set(key, c.city.trim());
+    });
+    const citiesList = Array.from(citiesDeduped.values()).sort((a, b) => a.localeCompare(b));
 
     const selectedCity = city || citiesList[0] || 'Gurdaspur';
 
@@ -1461,7 +1475,6 @@ app.get('/api/dashboard', async (req, res) => {
     res.status(500).json({ success: false, error: err.message });
   }
 });
-
 // ==================== 7. LOCATION & EMPLOYEE ANALYTICS ====================
 
 app.get('/api/analytics/location', async (req, res) => {
@@ -1470,7 +1483,7 @@ app.get('/api/analytics/location', async (req, res) => {
     const monthPattern = `${month}%`;
     const locations = await dbAll(`
       SELECT 
-        a.city as location,
+        MIN(a.city) as location,
         COUNT(DISTINCT a.id) as total_agents,
         COALESCE(calls.yug_called_month, 0) as yug_called_month,
         COALESCE(calls.all_called_month, 0) as all_called_month,
@@ -1505,7 +1518,7 @@ app.get('/api/analytics/location', async (req, res) => {
       ) visits ON TRIM(LOWER(a.city)) = visits.match_city
       LEFT JOIN marketing_visits mv ON a.id = mv.agent_id
       LEFT JOIN queries q ON a.id = q.agent_id
-      GROUP BY a.city
+      GROUP BY TRIM(LOWER(a.city))
       ORDER BY total_agents DESC
     `, [monthPattern, monthPattern]);
 

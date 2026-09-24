@@ -41,9 +41,12 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
 
   const [locationAgents, setLocationAgents] = useState([]);
   const [loadingLocationAgents, setLoadingLocationAgents] = useState(false);
-  const [checklistStatusFilter, setChecklistStatusFilter] = useState('all'); // 'all' | 'visited' | 'pending'
-  const [checklistFromDate, setChecklistFromDate] = useState('');
-  const [checklistToDate, setChecklistToDate] = useState('');
+  const [checklistFromDate, setChecklistFromDate] = useState(() => `${new Date().toISOString().slice(0, 7)}-01`);
+  const [checklistToDate, setChecklistToDate] = useState(() => {
+    const d = new Date();
+    const lastDay = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
+    return `${d.toISOString().slice(0, 7)}-${String(lastDay).padStart(2, '0')}`;
+  });
 
   // Odometer & Conveyance Field Trip state
   const [fieldTrips, setFieldTrips] = useState([]);
@@ -77,17 +80,20 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
 
   useEffect(() => {
     fetchLocationAgents(selectedLocation, checklistFromDate, checklistToDate);
-  }, [selectedLocation, visits, checklistFromDate, checklistToDate]);
+  }, [selectedLocation, visits, checklistFromDate, checklistToDate, matrixExecFilter]);
 
   const fetchLocationAgents = async (loc = selectedLocation, fDate = checklistFromDate, tDate = checklistToDate) => {
     setLoadingLocationAgents(true);
     try {
       let url = `/api/agents?limit=1500`;
       if (loc && loc !== 'ALL' && loc !== 'All Locations') {
-        url += `&location=${encodeURIComponent(loc)}`;
+        url += `&city=${encodeURIComponent(loc)}`;
       }
       if (fDate) url += `&visit_from_date=${encodeURIComponent(fDate)}`;
       if (tDate) url += `&visit_to_date=${encodeURIComponent(tDate)}`;
+      if (matrixExecFilter === 'bikram') {
+        url += `&visit_executive=Bikramjit Singh`;
+      }
 
       const res = await fetch(url);
       const json = await res.json();
@@ -126,8 +132,9 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
       setChecklistToDate(dateStr);
     } else if (preset === 'month') {
       const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
+      const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
       setChecklistFromDate(formatLocalDate(firstDay));
-      setChecklistToDate(formatLocalDate(today));
+      setChecklistToDate(formatLocalDate(lastDay));
     }
   };
 
@@ -234,10 +241,12 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
   const enhancedVisitMatrix = useMemo(() => {
     return matrixLocations.map(loc => {
       const cityKey = (loc.location || '').trim().toLowerCase();
+      const serverVisited = matrixExecFilter === 'all' 
+        ? (loc.all_visited_month || loc.bikram_visited_month || 0) 
+        : (loc.bikram_visited_month || 0);
       const liveVisited = liveLocationVisitStats[cityKey];
-      const visited = liveVisited !== undefined 
-        ? liveVisited 
-        : (matrixExecFilter === 'all' ? (loc.all_visited_month || loc.bikram_visited_month || 0) : (loc.bikram_visited_month || 0));
+      // Server query is authoritative from SQLite, never let a truncated 150-row array downgrade it
+      const visited = liveVisited !== undefined ? Math.max(serverVisited, liveVisited) : serverVisited;
       const total = loc.total_agents || 0;
       const pending = Math.max(0, total - visited);
       const rate = total > 0 ? Math.min(100, Math.round((visited / total) * 100)) : 0;
@@ -283,6 +292,16 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
   const handleSelectCityFromMatrix = (cityName, filterMode = 'all') => {
     setSelectedLocation(cityName);
     setChecklistStatusFilter(filterMode);
+
+    // Synchronize checklist date range with matrix month so counts match 100%
+    const targetMonth = matrixMonth || currentMonthStr;
+    const [year, month] = targetMonth.split('-').map(Number);
+    const firstDay = `${targetMonth}-01`;
+    const lastDayNum = new Date(year, month, 0).getDate();
+    const lastDay = `${targetMonth}-${String(lastDayNum).padStart(2, '0')}`;
+    setChecklistFromDate(firstDay);
+    setChecklistToDate(lastDay);
+
     // Smooth scroll down to checklist
     const checklistElement = document.getElementById('field-location-checklist');
     if (checklistElement) {

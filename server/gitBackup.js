@@ -145,8 +145,9 @@ async function applyDataToDb(data, dbRun, dbAll) {
   }
 
   // Restore Marketing Visits
-  if (Array.isArray(data.marketing_visits) && data.marketing_visits.length > 0) {
-    for (const v of data.marketing_visits) {
+  const visitsList = data.marketing_visits || data.visits;
+  if (Array.isArray(visitsList) && visitsList.length > 0) {
+    for (const v of visitsList) {
       await dbRun(
         `INSERT OR REPLACE INTO marketing_visits (id, visit_date, agent_id, executive_name, person_met, mobile, is_new_agent, products_pitched, response_level, remarks, next_followup_date, location, gps_latitude, gps_longitude, gps_address)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -156,8 +157,9 @@ async function applyDataToDb(data, dbRun, dbAll) {
   }
 
   // Restore Telephonic Calls
-  if (Array.isArray(data.telephonic_calls) && data.telephonic_calls.length > 0) {
-    for (const c of data.telephonic_calls) {
+  const callsList = data.telephonic_calls || data.calls;
+  if (Array.isArray(callsList) && callsList.length > 0) {
+    for (const c of callsList) {
       await dbRun(
         `INSERT OR REPLACE INTO telephonic_calls (id, call_date, agent_id, visit_id, executive_name, is_connected, services_discussed, agent_requirement, interest_level, call_result, remarks, next_followup_date)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,

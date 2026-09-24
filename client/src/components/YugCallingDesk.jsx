@@ -205,9 +205,11 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
   const enhancedMatrix = useMemo(() => {
     return locationsMatrix.map(loc => {
       const cityKey = (loc.location || '').trim().toLowerCase();
-      const called = locationCallingStats[cityKey] !== undefined
-        ? locationCallingStats[cityKey]
-        : (executiveFilter === 'all' ? (loc.all_called_month || loc.yug_called_month || 0) : (loc.yug_called_month || 0));
+      const serverCalled = executiveFilter === 'all' 
+        ? (loc.all_called_month || loc.yug_called_month || 0) 
+        : (loc.yug_called_month || 0);
+      const liveCalled = locationCallingStats[cityKey];
+      const called = liveCalled !== undefined ? Math.max(serverCalled, liveCalled) : serverCalled;
       const total = loc.total_agents || 0;
       const pending = Math.max(0, total - called);
       const rate = total > 0 ? Math.round((called / total) * 100) : 0;
