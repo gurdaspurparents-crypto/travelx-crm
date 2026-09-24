@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-24T10:00:13.932Z",
+  "backed_up_at": "2026-09-24T10:00:51.596Z",
   "agents": [
     {
       "id": "AGT-1082",
@@ -7933,7 +7933,7 @@
       "city": "Dorangla ",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-24",
@@ -12833,6 +12833,23 @@
       "remarks": "",
       "next_followup_date": "2026-09-25",
       "location": "Dorangla",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 799,
+      "visit_date": "2026-09-24",
+      "agent_id": "AGT-2024",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "sukhwinder singh ",
+      "mobile": "9463607198",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "NEW",
+      "next_followup_date": "2026-09-25",
+      "location": "Dorangla ",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
