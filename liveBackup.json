@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-24T11:44:48.691Z",
+  "backed_up_at": "2026-09-24T11:45:24.876Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -346,20 +346,6 @@
       "area": "Chaksharif",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1064",
-      "name": "Mr. Gurbachan singh",
-      "company_name": "Sant baba hazara singh enterprises",
-      "mobile": "7837106334",
-      "city": "Nikke Ghuman",
-      "area": "Nikke Ghuman",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -12824,16 +12810,16 @@
     {
       "id": 803,
       "visit_date": "2026-09-24",
-      "agent_id": "AGT-1119",
+      "agent_id": "AGT-1738",
       "executive_name": "Bikramjit Singh",
-      "person_met": "Mr. Baljeet singh",
-      "mobile": "6239514921",
+      "person_met": "ravinder ",
+      "mobile": "8872782909",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-09-25",
-      "location": "Kot Santokh Rai",
+      "location": "Sanghar",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
