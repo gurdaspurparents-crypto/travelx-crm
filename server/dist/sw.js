@@ -1,5 +1,5 @@
 // Minimal PWA Service Worker for Travelx Marketing App
-const CACHE_NAME = 'travelx-pwa-v12';
+const CACHE_NAME = 'travelx-pwa-v13';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
