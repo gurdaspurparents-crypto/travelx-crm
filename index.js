@@ -1482,6 +1482,73 @@ app.get('/api/dashboard', async (req, res) => {
     const activeAgents = await dbGet(`SELECT COUNT(DISTINCT agent_id) as count FROM queries WHERE status = 'Converted'`);
     const dormantAgents = await dbGet(`SELECT COUNT(*) as count FROM agents WHERE stage = 'Dormant'`);
 
+    // Next Month Must-Visit Territory Targets (Cities with unvisited registered travel agencies)
+    const territoryTargets = await dbAll(`
+      SELECT 
+        TRIM(a.city) as city,
+        COUNT(a.id) as total_agencies,
+        COUNT(CASE WHEN v.id IS NOT NULL THEN 1 END) as visited_count,
+        COUNT(CASE WHEN v.id IS NULL THEN 1 END) as unvisited_count
+      FROM agents a
+      LEFT JOIN (SELECT DISTINCT agent_id, id FROM marketing_visits) v ON a.id = v.agent_id
+      WHERE a.city IS NOT NULL AND a.city != ''
+      GROUP BY TRIM(a.city)
+      HAVING unvisited_count > 0
+      ORDER BY unvisited_count DESC, total_agencies DESC
+      LIMIT 12
+    `);
+
+    // Fruitful Business & Executive ROI Metrics
+    const allTimeRevenue = await dbGet(`SELECT COALESCE(SUM(booking_value), 0) as total, COUNT(*) as count FROM queries WHERE status = 'Converted'`);
+    const allTimeQuotes = await dbGet(`SELECT COUNT(*) as count, COALESCE(SUM(quoted_amount), 0) as total FROM queries`);
+    const pendingCallbacks = await dbGet(`
+      SELECT COUNT(*) as count FROM telephonic_calls 
+      WHERE (call_result LIKE '%again%' OR call_result LIKE '%follow%') 
+        AND next_followup_date IS NOT NULL 
+        AND next_followup_date <= date('now')
+    `);
+    const uncontactedQueue = await dbGet(`
+      SELECT COUNT(DISTINCT mv.agent_id) as count
+      FROM marketing_visits mv
+      LEFT JOIN telephonic_calls tc ON mv.agent_id = tc.agent_id
+      WHERE tc.id IS NULL
+    `);
+
+    const bikramStats = await dbGet(`
+      SELECT 
+        COUNT(DISTINCT v.agent_id) as visited_agents,
+        COUNT(v.id) as total_visits
+      FROM marketing_visits v
+      WHERE v.executive_name = 'Bikramjit Singh' OR v.executive_name LIKE '%Bikram%'
+    `);
+    const conveyanceStats = await dbGet(`
+      SELECT 
+        COALESCE(SUM(total_day_km), 0) as total_km,
+        COALESCE(SUM(total_day_conveyance), 0) as total_conveyance
+      FROM (
+        SELECT trip_date, (MAX(end_meter_reading) - MIN(start_meter_reading)) as total_day_km,
+               ((MAX(end_meter_reading) - MIN(start_meter_reading)) * 3.0) as total_day_conveyance
+        FROM field_trips
+        GROUP BY trip_date
+      )
+    `);
+    const simranjitStats = await dbGet(`
+      SELECT 
+        COUNT(*) as total_calls,
+        COUNT(CASE WHEN is_connected = 1 THEN 1 END) as connected_calls,
+        COUNT(CASE WHEN call_result LIKE '%requirement%' THEN 1 END) as requirements_won
+      FROM telephonic_calls
+      WHERE executive_name = 'Simranjit Kaur' OR executive_name LIKE '%Simranjit%'
+    `);
+    const yugStats = await dbGet(`
+      SELECT 
+        COUNT(*) as total_calls,
+        COUNT(CASE WHEN is_connected = 1 THEN 1 END) as connected_calls,
+        COUNT(CASE WHEN call_result LIKE '%requirement%' OR call_result LIKE '%interested%' THEN 1 END) as positive_outcomes
+      FROM telephonic_calls
+      WHERE executive_name = 'Yug' OR executive_name LIKE '%Yug%'
+    `);
+
     // Funnel numbers
     const funnel = {
       total: totalAgents.count,
@@ -1511,7 +1578,25 @@ app.get('/api/dashboard', async (req, res) => {
         pending: todayPending.count,
         revenue: todayRevenue.total
       },
-      funnel
+      funnel,
+      territory_targets: territoryTargets,
+      business_results: {
+        total_revenue: allTimeRevenue?.total || 0,
+        converted_bookings_count: allTimeRevenue?.count || 0,
+        total_quoted_amount: allTimeQuotes?.total || 0,
+        total_queries_count: allTimeQuotes?.count || 0,
+        pending_callbacks_count: pendingCallbacks?.count || 0,
+        uncontacted_visited_queue: uncontactedQueue?.count || 0,
+        bikram_conveyance: conveyanceStats?.total_conveyance || 0,
+        bikram_km: conveyanceStats?.total_km || 0,
+        bikram_unique_agents: bikramStats?.visited_agents || 0,
+        simranjit_calls: simranjitStats?.total_calls || 0,
+        simranjit_connected: simranjitStats?.connected_calls || 0,
+        simranjit_queries_won: simranjitStats?.requirements_won || 0,
+        yug_calls: yugStats?.total_calls || 0,
+        yug_connected: yugStats?.connected_calls || 0,
+        yug_positive: yugStats?.positive_outcomes || 0
+      }
     });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
