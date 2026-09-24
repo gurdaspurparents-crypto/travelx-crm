@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-24T11:56:04.818Z",
+  "backed_up_at": "2026-09-24T11:57:41.056Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -5803,7 +5803,7 @@
       "company_name": "CSC centre",
       "mobile": "9780964869",
       "city": "Tibber",
-      "area": "Tiber, Distt Gsp",
+      "area": "Gurdaspur",
       "agent_type": "Retail Travel Agent",
       "stage": "Visited",
       "assigned_marketing_exec": "Bikram",
