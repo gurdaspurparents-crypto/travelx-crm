@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-24T11:39:57.423Z",
+  "backed_up_at": "2026-09-24T11:42:12.690Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -360,20 +360,6 @@
       "area": "Nikke Ghuman",
       "agent_type": "Retail Travel Agent",
       "stage": "Visited",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1065",
-      "name": "Mr. Harjit singh",
-      "company_name": "Karan enterprises",
-      "mobile": "9888021616",
-      "city": "Chota Ghumani",
-      "area": "Chote Ghuman",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -18786,21 +18772,6 @@
       "agent_requirement": "good  relpy ",
       "interest_level": "Interested / Warm",
       "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-14",
-      "payment_terms": null
-    },
-    {
-      "id": 824,
-      "call_date": "2026-09-12",
-      "agent_id": "AGT-1065",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "busy ",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-14",
       "payment_terms": null
