@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-24T11:54:50.712Z",
+  "backed_up_at": "2026-09-24T11:56:04.818Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -7130,10 +7130,10 @@
     {
       "id": "AGT-1975",
       "name": "DEEPAK",
-      "company_name": "RSR TRAVEL",
+      "company_name": "BRS TRAVEL",
       "mobile": "9781879920",
-      "city": "Aujla Bypass",
-      "area": "Main Market",
+      "city": "Gurdaspur",
+      "area": "Aujla Bypass",
       "agent_type": "Retail Travel Agent",
       "stage": "Active",
       "assigned_marketing_exec": "Bikramjit Singh",
