@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T11:53:28.807Z",
+  "backed_up_at": "2026-09-25T11:53:46.321Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -2962,20 +2962,6 @@
       "mobile": "9650507715",
       "city": "Jakaria",
       "area": "Jakaria",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1463",
-      "name": "Mr. Vinod",
-      "company_name": "Digital sewa common service centre",
-      "mobile": "6280879314",
-      "city": "Jangal Bhawani",
-      "area": "Village Jangal Bhawani",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
@@ -18985,21 +18971,6 @@
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
       "agent_requirement": "busy",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
-      "remarks": "",
-      "next_followup_date": "2026-09-14",
-      "payment_terms": null
-    },
-    {
-      "id": 841,
-      "call_date": "2026-09-12",
-      "agent_id": "AGT-1463",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "ghalat     number",
       "interest_level": "Interested / Warm",
       "call_result": "No Response",
       "remarks": "",
