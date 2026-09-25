@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T08:35:57.292Z",
+  "backed_up_at": "2026-09-25T08:36:35.440Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -3803,7 +3803,7 @@
       "city": "Kalijpur",
       "area": "Kalijpur",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -3817,7 +3817,7 @@
       "city": "Kalijpur",
       "area": "Kalizpur",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -25282,8 +25282,8 @@
     {
       "id": 1267,
       "call_date": "2026-09-25",
-      "agent_id": "AGT-1565",
-      "visit_id": 812,
+      "agent_id": "AGT-1566",
+      "visit_id": null,
       "executive_name": "Yug",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
