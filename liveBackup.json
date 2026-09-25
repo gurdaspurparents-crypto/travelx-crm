@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T11:53:46.321Z",
+  "backed_up_at": "2026-09-25T11:53:52.866Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -2962,20 +2962,6 @@
       "mobile": "9650507715",
       "city": "Jakaria",
       "area": "Jakaria",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1464",
-      "name": "Mr. Rohit",
-      "company_name": "Gurukirpa cyber café",
-      "mobile": "9814771038",
-      "city": "Jangal Bhawani",
-      "area": "Jangal Bhawani",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
@@ -19063,21 +19049,6 @@
       "agent_requirement": "",
       "interest_level": "Interested / Warm",
       "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-14",
-      "payment_terms": null
-    },
-    {
-      "id": 848,
-      "call_date": "2026-09-12",
-      "agent_id": "AGT-1464",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "busy ",
-      "interest_level": "Interested / Warm",
-      "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-09-14",
       "payment_terms": null
