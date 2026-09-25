@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T11:53:52.866Z",
+  "backed_up_at": "2026-09-25T11:54:23.903Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4068,34 +4068,6 @@
       "mobile": "9592908575",
       "city": "Marara",
       "area": "Marara, Gsp",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1609",
-      "name": "Mr.Daman",
-      "company_name": "Guru nanak telecom",
-      "mobile": "7814567544",
-      "city": "Naranwali",
-      "area": "Naranwali",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1612",
-      "name": "Mr. Gurpreet singh ",
-      "company_name": "Singh telecom ",
-      "mobile": "9814732733",
-      "city": "Naranwali",
-      "area": "Nara Wali, Gsp",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
@@ -24524,36 +24496,6 @@
       "agent_requirement": "good  relpy",
       "interest_level": "Interested / Warm",
       "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-26",
-      "payment_terms": null
-    },
-    {
-      "id": 1245,
-      "call_date": "2026-09-25",
-      "agent_id": "AGT-1609",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "not call ",
-      "interest_level": "Interested / Warm",
-      "call_result": "Call Connected / In Discussion",
-      "remarks": "",
-      "next_followup_date": "2026-09-26",
-      "payment_terms": null
-    },
-    {
-      "id": 1246,
-      "call_date": "2026-09-25",
-      "agent_id": "AGT-1612",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "no call busy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-09-26",
       "payment_terms": null
