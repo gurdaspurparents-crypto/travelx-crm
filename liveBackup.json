@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T10:19:31.481Z",
+  "backed_up_at": "2026-09-25T10:35:03.792Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -76,8 +76,8 @@
       "name": "Mr.munish kumar",
       "company_name": "sharma travel ",
       "mobile": "9344850007",
-      "city": "Barnala",
-      "area": "Barnala,gsp",
+      "city": "shrihargobinpur",
+      "area": "shrihargobinpur",
       "agent_type": "Retail Travel Agent",
       "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikram",
@@ -25751,7 +25751,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-26",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
