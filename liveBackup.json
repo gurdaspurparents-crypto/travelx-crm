@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T07:26:29.114Z",
+  "backed_up_at": "2026-09-25T07:29:57.867Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -12973,6 +12973,23 @@
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
+    },
+    {
+      "id": 812,
+      "visit_date": "2026-09-25",
+      "agent_id": "AGT-1565",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.ajmeer ",
+      "mobile": "9530532093",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-26",
+      "location": "Kalijpur",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
     }
   ],
   "telephonic_calls": [
@@ -25004,7 +25021,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-26",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1252,
@@ -25019,7 +25036,7 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-09-26",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
