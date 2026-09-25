@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T12:07:15.679Z",
+  "backed_up_at": "2026-09-25T12:07:35.063Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -5817,7 +5817,7 @@
       "company_name": "Sandhu suwidha centre",
       "mobile": "7329050007",
       "city": "Kotli Surat Malhi",
-      "area": "Dera Baba Nanak",
+      "area": "Kotli Surat Malhi",
       "agent_type": "Retail Travel Agent",
       "stage": "Visited",
       "assigned_marketing_exec": "Bikram",
@@ -5831,7 +5831,7 @@
       "company_name": "T.s trade nd test centre",
       "mobile": "9878012012",
       "city": "Kotli Surat Malhi",
-      "area": "Dera Baba Nanak",
+      "area": "Kotli Surat Malhi",
       "agent_type": "Retail Travel Agent",
       "stage": "Visited",
       "assigned_marketing_exec": "Bikram",
@@ -5859,7 +5859,7 @@
       "company_name": "Ts trade test centre",
       "mobile": "7298012012",
       "city": "Kotli Surat Malhi",
-      "area": "Kotli Surat Malhi",
+      "area": "Dera Baba Nanak",
       "agent_type": "Retail Travel Agent",
       "stage": "Visited",
       "assigned_marketing_exec": "Bikram",
