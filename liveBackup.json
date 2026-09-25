@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T12:05:01.090Z",
+  "backed_up_at": "2026-09-25T12:05:09.179Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6769,20 +6769,6 @@
       "company_name": "Mahajan cafe ",
       "mobile": "+91 98151 44901",
       "city": "Dinanagar",
-      "area": "Main Market",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikramjit Singh",
-      "assigned_telephonic_exec": "Simranjit Kaur",
-      "created_at": "2026-09-14",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1980",
-      "name": "Vikram ",
-      "company_name": "Sharma photostate ",
-      "mobile": "+91 94787 07739",
-      "city": "Gurdaspur",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
@@ -22569,21 +22555,6 @@
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
       "agent_requirement": "good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-25",
-      "payment_terms": null
-    },
-    {
-      "id": 1119,
-      "call_date": "2026-09-23",
-      "agent_id": "AGT-1980",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good  relpy",
       "interest_level": "Interested / Warm",
       "call_result": "Interested",
       "remarks": "",
