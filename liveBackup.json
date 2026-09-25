@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T07:40:18.789Z",
+  "backed_up_at": "2026-09-25T07:46:45.851Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -25097,7 +25097,7 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-09-26",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1255,
@@ -25112,7 +25112,7 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-09-26",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1256,
@@ -25123,6 +25123,21 @@
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
       "agent_requirement": "kam nhi karda",
+      "interest_level": "Interested / Warm",
+      "call_result": "Call Connected / In Discussion",
+      "remarks": "",
+      "next_followup_date": "2026-09-26",
+      "payment_terms": null
+    },
+    {
+      "id": 1257,
+      "call_date": "2026-09-25",
+      "agent_id": "AGT-1456",
+      "visit_id": 612,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "no call number of",
       "interest_level": "Interested / Warm",
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
