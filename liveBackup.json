@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T12:02:54.923Z",
+  "backed_up_at": "2026-09-25T12:03:12.537Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -1962,6 +1962,20 @@
       "payment_terms": "Not Discussed"
     },
     {
+      "id": "AGT-1308",
+      "name": "Mr. Puneet singh",
+      "company_name": "Solution point",
+      "mobile": "9888848687",
+      "city": "Gurdaspur",
+      "area": "Near Ravidas Chowk Jail Road, G Sp",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Followup",
+      "assigned_marketing_exec": "Bikram",
+      "assigned_telephonic_exec": "Simran",
+      "created_at": "2026-08-29",
+      "payment_terms": "Not Discussed"
+    },
+    {
       "id": "AGT-1310",
       "name": "Mr. Nishant khana",
       "company_name": "Webberz educomp limited",
@@ -2038,20 +2052,6 @@
       "mobile": "9814120428",
       "city": "Gurdaspur",
       "area": "Gurdaspur",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1330",
-      "name": "Mr. Vijay ",
-      "company_name": "Guru nanak immigration & education consultant",
-      "mobile": "7508755000",
-      "city": "Gurdaspur",
-      "area": "Near Mohan Plaza, Gsp",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
@@ -4810,20 +4810,6 @@
       "mobile": "9988225389",
       "city": "Qadian",
       "area": "Qadian",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1730",
-      "name": "Mr.Deepak",
-      "company_name": "Jasmeet cyber café",
-      "mobile": "9306842891",
-      "city": "Rasulpur",
-      "area": "Rasulpur",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
@@ -14244,6 +14230,21 @@
       "payment_terms": null
     },
     {
+      "id": 502,
+      "call_date": "2026-09-08",
+      "agent_id": "AGT-1308",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "No Response",
+      "remarks": "",
+      "next_followup_date": "2026-09-10",
+      "payment_terms": null
+    },
+    {
       "id": 503,
       "call_date": "2026-09-08",
       "agent_id": "AGT-1318",
@@ -18327,21 +18328,6 @@
       "id": 802,
       "call_date": "2026-09-12",
       "agent_id": "AGT-1634",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "busy",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
-      "remarks": "",
-      "next_followup_date": "2026-09-14",
-      "payment_terms": null
-    },
-    {
-      "id": 804,
-      "call_date": "2026-09-12",
-      "agent_id": "AGT-1730",
       "visit_id": null,
       "executive_name": "Yug",
       "is_connected": 1,
@@ -22609,21 +22595,6 @@
       "agent_requirement": "good relpy",
       "interest_level": "Interested / Warm",
       "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-25",
-      "payment_terms": null
-    },
-    {
-      "id": 1111,
-      "call_date": "2026-09-23",
-      "agent_id": "AGT-1330",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "busy",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-25",
       "payment_terms": null
