@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T07:30:10.264Z",
+  "backed_up_at": "2026-09-25T07:30:36.871Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -7863,7 +7863,7 @@
       "city": "tibir cant ",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-25",
@@ -27437,6 +27437,26 @@
       "agent_id": "AGT-1458",
       "product": "International Flight",
       "query_details": "auh-atq-auh",
+      "travel_date": "2026-10-10",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-09-26",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5135",
+      "query_date": "2026-09-25",
+      "agent_id": "AGT-2030",
+      "product": "International Flight",
+      "query_details": "dxb-atq",
       "travel_date": "2026-10-10",
       "pax_details": "2 Adults",
       "estimated_value": 0,
