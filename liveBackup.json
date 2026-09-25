@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T06:44:17.792Z",
+  "backed_up_at": "2026-09-25T06:44:47.849Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -7821,7 +7821,7 @@
       "city": "pandori ",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-25",
@@ -12870,6 +12870,23 @@
       "mobile": "+91 97801 46520",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\",\"Travel Insurance\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-26",
+      "location": "pandori ",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 808,
+      "visit_date": "2026-09-25",
+      "agent_id": "AGT-2027",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Rohit ",
+      "mobile": "+91 90413 23769",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-09-26",
