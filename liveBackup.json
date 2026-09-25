@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T11:38:27.343Z",
+  "backed_up_at": "2026-09-25T11:39:13.386Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4446,20 +4446,6 @@
       "mobile": "9592052921",
       "city": "Pandori",
       "area": "Pandori",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1640",
-      "name": "Mr.Harish kumar",
-      "company_name": "Sbi sewa kender",
-      "mobile": "7347485622",
-      "city": "Pandori",
-      "area": "Pandori Dham",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
@@ -24086,21 +24072,6 @@
       "agent_requirement": "phone of ",
       "interest_level": "Interested / Warm",
       "call_result": "Call Again Later",
-      "remarks": "",
-      "next_followup_date": "2026-09-25",
-      "payment_terms": null
-    },
-    {
-      "id": 1183,
-      "call_date": "2026-09-23",
-      "agent_id": "AGT-1640",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "no connected",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-25",
       "payment_terms": null
