@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T12:05:09.179Z",
+  "backed_up_at": "2026-09-25T12:05:45.048Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -1954,20 +1954,6 @@
       "mobile": "9115790020",
       "city": "Gurdaspur",
       "area": "Jail Road, Gsp",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1308",
-      "name": "Mr. Puneet singh",
-      "company_name": "Solution point",
-      "mobile": "9888848687",
-      "city": "Gurdaspur",
-      "area": "Near Ravidas Chowk Jail Road, G Sp",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
@@ -6666,6 +6652,20 @@
       "payment_terms": "Not Discussed"
     },
     {
+      "id": "AGT-1969",
+      "name": "dhilion",
+      "company_name": "dhilion farm ",
+      "mobile": "8360571800",
+      "city": "Gurdaspur",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "QueryReceived",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-09-12",
+      "payment_terms": "Not Discussed"
+    },
+    {
       "id": "AGT-1970",
       "name": "Rohit ",
       "company_name": "Rohit computer",
@@ -6722,6 +6722,20 @@
       "payment_terms": "Not Discussed"
     },
     {
+      "id": "AGT-1975",
+      "name": "DEEPAK",
+      "company_name": "BRS TRAVEL",
+      "mobile": "9781879920",
+      "city": "Gurdaspur",
+      "area": "Aujla Bypass",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Active",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-09-12",
+      "payment_terms": "Not Discussed"
+    },
+    {
       "id": "AGT-1976",
       "name": "Krish",
       "company_name": "Nk enterprises",
@@ -6769,6 +6783,20 @@
       "company_name": "Mahajan cafe ",
       "mobile": "+91 98151 44901",
       "city": "Dinanagar",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Followup",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-09-14",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-1980",
+      "name": "Vikram ",
+      "company_name": "Sharma photostate ",
+      "mobile": "+91 94787 07739",
+      "city": "Gurdaspur",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
@@ -14132,21 +14160,6 @@
       "payment_terms": null
     },
     {
-      "id": 502,
-      "call_date": "2026-09-08",
-      "agent_id": "AGT-1308",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
-      "remarks": "",
-      "next_followup_date": "2026-09-10",
-      "payment_terms": null
-    },
-    {
       "id": 503,
       "call_date": "2026-09-08",
       "agent_id": "AGT-1318",
@@ -18297,6 +18310,21 @@
       "agent_requirement": "busy no call",
       "interest_level": "Interested / Warm",
       "call_result": "No Response",
+      "remarks": "",
+      "next_followup_date": "2026-09-14",
+      "payment_terms": null
+    },
+    {
+      "id": 809,
+      "call_date": "2026-09-12",
+      "agent_id": "AGT-1969",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "busy ",
+      "interest_level": "Interested / Warm",
+      "call_result": "Call Again Later",
       "remarks": "",
       "next_followup_date": "2026-09-14",
       "payment_terms": null
@@ -22562,6 +22590,21 @@
       "payment_terms": null
     },
     {
+      "id": 1119,
+      "call_date": "2026-09-23",
+      "agent_id": "AGT-1980",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good  relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-25",
+      "payment_terms": null
+    },
+    {
       "id": 1121,
       "call_date": "2026-09-23",
       "agent_id": "AGT-1424",
@@ -22752,6 +22795,21 @@
       "agent_requirement": "not  connected",
       "interest_level": "Interested / Warm",
       "call_result": "No Response",
+      "remarks": "",
+      "next_followup_date": "2026-09-25",
+      "payment_terms": null
+    },
+    {
+      "id": 1134,
+      "call_date": "2026-09-23",
+      "agent_id": "AGT-1975",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-25",
       "payment_terms": null
@@ -26094,6 +26152,26 @@
       "rejection_remarks": ""
     },
     {
+      "id": "QRY-5068",
+      "query_date": "2026-09-12",
+      "agent_id": "AGT-1969",
+      "product": "International Flight",
+      "query_details": "atq-dxb",
+      "travel_date": "2026-09-27",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-09-13",
+      "status": "Rejected",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": "JIDO CUSTOMER ANDA DSDE AA"
+    },
+    {
       "id": "QRY-5069",
       "query_date": "2026-09-12",
       "agent_id": "AGT-1292",
@@ -26172,6 +26250,26 @@
       "closing_employee": "Simranjit Kaur",
       "rejection_reason": null,
       "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5074",
+      "query_date": "2026-09-12",
+      "agent_id": "AGT-1975",
+      "product": "International Flight",
+      "query_details": "ATQ-DXB",
+      "travel_date": "2026-09-27",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-09-13",
+      "status": "Rejected",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": "Customer Did Not Confirm",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5075",
@@ -26412,6 +26510,26 @@
       "closing_employee": null,
       "rejection_reason": "Agent Did Not Respond",
       "rejection_remarks": ""
+    },
+    {
+      "id": "QRY-5088",
+      "query_date": "2026-09-16",
+      "agent_id": "AGT-1975",
+      "product": "International Flight",
+      "query_details": "atq-amd",
+      "travel_date": "2026-10-01",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-09-17",
+      "status": "Converted",
+      "booking_date": "2026-08-29",
+      "booking_value": 1,
+      "booking_ref_no": "1",
+      "closing_employee": "Simranjit Kaur",
+      "rejection_reason": null,
+      "rejection_remarks": null
     },
     {
       "id": "QRY-5089",
@@ -26851,6 +26969,26 @@
       "booking_ref_no": null,
       "closing_employee": null,
       "rejection_reason": "Customer Did Not Confirm",
+      "rejection_remarks": ""
+    },
+    {
+      "id": "QRY-5112",
+      "query_date": "2026-09-21",
+      "agent_id": "AGT-1975",
+      "product": "International Flight",
+      "query_details": "atq-dxb",
+      "travel_date": "2026-10-06",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-09-22",
+      "status": "Rejected",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": "Agent Did Not Respond",
       "rejection_remarks": ""
     },
     {
