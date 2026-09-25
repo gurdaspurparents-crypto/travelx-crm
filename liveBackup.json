@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T12:04:09.002Z",
+  "backed_up_at": "2026-09-25T12:04:32.908Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -2486,20 +2486,6 @@
       "mobile": "9915688840",
       "city": "Gurdaspur",
       "area": "Jail Road",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1407",
-      "name": "Mr.munish kumar",
-      "company_name": "csc centre ",
-      "mobile": "9814380779",
-      "city": "Gurdaspur",
-      "area": "Gsp",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
@@ -22642,21 +22628,6 @@
       "agent_requirement": "good relpy",
       "interest_level": "Interested / Warm",
       "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-25",
-      "payment_terms": null
-    },
-    {
-      "id": 1118,
-      "call_date": "2026-09-23",
-      "agent_id": "AGT-1407",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "no good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Not Interested",
       "remarks": "",
       "next_followup_date": "2026-09-25",
       "payment_terms": null
