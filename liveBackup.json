@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T07:20:46.478Z",
+  "backed_up_at": "2026-09-25T07:26:17.155Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -5777,7 +5777,7 @@
       "city": "Tibber",
       "area": "Gurdaspur",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -24974,7 +24974,7 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-09-26",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1250,
@@ -24987,6 +24987,21 @@
       "agent_requirement": "bussy",
       "interest_level": "Interested / Warm",
       "call_result": "Follow-up Required",
+      "remarks": "",
+      "next_followup_date": "2026-09-26",
+      "payment_terms": null
+    },
+    {
+      "id": 1251,
+      "call_date": "2026-09-25",
+      "agent_id": "AGT-1829",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good  relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-26",
       "payment_terms": "Not Discussed"
