@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T07:06:27.163Z",
+  "backed_up_at": "2026-09-25T07:07:36.860Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -7667,7 +7667,7 @@
       "city": "Dehriwal",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-23",
@@ -24868,6 +24868,21 @@
       "remarks": "",
       "next_followup_date": "2026-09-26",
       "payment_terms": null
+    },
+    {
+      "id": 1244,
+      "call_date": "2026-09-25",
+      "agent_id": "AGT-2014",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good  relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-26",
+      "payment_terms": "Not Discussed"
     }
   ],
   "queries": [
