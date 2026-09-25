@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T08:36:35.440Z",
+  "backed_up_at": "2026-09-25T09:07:55.440Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -25292,7 +25292,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-26",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
