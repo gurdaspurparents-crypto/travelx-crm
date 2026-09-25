@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T10:09:20.642Z",
+  "backed_up_at": "2026-09-25T10:10:08.492Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -7569,7 +7569,7 @@
       "city": "Chak Sharif",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-21",
@@ -25676,7 +25676,7 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-09-26",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1290,
@@ -25691,7 +25691,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-26",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1291,
@@ -25706,19 +25706,19 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-09-26",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1292,
       "call_date": "2026-09-25",
-      "agent_id": "AGT-1062",
-      "visit_id": 748,
+      "agent_id": "AGT-2008",
+      "visit_id": 749,
       "executive_name": "Yug",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "no call connected",
+      "agent_requirement": "bussy ",
       "interest_level": "Interested / Warm",
-      "call_result": "Call Connected / In Discussion",
+      "call_result": "Not Interested",
       "remarks": "",
       "next_followup_date": "2026-09-26",
       "payment_terms": "Not Discussed"
