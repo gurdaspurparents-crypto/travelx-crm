@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T06:02:31.590Z",
+  "backed_up_at": "2026-09-25T06:16:12.082Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -24593,6 +24593,21 @@
       "remarks": "",
       "next_followup_date": "2026-09-26",
       "payment_terms": null
+    },
+    {
+      "id": 1236,
+      "call_date": "2026-09-25",
+      "agent_id": "AGT-1397",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Calling: Connected / In Discussion",
+      "remarks": "",
+      "next_followup_date": null,
+      "payment_terms": "Advance Payment"
     }
   ],
   "queries": [
