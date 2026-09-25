@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T09:55:42.794Z",
+  "backed_up_at": "2026-09-25T09:59:01.115Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -7836,6 +7836,20 @@
       "area": "Pandori rd ",
       "agent_type": "Retail Travel Agent",
       "stage": "Visited",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-09-25",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2032",
+      "name": "pawan ",
+      "company_name": "Pawan cafe ",
+      "mobile": "+91 94648 63412",
+      "city": "Beant clg ",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-25",
@@ -25510,7 +25524,7 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-09-26",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1281,
@@ -25525,7 +25539,7 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-09-26",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1282,
@@ -25540,7 +25554,7 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-09-26",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1283,
@@ -25555,7 +25569,7 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-09-26",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1284,
@@ -25570,7 +25584,7 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-09-26",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1285,
@@ -25585,7 +25599,7 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-09-26",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1286,
@@ -25600,7 +25614,7 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-09-26",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1287,
@@ -25615,7 +25629,7 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-09-26",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1288,
@@ -25630,7 +25644,7 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-09-26",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
