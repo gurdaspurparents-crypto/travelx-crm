@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T09:07:55.440Z",
+  "backed_up_at": "2026-09-25T09:12:47.287Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -13018,6 +13018,23 @@
       "remarks": "",
       "next_followup_date": "2026-09-26",
       "location": "Kalijpur",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 814,
+      "visit_date": "2026-09-25",
+      "agent_id": "AGT-1050",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Jaspreet singh",
+      "mobile": "8872737461",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"International Flight\",\"Forex\",\"Hotel Booking\",\"Bus Booking\",\"Money Transfer\",\"Travel Insurance\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-26",
+      "location": "Bhotoya",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
