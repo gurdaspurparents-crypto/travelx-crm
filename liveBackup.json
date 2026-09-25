@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T11:39:22.388Z",
+  "backed_up_at": "2026-09-25T11:40:06.891Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4440,12 +4440,12 @@
       "payment_terms": "Not Discussed"
     },
     {
-      "id": "AGT-1638",
-      "name": "manjeet",
-      "company_name": "csc centre",
-      "mobile": "9592052921",
+      "id": "AGT-1640",
+      "name": "Mr.Harish kumar",
+      "company_name": "Sbi sewa kender",
+      "mobile": "7347485622",
       "city": "Pandori",
-      "area": "Pandori",
+      "area": "Pandori Dham",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
@@ -13078,23 +13078,6 @@
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
-    },
-    {
-      "id": 819,
-      "visit_date": "2026-09-25",
-      "agent_id": "AGT-1635",
-      "executive_name": "Bikramjit Singh",
-      "person_met": "Mr. Ashok kumar",
-      "mobile": "9592021880",
-      "is_new_agent": 0,
-      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
-      "response_level": "Interested / Warm",
-      "remarks": "Rate ",
-      "next_followup_date": "2026-09-26",
-      "location": "Pandori",
-      "gps_latitude": null,
-      "gps_longitude": null,
-      "gps_address": null
     }
   ],
   "telephonic_calls": [
@@ -14174,21 +14157,6 @@
       "agent_requirement": "",
       "interest_level": "Interested / Warm",
       "call_result": "Call Again Later",
-      "remarks": "",
-      "next_followup_date": "2026-09-09",
-      "payment_terms": null
-    },
-    {
-      "id": 478,
-      "call_date": "2026-09-07",
-      "agent_id": "AGT-1638",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-09",
       "payment_terms": null
@@ -24089,6 +24057,21 @@
       "agent_requirement": "phone of ",
       "interest_level": "Interested / Warm",
       "call_result": "Call Again Later",
+      "remarks": "",
+      "next_followup_date": "2026-09-25",
+      "payment_terms": null
+    },
+    {
+      "id": 1183,
+      "call_date": "2026-09-23",
+      "agent_id": "AGT-1640",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "no connected",
+      "interest_level": "Interested / Warm",
+      "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-25",
       "payment_terms": null
