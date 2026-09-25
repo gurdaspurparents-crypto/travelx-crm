@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T10:46:22.271Z",
+  "backed_up_at": "2026-09-25T10:47:58.839Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -1339,7 +1339,7 @@
       "city": "Dorangla",
       "area": "Dorangla Rd",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -25855,6 +25855,21 @@
       "agent_requirement": "good relpy",
       "interest_level": "Interested / Warm",
       "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-26",
+      "payment_terms": null
+    },
+    {
+      "id": 1300,
+      "call_date": "2026-09-25",
+      "agent_id": "AGT-1232",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "no connected",
+      "interest_level": "Interested / Warm",
+      "call_result": "Closed - Converted / Won",
       "remarks": "",
       "next_followup_date": "2026-09-26",
       "payment_terms": "Not Discussed"
