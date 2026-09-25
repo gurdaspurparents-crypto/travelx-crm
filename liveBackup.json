@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T10:43:22.479Z",
+  "backed_up_at": "2026-09-25T10:43:47.743Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -7863,7 +7863,7 @@
       "city": "Beant clg ",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-25",
@@ -13082,6 +13082,23 @@
       "mobile": "+91 94648 63412",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-09-26",
+      "location": "Beant clg ",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 818,
+      "visit_date": "2026-09-25",
+      "agent_id": "AGT-2033",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "nitin ",
+      "mobile": "+91 98788 50249",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\",\"Travel Insurance\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-09-26",
