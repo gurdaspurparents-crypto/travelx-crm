@@ -1348,7 +1348,7 @@ app.put('/api/queries/:id/convert', async (req, res) => {
       `UPDATE queries 
        SET status = 'Converted', booking_date = ?, booking_value = ?, booking_ref_no = ?, closing_employee = ?
        WHERE id = ?`,
-      [booking_date || '2026-08-29', booking_value, booking_ref_no, closing_employee || 'Pooja Rani', req.params.id]
+      [booking_date || new Date().toISOString().split('T')[0], booking_value, booking_ref_no, closing_employee || 'Pooja Rani', req.params.id]
     );
 
     const qry = await dbGet(`SELECT agent_id FROM queries WHERE id = ?`, [req.params.id]);
@@ -1594,9 +1594,114 @@ app.get('/api/dashboard', async (req, res) => {
       dormant: dormantAgents.count
     };
 
+    // ==================== MONTH-WISE PERFORMANCE & METRICS ====================
+    const selectedMonth = req.query.month || (targetDate.length === 7 ? targetDate : targetDate.slice(0, 7));
+    const totalNetworkCount = totalAgents?.count || 0;
+
+    const computeMonthMetrics = async (mStr) => {
+      const bikramVisitedRow = await dbGet(
+        `SELECT COUNT(DISTINCT agent_id) as count 
+         FROM marketing_visits 
+         WHERE visit_date LIKE ? AND (executive_name LIKE '%Bikram%' OR executive_name IS NULL OR executive_name = '')`,
+        [`${mStr}%`]
+      );
+      const bikramTotalVisitsRow = await dbGet(
+        `SELECT COUNT(id) as count 
+         FROM marketing_visits 
+         WHERE visit_date LIKE ? AND (executive_name LIKE '%Bikram%' OR executive_name IS NULL OR executive_name = '')`,
+        [`${mStr}%`]
+      );
+      const queryAgentsRow = await dbGet(
+        `SELECT COUNT(DISTINCT agent_id) as count FROM queries WHERE query_date LIKE ?`,
+        [`${mStr}%`]
+      );
+      const totalQueriesRow = await dbGet(
+        `SELECT COUNT(id) as count FROM queries WHERE query_date LIKE ?`,
+        [`${mStr}%`]
+      );
+      const activeAgentsRow = await dbGet(
+        `SELECT COUNT(DISTINCT agent_id) as count 
+         FROM queries 
+         WHERE (booking_date LIKE ? OR (booking_date IS NULL AND query_date LIKE ?)) AND status = 'Converted'`,
+        [`${mStr}%`, `${mStr}%`]
+      );
+      const ticketsIssuedRow = await dbGet(
+        `SELECT COUNT(id) as count 
+         FROM queries 
+         WHERE (booking_date LIKE ? OR (booking_date IS NULL AND query_date LIKE ?)) AND status = 'Converted'`,
+        [`${mStr}%`, `${mStr}%`]
+      );
+      const revenueRow = await dbGet(
+        `SELECT COALESCE(SUM(booking_value), 0) as total 
+         FROM queries 
+         WHERE (booking_date LIKE ? OR (booking_date IS NULL AND query_date LIKE ?)) AND status = 'Converted'`,
+        [`${mStr}%`, `${mStr}%`]
+      );
+
+      const visitedCount = bikramVisitedRow?.count || 0;
+      const totalVisitsCount = bikramTotalVisitsRow?.count || 0;
+      const pendingCount = Math.max(0, totalNetworkCount - visitedCount);
+      const coverage = totalNetworkCount > 0 ? Math.round((visitedCount / totalNetworkCount) * 100) : 0;
+      const qAgents = queryAgentsRow?.count || 0;
+      const totQueries = totalQueriesRow?.count || 0;
+      const actAgents = activeAgentsRow?.count || 0;
+      const inactAgents = Math.max(0, totalNetworkCount - actAgents);
+      const ticketsCount = ticketsIssuedRow?.count || 0;
+      const revTotal = revenueRow?.total || 0;
+      const winPct = totQueries > 0 ? Math.round((ticketsCount / totQueries) * 100) : 0;
+
+      const [yearStr, monthNum] = mStr.split('-');
+      const dateObj = new Date(parseInt(yearStr, 10), parseInt(monthNum, 10) - 1, 1);
+      const monthLabel = !isNaN(dateObj.getTime())
+        ? dateObj.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+        : mStr;
+
+      return {
+        month: mStr,
+        month_label: monthLabel,
+        total_network_agents: totalNetworkCount,
+        bikram_visited_agents: visitedCount,
+        bikram_total_visits: totalVisitsCount,
+        pending_agents: pendingCount,
+        coverage_pct: coverage,
+        query_agents: qAgents,
+        total_queries: totQueries,
+        active_agents: actAgents,
+        non_active_agents: inactAgents,
+        tickets_issued: ticketsCount,
+        revenue: revTotal,
+        win_rate: winPct
+      };
+    };
+
+    const monthlyPerformance = await computeMonthMetrics(selectedMonth);
+
+    // Compute month-wise history for all recorded months
+    const visitMonths = await dbAll(`SELECT DISTINCT substr(visit_date, 1, 7) as m FROM marketing_visits WHERE visit_date IS NOT NULL`);
+    const queryMonths = await dbAll(`SELECT DISTINCT substr(query_date, 1, 7) as m FROM queries WHERE query_date IS NOT NULL`);
+    const bookingMonths = await dbAll(`SELECT DISTINCT substr(booking_date, 1, 7) as m FROM queries WHERE booking_date IS NOT NULL`);
+
+    const allMonthsSet = new Set();
+    visitMonths.forEach(r => r.m && r.m.length === 7 && allMonthsSet.add(r.m));
+    queryMonths.forEach(r => r.m && r.m.length === 7 && allMonthsSet.add(r.m));
+    bookingMonths.forEach(r => r.m && r.m.length === 7 && allMonthsSet.add(r.m));
+    allMonthsSet.add(new Date().toISOString().slice(0, 7));
+    if (selectedMonth && selectedMonth.length === 7) allMonthsSet.add(selectedMonth);
+
+    const sortedMonths = Array.from(allMonthsSet).sort().reverse();
+    const monthWiseHistory = [];
+    for (const mStr of sortedMonths) {
+      if (mStr === selectedMonth) {
+        monthWiseHistory.push(monthlyPerformance);
+      } else {
+        monthWiseHistory.push(await computeMonthMetrics(mStr));
+      }
+    }
+
     res.json({
       success: true,
       target_date: targetDate,
+      selected_month: selectedMonth,
       today: {
         target_date: targetDate,
         visits: todayVisits.count,
@@ -1609,6 +1714,8 @@ app.get('/api/dashboard', async (req, res) => {
         pending: todayPending.count,
         revenue: todayRevenue.total
       },
+      monthly_performance: monthlyPerformance,
+      month_wise_history: monthWiseHistory,
       funnel,
       territory_targets: territoryTargets,
       business_results: {

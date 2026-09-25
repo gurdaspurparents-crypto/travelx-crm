@@ -14,6 +14,10 @@ export default function ManagementDashboard({ onNavigate, onOpenAgentDrawer, onO
   const todayStr = useMemo(() => new Date().toISOString().split('T')[0], []);
   const [selectedDate, setSelectedDate] = useState(todayStr);
 
+  const currentMonthStr = useMemo(() => new Date().toISOString().slice(0, 7), []);
+  const [selectedMonth, setSelectedMonth] = useState(currentMonthStr);
+  const [showMonthWiseMatrix, setShowMonthWiseMatrix] = useState(true);
+
   // Collapsible Section Accordion States
   const [showNextMonthTargets, setShowNextMonthTargets] = useState(true);
   const [showConveyanceAudit, setShowConveyanceAudit] = useState(false);
@@ -25,9 +29,9 @@ export default function ManagementDashboard({ onNavigate, onOpenAgentDrawer, onO
   const [editEndKm, setEditEndKm] = useState('');
 
   useEffect(() => {
-    fetchDashboardData(selectedDate);
+    fetchDashboardData(selectedDate, selectedMonth);
     fetchConveyanceReport();
-  }, [selectedDate]);
+  }, [selectedDate, selectedMonth]);
 
   const fetchConveyanceReport = async () => {
     try {
@@ -39,9 +43,9 @@ export default function ManagementDashboard({ onNavigate, onOpenAgentDrawer, onO
     }
   };
 
-  const fetchDashboardData = async (date = selectedDate) => {
+  const fetchDashboardData = async (date = selectedDate, month = selectedMonth) => {
     try {
-      const res = await fetch(`/api/dashboard?date=${date}`);
+      const res = await fetch(`/api/dashboard?date=${date}&month=${month}`);
       const json = await res.json();
       if (json.success) {
         setData(json);
@@ -127,6 +131,9 @@ export default function ManagementDashboard({ onNavigate, onOpenAgentDrawer, onO
   const funnel = data?.funnel || {};
   const territoryTargets = Array.isArray(data?.territory_targets) ? data.territory_targets : [];
   const business_results = data?.business_results || {};
+
+  const monthlyPerf = data?.monthly_performance || {};
+  const monthHistory = Array.isArray(data?.month_wise_history) ? data.month_wise_history : [];
 
   const totalUnvisitedNextMonth = territoryTargets.reduce((acc, t) => acc + (t.unvisited_count || 0), 0);
   const winRate = (business_results.total_queries_count && business_results.total_queries_count > 0)
@@ -266,6 +273,365 @@ export default function ManagementDashboard({ onNavigate, onOpenAgentDrawer, onO
             </span>
           </div>
         </div>
+      </div>
+
+      {/* 2.5 📊 MONTH-WISE B2B FIELD COVERAGE & AGENT CONVERSION ANALYTICS (महीने के अनुसार रिपोर्ट) */}
+      <div className="bg-slate-900/95 border border-sky-500/30 rounded-2xl overflow-hidden shadow-2xl space-y-0">
+        {/* Header with Title and Month Controls */}
+        <div 
+          onClick={() => setShowMonthWiseMatrix(!showMonthWiseMatrix)}
+          className="p-4 sm:p-5 bg-gradient-to-r from-slate-900 via-[#0b1329] to-sky-950/40 border-b border-slate-800 flex flex-col lg:flex-row lg:items-center justify-between gap-4 cursor-pointer select-none hover:bg-slate-850/80 transition"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 shrink-0">
+              <BarChart3 className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2 flex-wrap">
+                <h3 className="text-base sm:text-lg font-black text-white flex items-center gap-2">
+                  📊 Month-Wise Field Coverage & Agent Conversion Analytics
+                </h3>
+                <span className="bg-sky-500/20 text-sky-300 border border-sky-500/30 text-xs px-2.5 py-0.5 rounded-full font-bold">
+                  {monthlyPerf?.month_label || selectedMonth} Report
+                </span>
+              </div>
+              <p className="text-xs text-slate-400 mt-0.5">
+                Bikramjit Singh field visits, unvisited pending agents, active vs non-active agents, queries received & tickets issued
+              </p>
+            </div>
+          </div>
+
+          {/* Month Selector Pills & Picker */}
+          <div className="flex items-center gap-2 flex-wrap" onClick={e => e.stopPropagation()}>
+            {/* Quick Month Buttons */}
+            <button
+              type="button"
+              onClick={() => {
+                setSelectedMonth(currentMonthStr);
+                fetchDashboardData(selectedDate, currentMonthStr);
+              }}
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
+                selectedMonth === currentMonthStr
+                  ? 'bg-sky-600 text-white shadow-md shadow-sky-600/30'
+                  : 'bg-slate-950 text-slate-400 hover:text-slate-200 border border-slate-800'
+              }`}
+            >
+              ⚡ This Month
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                const prev = new Date();
+                prev.setDate(1);
+                prev.setMonth(prev.getMonth() - 1);
+                const prevMonthStr = prev.toISOString().slice(0, 7);
+                setSelectedMonth(prevMonthStr);
+                fetchDashboardData(selectedDate, prevMonthStr);
+              }}
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
+                (() => {
+                  const prev = new Date();
+                  prev.setDate(1);
+                  prev.setMonth(prev.getMonth() - 1);
+                  return selectedMonth === prev.toISOString().slice(0, 7);
+                })()
+                  ? 'bg-sky-600 text-white shadow-md shadow-sky-600/30'
+                  : 'bg-slate-950 text-slate-400 hover:text-slate-200 border border-slate-800'
+              }`}
+            >
+              ⏮️ Last Month
+            </button>
+
+            {/* Custom Month Picker */}
+            <div className="flex items-center gap-1.5 bg-slate-950 border border-slate-800 px-2.5 py-1.5 rounded-xl text-xs">
+              <Calendar className="w-3.5 h-3.5 text-sky-400" />
+              <input
+                type="month"
+                value={selectedMonth}
+                onChange={e => {
+                  if (e.target.value) {
+                    setSelectedMonth(e.target.value);
+                    fetchDashboardData(selectedDate, e.target.value);
+                  }
+                }}
+                className="bg-transparent text-slate-200 font-mono text-xs focus:outline-none cursor-pointer"
+              />
+            </div>
+
+            {/* Toggle Collapse */}
+            <button
+              type="button"
+              onClick={() => setShowMonthWiseMatrix(!showMonthWiseMatrix)}
+              className="p-1.5 rounded-lg bg-slate-800/60 hover:bg-slate-800 text-slate-300 transition"
+              title={showMonthWiseMatrix ? "Collapse Section" : "Expand Section"}
+            >
+              {showMonthWiseMatrix ? <ChevronUp className="w-4 h-4 text-sky-400" /> : <ChevronDown className="w-4 h-4 text-sky-400" />}
+            </button>
+          </div>
+        </div>
+
+        {showMonthWiseMatrix && (
+          <div className="p-4 sm:p-6 space-y-6">
+            {/* 4 Dedicated Monthly Metric Cards for Selected Month */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              
+              {/* Card 1: Bikram Visits vs Pending Agencies */}
+              <div className="bg-slate-950/80 border border-amber-500/30 rounded-xl p-4 relative overflow-hidden shadow">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 to-orange-500"></div>
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
+                    🚗 Bikramjit Visits & Pending
+                  </span>
+                  <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/20">
+                    {monthlyPerf?.coverage_pct || 0}% Coverage
+                  </span>
+                </div>
+
+                <div className="mt-2.5 flex items-baseline gap-2">
+                  <span className="text-2xl sm:text-3xl font-black font-mono text-amber-300">
+                    {monthlyPerf?.bikram_visited_agents || 0}
+                  </span>
+                  <span className="text-xs text-slate-400">Visited</span>
+                  <span className="text-slate-600 font-mono">/</span>
+                  <span className="text-xl sm:text-2xl font-black font-mono text-rose-400">
+                    {monthlyPerf?.pending_agents || 0}
+                  </span>
+                  <span className="text-xs text-slate-400">Pending</span>
+                </div>
+
+                {/* Visual Progress Bar */}
+                <div className="w-full bg-slate-900 h-2 rounded-full mt-3 overflow-hidden border border-slate-800">
+                  <div 
+                    className="bg-gradient-to-r from-amber-500 to-emerald-500 h-full rounded-full transition-all duration-500"
+                    style={{ width: `${Math.min(100, Math.max(3, monthlyPerf?.coverage_pct || 0))}%` }}
+                  ></div>
+                </div>
+
+                <div className="flex items-center justify-between text-[11px] text-slate-400 mt-2.5 pt-2 border-t border-slate-800/80">
+                  <span>{monthlyPerf?.bikram_total_visits || 0} Total Visits Logged</span>
+                  <span className="text-amber-400/90 font-semibold">Of {monthlyPerf?.total_network_agents || 0} Agents</span>
+                </div>
+              </div>
+
+              {/* Card 2: Active Booking Agents vs Non-Active */}
+              <div 
+                onClick={() => onNavigate && onNavigate('agents', { stage: 'Active' })}
+                className="bg-slate-950/80 border border-emerald-500/30 rounded-xl p-4 relative overflow-hidden shadow cursor-pointer hover:border-emerald-500/60 transition group"
+              >
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-400"></div>
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
+                    🟢 Active vs Non-Active
+                  </span>
+                  <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
+                    {monthlyPerf?.total_network_agents ? Math.round(((monthlyPerf?.active_agents || 0) / monthlyPerf?.total_network_agents) * 100) : 0}% Active
+                  </span>
+                </div>
+
+                <div className="mt-2.5 flex items-baseline gap-2">
+                  <span className="text-2xl sm:text-3xl font-black font-mono text-emerald-400">
+                    {monthlyPerf?.active_agents || 0}
+                  </span>
+                  <span className="text-xs text-emerald-300/80 font-medium">Active</span>
+                  <span className="text-slate-600 font-mono">/</span>
+                  <span className="text-xl sm:text-2xl font-black font-mono text-slate-300">
+                    {monthlyPerf?.non_active_agents || 0}
+                  </span>
+                  <span className="text-xs text-slate-400">Non-Active</span>
+                </div>
+
+                {/* Active Progress Bar */}
+                <div className="w-full bg-slate-900 h-2 rounded-full mt-3 overflow-hidden border border-slate-800">
+                  <div 
+                    className="bg-emerald-500 h-full rounded-full transition-all duration-500"
+                    style={{ width: `${Math.min(100, Math.max(3, monthlyPerf?.total_network_agents ? ((monthlyPerf?.active_agents || 0) / monthlyPerf?.total_network_agents) * 100 : 0))}%` }}
+                  ></div>
+                </div>
+
+                <div className="flex items-center justify-between text-[11px] text-slate-400 mt-2.5 pt-2 border-t border-slate-800/80">
+                  <span>1+ Converted Bookings</span>
+                  <span className="text-emerald-400 font-semibold flex items-center gap-0.5 group-hover:translate-x-0.5 transition">
+                    Inspect in Master <ChevronRight className="w-3 h-3" />
+                  </span>
+                </div>
+              </div>
+
+              {/* Card 3: Queries Giving Agents vs Total Queries */}
+              <div 
+                onClick={() => onNavigate && onNavigate('queries')}
+                className="bg-slate-950/80 border border-sky-500/30 rounded-xl p-4 relative overflow-hidden shadow cursor-pointer hover:border-sky-500/60 transition group"
+              >
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-sky-500 to-indigo-500"></div>
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-bold text-sky-400 uppercase tracking-wider flex items-center gap-1.5">
+                    📋 Query Giving Agents
+                  </span>
+                  <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-300 border border-sky-500/20">
+                    {monthlyPerf?.total_queries || 0} Queries
+                  </span>
+                </div>
+
+                <div className="mt-2.5 flex items-baseline gap-2">
+                  <span className="text-2xl sm:text-3xl font-black font-mono text-sky-300">
+                    {monthlyPerf?.query_agents || 0}
+                  </span>
+                  <span className="text-xs text-slate-400">Agents Gave Enquiries</span>
+                </div>
+
+                <div className="flex items-center justify-between text-[11px] bg-slate-900/90 px-2.5 py-1.5 rounded-lg border border-slate-800 mt-3">
+                  <span className="text-slate-400">Tickets Issued:</span>
+                  <span className="font-mono font-bold text-emerald-400">{monthlyPerf?.tickets_issued || 0} Won ({monthlyPerf?.win_rate || 0}% Win Rate)</span>
+                </div>
+
+                <div className="flex items-center justify-between text-[11px] text-slate-400 mt-2.5 pt-2 border-t border-slate-800/80">
+                  <span>Enquiry Flow</span>
+                  <span className="text-sky-400 font-semibold flex items-center gap-0.5 group-hover:translate-x-0.5 transition">
+                    View Enquiries <ChevronRight className="w-3 h-3" />
+                  </span>
+                </div>
+              </div>
+
+              {/* Card 4: Tickets Issued & Monthly Revenue */}
+              <div className="bg-slate-950/80 border border-indigo-500/30 rounded-xl p-4 relative overflow-hidden shadow">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 to-violet-500"></div>
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-bold text-indigo-400 uppercase tracking-wider flex items-center gap-1.5">
+                    🎫 Tickets & Sales Value
+                  </span>
+                  <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
+                    {monthlyPerf?.month_label}
+                  </span>
+                </div>
+
+                <p className="text-2xl sm:text-3xl font-black font-mono text-emerald-400 mt-2.5 tracking-tight">
+                  ₹{(monthlyPerf?.revenue || 0).toLocaleString('en-IN')}
+                </p>
+
+                <div className="flex items-center justify-between text-[11px] bg-slate-900/90 px-2.5 py-1.5 rounded-lg border border-slate-800 mt-3">
+                  <span className="text-slate-400">Confirmed Tickets:</span>
+                  <span className="font-mono font-bold text-emerald-400">{monthlyPerf?.tickets_issued || 0} Bookings</span>
+                </div>
+
+                <div className="flex items-center justify-between text-[11px] text-slate-400 mt-2.5 pt-2 border-t border-slate-800/80">
+                  <span>Avg Ticket Value:</span>
+                  <span className="font-mono font-semibold text-slate-200">
+                    ₹{monthlyPerf?.tickets_issued > 0 ? Math.round(monthlyPerf.revenue / monthlyPerf.tickets_issued).toLocaleString('en-IN') : '0'}
+                  </span>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Month-by-Month Growth & Conversion Matrix Table */}
+            <div className="bg-slate-950/60 border border-slate-800 rounded-xl overflow-hidden shadow">
+              <div className="p-3.5 sm:p-4 bg-[#080d1a] border-b border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4 text-sky-400" />
+                  <h4 className="text-xs sm:text-sm font-bold text-slate-200">
+                    🗓️ Month-by-Month Performance & Conversion Matrix (महीने के अनुसार तुलनात्मक चार्ट)
+                  </h4>
+                </div>
+                <span className="text-[11px] text-slate-400">
+                  Click any row to switch active month view above
+                </span>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-xs text-slate-300">
+                  <thead className="bg-[#050811] text-[10px] text-slate-400 uppercase font-bold tracking-wider border-b border-slate-800">
+                    <tr>
+                      <th className="p-3">Month (महीना)</th>
+                      <th className="p-3 text-center">Total Network</th>
+                      <th className="p-3 text-center font-bold text-amber-400">Bikram Visited</th>
+                      <th className="p-3 text-center font-bold text-rose-400">Pending Unvisited</th>
+                      <th className="p-3 text-center font-bold text-sky-400">Coverage %</th>
+                      <th className="p-3 text-center">Query Agents</th>
+                      <th className="p-3 text-center">Total Queries</th>
+                      <th className="p-3 text-center font-bold text-emerald-400">Active Booking Agents</th>
+                      <th className="p-3 text-center">Non-Active Agents</th>
+                      <th className="p-3 text-center font-bold text-indigo-400">Tickets Issued</th>
+                      <th className="p-3 text-right font-bold text-emerald-400">Gross Revenue (₹)</th>
+                      <th className="p-3 text-center">Win Rate</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-800/60 font-medium">
+                    {monthHistory.length === 0 ? (
+                      <tr>
+                        <td colSpan="12" className="p-6 text-center text-slate-500">
+                          No monthly history records available yet.
+                        </td>
+                      </tr>
+                    ) : (
+                      monthHistory.map((mRow) => {
+                        const isSelected = mRow.month === selectedMonth;
+                        return (
+                          <tr 
+                            key={mRow.month}
+                            onClick={() => {
+                              setSelectedMonth(mRow.month);
+                              fetchDashboardData(selectedDate, mRow.month);
+                            }}
+                            className={`cursor-pointer transition ${
+                              isSelected 
+                                ? 'bg-sky-500/10 hover:bg-sky-500/15 border-l-4 border-l-sky-500' 
+                                : 'hover:bg-slate-850/60'
+                            }`}
+                          >
+                            <td className="p-3 font-mono font-bold text-slate-100 flex items-center gap-2">
+                              {isSelected && <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>}
+                              <span>{mRow.month_label}</span>
+                              {isSelected && (
+                                <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-sky-500/20 text-sky-300 font-bold">
+                                  SELECTED
+                                </span>
+                              )}
+                            </td>
+                            <td className="p-3 text-center font-mono text-slate-400">{mRow.total_network_agents}</td>
+                            <td className="p-3 text-center font-mono font-bold text-amber-300">
+                              {mRow.bikram_visited_agents}
+                              <span className="text-[10px] text-slate-500 block font-normal">({mRow.bikram_total_visits} visits)</span>
+                            </td>
+                            <td className="p-3 text-center font-mono font-bold text-rose-400">{mRow.pending_agents}</td>
+                            <td className="p-3 text-center">
+                              <div className="flex flex-col items-center gap-1">
+                                <span className="font-mono font-bold text-sky-400">{mRow.coverage_pct}%</span>
+                                <div className="w-16 bg-slate-900 h-1.5 rounded-full overflow-hidden border border-slate-800">
+                                  <div 
+                                    className="bg-sky-500 h-full rounded-full" 
+                                    style={{ width: `${Math.min(100, Math.max(3, mRow.coverage_pct))}%` }}
+                                  ></div>
+                                </div>
+                              </div>
+                            </td>
+                            <td className="p-3 text-center font-mono text-slate-200">{mRow.query_agents}</td>
+                            <td className="p-3 text-center font-mono text-sky-300">{mRow.total_queries}</td>
+                            <td className="p-3 text-center font-mono font-black text-emerald-400 text-sm">
+                              {mRow.active_agents}
+                              {mRow.active_agents > 0 && (
+                                <span className="text-[9px] font-mono px-1 rounded bg-emerald-500/20 text-emerald-300 block w-fit mx-auto mt-0.5">
+                                  ACTIVE
+                                </span>
+                              )}
+                            </td>
+                            <td className="p-3 text-center font-mono text-slate-400">{mRow.non_active_agents}</td>
+                            <td className="p-3 text-center font-mono font-bold text-indigo-300">{mRow.tickets_issued}</td>
+                            <td className="p-3 text-right font-mono font-black text-emerald-400">
+                              ₹{mRow.revenue.toLocaleString('en-IN')}
+                            </td>
+                            <td className="p-3 text-center font-mono text-slate-300">
+                              {mRow.win_rate}%
+                            </td>
+                          </tr>
+                        );
+                      })
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        )}
       </div>
 
       {/* 3. 🎯 NEXT MONTH MANDATORY TARGETS & GROWTH ROADMAP (अगले महीने क्या MUST होना चाहिए) */}
