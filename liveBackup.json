@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T09:29:27.990Z",
+  "backed_up_at": "2026-09-25T09:30:04.063Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -2991,7 +2991,7 @@
       "city": "Jahkolri",
       "area": "Jhakolari",
       "agent_type": "Retail Travel Agent",
-      "stage": "Active",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -7541,7 +7541,7 @@
       "city": "Tibri",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Active",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-21",
@@ -25345,6 +25345,21 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-09-26",
+      "payment_terms": null
+    },
+    {
+      "id": 1273,
+      "call_date": "2026-09-25",
+      "agent_id": "AGT-2010",
+      "visit_id": 757,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "bussy ",
+      "interest_level": "Interested / Warm",
+      "call_result": "Call Connected / In Discussion",
+      "remarks": "",
+      "next_followup_date": "2026-09-26",
       "payment_terms": "Not Discussed"
     }
   ],
@@ -27701,11 +27716,11 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-09-26",
-      "status": "Converted",
-      "booking_date": "2026-08-29",
-      "booking_value": 1,
-      "booking_ref_no": "1",
-      "closing_employee": "Simranjit Kaur",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
       "rejection_reason": null,
       "rejection_remarks": null
     },
@@ -27741,11 +27756,11 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-09-26",
-      "status": "Converted",
-      "booking_date": "2026-08-29",
-      "booking_value": 1,
-      "booking_ref_no": "1",
-      "closing_employee": "Simranjit Kaur",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
       "rejection_reason": null,
       "rejection_remarks": null
     }
