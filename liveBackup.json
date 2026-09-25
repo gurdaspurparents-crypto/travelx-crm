@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T12:17:41.131Z",
+  "backed_up_at": "2026-09-25T12:18:07.003Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -1522,20 +1522,6 @@
       "area": "Ghoman",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1263",
-      "name": "narayan sharma ",
-      "company_name": "oss sharma",
-      "mobile": "9780964896",
-      "city": "Ghuman",
-      "area": "Ghoman",
-      "agent_type": "Retail Travel Agent",
-      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -12870,21 +12856,6 @@
       "payment_terms": null
     },
     {
-      "id": 429,
-      "call_date": "2026-09-07",
-      "agent_id": "AGT-1263",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Warm",
-      "call_result": "Call Again Later",
-      "remarks": "",
-      "next_followup_date": "2026-09-09",
-      "payment_terms": null
-    },
-    {
       "id": 430,
       "call_date": "2026-09-07",
       "agent_id": "AGT-1264",
@@ -18788,21 +18759,6 @@
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
       "agent_requirement": "no call number",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
-      "remarks": "",
-      "next_followup_date": "2026-09-18",
-      "payment_terms": null
-    },
-    {
-      "id": 888,
-      "call_date": "2026-09-16",
-      "agent_id": "AGT-1263",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "no call busy",
       "interest_level": "Interested / Warm",
       "call_result": "No Response",
       "remarks": "",
@@ -25764,26 +25720,6 @@
       "booking_ref_no": null,
       "closing_employee": null,
       "rejection_reason": "Customer Did Not Confirm",
-      "rejection_remarks": ""
-    },
-    {
-      "id": "QRY-5085",
-      "query_date": "2026-09-16",
-      "agent_id": "AGT-1263",
-      "product": "International Flight",
-      "query_details": "imf-del",
-      "travel_date": "2026-10-01",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-09-17",
-      "status": "Rejected",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
-      "rejection_reason": "Price",
       "rejection_remarks": ""
     },
     {
