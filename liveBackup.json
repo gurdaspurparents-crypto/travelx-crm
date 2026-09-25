@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T11:43:49.181Z",
+  "backed_up_at": "2026-09-25T11:44:16.017Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4362,20 +4362,6 @@
       "mobile": "8872487533",
       "city": "Naushera Majha Singh",
       "area": "Naushera Mjja Singh",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1634",
-      "name": "Mr. Harish",
-      "company_name": "CSC centre",
-      "mobile": "7087867600",
-      "city": "Pachowal",
-      "area": "Pachowal",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
@@ -18573,21 +18559,6 @@
       "agent_requirement": "good relpy ",
       "interest_level": "Interested / Warm",
       "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-14",
-      "payment_terms": null
-    },
-    {
-      "id": 802,
-      "call_date": "2026-09-12",
-      "agent_id": "AGT-1634",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "busy",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-14",
       "payment_terms": null
