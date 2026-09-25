@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T11:48:42.006Z",
+  "backed_up_at": "2026-09-25T11:50:02.359Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -3802,20 +3802,6 @@
       "mobile": "9914259306",
       "city": "Kalijpur",
       "area": "Kalizpur",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1568",
-      "name": "Mr. Sonu",
-      "company_name": "Shiv HD studio & CSC centre",
-      "mobile": "9417817633",
-      "city": "Kanwa",
-      "area": "Kanwa",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
@@ -19203,21 +19189,6 @@
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
       "agent_requirement": "busy ",
-      "interest_level": "Interested / Warm",
-      "call_result": "Follow-up Required",
-      "remarks": "",
-      "next_followup_date": "2026-09-14",
-      "payment_terms": null
-    },
-    {
-      "id": 849,
-      "call_date": "2026-09-12",
-      "agent_id": "AGT-1568",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "busy    ",
       "interest_level": "Interested / Warm",
       "call_result": "Follow-up Required",
       "remarks": "",
