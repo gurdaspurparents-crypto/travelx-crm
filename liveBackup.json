@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T12:15:14.975Z",
+  "backed_up_at": "2026-09-25T12:15:25.225Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4516,20 +4516,6 @@
       "mobile": "9592034448",
       "city": "Harchowal",
       "area": "Harchowal",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1717",
-      "name": "Mr.ladda",
-      "company_name": "ladda travels",
-      "mobile": "9988586878",
-      "city": "Qadian",
-      "area": "Qadian Lada",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
@@ -14728,21 +14714,6 @@
       "payment_terms": null
     },
     {
-      "id": 562,
-      "call_date": "2026-09-08",
-      "agent_id": "AGT-1717",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Warm",
-      "call_result": "Not Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-10",
-      "payment_terms": null
-    },
-    {
       "id": 565,
       "call_date": "2026-09-08",
       "agent_id": "AGT-1721",
@@ -17453,21 +17424,6 @@
       "agent_requirement": "no good relpy",
       "interest_level": "Interested / Warm",
       "call_result": "Requirement Received",
-      "remarks": "",
-      "next_followup_date": "2026-09-13",
-      "payment_terms": null
-    },
-    {
-      "id": 776,
-      "call_date": "2026-09-11",
-      "agent_id": "AGT-1717",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy ",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-13",
       "payment_terms": null
@@ -21376,21 +21332,6 @@
       "id": 1070,
       "call_date": "2026-09-21",
       "agent_id": "AGT-1714",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-23",
-      "payment_terms": null
-    },
-    {
-      "id": 1071,
-      "call_date": "2026-09-21",
-      "agent_id": "AGT-1717",
       "visit_id": null,
       "executive_name": "Yug",
       "is_connected": 1,
