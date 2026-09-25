@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T12:23:36.704Z",
+  "backed_up_at": "2026-09-25T12:26:47.073Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6237,20 +6237,6 @@
       "company_name": "visa point ",
       "mobile": "7986046910",
       "city": "Gurdaspur",
-      "area": "Main Market",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikramjit Singh",
-      "assigned_telephonic_exec": "Simranjit Kaur",
-      "created_at": "2026-09-07",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1951",
-      "name": "sukhinder singh",
-      "company_name": "sidhu generl store",
-      "mobile": "9872560625",
-      "city": "Sri Hargobindpur",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
@@ -17769,21 +17755,6 @@
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
       "agent_requirement": "busy ",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
-      "remarks": "",
-      "next_followup_date": "2026-09-14",
-      "payment_terms": null
-    },
-    {
-      "id": 812,
-      "call_date": "2026-09-12",
-      "agent_id": "AGT-1951",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "busy",
       "interest_level": "Interested / Warm",
       "call_result": "No Response",
       "remarks": "",
