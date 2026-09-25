@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T06:16:36.970Z",
+  "backed_up_at": "2026-09-25T06:21:16.961Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -7783,6 +7783,20 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-24",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2025",
+      "name": "MR. GORAV ",
+      "company_name": "SBI ",
+      "mobile": "+91 97801 46520",
+      "city": "pandori ",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-09-25",
       "payment_terms": "Not Discussed"
     }
   ],
@@ -24607,7 +24621,7 @@
       "call_result": "Calling: Connected / In Discussion",
       "remarks": "",
       "next_followup_date": null,
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 1237,
@@ -24622,7 +24636,7 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-09-26",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
