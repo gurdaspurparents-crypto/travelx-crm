@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T11:44:27.238Z",
+  "backed_up_at": "2026-09-25T11:44:57.833Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -2956,20 +2956,6 @@
       "payment_terms": "Not Discussed"
     },
     {
-      "id": "AGT-1452",
-      "name": "DALJINDER ",
-      "company_name": "CSC CENTRE",
-      "mobile": "9888938446",
-      "city": "Jahkolri",
-      "area": "Jahkolri",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
       "id": "AGT-1456",
       "name": "mr.deepak",
       "company_name": "deepak internet café",
@@ -4370,6 +4356,20 @@
       "payment_terms": "Not Discussed"
     },
     {
+      "id": "AGT-1634",
+      "name": "Mr. Harish",
+      "company_name": "CSC centre",
+      "mobile": "7087867600",
+      "city": "Pachowal",
+      "area": "Pachowal",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Followup",
+      "assigned_marketing_exec": "Bikram",
+      "assigned_telephonic_exec": "Simran",
+      "created_at": "2026-08-29",
+      "payment_terms": "Not Discussed"
+    },
+    {
       "id": "AGT-1635",
       "name": "Mr. Ashok kumar",
       "company_name": "AK cyber café",
@@ -4936,6 +4936,20 @@
       "mobile": "9988225389",
       "city": "Qadian",
       "area": "Qadian",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Followup",
+      "assigned_marketing_exec": "Bikram",
+      "assigned_telephonic_exec": "Simran",
+      "created_at": "2026-08-29",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-1730",
+      "name": "Mr.Deepak",
+      "company_name": "Jasmeet cyber café",
+      "mobile": "9306842891",
+      "city": "Rasulpur",
+      "area": "Rasulpur",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
@@ -18550,9 +18564,39 @@
       "payment_terms": null
     },
     {
+      "id": 802,
+      "call_date": "2026-09-12",
+      "agent_id": "AGT-1634",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "busy",
+      "interest_level": "Interested / Warm",
+      "call_result": "No Response",
+      "remarks": "",
+      "next_followup_date": "2026-09-14",
+      "payment_terms": null
+    },
+    {
       "id": 803,
       "call_date": "2026-09-12",
       "agent_id": "AGT-1645",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "busy",
+      "interest_level": "Interested / Warm",
+      "call_result": "No Response",
+      "remarks": "",
+      "next_followup_date": "2026-09-14",
+      "payment_terms": null
+    },
+    {
+      "id": 804,
+      "call_date": "2026-09-12",
+      "agent_id": "AGT-1730",
       "visit_id": null,
       "executive_name": "Yug",
       "is_connected": 1,
@@ -23945,21 +23989,6 @@
       "agent_requirement": "phone of ",
       "interest_level": "Interested / Warm",
       "call_result": "Call Again Later",
-      "remarks": "",
-      "next_followup_date": "2026-09-25",
-      "payment_terms": null
-    },
-    {
-      "id": 1184,
-      "call_date": "2026-09-23",
-      "agent_id": "AGT-1452",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "no connected",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-25",
       "payment_terms": null
