@@ -142,10 +142,11 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
   };
 
   // Log Call Form State
+  const isInitialEdit = modalType === 'edit_call';
   const [callForm, setCallForm] = useState({
-    id: data?.call_id || data?.id || null,
+    id: isInitialEdit ? (data?.call_id || data?.id || null) : null,
     call_date: data?.call_date || new Date().toISOString().split('T')[0],
-    agent_id: data?.agent_id || data?.id || '',
+    agent_id: data?.agent_id || (!isInitialEdit ? data?.id : '') || '',
     visit_id: data?.visit_id || null,
     executive_name: data?.executive_name || data?.call_executive || 'Simranjit Kaur',
     is_connected: data?.is_connected !== undefined ? !!data.is_connected : true,
@@ -167,10 +168,14 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
         try { parsedServices = JSON.parse(data.services_discussed); } catch (e) { parsedServices = [data.services_discussed]; }
       }
 
+      const isEditModal = modalType === 'edit_call';
+      const callRecordId = isEditModal ? (data.call_id || data.id || null) : null;
+      const targetAgentId = data.agent_id || (!isEditModal ? data.id : '') || '';
+
       setCallForm({
-        id: data.call_id || (modalType === 'edit_call' || data.call_result ? data.id : null),
+        id: callRecordId,
         call_date: data.call_date || new Date().toISOString().split('T')[0],
-        agent_id: data.agent_id || data.id || '',
+        agent_id: targetAgentId,
         visit_id: data.visit_id || null,
         executive_name: data.executive_name || data.call_executive || 'Simranjit Kaur',
         is_connected: data.is_connected !== undefined ? !!data.is_connected : true,
@@ -324,13 +329,15 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
   const handleCallSubmit = async (e, forceNew = false) => {
     if (e && e.preventDefault) e.preventDefault();
     try {
-      const isEdit = !forceNew && !!callForm.id;
+      const isEdit = !forceNew && modalType === 'edit_call' && !!callForm.id;
       const url = isEdit ? `/api/calls/${callForm.id}` : '/api/calls';
       const method = isEdit ? 'PUT' : 'POST';
 
       const payload = { ...callForm };
-      if (forceNew) {
+      if (!isEdit) {
         delete payload.id;
+      }
+      if (forceNew) {
         payload.call_date = new Date().toISOString().split('T')[0];
       }
 
@@ -411,7 +418,7 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
         <div className="flex justify-between items-center border-b border-slate-800 pb-4 mb-4">
           <h3 className="text-xl font-extrabold text-white flex items-center gap-2">
             {modalType === 'log_visit' && <><MapPin className="w-5 h-5 text-yellow-500" /> Stage 1: Log Marketing Visit</>}
-            {(modalType === 'log_call' || modalType === 'edit_call') && <><Phone className="w-5 h-5 text-blue-500" /> {callForm.id ? '✏️ Edit Telephonic Call' : 'Stage 2: Log Telephonic Call'}</>}
+            {(modalType === 'log_call' || modalType === 'edit_call') && <><Phone className="w-5 h-5 text-blue-500" /> {modalType === 'edit_call' ? '✏️ Edit Telephonic Call' : 'Stage 2: Log Telephonic Call'}</>}
             {modalType === 'create_query' && <><FileText className="w-5 h-5 text-amber-500" /> Stage 3: Create Agent Query</>}
             {modalType === 'create_agent' && <><UserPlus className="w-5 h-5 text-sky-500" /> Add New Travel Agency</>}
             {modalType === 'edit_agent' && <><UserPlus className="w-5 h-5 text-sky-500" /> ✏️ Edit Agent Details ({agentForm.id})</>}
@@ -820,7 +827,7 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
               ></textarea>
             </div>
 
-            {callForm.id ? (
+            {(modalType === 'edit_call' && callForm.id) ? (
               <div className="grid grid-cols-2 gap-3 pt-2">
                 <button
                   type="button"

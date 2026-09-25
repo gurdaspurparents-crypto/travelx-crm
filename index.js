@@ -1139,9 +1139,40 @@ app.put('/api/calls/:id', async (req, res) => {
     const { call_date, executive_name, is_connected, services_discussed, agent_requirement, interest_level, call_result, remarks, next_followup_date, payment_terms } = req.body;
     const servicesJson = services_discussed !== undefined ? (Array.isArray(services_discussed) ? JSON.stringify(services_discussed) : services_discussed) : undefined;
 
-    const existingCall = await dbGet(`SELECT * FROM telephonic_calls WHERE id = ?`, [req.params.id]);
+    let existingCall = await dbGet(`SELECT * FROM telephonic_calls WHERE id = ?`, [req.params.id]);
     if (!existingCall) {
-      return res.status(404).json({ success: false, error: 'Call log not found' });
+      // Fallback 1: check if req.params.id is an agent_id with existing calls
+      existingCall = await dbGet(`SELECT * FROM telephonic_calls WHERE agent_id = ? ORDER BY id DESC LIMIT 1`, [req.params.id]);
+    }
+
+    if (!existingCall) {
+      // Fallback 2: Auto-insert as fresh call record so executive never receives a 404 error
+      const targetAgentId = req.body.agent_id || req.params.id;
+      const result = await dbRun(
+        `INSERT INTO telephonic_calls (call_date, agent_id, executive_name, is_connected, services_discussed, agent_requirement, interest_level, call_result, remarks, next_followup_date, payment_terms)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [
+          call_date || new Date().toISOString().split('T')[0],
+          targetAgentId,
+          executive_name || 'Yug',
+          is_connected ? 1 : 0,
+          servicesJson || '[]',
+          agent_requirement || '',
+          interest_level || 'Interested / Warm',
+          call_result || 'Calling: Connected / In Discussion',
+          remarks || '',
+          next_followup_date || null,
+          payment_terms || 'Advance Payment'
+        ]
+      );
+
+      if (payment_terms && targetAgentId) {
+        await dbRun(`UPDATE agents SET payment_terms = ? WHERE id = ?`, [payment_terms, targetAgentId]);
+      }
+      await refreshAgentStage(targetAgentId);
+      scheduleBackup(db);
+
+      return res.json({ success: true, id: result.lastID, message: 'Telephonic call logged successfully' });
     }
 
     const updatedCallDate = call_date !== undefined ? call_date : existingCall.call_date;

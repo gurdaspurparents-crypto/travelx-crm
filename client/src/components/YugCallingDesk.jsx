@@ -1774,7 +1774,7 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
                           📞 Call
                         </button>
                         <button
-                          onClick={() => onOpenModal('log_call', {
+                          onClick={() => onOpenModal('edit_call', {
                             ...c,
                             call_id: c.id,
                             id: c.id,
