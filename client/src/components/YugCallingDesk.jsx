@@ -126,6 +126,27 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
     }
   };
 
+  const handleDeleteAgent = async (agentId, companyName) => {
+    if (!isAdmin) {
+      alert('🔒 Access Denied: Only Admin can delete agencies.');
+      return;
+    }
+    if (!window.confirm(`🗑️ Are you sure you want to DELETE "${companyName || agentId}" (ID: ${agentId})?\n\nThis will permanently remove this agency and its associated records from the CRM!`)) return;
+    try {
+      const res = await fetch(`/api/agents/${agentId}`, { method: 'DELETE' });
+      const json = await res.json();
+      if (json.success) {
+        alert(`✅ Agency "${companyName}" deleted successfully!`);
+        fetchYugDeskData();
+        fetchLocationMatrix(selectedMonth);
+      } else {
+        alert(json.error || 'Failed to delete agency');
+      }
+    } catch (err) {
+      alert('Error deleting agency: ' + err.message);
+    }
+  };
+
   const fetchYugDeskData = async () => {
     setLoading(true);
     try {
@@ -1592,15 +1613,26 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
                         </p>
                       </div>
 
-                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded border whitespace-nowrap ${
-                        agent.stage === 'Active' ? 'bg-emerald-950 text-emerald-400 border-emerald-800' :
-                        agent.stage === 'QueryReceived' ? 'bg-amber-950 text-amber-400 border-amber-800' :
-                        agent.stage === 'Followup' ? 'bg-sky-950 text-sky-400 border-sky-800' :
-                        agent.stage === 'Dormant' ? 'bg-rose-950 text-rose-400 border-rose-800' :
-                        'bg-slate-800 text-slate-300 border-slate-700'
-                      }`}>
-                        {agent.stage || 'Visited'}
-                      </span>
+                      <div className="flex items-center gap-1.5 shrink-0">
+                        <span className={`text-[10px] font-bold px-2 py-0.5 rounded border whitespace-nowrap ${
+                          agent.stage === 'Active' ? 'bg-emerald-950 text-emerald-400 border-emerald-800' :
+                          agent.stage === 'QueryReceived' ? 'bg-amber-950 text-amber-400 border-amber-800' :
+                          agent.stage === 'Followup' ? 'bg-sky-950 text-sky-400 border-sky-800' :
+                          agent.stage === 'Dormant' ? 'bg-rose-950 text-rose-400 border-rose-800' :
+                          'bg-slate-800 text-slate-300 border-slate-700'
+                        }`}>
+                          {agent.stage || 'Visited'}
+                        </span>
+                        {isAdmin && (
+                          <button
+                            onClick={() => handleDeleteAgent(agent.id, agent.company_name)}
+                            className="p-1 rounded bg-rose-950/60 hover:bg-rose-800 text-rose-400 hover:text-white border border-rose-800/60 transition cursor-pointer"
+                            title="Delete Agency from CRM (Admin Only)"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        )}
+                      </div>
                     </div>
 
                     <div className="mt-3 flex items-center justify-between text-xs text-slate-400 bg-slate-950/60 p-2 rounded-lg border border-slate-800">
@@ -1634,7 +1666,7 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
                   </div>
 
                   {/* Quick Action Buttons */}
-                  <div className={`pt-2 border-t border-slate-800/80 grid ${isCalled && isAdmin ? 'grid-cols-4' : 'grid-cols-3'} gap-1.5 sm:gap-2`}>
+                  <div className={`pt-2 border-t border-slate-800/80 grid ${isAdmin ? 'grid-cols-4' : 'grid-cols-3'} gap-1.5 sm:gap-2`}>
                     <a
                       href={`https://wa.me/91${(agent.mobile || '').replace(/\D/g, '')}`}
                       target="_blank"
@@ -1661,14 +1693,24 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
                       <Plus className="w-3.5 h-3.5" /> Log Call
                     </button>
 
-                    {isCalled && isAdmin && (
-                      <button
-                        onClick={() => handleDeleteCall(monthCall.id, agent.company_name)}
-                        className="py-1.5 px-2 bg-rose-950/90 hover:bg-rose-900 text-rose-300 border border-rose-800 text-[11px] font-bold rounded-lg transition text-center flex items-center justify-center gap-1 cursor-pointer"
-                        title="Delete Call Log (Revert to Pending - Admin Only)"
-                      >
-                        <Trash2 className="w-3.5 h-3.5 text-rose-400" /> Del Call
-                      </button>
+                    {isAdmin && (
+                      isCalled ? (
+                        <button
+                          onClick={() => handleDeleteCall(monthCall.id, agent.company_name)}
+                          className="py-1.5 px-2 bg-rose-950/90 hover:bg-rose-900 text-rose-300 border border-rose-800 text-[11px] font-bold rounded-lg transition text-center flex items-center justify-center gap-1 cursor-pointer shadow"
+                          title="Delete Call Log (Revert to Pending - Admin Only)"
+                        >
+                          <Trash2 className="w-3.5 h-3.5 text-rose-400" /> Del Call
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => handleDeleteAgent(agent.id, agent.company_name)}
+                          className="py-1.5 px-2 bg-rose-950/80 hover:bg-rose-900 text-rose-300 border border-rose-800 text-[11px] font-bold rounded-lg transition text-center flex items-center justify-center gap-1 cursor-pointer shadow"
+                          title="Delete Agency from CRM (Admin Only)"
+                        >
+                          <Trash2 className="w-3.5 h-3.5 text-rose-400" /> Del
+                        </button>
+                      )
                     )}
                   </div>
 
