@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Phone, PhoneCall, Plus, Search, Filter, Calendar, MapPin, CheckCircle2, MessageSquare, Flame, FileText, UserCheck, AlertCircle, RefreshCw, Users, Eye, ArrowUpDown, DollarSign, Award, ChevronRight, X, ChevronDown, ChevronUp, Clock, Sparkles, Target, Zap, BarChart3, Check } from 'lucide-react';
+import { Phone, PhoneCall, Plus, Search, Filter, Calendar, MapPin, CheckCircle2, MessageSquare, Flame, FileText, UserCheck, AlertCircle, RefreshCw, Users, Eye, ArrowUpDown, DollarSign, Award, ChevronRight, X, ChevronDown, ChevronUp, Clock, Sparkles, Target, Zap, BarChart3, Check, Trash2 } from 'lucide-react';
 
 export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, refreshTrigger }) {
+  const isAdmin = role === 'Admin / Owner' || role?.toLowerCase().includes('admin') || role?.toLowerCase().includes('owner') || !role;
   const [agents, setAgents] = useState([]);
   const [callsHistory, setCallsHistory] = useState([]);
   const [locationsMatrix, setLocationsMatrix] = useState([]);
@@ -101,6 +102,27 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
       console.error(e);
     } finally {
       setLoadingMatrix(false);
+    }
+  };
+
+  const handleDeleteCall = async (callId, companyName) => {
+    if (!isAdmin) {
+      alert('🔒 Access Denied: Only Admin can delete call log records.');
+      return;
+    }
+    if (!window.confirm(`🗑️ Are you sure you want to delete the call log for "${companyName || 'this agency'}"?\n\nThe agency will revert back to "Pending Call in ${selectedMonth}" in the calling queue.`)) return;
+    try {
+      const res = await fetch(`/api/calls/${callId}`, { method: 'DELETE' });
+      const json = await res.json();
+      if (json.success) {
+        alert('✅ Call log deleted successfully! Agency reverted to Pending.');
+        fetchYugDeskData();
+        fetchLocationMatrix(selectedMonth);
+      } else {
+        alert(json.error || 'Failed to delete call log');
+      }
+    } catch (err) {
+      alert('Error deleting call: ' + err.message);
     }
   };
 
@@ -978,6 +1000,15 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
                             >
                               <X className="w-3 h-3 text-rose-400" /> ❌ Closed
                             </button>
+                            {isAdmin && (
+                              <button
+                                onClick={() => handleDeleteCall(call.id, call.company_name)}
+                                className="px-2 py-1 rounded-lg bg-rose-950/80 hover:bg-rose-900 text-rose-300 border border-rose-800/80 font-semibold text-[11px] transition cursor-pointer flex items-center gap-1"
+                                title="Delete Call Log (Admin Only)"
+                              >
+                                <Trash2 className="w-3 h-3 text-rose-400" /> Del
+                              </button>
+                            )}
                           </div>
                         </td>
 
@@ -1524,9 +1555,21 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
                             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                             <span>Called: {monthCall.call_date}</span>
                           </span>
-                          <span className="text-[10px] font-mono text-emerald-300/90 bg-emerald-900/60 px-1.5 py-0.5 rounded">
-                            {monthCall.call_result || 'Completed'}
-                          </span>
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-[10px] font-mono text-emerald-300/90 bg-emerald-900/60 px-1.5 py-0.5 rounded">
+                              {monthCall.call_result || 'Completed'}
+                            </span>
+                            {isAdmin && (
+                              <button
+                                onClick={() => handleDeleteCall(monthCall.id, agent.company_name)}
+                                className="px-1.5 py-0.5 rounded bg-rose-950/90 hover:bg-rose-900 text-rose-300 border border-rose-700/80 transition cursor-pointer flex items-center gap-1 text-[10px] font-bold shadow-sm"
+                                title="Delete Call Log (Revert to Pending - Admin Only)"
+                              >
+                                <Trash2 className="w-3 h-3 text-rose-400" />
+                                <span>Del</span>
+                              </button>
+                            )}
+                          </div>
                         </div>
                       ) : (
                         <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-rose-950/80 border border-rose-800/60 text-rose-300 text-[11px] font-bold">
@@ -1591,7 +1634,7 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
                   </div>
 
                   {/* Quick Action Buttons */}
-                  <div className="pt-2 border-t border-slate-800/80 grid grid-cols-3 gap-2">
+                  <div className={`pt-2 border-t border-slate-800/80 grid ${isCalled && isAdmin ? 'grid-cols-4' : 'grid-cols-3'} gap-1.5 sm:gap-2`}>
                     <a
                       href={`https://wa.me/91${(agent.mobile || '').replace(/\D/g, '')}`}
                       target="_blank"
@@ -1617,6 +1660,16 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
                     >
                       <Plus className="w-3.5 h-3.5" /> Log Call
                     </button>
+
+                    {isCalled && isAdmin && (
+                      <button
+                        onClick={() => handleDeleteCall(monthCall.id, agent.company_name)}
+                        className="py-1.5 px-2 bg-rose-950/90 hover:bg-rose-900 text-rose-300 border border-rose-800 text-[11px] font-bold rounded-lg transition text-center flex items-center justify-center gap-1 cursor-pointer"
+                        title="Delete Call Log (Revert to Pending - Admin Only)"
+                      >
+                        <Trash2 className="w-3.5 h-3.5 text-rose-400" /> Del Call
+                      </button>
+                    )}
                   </div>
 
                 </div>
@@ -1786,6 +1839,16 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
                         >
                           ✏️ Edit
                         </button>
+                        {isAdmin && (
+                          <button
+                            onClick={() => handleDeleteCall(c.id, c.company_name)}
+                            className="px-2 py-0.5 rounded bg-rose-950/80 hover:bg-rose-900 text-rose-400 font-medium text-[10px] transition border border-rose-800/80 cursor-pointer flex items-center gap-0.5"
+                            title="Delete Call Record (Admin Only)"
+                          >
+                            <Trash2 className="w-3 h-3 text-rose-400" />
+                            <span>Del</span>
+                          </button>
+                        )}
                       </div>
                     </td>
                   </tr>
