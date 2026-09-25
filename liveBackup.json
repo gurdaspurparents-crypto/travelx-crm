@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T11:45:15.322Z",
+  "backed_up_at": "2026-09-25T11:48:42.006Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -1896,8 +1896,8 @@
       "name": "Mr. Rakesh kumar",
       "company_name": "Matrix computer center",
       "mobile": "9464490723",
-      "city": "Giderpindi",
-      "area": "Giderpindi ,gsp",
+      "city": "keshopur",
+      "area": "keshopur",
       "agent_type": "Retail Travel Agent",
       "stage": "Active",
       "assigned_marketing_exec": "Bikram",
