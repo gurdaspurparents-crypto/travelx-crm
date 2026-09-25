@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T10:10:48.599Z",
+  "backed_up_at": "2026-09-25T10:19:31.481Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -7751,7 +7751,7 @@
       "city": "pandori ",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-25",
@@ -25721,7 +25721,7 @@
       "call_result": "Not Interested",
       "remarks": "",
       "next_followup_date": "2026-09-26",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1293,
@@ -25734,6 +25734,21 @@
       "agent_requirement": "no call  connected",
       "interest_level": "Interested / Warm",
       "call_result": "Closed - Not Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-26",
+      "payment_terms": null
+    },
+    {
+      "id": 1294,
+      "call_date": "2026-09-25",
+      "agent_id": "AGT-2025",
+      "visit_id": 807,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-26",
       "payment_terms": "Not Discussed"
