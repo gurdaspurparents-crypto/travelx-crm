@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T06:23:04.983Z",
+  "backed_up_at": "2026-09-25T06:23:34.509Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -7807,7 +7807,7 @@
       "city": "Pandori ",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-25",
@@ -12826,6 +12826,23 @@
       "remarks": "",
       "next_followup_date": "2026-09-26",
       "location": "Gazikot",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 806,
+      "visit_date": "2026-09-25",
+      "agent_id": "AGT-2026",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Ritik ",
+      "mobile": "7837131305",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Travel Insurance\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "New",
+      "next_followup_date": "2026-09-26",
+      "location": "Pandori ",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
