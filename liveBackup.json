@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T11:40:54.342Z",
+  "backed_up_at": "2026-09-25T11:42:05.141Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4384,34 +4384,6 @@
       "payment_terms": "Not Discussed"
     },
     {
-      "id": "AGT-1632",
-      "name": "Mr.Amar",
-      "company_name": "Amar consultant",
-      "mobile": "9988981431",
-      "city": "Other",
-      "area": "Bypass Near Kothe",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1633",
-      "name": "Mr. Jaspal singh",
-      "company_name": "J.k finance",
-      "mobile": "9417863832",
-      "city": "Other",
-      "area": "Adda Saidowal Kalan, Distt Gsp",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
       "id": "AGT-1634",
       "name": "Mr. Harish",
       "company_name": "CSC centre",
@@ -7010,20 +6982,6 @@
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
-      "assigned_marketing_exec": "Bikramjit Singh",
-      "assigned_telephonic_exec": "Simranjit Kaur",
-      "created_at": "2026-09-12",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1971",
-      "name": "JOBAN",
-      "company_name": "JOBAN ONLINE SERVICE",
-      "mobile": "9915679395",
-      "city": "Other",
-      "area": "Main Market",
-      "agent_type": "Retail Travel Agent",
-      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-12",
@@ -18979,21 +18937,6 @@
       "payment_terms": null
     },
     {
-      "id": 827,
-      "call_date": "2026-09-12",
-      "agent_id": "AGT-1971",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "busy ",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
-      "remarks": "",
-      "next_followup_date": "2026-09-14",
-      "payment_terms": null
-    },
-    {
       "id": 828,
       "call_date": "2026-09-12",
       "agent_id": "AGT-1251",
@@ -24424,36 +24367,6 @@
       "payment_terms": null
     },
     {
-      "id": 1206,
-      "call_date": "2026-09-23",
-      "agent_id": "AGT-1632",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "now  jion",
-      "interest_level": "Interested / Warm",
-      "call_result": "Call Again Later",
-      "remarks": "",
-      "next_followup_date": "2026-09-25",
-      "payment_terms": null
-    },
-    {
-      "id": 1207,
-      "call_date": "2026-09-23",
-      "agent_id": "AGT-1633",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "bussy ",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
-      "remarks": "",
-      "next_followup_date": "2026-09-25",
-      "payment_terms": null
-    },
-    {
       "id": 1208,
       "call_date": "2026-09-23",
       "agent_id": "AGT-1643",
@@ -26988,26 +26901,6 @@
       "booking_ref_no": null,
       "closing_employee": null,
       "rejection_reason": "Agent Did Not Respond",
-      "rejection_remarks": ""
-    },
-    {
-      "id": "QRY-5070",
-      "query_date": "2026-09-12",
-      "agent_id": "AGT-1971",
-      "product": "International Flight",
-      "query_details": "YEG-DEL",
-      "travel_date": "2026-09-27",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-09-13",
-      "status": "Rejected",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
-      "rejection_reason": "Customer Did Not Confirm",
       "rejection_remarks": ""
     },
     {
