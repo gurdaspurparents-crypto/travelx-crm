@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T11:39:13.386Z",
+  "backed_up_at": "2026-09-25T11:39:22.388Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -13075,6 +13075,23 @@
       "remarks": "",
       "next_followup_date": "2026-09-26",
       "location": "Beant clg ",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 819,
+      "visit_date": "2026-09-25",
+      "agent_id": "AGT-1635",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Ashok kumar",
+      "mobile": "9592021880",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "Rate ",
+      "next_followup_date": "2026-09-26",
+      "location": "Pandori",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
