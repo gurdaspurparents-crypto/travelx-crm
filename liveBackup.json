@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T09:30:43.367Z",
+  "backed_up_at": "2026-09-25T09:31:37.508Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -7808,20 +7808,6 @@
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
       "stage": "Visited",
-      "assigned_marketing_exec": "Bikramjit Singh",
-      "assigned_telephonic_exec": "Simranjit Kaur",
-      "created_at": "2026-09-25",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-2030",
-      "name": "hira",
-      "company_name": "hira interenet cafe ",
-      "mobile": "8054737005",
-      "city": "Gurdaspur",
-      "area": "Main Market",
-      "agent_type": "Retail Travel Agent",
-      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-25",
@@ -25374,7 +25360,7 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-09-26",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
@@ -27781,9 +27767,9 @@
     {
       "id": "QRY-5138",
       "query_date": "2026-09-25",
-      "agent_id": "AGT-2030",
+      "agent_id": "AGT-1193",
       "product": "International Flight",
-      "query_details": "atq-dxb",
+      "query_details": "atq-hsr-atq",
       "travel_date": "2026-10-10",
       "pax_details": "2 Adults",
       "estimated_value": 0,
