@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-25T09:22:38.960Z",
+  "backed_up_at": "2026-09-25T09:24:45.900Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -5778,20 +5778,6 @@
       "area": "Gurdaspur",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1830",
-      "name": "Mr. Narayan Sharma",
-      "company_name": "CSC centre",
-      "mobile": "9780964869",
-      "city": "Tibber",
-      "area": "Gurdaspur",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -25371,7 +25357,7 @@
       "call_result": "Closed - Not Interested",
       "remarks": "",
       "next_followup_date": "2026-09-26",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1271,
@@ -25386,7 +25372,7 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-09-26",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
