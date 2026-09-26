@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-26T07:10:31.243Z",
+  "backed_up_at": "2026-09-26T07:16:26.260Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -25165,7 +25165,7 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-09-27",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
@@ -27455,6 +27455,26 @@
       "agent_id": "AGT-1441",
       "product": "International Flight",
       "query_details": "per -atq ",
+      "travel_date": "2026-10-11",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-09-27",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5142",
+      "query_date": "2026-09-26",
+      "agent_id": "AGT-1916",
+      "product": "International Flight",
+      "query_details": "ath-del",
       "travel_date": "2026-10-11",
       "pax_details": "2 Adults",
       "estimated_value": 0,
