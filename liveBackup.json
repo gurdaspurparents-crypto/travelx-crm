@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-26T05:58:34.536Z",
+  "backed_up_at": "2026-09-26T05:59:39.546Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -7273,6 +7273,20 @@
       "company_name": "satyam books ",
       "mobile": "9815195825",
       "city": "Tubber ",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-09-26",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2039",
+      "name": "manish",
+      "company_name": "satyam books ",
+      "mobile": "9815195825",
+      "city": "tibber",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
       "stage": "Inactive",
