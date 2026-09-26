@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-26T05:24:16.470Z",
+  "backed_up_at": "2026-09-26T05:24:40.641Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -2921,7 +2921,7 @@
       "city": "Jaura Chattran",
       "area": "Jaura Chittran",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -24478,6 +24478,21 @@
       "agent_requirement": "bussy ",
       "interest_level": "Interested / Warm",
       "call_result": "Not Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-27",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 1314,
+      "call_date": "2026-09-26",
+      "agent_id": "AGT-1482",
+      "visit_id": 686,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "bussy ",
+      "interest_level": "Interested / Warm",
+      "call_result": "Closed - Follow-up Completed",
       "remarks": "",
       "next_followup_date": "2026-09-27",
       "payment_terms": "Not Discussed"
