@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-26T11:03:33.806Z",
+  "backed_up_at": "2026-09-26T11:05:04.773Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -26621,7 +26621,7 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-09-27",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1441,
@@ -26636,7 +26636,7 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-09-27",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1442,
@@ -26649,6 +26649,21 @@
       "agent_requirement": "no connected",
       "interest_level": "Interested / Warm",
       "call_result": "Call Connected / In Discussion",
+      "remarks": "",
+      "next_followup_date": "2026-09-27",
+      "payment_terms": null
+    },
+    {
+      "id": 1443,
+      "call_date": "2026-09-26",
+      "agent_id": "AGT-1986",
+      "visit_id": 664,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy now  jion kam",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-27",
       "payment_terms": "Not Discussed"
