@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-26T07:54:25.076Z",
+  "backed_up_at": "2026-09-26T07:54:42.187Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -5217,7 +5217,7 @@
       "city": "Tibri",
       "area": "Tibir Cant",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -25357,6 +25357,21 @@
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
       "agent_requirement": "good",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-27",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 1356,
+      "call_date": "2026-09-26",
+      "agent_id": "AGT-1831",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
       "interest_level": "Interested / Warm",
       "call_result": "Interested",
       "remarks": "",
