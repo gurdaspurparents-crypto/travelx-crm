@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-28T05:40:10.488Z",
+  "backed_up_at": "2026-09-28T05:41:05.569Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -2263,7 +2263,7 @@
       "city": "Gurdaspur",
       "area": "Police Line Rd,gsp",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -26950,6 +26950,21 @@
       "remarks": "",
       "next_followup_date": "2026-09-29",
       "payment_terms": null
+    },
+    {
+      "id": 1454,
+      "call_date": "2026-09-28",
+      "agent_id": "AGT-1382",
+      "visit_id": 581,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "no  interested  kam nhi karda",
+      "interest_level": "Interested / Warm",
+      "call_result": "Not Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-29",
+      "payment_terms": "Not Discussed"
     }
   ],
   "queries": [
