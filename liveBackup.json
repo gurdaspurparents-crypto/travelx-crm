@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-28T10:30:19.700Z",
+  "backed_up_at": "2026-09-28T10:56:02.754Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -30225,26 +30225,6 @@
     },
     {
       "id": "QRY-5156",
-      "query_date": "2026-09-28",
-      "agent_id": "AGT-2006",
-      "product": "International Flight",
-      "query_details": "auh-ixc",
-      "travel_date": "2026-10-13",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-09-29",
-      "status": "New",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
-    },
-    {
-      "id": "QRY-5158",
       "query_date": "2026-09-28",
       "agent_id": "AGT-2006",
       "product": "International Flight",
