@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-28T07:15:15.710Z",
+  "backed_up_at": "2026-09-28T07:17:34.657Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -27459,7 +27459,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-29",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1488,
@@ -27472,6 +27472,21 @@
       "agent_requirement": "not call cut ",
       "interest_level": "Interested / Warm",
       "call_result": "Not Interested",
+      "remarks": "",
+      "next_followup_date": "2026-09-29",
+      "payment_terms": null
+    },
+    {
+      "id": 1489,
+      "call_date": "2026-09-28",
+      "agent_id": "AGT-1170",
+      "visit_id": 500,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "kam nhi karda",
+      "interest_level": "Interested / Warm",
+      "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-09-29",
       "payment_terms": "Not Discussed"
