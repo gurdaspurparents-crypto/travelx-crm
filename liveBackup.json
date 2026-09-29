@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-29T07:43:02.219Z",
+  "backed_up_at": "2026-09-29T07:44:07.611Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -5326,20 +5326,6 @@
       "name": "Mr.gurpreet singh",
       "company_name": "csc cenntre",
       "mobile": "9592121887",
-      "city": "Udhanwal",
-      "area": "Takoye",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1859",
-      "name": "Mr.mandeep ",
-      "company_name": "mandeep travel",
-      "mobile": "9876312949",
       "city": "Udhanwal",
       "area": "Takoye",
       "agent_type": "Retail Travel Agent",
@@ -13873,21 +13859,6 @@
       "agent_requirement": "",
       "interest_level": "Interested / Warm",
       "call_result": "No Response",
-      "remarks": "",
-      "next_followup_date": "2026-09-09",
-      "payment_terms": null
-    },
-    {
-      "id": 483,
-      "call_date": "2026-09-07",
-      "agent_id": "AGT-1859",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Warm",
-      "call_result": "Call Again Later",
       "remarks": "",
       "next_followup_date": "2026-09-09",
       "payment_terms": null
