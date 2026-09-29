@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-29T07:44:13.868Z",
+  "backed_up_at": "2026-09-29T07:44:22.269Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -5300,20 +5300,6 @@
       "mobile": "7589065261",
       "city": "Tibri",
       "area": "Tibri Cant",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1855",
-      "name": "SUYKHWINDER",
-      "company_name": "CSC CENTRE",
-      "mobile": "9872560628",
-      "city": "Udhanwal",
-      "area": "Takoya",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
@@ -13808,21 +13794,6 @@
       "id": 478,
       "call_date": "2026-09-07",
       "agent_id": "AGT-1638",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
-      "remarks": "",
-      "next_followup_date": "2026-09-09",
-      "payment_terms": null
-    },
-    {
-      "id": 480,
-      "call_date": "2026-09-07",
-      "agent_id": "AGT-1855",
       "visit_id": null,
       "executive_name": "Yug",
       "is_connected": 1,
