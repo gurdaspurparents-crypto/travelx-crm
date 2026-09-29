@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-29T07:44:59.923Z",
+  "backed_up_at": "2026-09-29T07:52:48.076Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6103,20 +6103,6 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-07",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1955",
-      "name": "ghoman",
-      "company_name": "royal internet cafe ",
-      "mobile": "9779815513",
-      "city": "Ghuman",
-      "area": "Main Market",
-      "agent_type": "Retail Travel Agent",
-      "stage": "QueryReceived",
-      "assigned_marketing_exec": "Bikramjit Singh",
-      "assigned_telephonic_exec": "Simranjit Kaur",
-      "created_at": "2026-09-09",
       "payment_terms": "Not Discussed"
     },
     {
@@ -17828,21 +17814,6 @@
       "payment_terms": null
     },
     {
-      "id": 808,
-      "call_date": "2026-09-12",
-      "agent_id": "AGT-1955",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "busy no call",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
-      "remarks": "",
-      "next_followup_date": "2026-09-14",
-      "payment_terms": null
-    },
-    {
       "id": 810,
       "call_date": "2026-09-12",
       "agent_id": "AGT-1936",
@@ -28110,26 +28081,6 @@
       "agent_id": "AGT-1622",
       "product": "International Flight",
       "query_details": "del-doh",
-      "travel_date": "2026-09-24",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-09-10",
-      "status": "Rejected",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
-      "rejection_reason": "Agent Did Not Respond",
-      "rejection_remarks": ""
-    },
-    {
-      "id": "QRY-5055",
-      "query_date": "2026-09-09",
-      "agent_id": "AGT-1955",
-      "product": "International Flight",
-      "query_details": "del-fco",
       "travel_date": "2026-09-24",
       "pax_details": "2 Adults",
       "estimated_value": 0,
