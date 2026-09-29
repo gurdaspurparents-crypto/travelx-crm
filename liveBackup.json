@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-29T09:29:06.491Z",
+  "backed_up_at": "2026-09-29T09:29:58.433Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -7167,6 +7167,20 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-26",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2043",
+      "name": "chadan",
+      "company_name": "oss solution ",
+      "mobile": "8288024613",
+      "city": "taragarh",
+      "area": "taragarh",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-09-29",
       "payment_terms": "Not Discussed"
     }
   ],
