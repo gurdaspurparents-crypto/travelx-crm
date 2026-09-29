@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-29T07:44:22.269Z",
+  "backed_up_at": "2026-09-29T07:44:49.665Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -5308,12 +5308,12 @@
       "payment_terms": "Not Discussed"
     },
     {
-      "id": "AGT-1856",
-      "name": "Mr.gurpreet singh",
-      "company_name": "csc cenntre",
-      "mobile": "9592121887",
+      "id": "AGT-1855",
+      "name": "SUYKHWINDER",
+      "company_name": "CSC CENTRE",
+      "mobile": "9872560628",
       "city": "Udhanwal",
-      "area": "Takoye",
+      "area": "Takoya",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
@@ -5322,12 +5322,12 @@
       "payment_terms": "Not Discussed"
     },
     {
-      "id": "AGT-1862",
-      "name": "Mr.kulwinder singh",
-      "company_name": "csc cntre",
-      "mobile": "8353980014",
+      "id": "AGT-1856",
+      "name": "Mr.gurpreet singh",
+      "company_name": "csc cenntre",
+      "mobile": "9592121887",
       "city": "Udhanwal",
-      "area": "Udhanwal",
+      "area": "Takoye",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
@@ -13806,9 +13806,9 @@
       "payment_terms": null
     },
     {
-      "id": 481,
+      "id": 480,
       "call_date": "2026-09-07",
-      "agent_id": "AGT-1856",
+      "agent_id": "AGT-1855",
       "visit_id": null,
       "executive_name": "Yug",
       "is_connected": 1,
@@ -13821,9 +13821,9 @@
       "payment_terms": null
     },
     {
-      "id": 485,
+      "id": 481,
       "call_date": "2026-09-07",
-      "agent_id": "AGT-1862",
+      "agent_id": "AGT-1856",
       "visit_id": null,
       "executive_name": "Yug",
       "is_connected": 1,
