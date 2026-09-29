@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-29T07:42:38.474Z",
+  "backed_up_at": "2026-09-29T07:43:02.219Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -5308,10 +5308,24 @@
       "payment_terms": "Not Discussed"
     },
     {
-      "id": "AGT-1858",
-      "name": "Mr.gurhcaran singh",
-      "company_name": "khehra travel",
-      "mobile": "8968186199",
+      "id": "AGT-1855",
+      "name": "SUYKHWINDER",
+      "company_name": "CSC CENTRE",
+      "mobile": "9872560628",
+      "city": "Udhanwal",
+      "area": "Takoya",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Followup",
+      "assigned_marketing_exec": "Bikram",
+      "assigned_telephonic_exec": "Simran",
+      "created_at": "2026-08-29",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-1856",
+      "name": "Mr.gurpreet singh",
+      "company_name": "csc cenntre",
+      "mobile": "9592121887",
       "city": "Udhanwal",
       "area": "Takoye",
       "agent_type": "Retail Travel Agent",
@@ -5340,6 +5354,20 @@
       "name": "Mr.8353980014",
       "company_name": "gobind finanace ",
       "mobile": "8427479278",
+      "city": "Udhanwal",
+      "area": "Udhanwal",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Followup",
+      "assigned_marketing_exec": "Bikram",
+      "assigned_telephonic_exec": "Simran",
+      "created_at": "2026-08-29",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-1862",
+      "name": "Mr.kulwinder singh",
+      "company_name": "csc cntre",
+      "mobile": "8353980014",
       "city": "Udhanwal",
       "area": "Udhanwal",
       "agent_type": "Retail Travel Agent",
@@ -13820,16 +13848,31 @@
       "payment_terms": null
     },
     {
-      "id": 482,
+      "id": 480,
       "call_date": "2026-09-07",
-      "agent_id": "AGT-1858",
+      "agent_id": "AGT-1855",
       "visit_id": null,
       "executive_name": "Yug",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
       "agent_requirement": "",
       "interest_level": "Interested / Warm",
-      "call_result": "Not Interested",
+      "call_result": "No Response",
+      "remarks": "",
+      "next_followup_date": "2026-09-09",
+      "payment_terms": null
+    },
+    {
+      "id": 481,
+      "call_date": "2026-09-07",
+      "agent_id": "AGT-1856",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-09",
       "payment_terms": null
@@ -13845,6 +13888,21 @@
       "agent_requirement": "",
       "interest_level": "Interested / Warm",
       "call_result": "Call Again Later",
+      "remarks": "",
+      "next_followup_date": "2026-09-09",
+      "payment_terms": null
+    },
+    {
+      "id": 485,
+      "call_date": "2026-09-07",
+      "agent_id": "AGT-1862",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-09",
       "payment_terms": null
