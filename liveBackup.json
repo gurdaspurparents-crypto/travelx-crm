@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-29T07:41:39.717Z",
+  "backed_up_at": "2026-09-29T07:41:49.112Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -5368,20 +5368,6 @@
       "name": "Mr.8353980014",
       "company_name": "gobind finanace ",
       "mobile": "8427479278",
-      "city": "Udhanwal",
-      "area": "Udhanwal",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1861",
-      "name": "Mr.ajit",
-      "company_name": "ajiy group .",
-      "mobile": "9815827508",
       "city": "Udhanwal",
       "area": "Udhanwal",
       "agent_type": "Retail Travel Agent",
@@ -13931,21 +13917,6 @@
       "agent_requirement": "",
       "interest_level": "Interested / Warm",
       "call_result": "Call Again Later",
-      "remarks": "",
-      "next_followup_date": "2026-09-09",
-      "payment_terms": null
-    },
-    {
-      "id": 484,
-      "call_date": "2026-09-07",
-      "agent_id": "AGT-1861",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Warm",
-      "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-09-09",
       "payment_terms": null
