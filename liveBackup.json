@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-30T05:32:15.769Z",
+  "backed_up_at": "2026-09-30T05:33:10.479Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -636,20 +636,6 @@
       "name": "KHOLI ",
       "company_name": "KOHLI  Telecom",
       "mobile": "+91 98146 12211",
-      "city": "Dera Baba Nanak",
-      "area": "Dbn",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1099",
-      "name": "AULAKH ",
-      "company_name": "AULAKH TRAVEL",
-      "mobile": "9882440084",
       "city": "Dera Baba Nanak",
       "area": "Dbn",
       "agent_type": "Retail Travel Agent",
@@ -17252,21 +17238,6 @@
       "agent_requirement": "busy",
       "interest_level": "Interested / Warm",
       "call_result": "No Response",
-      "remarks": "",
-      "next_followup_date": "2026-09-12",
-      "payment_terms": null
-    },
-    {
-      "id": 751,
-      "call_date": "2026-09-10",
-      "agent_id": "AGT-1099",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "maim kam nhi  karde ",
-      "interest_level": "Interested / Warm",
-      "call_result": "Requirement Received",
       "remarks": "",
       "next_followup_date": "2026-09-12",
       "payment_terms": null
