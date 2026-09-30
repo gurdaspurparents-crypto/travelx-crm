@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-09-30T06:50:00.215Z",
+  "backed_up_at": "2026-09-30T07:12:20.512Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -30101,13 +30101,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-01",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Price",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5171",
@@ -30155,6 +30155,26 @@
       "agent_id": "AGT-1684",
       "product": "International Flight",
       "query_details": "oman imm..",
+      "travel_date": "2026-10-15",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-01",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5174",
+      "query_date": "2026-09-30",
+      "agent_id": "AGT-1390",
+      "product": "International Flight",
+      "query_details": "shj-atq",
       "travel_date": "2026-10-15",
       "pax_details": "2 Adults",
       "estimated_value": 0,
