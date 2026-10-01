@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-01T06:53:27.754Z",
+  "backed_up_at": "2026-10-01T06:53:45.461Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -5693,7 +5693,7 @@
       "city": "Behrampur",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "QueryReceived",
+      "stage": "Dormant",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-01",
@@ -27726,6 +27726,21 @@
       "remarks": "",
       "next_followup_date": "2026-10-02",
       "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 1528,
+      "call_date": "2026-10-01",
+      "agent_id": "AGT-2032",
+      "visit_id": 817,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-02",
+      "payment_terms": "Not Discussed"
     }
   ],
   "queries": [
@@ -30801,11 +30816,11 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-02",
-      "status": "New",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
+      "status": "Converted",
+      "booking_date": "2026-08-29",
+      "booking_value": 1,
+      "booking_ref_no": "1",
+      "closing_employee": "Simranjit Kaur",
       "rejection_reason": null,
       "rejection_remarks": null
     }
