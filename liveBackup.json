@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-01T10:03:00.797Z",
+  "backed_up_at": "2026-10-01T10:06:48.902Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -3943,7 +3943,7 @@
       "city": "Naranwali",
       "area": "Nara Wali, Gsp",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -28188,7 +28188,7 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-10-02",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1562,
@@ -28201,6 +28201,21 @@
       "agent_requirement": "call cut",
       "interest_level": "Interested / Warm",
       "call_result": "Closed - Not Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-02",
+      "payment_terms": null
+    },
+    {
+      "id": 1563,
+      "call_date": "2026-10-01",
+      "agent_id": "AGT-1612",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "callcut",
+      "interest_level": "Interested / Warm",
+      "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-10-02",
       "payment_terms": "Not Discussed"
