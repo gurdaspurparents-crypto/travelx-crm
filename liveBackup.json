@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-01T12:15:10.604Z",
+  "backed_up_at": "2026-10-01T12:15:18.504Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -1588,20 +1588,6 @@
       "name": "tajwinder kaur",
       "company_name": "csc centre",
       "mobile": "7719722148",
-      "city": "Ghuman",
-      "area": "Ghuman",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1276",
-      "name": "nirmal",
-      "company_name": "csc centre",
-      "mobile": "9815884983",
       "city": "Ghuman",
       "area": "Ghuman",
       "agent_type": "Retail Travel Agent",
@@ -13012,21 +12998,6 @@
       "agent_requirement": "",
       "interest_level": "Interested / Warm",
       "call_result": "Not Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-09",
-      "payment_terms": null
-    },
-    {
-      "id": 442,
-      "call_date": "2026-09-07",
-      "agent_id": "AGT-1276",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Warm",
-      "call_result": "Call Again Later",
       "remarks": "",
       "next_followup_date": "2026-09-09",
       "payment_terms": null
