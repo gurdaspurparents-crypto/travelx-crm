@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-01T11:03:51.977Z",
+  "backed_up_at": "2026-10-01T11:09:52.132Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -7148,6 +7148,20 @@
       "mobile": "7059700751",
       "city": "Gurdaspur",
       "area": "gurdaspur",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-10-01",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2045",
+      "name": "YASH GILL",
+      "company_name": "BRS IMMIGRATION",
+      "mobile": "7888837984",
+      "city": "AUJLA BYE PASS",
+      "area": "AUJLA BYE PASS",
       "agent_type": "Retail Travel Agent",
       "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
@@ -28353,7 +28367,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-10-02",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1578,
@@ -28368,7 +28382,7 @@
       "call_result": "Closed - Not Interested",
       "remarks": "",
       "next_followup_date": "2026-10-02",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
@@ -31284,13 +31298,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-02",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Agent Did Not Respond",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5179",
@@ -31304,13 +31318,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-02",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Agent Did Not Respond",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5180",
@@ -31324,13 +31338,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-02",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Agent Did Not Respond",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5181",
@@ -31344,13 +31358,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-02",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Customer Cancelled",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5182",
@@ -31364,13 +31378,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-02",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Price",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5183",
@@ -31384,13 +31398,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-02",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Customer Cancelled",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5184",
@@ -31444,13 +31458,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-02",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Customer Did Not Confirm",
+      "rejection_remarks": ""
     }
   ],
   "field_trips": []
