@@ -2178,6 +2178,27 @@ app.get('/api/export/queries', async (req, res) => {
   }
 });
 
+// Download September 2026 Full Performance Report (Agent-Wise Visit vs Query vs Convert)
+app.get('/api/export/september-report', (req, res) => {
+  try {
+    const candidates = [
+      path.resolve(__dirname, 'dist/TravelX_September_2026_Full_Performance_Report.xlsx'),
+      path.resolve(__dirname, '../dist/TravelX_September_2026_Full_Performance_Report.xlsx'),
+      path.resolve(__dirname, 'uploads/TravelX_September_2026_Full_Performance_Report.xlsx'),
+      path.resolve(__dirname, 'TravelX_September_2026_Full_Performance_Report.xlsx')
+    ];
+    let file = candidates.find(c => fs.existsSync(c));
+    if (!file) {
+      return res.status(404).json({ success: false, error: 'Report file not found' });
+    }
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', 'attachment; filename=TravelX_September_2026_Full_Performance_Report.xlsx');
+    res.sendFile(file);
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 app.get('/api/export/conveyance', async (req, res) => {
   try {
     const rawReport = await dbAll(`
