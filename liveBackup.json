@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-01T06:57:39.648Z",
+  "backed_up_at": "2026-10-01T07:10:22.451Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -7181,6 +7181,20 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-29",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2044",
+      "name": "prabhjot singh",
+      "company_name": "csc centre",
+      "mobile": "7059700751",
+      "city": "Gurdaspur",
+      "area": "gurdaspur",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-10-01",
       "payment_terms": "Not Discussed"
     }
   ],
