@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-01T04:58:00.511Z",
+  "backed_up_at": "2026-10-01T05:18:57.103Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6813,7 +6813,7 @@
       "city": "Marara",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-22",
@@ -30335,6 +30335,26 @@
       "agent_id": "AGT-1771",
       "product": "International Flight",
       "query_details": "auh-ixc",
+      "travel_date": "2026-10-16",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-02",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5184",
+      "query_date": "2026-10-01",
+      "agent_id": "AGT-2012",
+      "product": "International Flight",
+      "query_details": "del-dxb",
       "travel_date": "2026-10-16",
       "pax_details": "2 Adults",
       "estimated_value": 0,
