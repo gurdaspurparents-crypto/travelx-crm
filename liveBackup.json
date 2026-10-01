@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-01T05:39:27.323Z",
+  "backed_up_at": "2026-10-01T05:41:32.687Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -27350,7 +27350,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-02",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1503,
@@ -27365,7 +27365,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-10-02",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1504,
@@ -27378,6 +27378,21 @@
       "agent_requirement": "bussy",
       "interest_level": "Interested / Warm",
       "call_result": "Follow-up Required",
+      "remarks": "",
+      "next_followup_date": "2026-10-02",
+      "payment_terms": null
+    },
+    {
+      "id": 1505,
+      "call_date": "2026-10-01",
+      "agent_id": "AGT-1238",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "no connected",
+      "interest_level": "Interested / Warm",
+      "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-10-02",
       "payment_terms": "Not Discussed"
