@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-01T07:34:20.986Z",
+  "backed_up_at": "2026-10-01T07:57:28.131Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -51,7 +51,7 @@
       "city": "Bakshiwal",
       "area": "Bakshiwal Distt Gsp",
       "agent_type": "Retail Travel Agent",
-      "stage": "Active",
+      "stage": "Dormant",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -27919,13 +27919,28 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-02",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1540,
       "call_date": "2026-10-01",
       "agent_id": "AGT-1644",
       "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-02",
+      "payment_terms": null
+    },
+    {
+      "id": 1541,
+      "call_date": "2026-10-01",
+      "agent_id": "AGT-1013",
+      "visit_id": 670,
       "executive_name": "Yug",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
