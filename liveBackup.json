@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-01T06:14:18.433Z",
+  "backed_up_at": "2026-10-01T06:17:38.438Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -27545,7 +27545,7 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-10-02",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
@@ -30606,26 +30606,6 @@
       "booking_value": 1,
       "booking_ref_no": "1",
       "closing_employee": "Simranjit Kaur",
-      "rejection_reason": null,
-      "rejection_remarks": null
-    },
-    {
-      "id": "QRY-5185",
-      "query_date": "2026-10-01",
-      "agent_id": "AGT-2012",
-      "product": "International Flight",
-      "query_details": "del-dxb",
-      "travel_date": "2026-10-16",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-10-02",
-      "status": "New",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
       "rejection_reason": null,
       "rejection_remarks": null
     }
