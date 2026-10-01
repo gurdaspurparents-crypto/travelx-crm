@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-01T04:25:59.453Z",
+  "backed_up_at": "2026-10-01T04:26:10.326Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -30255,6 +30255,26 @@
       "agent_id": "AGT-1999",
       "product": "International Flight",
       "query_details": "atq/del-yyz",
+      "travel_date": "2026-10-16",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-02",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5180",
+      "query_date": "2026-10-01",
+      "agent_id": "AGT-1432",
+      "product": "International Flight",
+      "query_details": "atq-bom",
       "travel_date": "2026-10-16",
       "pax_details": "2 Adults",
       "estimated_value": 0,
