@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-01T11:49:53.980Z",
+  "backed_up_at": "2026-10-01T11:50:00.749Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -1504,20 +1504,6 @@
       "name": "Mr. Karan",
       "company_name": "Karan travels",
       "mobile": "8625070000",
-      "city": "Ghuman",
-      "area": "Ghoman",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1262",
-      "name": "gurjet ",
-      "company_name": "csc centre",
-      "mobile": "9515160159",
       "city": "Ghuman",
       "area": "Ghoman",
       "agent_type": "Retail Travel Agent",
@@ -18748,21 +18734,6 @@
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
       "agent_requirement": "no call busy",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
-      "remarks": "",
-      "next_followup_date": "2026-09-18",
-      "payment_terms": null
-    },
-    {
-      "id": 887,
-      "call_date": "2026-09-16",
-      "agent_id": "AGT-1262",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "no call number",
       "interest_level": "Interested / Warm",
       "call_result": "No Response",
       "remarks": "",
