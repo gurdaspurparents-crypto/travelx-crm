@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-01T10:41:42.817Z",
+  "backed_up_at": "2026-10-01T10:43:43.421Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -3662,20 +3662,6 @@
       "mobile": "7719782148",
       "city": "Kokhar",
       "area": "Khokharwal",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1574",
-      "name": "Mr. Gagan    ",
-      "company_name": "Gramin suvidha kendar",
-      "mobile": "8558004120",
-      "city": "Kokhar",
-      "area": "Kokhar, Dera Baba Nanak Road",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
@@ -13830,21 +13816,6 @@
       "agent_requirement": "",
       "interest_level": "Interested / Warm",
       "call_result": "Call Again Later",
-      "remarks": "",
-      "next_followup_date": "2026-09-10",
-      "payment_terms": null
-    },
-    {
-      "id": 493,
-      "call_date": "2026-09-08",
-      "agent_id": "AGT-1574",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-10",
       "payment_terms": null
@@ -28335,6 +28306,21 @@
       "agent_requirement": "phone of",
       "interest_level": "Interested / Warm",
       "call_result": "Call Connected / In Discussion",
+      "remarks": "",
+      "next_followup_date": "2026-10-02",
+      "payment_terms": null
+    },
+    {
+      "id": 1575,
+      "call_date": "2026-10-01",
+      "agent_id": "AGT-1574",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "kam nhi karda hai",
+      "interest_level": "Interested / Warm",
+      "call_result": "Closed - Not Interested",
       "remarks": "",
       "next_followup_date": "2026-10-02",
       "payment_terms": "Not Discussed"
