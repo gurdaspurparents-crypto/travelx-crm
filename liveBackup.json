@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-01T11:50:00.749Z",
+  "backed_up_at": "2026-10-01T12:01:51.202Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -7150,6 +7150,20 @@
       "area": "AUJLA BYE PASS",
       "agent_type": "Retail Travel Agent",
       "stage": "QueryReceived",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-10-01",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2046",
+      "name": "Test Delete Agent",
+      "company_name": "Test Delete Agency",
+      "mobile": "9999999999",
+      "city": "Ghuman",
+      "area": "Ghoman",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-01",
@@ -28428,7 +28442,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-02",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1584,
@@ -28443,7 +28457,7 @@
       "call_result": "Closed - Not Interested",
       "remarks": "",
       "next_followup_date": "2026-10-02",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1585,
@@ -28458,7 +28472,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-02",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
