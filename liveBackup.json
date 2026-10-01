@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-01T10:16:23.150Z",
+  "backed_up_at": "2026-10-01T10:19:58.610Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6344,20 +6344,6 @@
       "payment_terms": "Not Discussed"
     },
     {
-      "id": "AGT-1978",
-      "name": "vijay",
-      "company_name": "bk enterprises",
-      "mobile": "7652925401",
-      "city": "Sidhwan",
-      "area": "Main Market",
-      "agent_type": "Retail Travel Agent",
-      "stage": "QueryReceived",
-      "assigned_marketing_exec": "Bikramjit Singh",
-      "assigned_telephonic_exec": "Simranjit Kaur",
-      "created_at": "2026-09-14",
-      "payment_terms": "Not Discussed"
-    },
-    {
       "id": "AGT-1979",
       "name": "sandeep ",
       "company_name": "Mahajan cafe ",
@@ -12498,23 +12484,6 @@
       "mobile": "9780054221",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"Cruise\",\"International Flight\",\"Forex\",\"Hotel Booking\",\"Bus Booking\",\"Money Transfer\"]",
-      "response_level": "Interested / Warm",
-      "remarks": "",
-      "next_followup_date": "2026-09-27",
-      "location": "Sidhwan",
-      "gps_latitude": null,
-      "gps_longitude": null,
-      "gps_address": null
-    },
-    {
-      "id": 825,
-      "visit_date": "2026-09-26",
-      "agent_id": "AGT-1978",
-      "executive_name": "Bikramjit Singh",
-      "person_met": "Malkit ",
-      "mobile": "+91 95920 53381",
-      "is_new_agent": 0,
-      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Money Transfer\",\"Forex\",\"Bus Booking\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-09-27",
@@ -22206,21 +22175,6 @@
       "payment_terms": null
     },
     {
-      "id": 1138,
-      "call_date": "2026-09-23",
-      "agent_id": "AGT-1978",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "call busy ",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
-      "remarks": "",
-      "next_followup_date": "2026-09-25",
-      "payment_terms": null
-    },
-    {
       "id": 1140,
       "call_date": "2026-09-23",
       "agent_id": "AGT-1599",
@@ -28278,6 +28232,21 @@
       "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-10-02",
+      "payment_terms": null
+    },
+    {
+      "id": 1568,
+      "call_date": "2026-10-01",
+      "agent_id": "AGT-1793",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-02",
       "payment_terms": "Not Discussed"
     }
   ],
@@ -29408,26 +29377,6 @@
       "agent_id": "AGT-1905",
       "product": "International Flight",
       "query_details": "atq-shj",
-      "travel_date": "2026-09-29",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-09-15",
-      "status": "Rejected",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
-      "rejection_reason": "Customer Did Not Confirm",
-      "rejection_remarks": ""
-    },
-    {
-      "id": "QRY-5077",
-      "query_date": "2026-09-14",
-      "agent_id": "AGT-1978",
-      "product": "International Flight",
-      "query_details": "atq-dxb",
       "travel_date": "2026-09-29",
       "pax_details": "2 Adults",
       "estimated_value": 0,
