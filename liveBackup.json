@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-01T11:39:41.448Z",
+  "backed_up_at": "2026-10-01T11:42:33.318Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -28412,7 +28412,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-10-02",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1581,
@@ -28427,7 +28427,7 @@
       "call_result": "Closed - Not Interested",
       "remarks": "",
       "next_followup_date": "2026-10-02",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1582,
@@ -28442,7 +28442,7 @@
       "call_result": "Closed - Not Interested",
       "remarks": "",
       "next_followup_date": "2026-10-02",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
@@ -31532,6 +31532,26 @@
       "agent_id": "AGT-2045",
       "product": "International Flight",
       "query_details": "DEL-KWI",
+      "travel_date": "2026-10-16",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-02",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5188",
+      "query_date": "2026-10-01",
+      "agent_id": "AGT-1415",
+      "product": "International Flight",
+      "query_details": "DEL-RUSSIA",
       "travel_date": "2026-10-16",
       "pax_details": "2 Adults",
       "estimated_value": 0,
