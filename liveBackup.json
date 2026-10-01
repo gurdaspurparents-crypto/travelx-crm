@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-01T06:25:54.702Z",
+  "backed_up_at": "2026-10-01T06:27:01.765Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4545,7 +4545,7 @@
       "city": "Saidowal",
       "area": "Saidowal Kalan",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -27580,14 +27580,14 @@
     {
       "id": 1518,
       "call_date": "2026-10-01",
-      "agent_id": "AGT-1736",
-      "visit_id": 802,
+      "agent_id": "AGT-1738",
+      "visit_id": 803,
       "executive_name": "Yug",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "bussy",
+      "agent_requirement": "good relpy",
       "interest_level": "Interested / Warm",
-      "call_result": "Closed - Not Interested",
+      "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-02",
       "payment_terms": "Not Discussed"
