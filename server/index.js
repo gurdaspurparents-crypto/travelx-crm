@@ -5,7 +5,7 @@ const fs = require('fs');
 const multer = require('multer');
 const XLSX = require('xlsx');
 const { db, dbRun, dbAll, dbGet, initDb, seedDatabase, refreshAgentStage } = require('./db');
-const { restoreFromGitHub, scheduleBackup, backupToGitHub, getBackupStatus, exportAllData, applyDataToDb } = require('./gitBackup');
+const { restoreFromGitHub, scheduleBackup, backupToGitHub, getBackupStatus, exportAllData, applyDataToDb, syncLocalBackupFile } = require('./gitBackup');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -126,7 +126,7 @@ app.post('/api/backup/upload-restore', upload.single('backupFile'), async (req, 
     }
 
     console.log(`[LaptopRestore] Restoring database from uploaded laptop file...`);
-    await applyDataToDb(data, dbRun);
+    await applyDataToDb(data, dbRun, dbAll);
 
     // Sync to GitHub cloud backup as well
     scheduleBackup(db);
@@ -655,15 +655,25 @@ app.put('/api/agents/:id/stage', async (req, res) => {
 // Delete Agent
 app.delete('/api/agents/:id', async (req, res) => {
   try {
-    const agentId = req.params.id;
-    await dbRun(`DELETE FROM queries WHERE agent_id = ?`, [agentId]);
-    await dbRun(`DELETE FROM telephonic_calls WHERE agent_id = ?`, [agentId]);
-    await dbRun(`DELETE FROM marketing_visits WHERE agent_id = ?`, [agentId]);
-    await dbRun(`DELETE FROM agents WHERE id = ?`, [agentId]);
+    const rawId = req.params.id;
+    const cleanId = String(rawId || '').trim();
+    if (!cleanId) {
+      return res.status(400).json({ success: false, error: 'Agent ID is required' });
+    }
+
+    await dbRun(`DELETE FROM queries WHERE agent_id = ? OR agent_id = ?`, [cleanId, rawId]);
+    await dbRun(`DELETE FROM telephonic_calls WHERE agent_id = ? OR agent_id = ?`, [cleanId, rawId]);
+    await dbRun(`DELETE FROM marketing_visits WHERE agent_id = ? OR agent_id = ?`, [cleanId, rawId]);
+    await dbRun(`DELETE FROM agents WHERE id = ? OR id = ?`, [cleanId, rawId]);
+
+    // Immediately persist clean state to local liveBackup.json file so restarts cannot resurrect it
+    if (typeof syncLocalBackupFile === 'function') {
+      await syncLocalBackupFile(db);
+    }
 
     scheduleBackup(db, { allowFewer: true });
 
-    res.json({ success: true, message: 'Agent deleted successfully' });
+    res.json({ success: true, message: 'Agent deleted successfully', deletedId: cleanId });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }

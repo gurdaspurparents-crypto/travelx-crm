@@ -38,7 +38,8 @@ export default function AgentMaster({ onOpenAgentDrawer, onOpenModal, onOpenImpo
     try {
       const params = new URLSearchParams({
         limit,
-        offset: (page - 1) * limit
+        offset: (page - 1) * limit,
+        _t: Date.now()
       });
 
       if (search) params.append('search', search);
@@ -46,10 +47,10 @@ export default function AgentMaster({ onOpenAgentDrawer, onOpenModal, onOpenImpo
       if (selectedStage) params.append('stage', selectedStage);
       if (selectedType) params.append('agent_type', selectedType);
 
-      const res = await fetch(`/api/agents?${params.toString()}`);
+      const res = await fetch(`/api/agents?${params.toString()}`, { cache: 'no-store' });
       const json = await res.json();
       if (json.success) {
-        setAgents(json.agents);
+        setAgents(json.agents || []);
         setTotalCount(json.total);
       }
     } catch (err) {
@@ -78,17 +79,28 @@ export default function AgentMaster({ onOpenAgentDrawer, onOpenModal, onOpenImpo
 
   const handleDeleteAgent = async (agentId, companyName) => {
     if (!window.confirm(`🗑️ Are you sure you want to delete "${companyName || agentId}" (ID: ${agentId}) and all associated visits, calls, and queries?`)) return;
+
+    const targetIdStr = String(agentId);
+    // Optimistic local state update
+    setAgents(prev => prev.filter(a => String(a.id) !== targetIdStr));
+    setTotalCount(prev => Math.max(0, (prev || 1) - 1));
+
     try {
-      const res = await fetch(`/api/agents/${agentId}`, { method: 'DELETE' });
+      const res = await fetch(`/api/agents/${agentId}`, { 
+        method: 'DELETE',
+        headers: { 'Cache-Control': 'no-cache' }
+      });
       const json = await res.json();
       if (json.success) {
         alert('✅ Agent deleted successfully');
         fetchAgents();
       } else {
         alert(`❌ Failed to delete agent: ${json.error || 'Server error'}`);
+        fetchAgents();
       }
     } catch (err) {
       alert('❌ Error deleting agent: ' + err.message);
+      fetchAgents();
     }
   };
 

@@ -193,8 +193,24 @@ async function applyDataToDb(data, dbRun, dbAll) {
   return true;
 }
 
+// Synchronously/immediately update local liveBackup.json to prevent resurrection
+async function syncLocalBackupFile(db) {
+  try {
+    const data = await exportAllData(db);
+    fs.writeFileSync(path.resolve(__dirname, 'liveBackup.json'), JSON.stringify(data, null, 2));
+    const altPath = path.resolve(__dirname, '../liveBackup.json');
+    if (fs.existsSync(altPath) || fs.existsSync(path.resolve(__dirname, '..'))) {
+      try { fs.writeFileSync(altPath, JSON.stringify(data, null, 2)); } catch (_) {}
+    }
+    return true;
+  } catch (err) {
+    console.warn('[SyncLocalBackup] Error syncing local backup file:', err.message);
+    return false;
+  }
+}
+
 // BACKUP: Export all live data to GitHub + local file
-async function backupToGitHub(db) {
+async function backupToGitHub(db, options = {}) {
   lastBackupStatus.lastAttempt = new Date().toISOString();
   try {
     const data = await exportAllData(db);
@@ -245,7 +261,11 @@ async function backupToGitHub(db) {
           console.warn(`[Backup Guard] 🛑 REJECTED! Local DB suffered major record loss (Agents: ${data.agents.length}/${cloudAgents}, Visits: ${data.marketing_visits.length}/${cloudVisits}). Refusing to overwrite cloud!`);
           lastBackupStatus.lastError = `Backup rejected by guard: suspected data loss (${data.agents.length} < ${cloudAgents} agents or ${data.marketing_visits.length} < ${cloudVisits} visits)`;
           console.log('[Backup Guard] 🔄 Auto-healing local database from cloud backup...');
-          await applyDataToDb(cloudData, (sql, p) => new Promise((res, rej) => db.run(sql, p, function(e) { if (e) rej(e); else res(this); })));
+          await applyDataToDb(
+            cloudData,
+            (sql, p) => new Promise((res, rej) => db.run(sql, p, function(e) { if (e) rej(e); else res(this); })),
+            (sql, p) => new Promise((res, rej) => db.all(sql, p, (e, rows) => { if (e) rej(e); else res(rows); }))
+          );
           return { success: false, reason: 'LOCAL_DATA_SMALLER_THAN_CLOUD_HEALED' };
         }
       }
@@ -359,5 +379,6 @@ module.exports = {
   scheduleBackup,
   getBackupStatus,
   exportAllData,
-  applyDataToDb
+  applyDataToDb,
+  syncLocalBackupFile
 };

@@ -147,8 +147,17 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
       return;
     }
     if (!window.confirm(`🗑️ Are you sure you want to DELETE "${companyName || agentId}" (ID: ${agentId})?\n\nThis will permanently remove this agency and its associated records from the CRM!`)) return;
+
+    const targetIdStr = String(agentId);
+    // Optimistic local state update
+    setAgents(prev => prev.filter(a => String(a.id) !== targetIdStr));
+    setStats(prev => ({ ...prev, totalAgenciesCount: Math.max(0, (prev.totalAgenciesCount || 1) - 1) }));
+
     try {
-      const res = await fetch(`/api/agents/${agentId}`, { method: 'DELETE' });
+      const res = await fetch(`/api/agents/${agentId}`, { 
+        method: 'DELETE',
+        headers: { 'Cache-Control': 'no-cache' }
+      });
       const json = await res.json();
       if (json.success) {
         alert(`✅ Agency "${companyName}" deleted successfully!`);
@@ -156,9 +165,11 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
         fetchLocationMatrix(selectedMonth);
       } else {
         alert(json.error || 'Failed to delete agency');
+        fetchYugDeskData();
       }
     } catch (err) {
       alert('Error deleting agency: ' + err.message);
+      fetchYugDeskData();
     }
   };
 
@@ -166,12 +177,12 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
     setLoading(true);
     try {
       // 1. Fetch Agents List for Calling Queue (Limit 5000 to get ALL agencies)
-      const params = new URLSearchParams({ limit: '5000' });
+      const params = new URLSearchParams({ limit: '5000', _t: Date.now() });
       if (search) params.append('search', search);
       if (selectedCity) params.append('city', selectedCity);
       if (selectedStage) params.append('stage', selectedStage);
 
-      const agentRes = await fetch(`/api/agents?${params.toString()}`);
+      const agentRes = await fetch(`/api/agents?${params.toString()}`, { cache: 'no-store' });
       const agentJson = await agentRes.json();
       if (agentJson.success) {
         setAgents(agentJson.agents || []);
@@ -181,7 +192,7 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
       }
 
       // 2. Fetch Full Call History (without limit 250 truncation)
-      const allCallsRes = await fetch('/api/calls?limit=10000');
+      const allCallsRes = await fetch(`/api/calls?limit=10000&_t=${Date.now()}`, { cache: 'no-store' });
       const allCallsJson = await allCallsRes.json();
       const history = (allCallsJson.success && allCallsJson.calls) ? allCallsJson.calls : [];
       setCallsHistory(history);

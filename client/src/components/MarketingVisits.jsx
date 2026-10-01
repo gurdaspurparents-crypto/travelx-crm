@@ -92,7 +92,7 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
   const fetchLocationAgents = async (loc = selectedLocation, fDate = checklistFromDate, tDate = checklistToDate) => {
     setLoadingLocationAgents(true);
     try {
-      let url = `/api/agents?limit=1500`;
+      let url = `/api/agents?limit=1500&_t=${Date.now()}`;
       if (loc && loc !== 'ALL' && loc !== 'All Locations') {
         url += `&city=${encodeURIComponent(loc)}`;
       }
@@ -102,10 +102,10 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
         url += `&visit_executive=Bikramjit Singh`;
       }
 
-      const res = await fetch(url);
+      const res = await fetch(url, { cache: 'no-store' });
       const json = await res.json();
       if (json.success) {
-        setLocationAgents(json.agents);
+        setLocationAgents(json.agents || []);
       }
     } catch (err) {
       console.error(err);
@@ -434,18 +434,46 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
       return;
     }
     if (!window.confirm(`🗑️ Are you sure you want to permanently delete "${companyName || 'this agency'}" (ID: ${agentId}) and all associated records?`)) return;
+
+    const targetIdStr = String(agentId);
+    // 1. Immediately remove from local UI state
+    setLocationAgents(prev => prev.filter(a => String(a.id) !== targetIdStr));
+
     try {
-      const res = await fetch(`/api/agents/${agentId}`, { method: 'DELETE' });
+      const res = await fetch(`/api/agents/${agentId}`, { 
+        method: 'DELETE',
+        headers: { 'Cache-Control': 'no-cache' }
+      });
       const json = await res.json();
       if (json.success) {
         alert(`✅ "${companyName || agentId}" removed successfully!`);
-        setLocationAgents(prev => prev.filter(a => a.id !== agentId));
-        fetchLocationAgents(selectedLocation);
+        // 2. Fetch fresh list from server with cache-busting, ensuring deleted ID is never in list
+        let url = `/api/agents?limit=1500&_t=${Date.now()}`;
+        if (selectedLocation && selectedLocation !== 'ALL' && selectedLocation !== 'All Locations') {
+          url += `&city=${encodeURIComponent(selectedLocation)}`;
+        }
+        if (checklistFromDate) url += `&visit_from_date=${encodeURIComponent(checklistFromDate)}`;
+        if (checklistToDate) url += `&visit_to_date=${encodeURIComponent(checklistToDate)}`;
+        if (matrixExecFilter === 'bikram') {
+          url += `&visit_executive=Bikramjit Singh`;
+        }
+        const freshRes = await fetch(url, { cache: 'no-store' });
+        const freshJson = await freshRes.json();
+        if (freshJson.success) {
+          setLocationAgents((freshJson.agents || []).filter(a => String(a.id) !== targetIdStr));
+        }
+        // Refresh available locations list too
+        fetch(`/api/agents/locations?_t=${Date.now()}`, { cache: 'no-store' })
+          .then(r => r.json())
+          .then(j => { if (j.success) setAvailableLocations(j); })
+          .catch(() => {});
       } else {
         alert(`❌ Error removing agent: ${json.error || 'Failed'}`);
+        fetchLocationAgents(selectedLocation, checklistFromDate, checklistToDate);
       }
     } catch (err) {
       alert('Error removing agent: ' + err.message);
+      fetchLocationAgents(selectedLocation, checklistFromDate, checklistToDate);
     }
   };
 

@@ -48,10 +48,10 @@ export default function LocationAnalytics({ role, onOpenModal, onOpenAgentDrawer
   const fetchLocAgencies = async (locName) => {
     setLoadingLocAgencies(true);
     try {
-      const res = await fetch(`/api/agents?location=${encodeURIComponent(locName)}&limit=500`);
+      const res = await fetch(`/api/agents?location=${encodeURIComponent(locName)}&limit=500&_t=${Date.now()}`, { cache: 'no-store' });
       const json = await res.json();
       if (json.success) {
-        setLocAgencies(json.agents);
+        setLocAgencies(json.agents || []);
       }
     } catch (err) {
       console.error(err);
@@ -77,8 +77,14 @@ export default function LocationAnalytics({ role, onOpenModal, onOpenAgentDrawer
       return;
     }
 
+    const targetIdStr = String(agentId);
+    setLocAgencies(prev => prev.filter(a => String(a.id) !== targetIdStr));
+
     try {
-      const res = await fetch(`/api/agents/${agentId}`, { method: 'DELETE' });
+      const res = await fetch(`/api/agents/${agentId}`, { 
+        method: 'DELETE',
+        headers: { 'Cache-Control': 'no-cache' }
+      });
       const json = await res.json();
       if (json.success) {
         alert(`✅ Agency "${companyName}" deleted successfully!`);
@@ -86,10 +92,12 @@ export default function LocationAnalytics({ role, onOpenModal, onOpenAgentDrawer
         fetchAnalytics();
       } else {
         alert(`Error deleting agent: ${json.error || 'Failed'}`);
+        if (selectedLoc) fetchLocAgencies(selectedLoc);
       }
     } catch (err) {
       console.error(err);
       alert('Error deleting agent');
+      if (selectedLoc) fetchLocAgencies(selectedLoc);
     }
   };
 
