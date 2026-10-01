@@ -703,7 +703,7 @@ app.get('/api/visits', async (req, res) => {
       params.push(to_date);
     }
 
-    query += ` ORDER BY mv.visit_date DESC, mv.id DESC LIMIT 150`;
+    query += ` ORDER BY mv.visit_date DESC, mv.id DESC LIMIT 5000`;
 
     const visits = await dbAll(query, params);
     res.json({ success: true, visits });
@@ -734,7 +734,7 @@ app.get('/api/visits/pending-followup', async (req, res) => {
       FROM marketing_visits mv
       JOIN agents a ON mv.agent_id = a.id
       ORDER BY mv.visit_date DESC, mv.id DESC
-      LIMIT 150
+      LIMIT 5000
     `);
 
     const calls = await dbAll(`SELECT * FROM telephonic_calls ORDER BY call_date DESC, id DESC`);
@@ -853,12 +853,13 @@ app.post('/api/visits', async (req, res) => {
   try {
     const { visit_date, agent_id, executive_name, person_met, mobile, is_new_agent, products_pitched, response_level, remarks, next_followup_date, location, gps_latitude, gps_longitude, gps_address } = req.body;
 
-    const pitchedJson = Array.isArray(products_pitched) ? JSON.stringify(products_pitched) : products_pitched;
+    const effectiveVisitDate = (visit_date && String(visit_date).trim()) || new Date().toISOString().split('T')[0];
+    const pitchedJson = Array.isArray(products_pitched) ? JSON.stringify(products_pitched) : (products_pitched || '[]');
 
     const result = await dbRun(
       `INSERT INTO marketing_visits (visit_date, agent_id, executive_name, person_met, mobile, is_new_agent, products_pitched, response_level, remarks, next_followup_date, location, gps_latitude, gps_longitude, gps_address)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [visit_date, agent_id, executive_name, person_met, mobile, is_new_agent ? 1 : 0, pitchedJson, response_level, remarks, next_followup_date, location, gps_latitude || null, gps_longitude || null, gps_address || null]
+      [effectiveVisitDate, agent_id, executive_name || 'Bikramjit Singh', person_met || '', mobile || '', is_new_agent ? 1 : 0, pitchedJson, response_level || 'Good / Interested', remarks || '', next_followup_date || null, location || '', gps_latitude || null, gps_longitude || null, gps_address || null]
     );
 
     // Update agent stage
@@ -1098,7 +1099,9 @@ app.post('/api/calls', async (req, res) => {
   try {
     const { call_date, agent_id, visit_id, executive_name, is_connected, services_discussed, agent_requirement, interest_level, call_result, remarks, next_followup_date, payment_terms } = req.body;
 
-    const servicesJson = Array.isArray(services_discussed) ? JSON.stringify(services_discussed) : services_discussed;
+    const effectiveCallDate = (call_date && String(call_date).trim()) || new Date().toISOString().split('T')[0];
+    const effectiveExecName = (executive_name && String(executive_name).trim()) || 'Yug';
+    const servicesJson = Array.isArray(services_discussed) ? JSON.stringify(services_discussed) : (services_discussed || '[]');
 
     // Smart visit auto-linking: if visit_id is not passed, find latest visit for this agent
     let linkedVisitId = visit_id || null;
@@ -1113,7 +1116,7 @@ app.post('/api/calls', async (req, res) => {
     const result = await dbRun(
       `INSERT INTO telephonic_calls (call_date, agent_id, visit_id, executive_name, is_connected, services_discussed, agent_requirement, interest_level, call_result, remarks, next_followup_date, payment_terms)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [call_date, agent_id, linkedVisitId, executive_name, is_connected ? 1 : 0, servicesJson, agent_requirement, interest_level, call_result, remarks, next_followup_date, payment_terms || 'Advance Payment']
+      [effectiveCallDate, agent_id, linkedVisitId, effectiveExecName, is_connected ? 1 : 0, servicesJson, agent_requirement || '', interest_level || 'Interested / Warm', call_result || 'Call Logged', remarks || '', next_followup_date || null, payment_terms || 'Advance Payment']
     );
 
     // If payment_terms specified, also update agent record
@@ -1271,7 +1274,7 @@ app.get('/api/queries', async (req, res) => {
       params.push(to_date);
     }
 
-    query += ` ORDER BY q.query_date DESC LIMIT 150`;
+    query += ` ORDER BY q.query_date DESC, q.id DESC LIMIT 5000`;
 
     const queries = await dbAll(query, params);
     res.json({ success: true, queries });
@@ -1297,12 +1300,13 @@ app.post('/api/queries', async (req, res) => {
   try {
     const { query_date, agent_id, product, query_details, travel_date, pax_details, estimated_value, quoted_amount, handling_employee, followup_date } = req.body;
 
+    const effectiveQueryDate = (query_date && String(query_date).trim()) || new Date().toISOString().split('T')[0];
     const qryId = await getNextQueryId();
 
     await dbRun(
       `INSERT INTO queries (id, query_date, agent_id, product, query_details, travel_date, pax_details, estimated_value, quoted_amount, handling_employee, followup_date, status)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'New')`,
-      [qryId, query_date || new Date().toISOString().split('T')[0], agent_id, product, query_details, travel_date, pax_details, estimated_value || 0, quoted_amount || 0, handling_employee || 'Simranjit Kaur', followup_date]
+      [qryId, effectiveQueryDate, agent_id, product || 'Domestic Flight', query_details || '', travel_date || null, pax_details || '2 Adults', estimated_value || 0, quoted_amount || 0, handling_employee || 'Simranjit Kaur', followup_date || null]
     );
 
     // Refresh agent stage to QueryReceived

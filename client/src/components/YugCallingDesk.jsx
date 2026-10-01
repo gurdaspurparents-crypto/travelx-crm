@@ -51,6 +51,11 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
   // Calling Queue Filter
   const [queueCallingFilter, setQueueCallingFilter] = useState('all'); // 'all', 'pending', 'called'
 
+  // Instant Feedback & Recently Called in this session so entries never feel "lost"
+  const [pendingLogAgent, setPendingLogAgent] = useState(null);
+  const [recentlyCalledAgentIds, setRecentlyCalledAgentIds] = useState(new Set());
+  const [actionToast, setActionToast] = useState(null);
+
   // Metrics State
   const [stats, setStats] = useState({
     totalCalls: 0,
@@ -75,6 +80,16 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
   // When a modal logs a call or update occurs, re-fetch data smoothly without unmounting or losing selected city!
   useEffect(() => {
     if (refreshTrigger) {
+      if (pendingLogAgent) {
+        setRecentlyCalledAgentIds(prev => new Set(prev).add(pendingLogAgent.id));
+        setActionToast({
+          type: 'success',
+          message: `✅ Call Log Saved for "${pendingLogAgent.company_name}"! Entry safely recorded in CRM database.`,
+          companyName: pendingLogAgent.company_name
+        });
+        setPendingLogAgent(null);
+        setTimeout(() => setActionToast(null), 8000);
+      }
       fetchYugDeskData();
       fetchLocationMatrix(selectedMonth);
     }
@@ -298,11 +313,15 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
   const filteredAgentsList = useMemo(() => {
     return agents.filter(agent => {
       const isCalled = !!yugAgentMonthMap[agent.id];
-      if (queueCallingFilter === 'pending') return !isCalled;
+      if (queueCallingFilter === 'pending') {
+        // Keep agent visible if called in this active session so executive sees it was saved!
+        if (recentlyCalledAgentIds.has(agent.id)) return true;
+        return !isCalled;
+      }
       if (queueCallingFilter === 'called') return isCalled;
       return true;
     });
-  }, [agents, queueCallingFilter, yugAgentMonthMap]);
+  }, [agents, queueCallingFilter, yugAgentMonthMap, recentlyCalledAgentIds]);
 
   const queuePendingCount = useMemo(() => agents.filter(a => !yugAgentMonthMap[a.id]).length, [agents, yugAgentMonthMap]);
   const queueCalledCount = useMemo(() => agents.filter(a => !!yugAgentMonthMap[a.id]).length, [agents, yugAgentMonthMap]);
@@ -1469,6 +1488,44 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
       {/* 📞 CALLING AGENTS QUEUE GRID (PENDING & CALLED TABS + CALL STATUS BADGES) */}
       {/* ========================================================================= */}
       <div id="calling-queue-section" className="scroll-mt-24 space-y-4">
+        {/* Saved Action Toast Banner */}
+        {actionToast && (
+          <div className="p-3.5 bg-emerald-950/90 border border-emerald-500/60 rounded-xl flex items-center justify-between gap-3 text-xs text-emerald-200 shadow-xl animate-in fade-in">
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+              <span className="font-semibold">{actionToast.message}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setQueueCallingFilter('called')}
+                className="px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-bold text-xs cursor-pointer shadow transition"
+              >
+                View in Called ({queueCalledCount}) Tab
+              </button>
+              <button
+                onClick={() => setActionToast(null)}
+                className="p-1 hover:bg-emerald-900 rounded text-emerald-300"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Workflow Guidance Strip for Yug */}
+        <div className="bg-slate-950/60 border border-slate-800/80 px-3.5 py-2.5 rounded-xl text-[11px] text-slate-300 flex flex-wrap items-center justify-between gap-2">
+          <span className="flex items-center gap-1.5">
+            <PhoneCall className="w-3.5 h-3.5 text-sky-400" />
+            <span><strong>Calling Desk Guide:</strong> Call save karne ke baad record 100% database me save rehta hai aur <strong>"🟢 Called ({queueCalledCount})"</strong> tab mein shift ho jata hai.</span>
+          </span>
+          <button
+            onClick={() => setQueueCallingFilter(queueCallingFilter === 'pending' ? 'called' : 'pending')}
+            className="text-sky-400 hover:underline font-bold"
+          >
+            {queueCallingFilter === 'pending' ? `Switch to Called Agencies (${queueCalledCount}) →` : `← Switch to Pending Agencies (${queuePendingCount})`}
+          </button>
+        </div>
+
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <h2 className="text-xl font-black text-white flex items-center gap-2">
@@ -1521,19 +1578,20 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
         ) : filteredAgentsList.length === 0 ? (
           <div className="bg-slate-900 border border-slate-800 p-12 rounded-xl text-center text-slate-300 text-sm space-y-2">
             {queueCallingFilter === 'pending' ? (
-              <>
+              <div className="space-y-2 py-4">
                 <div className="text-3xl">🎉</div>
                 <div className="font-bold text-white text-base">Sabhi Agents Cover Ho Chuke Hain!</div>
                 <div className="text-xs text-slate-400 max-w-md mx-auto">
-                  {selectedCity ? `${selectedCity} ke sabhi travel agencies ko is mahine Yug dwara call kiya ja chuka hai.` : 'Selected filters me koi pending call nahi hai.'}
+                  {selectedCity ? `${selectedCity} ke sabhi travel agencies ko is mahine call kiya ja chuka hai. Aapka sara calling record safe hai.` : 'Selected filters me koi pending call nahi hai.'}
                 </div>
                 <button
-                  onClick={() => setQueueCallingFilter('all')}
-                  className="mt-3 px-3.5 py-1.5 bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs rounded-xl cursor-pointer"
+                  onClick={() => setQueueCallingFilter('called')}
+                  className="mt-3 px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl cursor-pointer shadow inline-flex items-center gap-1.5"
                 >
-                  View All Agencies in this City
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span>View {queueCalledCount} Called Agencies in {selectedCity || 'this city'}</span>
                 </button>
-              </>
+              </div>
             ) : queueCallingFilter === 'called' ? (
               <>
                 <div className="text-3xl">📞</div>
@@ -1557,12 +1615,15 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
             {filteredAgentsList.map((agent) => {
               const monthCall = yugAgentMonthMap[agent.id];
               const isCalled = !!monthCall;
+              const isRecentlyCalled = recentlyCalledAgentIds.has(agent.id);
 
               return (
                 <div 
                   key={agent.id} 
                   className={`bg-slate-900 border rounded-xl p-4 transition shadow flex flex-col justify-between space-y-3 ${
-                    isCalled 
+                    isRecentlyCalled
+                      ? 'border-emerald-400 bg-emerald-950/20 ring-2 ring-emerald-500/40'
+                      : isCalled 
                       ? 'border-emerald-800/50 hover:border-emerald-600/80 bg-slate-900/90' 
                       : 'border-slate-800 hover:border-sky-600/80'
                   }`}
@@ -1570,7 +1631,28 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
                   <div>
                     {/* Monthly Calling Status Banner */}
                     <div className="mb-2.5">
-                      {isCalled ? (
+                      {isRecentlyCalled ? (
+                        <div className="flex items-center justify-between gap-1.5 px-2.5 py-1.5 rounded-lg bg-emerald-950 border-2 border-emerald-400 text-emerald-200 text-[11px] font-bold shadow-md shadow-emerald-950/60 animate-in fade-in">
+                          <span className="flex items-center gap-1.5">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                            <span>✨ Call Logged Just Now! ({monthCall?.call_date || todayStr})</span>
+                          </span>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setRecentlyCalledAgentIds(prev => {
+                                const next = new Set(prev);
+                                next.delete(agent.id);
+                                return next;
+                              });
+                            }}
+                            className="text-[10px] bg-emerald-900 hover:bg-emerald-800 text-emerald-200 px-2 py-0.5 rounded cursor-pointer transition border border-emerald-700/60"
+                            title="Dismiss from pending view"
+                          >
+                            Move to Called &times;
+                          </button>
+                        </div>
+                      ) : isCalled ? (
                         <div className="flex items-center justify-between gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-950/80 border border-emerald-700/60 text-emerald-300 text-[11px] font-bold">
                           <span className="flex items-center gap-1.5">
                             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
@@ -1686,7 +1768,10 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
                     </a>
 
                     <button
-                      onClick={() => onOpenModal('log_call', { ...agent, executive_name: 'Yug' })}
+                      onClick={() => {
+                        setPendingLogAgent(agent);
+                        onOpenModal('log_call', { ...agent, executive_name: 'Yug' });
+                      }}
                       className="py-1.5 px-2 bg-sky-600 hover:bg-sky-500 text-white text-[11px] font-bold rounded-lg transition text-center flex items-center justify-center gap-1 cursor-pointer"
                       title="Log Call Result"
                     >

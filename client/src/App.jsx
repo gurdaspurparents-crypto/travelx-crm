@@ -182,7 +182,7 @@ export default function App() {
 
         {activeTab === 'calls' && (
           <TelephonicFollowups
-            key={refreshKey}
+            refreshTrigger={refreshKey}
             role={role}
             onOpenModal={handleOpenModal}
             onOpenAgentDrawer={setSelectedAgentId}
@@ -191,7 +191,7 @@ export default function App() {
 
         {activeTab === 'queries' && (
           <QueryManagement
-            key={refreshKey}
+            refreshTrigger={refreshKey}
             role={role}
             onOpenModal={handleOpenModal}
             onOpenAgentDrawer={setSelectedAgentId}

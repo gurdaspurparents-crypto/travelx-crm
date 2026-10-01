@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FileText, Plus, CheckCircle2, XCircle, Clock, Filter, DollarSign, ArrowRight, Eye, AlertTriangle, Trash2, Download, Calendar, X } from 'lucide-react';
 import { exportToPDF } from '../utils/exportUtils';
 
-export default function QueryManagement({ onOpenModal, onOpenAgentDrawer }) {
+export default function QueryManagement({ onOpenModal, onOpenAgentDrawer, refreshTrigger }) {
   const [queries, setQueries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState('');
@@ -14,7 +14,7 @@ export default function QueryManagement({ onOpenModal, onOpenAgentDrawer }) {
   const [rejectingQuery, setRejectingQuery] = useState(null);
 
   // Convert Form state
-  const [bookingDate, setBookingDate] = useState('2026-08-29');
+  const [bookingDate, setBookingDate] = useState(() => new Date().toISOString().split('T')[0]);
   const [bookingValue, setBookingValue] = useState('');
   const [bookingRefNo, setBookingRefNo] = useState('');
 
@@ -24,7 +24,7 @@ export default function QueryManagement({ onOpenModal, onOpenAgentDrawer }) {
 
   useEffect(() => {
     fetchQueries();
-  }, [statusFilter, productFilter, dateFilter]);
+  }, [statusFilter, productFilter, dateFilter, refreshTrigger]);
 
   const fetchQueries = async () => {
     setLoading(true);

@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import { exportToPDF } from '../utils/exportUtils';
 
-export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) {
+export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer, role, refreshTrigger }) {
   const [calls, setCalls] = useState([]);
   const [loading, setLoading] = useState(true);
   const [execFilter, setExecFilter] = useState('');
@@ -33,6 +33,10 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
   const [quickReqText, setQuickReqText] = useState('');
   const [quickPaymentTerms, setQuickPaymentTerms] = useState('Advance Payment');
 
+  // Confirmation feedback toasts so entries never feel "lost" or "removed"
+  const [savedToast, setSavedToast] = useState(null);
+  const [recentlyLoggedVisitIds, setRecentlyLoggedVisitIds] = useState(new Set());
+
   // Location Coverage Matrix State (Visited vs Unvisited Agents by City)
   const [coverageData, setCoverageData] = useState(null);
   const [selectedCityCoverage, setSelectedCityCoverage] = useState('');
@@ -44,6 +48,14 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
     fetchVisitQueue();
     fetchLocationCoverage();
   }, [execFilter, resultFilter, dateFilter, fromDate, toDate]);
+
+  useEffect(() => {
+    if (refreshTrigger) {
+      fetchCalls();
+      fetchVisitQueue();
+      fetchLocationCoverage();
+    }
+  }, [refreshTrigger]);
 
   const fetchLocationCoverage = async (city = selectedCityCoverage, filter = coverageFilter) => {
     try {
@@ -198,6 +210,12 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
 
       const json = await res.json();
       if (json.success) {
+        setRecentlyLoggedVisitIds(prev => new Set(prev).add(visit.visit_id));
+        setSavedToast({
+          type: 'success',
+          companyName: visit.company_name,
+          message: `✅ Entry Saved! Call for "${visit.company_name}" successfully recorded and moved to "Logged" tab.`
+        });
         fetchVisitQueue();
         fetchCalls();
         if (resultType === 'requirement') {
@@ -707,7 +725,48 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
               </div>
 
               {showQueue && (
-                <div className="p-4 border-t border-white/[0.04]">
+                <div className="p-4 border-t border-white/[0.04] space-y-3">
+                  {/* Saved Entry Confirmation Banner for Simran */}
+                  {savedToast && (
+                    <div className="p-3 bg-emerald-950/90 border border-emerald-500/60 rounded-xl flex items-center justify-between gap-3 text-xs text-emerald-200 shadow-lg animate-in fade-in">
+                      <div className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                        <span className="font-semibold">{savedToast.message}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={() => { setQueueTab('completed'); setShowQueue(true); }}
+                          className="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-bold text-xs cursor-pointer shadow transition"
+                        >
+                          View in Logged ({calledQueue.length}) Tab
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setSavedToast(null)}
+                          className="p-1 hover:bg-emerald-900 rounded text-emerald-300"
+                        >
+                          <X className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Informational Guidance Strip for Simran */}
+                  <div className="bg-slate-950/60 border border-slate-800/80 px-3 py-2 rounded-xl text-[11px] text-slate-300 flex flex-wrap items-center justify-between gap-2">
+                    <span className="flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5 text-amber-400" />
+                      <span><strong>Workflow Guide:</strong> Jab aap kisi agency ki entry karte hain (Got Query / Tomorrow / No Answer / Full Log), wo <strong>"Logged ({calledQueue.length})"</strong> tab aur neeche Call Logs mein 100% save ho jati hai.</span>
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setQueueTab(queueTab === 'pending' ? 'completed' : 'pending')}
+                      className="text-sky-400 hover:underline font-bold"
+                    >
+                      {queueTab === 'pending' ? `Switch to Logged Calls (${calledQueue.length}) →` : `← Switch to Pending Calls (${pendingQueue.length})`}
+                    </button>
+                  </div>
+
                 <div className="overflow-x-auto border border-white/[0.06] rounded-xl">
                   <table className="w-full table-fixed min-w-[1100px] text-left text-xs text-slate-300 border-collapse">
                     <colgroup>
@@ -733,10 +792,20 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                         <tr>
                           <td colSpan="6" className="p-8 text-center text-slate-400">
                             {queueTab === 'pending' ? (
-                              <div className="space-y-1">
-                                <span className="text-2xl">🎉</span>
+                              <div className="space-y-2 py-4">
+                                <span className="text-3xl">🎉</span>
                                 <p className="font-bold text-emerald-400 text-sm">All caught up! Zero pending calls.</p>
-                                <p className="text-xs text-slate-500">Every visited agent has been called and feedback logged.</p>
+                                <p className="text-xs text-slate-400 max-w-md mx-auto">
+                                  Aapne sabhi visited agencies ko call kar ke unka feedback darj kar diya hai. Sabhi entries database me surakshit hain.
+                                </p>
+                                <button
+                                  type="button"
+                                  onClick={() => setQueueTab('completed')}
+                                  className="mt-2 px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold transition shadow cursor-pointer inline-flex items-center gap-1.5"
+                                >
+                                  <CheckCircle2 className="w-3.5 h-3.5" />
+                                  <span>View {calledQueue.length} Logged Entries in this Handover Queue</span>
+                                </button>
                               </div>
                             ) : (
                               'No records found for selected filter.'
@@ -746,13 +815,14 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer }) 
                       ) : (
                         displayedQueue.map((v) => {
                           const isCalled = !!v.call_id;
+                          const wasJustLogged = recentlyLoggedVisitIds.has(v.visit_id);
                           let pitched = [];
                           try { pitched = typeof v.products_pitched === 'string' ? JSON.parse(v.products_pitched) : (v.products_pitched || []); } catch(e){}
                           const cleanMobile = (v.contact_mobile || '').replace(/\D/g, '');
                           const waGreeting = encodeURIComponent(`Hello ${v.person_met || 'Sir'}, Bikramjit from TravelX visited your office yesterday. Do you have any flight ticket or tour package requirement today?`);
 
                           return (
-                            <tr key={v.visit_id} className="hover:bg-slate-800/30 transition group">
+                            <tr key={v.visit_id} className={`transition group ${wasJustLogged ? 'bg-emerald-950/30 border-l-4 border-emerald-400' : 'hover:bg-slate-800/30'}`}>
                               <td className="p-3 font-mono font-bold text-slate-200 whitespace-nowrap align-middle">{v.visit_date}</td>
                               <td className="p-3 align-middle">
                                 <div className="font-bold text-sky-400 text-sm">{v.company_name}</div>
