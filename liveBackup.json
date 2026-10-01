@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-01T07:31:04.012Z",
+  "backed_up_at": "2026-10-01T07:32:04.571Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -5931,7 +5931,7 @@
       "city": "Kundha",
       "area": "kundha",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-03",
@@ -27881,6 +27881,21 @@
       "call_date": "2026-10-01",
       "agent_id": "AGT-1590",
       "visit_id": 525,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "call cut",
+      "interest_level": "Interested / Warm",
+      "call_result": "Closed - Not Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-02",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 1538,
+      "call_date": "2026-10-01",
+      "agent_id": "AGT-1936",
+      "visit_id": 596,
       "executive_name": "Yug",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
