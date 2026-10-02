@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-02T10:59:42.695Z",
+  "backed_up_at": "2026-10-02T11:01:45.874Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6922,7 +6922,7 @@
       "name": "Kulwinder singh ",
       "company_name": "New gobind cafe ",
       "mobile": "8353980014",
-      "city": "Udanwal",
+      "city": "Udhanwal",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
       "stage": "Inactive",
@@ -29647,7 +29647,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-03",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
