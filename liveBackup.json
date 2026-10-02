@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-02T10:01:31.113Z",
+  "backed_up_at": "2026-10-02T10:04:14.900Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -12611,6 +12611,23 @@
       "mobile": "9914860157",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\",\"Travel Insurance\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-03",
+      "location": "Udhanwal",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 846,
+      "visit_date": "2026-10-02",
+      "agent_id": "AGT-1933",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "HARPREET",
+      "mobile": "8427604753",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Visa Services\",\"Domestic Flight\",\"Tour Packages\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\",\"Travel Insurance\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-10-03",
@@ -29329,7 +29346,7 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-10-03",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
