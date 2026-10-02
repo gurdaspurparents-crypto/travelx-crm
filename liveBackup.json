@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-02T07:00:12.656Z",
+  "backed_up_at": "2026-10-02T07:02:47.091Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4573,7 +4573,7 @@
       "city": "Sri Hargobindpur",
       "area": "Shri Hargobinpur",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -12468,6 +12468,23 @@
       "executive_name": "Bikramjit Singh",
       "person_met": "mr.baba",
       "mobile": "9878008440",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-03",
+      "location": "Sri Hargobindpur",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 840,
+      "visit_date": "2026-10-02",
+      "agent_id": "AGT-1791",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.munish ",
+      "mobile": "8427284034",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
@@ -28348,7 +28365,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-03",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
