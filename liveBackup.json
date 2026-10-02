@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-02T10:47:33.034Z",
+  "backed_up_at": "2026-10-02T10:48:07.693Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -29557,12 +29557,12 @@
       "call_result": "Closed - Not Interested",
       "remarks": "",
       "next_followup_date": "2026-10-03",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1687,
       "call_date": "2026-10-02",
-      "agent_id": "AGT-1897",
+      "agent_id": "AGT-1902",
       "visit_id": null,
       "executive_name": "Yug",
       "is_connected": 1,
