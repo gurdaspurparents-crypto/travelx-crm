@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-02T05:52:13.834Z",
+  "backed_up_at": "2026-10-02T05:52:35.123Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -12406,6 +12406,23 @@
       "remarks": "",
       "next_followup_date": "2026-09-27",
       "location": "Harchowal",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 836,
+      "visit_date": "2026-10-02",
+      "agent_id": "AGT-1786",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "MR.GURWINDER SINGH",
+      "mobile": "9876135469",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Very Interested / Hot",
+      "remarks": "",
+      "next_followup_date": "2026-10-03",
+      "location": "Sri Hargobindpur",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
