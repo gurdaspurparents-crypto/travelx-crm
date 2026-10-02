@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-02T05:50:38.467Z",
+  "backed_up_at": "2026-10-02T05:50:42.882Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4475,7 +4475,7 @@
       "city": "Seikhwan",
       "area": "Opp. Juss College Shekwa",
       "agent_type": "Retail Travel Agent",
-      "stage": "Active",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -31013,26 +31013,6 @@
       "closing_employee": null,
       "rejection_reason": "Competitor Rate",
       "rejection_remarks": ""
-    },
-    {
-      "id": "QRY-5189",
-      "query_date": "2026-10-02",
-      "agent_id": "AGT-1771",
-      "product": "International Flight",
-      "query_details": "dxb-atq",
-      "travel_date": "2026-10-17",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-10-03",
-      "status": "Converted",
-      "booking_date": "2026-10-02",
-      "booking_value": 1,
-      "booking_ref_no": "1",
-      "closing_employee": "Simranjit Kaur",
-      "rejection_reason": null,
-      "rejection_remarks": null
     },
     {
       "id": "QRY-5190",
