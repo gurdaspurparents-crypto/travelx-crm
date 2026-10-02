@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-02T12:06:12.543Z",
+  "backed_up_at": "2026-10-02T12:37:26.717Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -33082,5 +33082,40 @@
       "rejection_remarks": null
     }
   ],
-  "field_trips": []
+  "field_trips": [
+    {
+      "id": 7,
+      "trip_date": "2026-10-02",
+      "executive_name": "Bikramjit Singh",
+      "start_meter_reading": 1,
+      "end_meter_reading": 110,
+      "start_time": "12:08 PM",
+      "end_time": "12:08 PM",
+      "start_location": "Office Departure",
+      "end_location": "Office Return",
+      "total_km": 109,
+      "rate_per_km": 3,
+      "conveyance_amount": 327,
+      "status": "Completed",
+      "remarks": "",
+      "created_at": "2026-10-02T12:08:49.001Z"
+    },
+    {
+      "id": 8,
+      "trip_date": "2026-10-02",
+      "executive_name": "Bikramjit Singh",
+      "start_meter_reading": 1,
+      "end_meter_reading": null,
+      "start_time": "12:08 PM",
+      "end_time": null,
+      "start_location": "Office Departure",
+      "end_location": null,
+      "total_km": 0,
+      "rate_per_km": 3,
+      "conveyance_amount": 0,
+      "status": "Ongoing",
+      "remarks": "",
+      "created_at": "2026-10-02T12:08:53.261Z"
+    }
+  ]
 }
