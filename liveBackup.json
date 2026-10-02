@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-02T12:39:00.672Z",
+  "backed_up_at": "2026-10-02T12:39:11.565Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -1088,20 +1088,6 @@
       "area": "Dinanagar, Opp. Sms College",
       "agent_type": "Retail Travel Agent",
       "stage": "QueryReceived",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1188",
-      "name": "Mr. Sachin",
-      "company_name": "Advance classes",
-      "mobile": "8847252675",
-      "city": "Dinanagar",
-      "area": "Near Punjab National Bank, Opp. Amul, G.t. Road Dinanaagr",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -9418,23 +9404,6 @@
       "mobile": "7888428617",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"Cruise\",\"International Flight\",\"Money Transfer\",\"Hotel Booking\",\"Bus Booking\"]",
-      "response_level": "Interested / Warm",
-      "remarks": "",
-      "next_followup_date": "2026-09-15",
-      "location": "Dinanagar",
-      "gps_latitude": null,
-      "gps_longitude": null,
-      "gps_address": null
-    },
-    {
-      "id": 650,
-      "visit_date": "2026-09-14",
-      "agent_id": "AGT-1188",
-      "executive_name": "Bikramjit Singh",
-      "person_met": "Mr. Sachin",
-      "mobile": "8847252675",
-      "is_new_agent": 0,
-      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Cruise\",\"International Flight\",\"Money Transfer\",\"Hotel Booking\",\"Travel Insurance\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-09-15",
@@ -18668,21 +18637,6 @@
       "payment_terms": null
     },
     {
-      "id": 904,
-      "call_date": "2026-09-16",
-      "agent_id": "AGT-1188",
-      "visit_id": 650,
-      "executive_name": "Simranjit Kaur",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-18",
-      "payment_terms": null
-    },
-    {
       "id": 905,
       "call_date": "2026-09-16",
       "agent_id": "AGT-1979",
@@ -25488,21 +25442,6 @@
       "agent_requirement": "good relpy",
       "interest_level": "Interested / Warm",
       "call_result": "Follow-up Required",
-      "remarks": "",
-      "next_followup_date": "2026-09-27",
-      "payment_terms": null
-    },
-    {
-      "id": 1423,
-      "call_date": "2026-09-26",
-      "agent_id": "AGT-1188",
-      "visit_id": 650,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "kar  nhi karda",
-      "interest_level": "Interested / Warm",
-      "call_result": "Closed - Not Interested",
       "remarks": "",
       "next_followup_date": "2026-09-27",
       "payment_terms": null
