@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-02T12:45:13.734Z",
+  "backed_up_at": "2026-10-02T12:45:24.429Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -5910,20 +5910,6 @@
       "payment_terms": "Not Discussed"
     },
     {
-      "id": "AGT-1977",
-      "name": "surinder singh ",
-      "company_name": "Rs cafe ",
-      "mobile": "7888428617",
-      "city": "Dinanagar",
-      "area": "Main Market",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikramjit Singh",
-      "assigned_telephonic_exec": "Simranjit Kaur",
-      "created_at": "2026-09-14",
-      "payment_terms": "Not Discussed"
-    },
-    {
       "id": "AGT-1979",
       "name": "sandeep ",
       "company_name": "Mahajan cafe ",
@@ -9283,23 +9269,6 @@
       "mobile": "6280579388",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Money Transfer\"]",
-      "response_level": "Interested / Warm",
-      "remarks": "",
-      "next_followup_date": "2026-09-15",
-      "location": "Dinanagar",
-      "gps_latitude": null,
-      "gps_longitude": null,
-      "gps_address": null
-    },
-    {
-      "id": 649,
-      "visit_date": "2026-09-14",
-      "agent_id": "AGT-1977",
-      "executive_name": "Bikramjit Singh",
-      "person_met": "surinder singh ",
-      "mobile": "7888428617",
-      "is_new_agent": 0,
-      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"Cruise\",\"International Flight\",\"Money Transfer\",\"Hotel Booking\",\"Bus Booking\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-09-15",
@@ -18471,21 +18440,6 @@
       "payment_terms": null
     },
     {
-      "id": 903,
-      "call_date": "2026-09-16",
-      "agent_id": "AGT-1977",
-      "visit_id": 649,
-      "executive_name": "Simranjit Kaur",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-18",
-      "payment_terms": null
-    },
-    {
       "id": 905,
       "call_date": "2026-09-16",
       "agent_id": "AGT-1979",
@@ -25411,21 +25365,6 @@
       "agent_requirement": "good  relpy",
       "interest_level": "Interested / Warm",
       "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-27",
-      "payment_terms": null
-    },
-    {
-      "id": 1438,
-      "call_date": "2026-09-26",
-      "agent_id": "AGT-1977",
-      "visit_id": 649,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "not connected",
-      "interest_level": "Interested / Warm",
-      "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-09-27",
       "payment_terms": null
