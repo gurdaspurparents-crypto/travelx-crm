@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-02T08:03:22.694Z",
+  "backed_up_at": "2026-10-02T08:05:23.295Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -3970,20 +3970,6 @@
       "mobile": "9646446636",
       "city": "Purana Shalla",
       "area": "Opp. Maa Durga Mandir, Purana Shalla",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1660",
-      "name": "Mr. Arsh",
-      "company_name": "Hari om cyber café",
-      "mobile": "8558997990",
-      "city": "Purana Shalla",
-      "area": "Purana Shalla",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
@@ -12508,6 +12494,23 @@
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
+    },
+    {
+      "id": 842,
+      "visit_date": "2026-10-02",
+      "agent_id": "AGT-2047",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "mandeep",
+      "mobile": "9876312949",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\",\"Travel Insurance\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-03",
+      "location": "udhanwal",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
     }
   ],
   "telephonic_calls": [
@@ -16212,21 +16215,6 @@
       "agent_requirement": "good relpy",
       "interest_level": "Interested / Warm",
       "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-12",
-      "payment_terms": null
-    },
-    {
-      "id": 701,
-      "call_date": "2026-09-10",
-      "agent_id": "AGT-1660",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "no relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-12",
       "payment_terms": null
@@ -28844,7 +28832,7 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-10-03",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
