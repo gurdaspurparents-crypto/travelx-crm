@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-02T08:16:16.799Z",
+  "backed_up_at": "2026-10-02T08:17:59.469Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6771,7 +6771,7 @@
       "city": "Tibber ",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-26",
@@ -28899,6 +28899,21 @@
       "call_date": "2026-10-02",
       "agent_id": "AGT-2035",
       "visit_id": 821,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-03",
+      "payment_terms": null
+    },
+    {
+      "id": 1653,
+      "call_date": "2026-10-02",
+      "agent_id": "AGT-2036",
+      "visit_id": 822,
       "executive_name": "Yug",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
