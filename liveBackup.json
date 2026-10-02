@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-02T10:37:43.420Z",
+  "backed_up_at": "2026-10-02T10:38:06.754Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6966,20 +6966,6 @@
       "mobile": "9815827508",
       "city": "Udhanwal",
       "area": "Main Market",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
-      "assigned_marketing_exec": "Bikramjit Singh",
-      "assigned_telephonic_exec": "Simranjit Kaur",
-      "created_at": "2026-10-02",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-2053",
-      "name": "jaswant singh",
-      "company_name": "j.s  jewellers ",
-      "mobile": "9814121010",
-      "city": "harchowal",
-      "area": "harchowal",
       "agent_type": "Retail Travel Agent",
       "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
