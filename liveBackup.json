@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-02T07:24:51.410Z",
+  "backed_up_at": "2026-10-02T07:25:10.054Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6925,7 +6925,7 @@
       "city": "udhanwal",
       "area": "udhanwal",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-02",
@@ -31765,6 +31765,26 @@
       "booking_value": 1,
       "booking_ref_no": "1",
       "closing_employee": "Simranjit Kaur",
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5195",
+      "query_date": "2026-10-02",
+      "agent_id": "AGT-2047",
+      "product": "International Flight",
+      "query_details": "lis-del",
+      "travel_date": "2026-10-17",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-03",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
       "rejection_reason": null,
       "rejection_remarks": null
     }
