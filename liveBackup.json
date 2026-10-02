@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-02T09:55:20.667Z",
+  "backed_up_at": "2026-10-02T09:55:33.753Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6954,6 +6954,20 @@
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
       "stage": "Visited",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-10-02",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2051",
+      "name": "Jaskaran singh ",
+      "company_name": "Deol cafe ",
+      "mobile": "9914860157",
+      "city": "Udhanwal",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-02",
