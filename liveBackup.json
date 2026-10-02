@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-02T12:37:26.717Z",
+  "backed_up_at": "2026-10-02T12:38:32.173Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -1088,20 +1088,6 @@
       "area": "Dinanagar, Opp. Sms College",
       "agent_type": "Retail Travel Agent",
       "stage": "QueryReceived",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1185",
-      "name": "Sh. Poonam",
-      "company_name": "Satguru travels",
-      "mobile": "9914064444",
-      "city": "Dinanagar",
-      "area": "Bus Stand, Dinanagar",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -9523,23 +9509,6 @@
       "gps_address": null
     },
     {
-      "id": 654,
-      "visit_date": "2026-09-14",
-      "agent_id": "AGT-1185",
-      "executive_name": "Bikramjit Singh",
-      "person_met": "Sh. Poonam",
-      "mobile": "9914064444",
-      "is_new_agent": 0,
-      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Cruise\",\"International Flight\",\"Money Transfer\",\"Bus Booking\"]",
-      "response_level": "Not Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-15",
-      "location": "Dinanagar",
-      "gps_latitude": null,
-      "gps_longitude": null,
-      "gps_address": null
-    },
-    {
       "id": 655,
       "visit_date": "2026-09-14",
       "agent_id": "AGT-1981",
@@ -12877,21 +12846,6 @@
       "call_result": "Not Interested",
       "remarks": "",
       "next_followup_date": "2026-09-09",
-      "payment_terms": null
-    },
-    {
-      "id": 419,
-      "call_date": "2026-09-04",
-      "agent_id": "AGT-1185",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Hot",
-      "call_result": "Interested",
-      "remarks": "Interested in Dubai group fares",
-      "next_followup_date": "2026-09-05",
       "payment_terms": null
     },
     {
@@ -18794,21 +18748,6 @@
       "call_date": "2026-09-16",
       "agent_id": "AGT-1224",
       "visit_id": 653,
-      "executive_name": "Simranjit Kaur",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-18",
-      "payment_terms": null
-    },
-    {
-      "id": 908,
-      "call_date": "2026-09-16",
-      "agent_id": "AGT-1185",
-      "visit_id": 654,
       "executive_name": "Simranjit Kaur",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
