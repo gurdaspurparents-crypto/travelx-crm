@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-02T09:43:43.224Z",
+  "backed_up_at": "2026-10-02T09:48:07.735Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6926,6 +6926,20 @@
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
       "stage": "Visited",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-10-02",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2049",
+      "name": "Kulwinder singh ",
+      "company_name": "New gobind cafe ",
+      "mobile": "8353980014",
+      "city": "Udanwal",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-02",
@@ -29178,7 +29192,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-03",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
