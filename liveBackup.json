@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-02T12:40:56.021Z",
+  "backed_up_at": "2026-10-02T12:41:11.617Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -1172,20 +1172,6 @@
       "area": "Mgrala Rd",
       "agent_type": "Retail Travel Agent",
       "stage": "Active",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1217",
-      "name": "gagan ",
-      "company_name": "friends cafe ",
-      "mobile": "9646953705",
-      "city": "Dinanagar",
-      "area": "Dnn",
-      "agent_type": "Retail Travel Agent",
-      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -9509,23 +9495,6 @@
       "mobile": "9478833221",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Money Transfer\",\"Bus Booking\"]",
-      "response_level": "Interested / Warm",
-      "remarks": "",
-      "next_followup_date": "2026-09-15",
-      "location": "Dinanagar",
-      "gps_latitude": null,
-      "gps_longitude": null,
-      "gps_address": null
-    },
-    {
-      "id": 660,
-      "visit_date": "2026-09-14",
-      "agent_id": "AGT-1217",
-      "executive_name": "Bikramjit Singh",
-      "person_met": "gagan ",
-      "mobile": "9646953705",
-      "is_new_agent": 0,
-      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"Forex\",\"International Flight\",\"Hotel Booking\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-09-15",
@@ -18696,21 +18665,6 @@
       "payment_terms": null
     },
     {
-      "id": 913,
-      "call_date": "2026-09-16",
-      "agent_id": "AGT-1217",
-      "visit_id": 660,
-      "executive_name": "Simranjit Kaur",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-18",
-      "payment_terms": null
-    },
-    {
       "id": 914,
       "call_date": "2026-09-16",
       "agent_id": "AGT-1985",
@@ -25506,21 +25460,6 @@
       "payment_terms": null
     },
     {
-      "id": 1432,
-      "call_date": "2026-09-26",
-      "agent_id": "AGT-1217",
-      "visit_id": 660,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good  relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-27",
-      "payment_terms": null
-    },
-    {
       "id": 1433,
       "call_date": "2026-09-26",
       "agent_id": "AGT-1221",
@@ -30875,26 +30814,6 @@
       "booking_ref_no": null,
       "closing_employee": null,
       "rejection_reason": "Customer Did Not Confirm",
-      "rejection_remarks": ""
-    },
-    {
-      "id": "QRY-5090",
-      "query_date": "2026-09-16",
-      "agent_id": "AGT-1217",
-      "product": "International Flight",
-      "query_details": "kul-atq",
-      "travel_date": "2026-10-01",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-09-17",
-      "status": "Rejected",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
-      "rejection_reason": "Agent Did Not Respond",
       "rejection_remarks": ""
     },
     {
