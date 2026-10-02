@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-02T07:24:19.210Z",
+  "backed_up_at": "2026-10-02T07:24:51.410Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -331,7 +331,7 @@
       "city": "Chak Sharif",
       "area": "Chakk Shareef",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -6912,6 +6912,20 @@
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
       "stage": "Visited",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-10-02",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2047",
+      "name": "mandeep",
+      "company_name": "mandeep computer",
+      "mobile": "9876312949",
+      "city": "udhanwal",
+      "area": "udhanwal",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-02",
@@ -28500,7 +28514,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-03",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1626,
@@ -28515,7 +28529,7 @@
       "call_result": "Closed - Not Interested",
       "remarks": "",
       "next_followup_date": "2026-10-03",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1627,
@@ -28530,22 +28544,7 @@
       "call_result": "Closed - Not Interested",
       "remarks": "",
       "next_followup_date": "2026-10-03",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": 1628,
-      "call_date": "2026-10-02",
-      "agent_id": "AGT-1062",
-      "visit_id": 748,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "bussy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Call Connected / In Discussion",
-      "remarks": "",
-      "next_followup_date": "2026-10-03",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
