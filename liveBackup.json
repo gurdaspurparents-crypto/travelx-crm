@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-02T11:42:04.663Z",
+  "backed_up_at": "2026-10-02T12:05:27.287Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -2106,8 +2106,8 @@
       "name": "Mr.navdeep singh",
       "company_name": "dharma café ",
       "mobile": "95012 92272",
-      "city": "Sri Hargobindpur",
-      "area": "Shri Hargobinpur",
+      "city": "Harchowal",
+      "area": "Harchowal",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
