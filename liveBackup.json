@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-02T07:16:13.177Z",
+  "backed_up_at": "2026-10-02T07:18:11.656Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -3424,20 +3424,6 @@
       "mobile": "9872350101",
       "city": "Kokhar",
       "area": "Kokharwal, Hargobindpur",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1580",
-      "name": "Mr. Manpreet singh",
-      "company_name": "Gill computer café",
-      "mobile": "9781878141",
-      "city": "Kot Todar Mall",
-      "area": "Kot Todar Mal",
       "agent_type": "Retail Travel Agent",
       "stage": "Inactive",
       "assigned_marketing_exec": "Bikram",
@@ -12250,23 +12236,6 @@
       "remarks": "",
       "next_followup_date": "2026-09-27",
       "location": "Sidhwan",
-      "gps_latitude": null,
-      "gps_longitude": null,
-      "gps_address": null
-    },
-    {
-      "id": 826,
-      "visit_date": "2026-09-26",
-      "agent_id": "AGT-1580",
-      "executive_name": "Bikramjit Singh",
-      "person_met": "Mr. Manpreet singh",
-      "mobile": "9781878141",
-      "is_new_agent": 0,
-      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
-      "response_level": "Interested / Warm",
-      "remarks": "",
-      "next_followup_date": "2026-09-27",
-      "location": "Kot Todar Mall",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
@@ -23327,21 +23296,6 @@
       "payment_terms": null
     },
     {
-      "id": 1276,
-      "call_date": "2026-09-25",
-      "agent_id": "AGT-1580",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "bussy ",
-      "interest_level": "Interested / Warm",
-      "call_result": "Not Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-26",
-      "payment_terms": null
-    },
-    {
       "id": 1277,
       "call_date": "2026-09-25",
       "agent_id": "AGT-1581",
@@ -28394,7 +28348,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-03",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1617,
@@ -28409,7 +28363,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-03",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1618,
@@ -28424,7 +28378,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-03",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1619,
@@ -28439,7 +28393,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-03",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1620,
@@ -28454,7 +28408,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-03",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1621,
@@ -28469,7 +28423,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-03",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1622,
@@ -28484,7 +28438,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-03",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1623,
@@ -28499,7 +28453,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-03",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1624,
@@ -28514,7 +28468,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-03",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
