@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-02T06:59:37.291Z",
+  "backed_up_at": "2026-10-02T07:00:12.656Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -5623,7 +5623,7 @@
       "city": "Nikke Ghuman",
       "area": "Nikke ghuman ",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-03",
@@ -28323,14 +28323,29 @@
     {
       "id": 1614,
       "call_date": "2026-10-02",
-      "agent_id": "AGT-1628",
-      "visit_id": 531,
+      "agent_id": "AGT-1931",
+      "visit_id": 539,
       "executive_name": "Yug",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
       "agent_requirement": "bussy",
       "interest_level": "Interested / Warm",
       "call_result": "Closed - Not Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-03",
+      "payment_terms": null
+    },
+    {
+      "id": 1615,
+      "call_date": "2026-10-02",
+      "agent_id": "AGT-1930",
+      "visit_id": 538,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "now jion",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-03",
       "payment_terms": "Not Discussed"
