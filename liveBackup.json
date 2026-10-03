@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-03T09:30:46.848Z",
+  "backed_up_at": "2026-10-03T09:31:17.675Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -29957,6 +29957,26 @@
       "booking_value": 1,
       "booking_ref_no": "1",
       "closing_employee": "Simranjit Kaur",
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5205",
+      "query_date": "2026-10-03",
+      "agent_id": "AGT-1436",
+      "product": "International Flight",
+      "query_details": "CHD to AUH",
+      "travel_date": "2026-10-18",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-04",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
       "rejection_reason": null,
       "rejection_remarks": null
     }
