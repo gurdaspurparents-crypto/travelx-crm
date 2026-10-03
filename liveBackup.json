@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-03T09:58:06.147Z",
+  "backed_up_at": "2026-10-03T09:59:06.858Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -5932,6 +5932,20 @@
       "area": "harchowal",
       "agent_type": "Retail Travel Agent",
       "stage": "QueryReceived",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-10-03",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2056",
+      "name": "Ahamad ",
+      "company_name": "Starline travel ",
+      "mobile": "+91 79050 64505",
+      "city": "Gurdaspur",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-03",
