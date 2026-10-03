@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-03T08:58:58.546Z",
+  "backed_up_at": "2026-10-03T09:06:32.145Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4090,20 +4090,6 @@
       "payment_terms": "Not Discussed"
     },
     {
-      "id": "AGT-1809",
-      "name": "Mr. Chandan singh",
-      "company_name": "Intelligent OOS",
-      "mobile": "9465379413",
-      "city": "Taragarh",
-      "area": "Near Post Office, Old Taragarh",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
       "id": "AGT-1812",
       "name": "Mr. Nitin ",
       "company_name": "Mahajan cyber café",
@@ -7912,23 +7898,6 @@
       "mobile": "9646031510",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Cruise\",\"International Flight\",\"Money Transfer\",\"Travel Insurance\",\"Hotel Booking\"]",
-      "response_level": "Interested / Warm",
-      "remarks": "",
-      "next_followup_date": "2026-09-13",
-      "location": "Taragarh",
-      "gps_latitude": null,
-      "gps_longitude": null,
-      "gps_address": null
-    },
-    {
-      "id": 634,
-      "visit_date": "2026-09-12",
-      "agent_id": "AGT-1809",
-      "executive_name": "Bikramjit Singh",
-      "person_met": "Mr. Chandan singh",
-      "mobile": "9465379413",
-      "is_new_agent": 0,
-      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"International Flight\",\"Hotel Booking\",\"Bus Booking\",\"Money Transfer\",\"Travel Insurance\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-09-13",
@@ -15996,21 +15965,6 @@
       "payment_terms": null
     },
     {
-      "id": 870,
-      "call_date": "2026-09-15",
-      "agent_id": "AGT-1809",
-      "visit_id": 634,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy  ",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-17",
-      "payment_terms": null
-    },
-    {
       "id": 871,
       "call_date": "2026-09-15",
       "agent_id": "AGT-1812",
@@ -17461,21 +17415,6 @@
       "agent_requirement": "not interested ",
       "interest_level": "Interested / Warm",
       "call_result": "Not Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-23",
-      "payment_terms": null
-    },
-    {
-      "id": 996,
-      "call_date": "2026-09-21",
-      "agent_id": "AGT-1809",
-      "visit_id": 634,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "interested ",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-23",
       "payment_terms": null
@@ -30769,6 +30708,11 @@
       "id": "AGT-1806",
       "entity_type": "agent",
       "deleted_at": "2026-10-03 08:58:48"
+    },
+    {
+      "id": "AGT-1809",
+      "entity_type": "agent",
+      "deleted_at": "2026-10-03 09:06:21"
     }
   ]
 }
