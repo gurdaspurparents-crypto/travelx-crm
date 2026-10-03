@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-03T09:24:37.741Z",
+  "backed_up_at": "2026-10-03T09:25:12.046Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -3915,7 +3915,7 @@
       "city": "Sri Hargobindpur",
       "area": "Shri Gobinpur",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -30422,6 +30422,26 @@
       "agent_id": "AGT-1992",
       "product": "International Flight",
       "query_details": "vie-del",
+      "travel_date": "2026-10-18",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-04",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5203",
+      "query_date": "2026-10-03",
+      "agent_id": "AGT-1789",
+      "product": "International Flight",
+      "query_details": "ixc-auh",
       "travel_date": "2026-10-18",
       "pax_details": "2 Adults",
       "estimated_value": 0,
