@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-03T07:29:47.245Z",
+  "backed_up_at": "2026-10-03T07:39:36.357Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -12438,6 +12438,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-04",
       "location": "Qadian",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 852,
+      "visit_date": "2026-10-03",
+      "agent_id": "AGT-2034",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "kuqman",
+      "mobile": "9915451867",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\",\"Travel Insurance\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-04",
+      "location": "qadian",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
@@ -29992,7 +30009,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-04",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 1750,
@@ -30007,7 +30024,7 @@
       "call_result": "Closed - Not Interested",
       "remarks": "",
       "next_followup_date": "2026-10-04",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
