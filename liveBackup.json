@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-03T08:49:52.955Z",
+  "backed_up_at": "2026-10-03T08:50:37.247Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -5602,20 +5602,6 @@
       "payment_terms": "Not Discussed"
     },
     {
-      "id": "AGT-1991",
-      "name": "Abhi",
-      "company_name": "Abhi shalon center ",
-      "mobile": "76967 77209",
-      "city": "Kalanour",
-      "area": "Main Market",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikramjit Singh",
-      "assigned_telephonic_exec": "Simranjit Kaur",
-      "created_at": "2026-09-16",
-      "payment_terms": "Not Discussed"
-    },
-    {
       "id": "AGT-1992",
       "name": "ashwani",
       "company_name": "ashwani kingdom",
@@ -9135,23 +9121,6 @@
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
-      "next_followup_date": "2026-09-17",
-      "location": "Kalanour",
-      "gps_latitude": null,
-      "gps_longitude": null,
-      "gps_address": null
-    },
-    {
-      "id": 698,
-      "visit_date": "2026-09-16",
-      "agent_id": "AGT-1991",
-      "executive_name": "Bikramjit Singh",
-      "person_met": "Abhi",
-      "mobile": "76967 77209",
-      "is_new_agent": 0,
-      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"Cruise\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
-      "response_level": "Interested / Warm",
-      "remarks": "new ",
       "next_followup_date": "2026-09-17",
       "location": "Kalanour",
       "gps_latitude": null,
@@ -17791,21 +17760,6 @@
       "payment_terms": null
     },
     {
-      "id": 959,
-      "call_date": "2026-09-18",
-      "agent_id": "AGT-1991",
-      "visit_id": 698,
-      "executive_name": "Simranjit Kaur",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
-      "remarks": "",
-      "next_followup_date": "2026-09-20",
-      "payment_terms": null
-    },
-    {
       "id": 960,
       "call_date": "2026-09-18",
       "agent_id": "AGT-1996",
@@ -22541,21 +22495,6 @@
       "agent_requirement": "bussy",
       "interest_level": "Interested / Warm",
       "call_result": "Call Connected / In Discussion",
-      "remarks": "",
-      "next_followup_date": "2026-09-27",
-      "payment_terms": null
-    },
-    {
-      "id": 1354,
-      "call_date": "2026-09-26",
-      "agent_id": "AGT-1991",
-      "visit_id": 698,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-09-27",
       "payment_terms": null
@@ -31709,6 +31648,11 @@
       "id": "AGT-1563",
       "entity_type": "agent",
       "deleted_at": "2026-10-03 08:49:42"
+    },
+    {
+      "id": "AGT-1991",
+      "entity_type": "agent",
+      "deleted_at": "2026-10-03 08:50:27"
     }
   ]
 }
