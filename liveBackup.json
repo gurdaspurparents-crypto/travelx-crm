@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-03T07:12:31.098Z",
+  "backed_up_at": "2026-10-03T07:13:08.035Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -12377,12 +12377,12 @@
     {
       "id": 848,
       "visit_date": "2026-10-03",
-      "agent_id": "AGT-1682",
+      "agent_id": "AGT-1441",
       "executive_name": "Bikramjit Singh",
-      "person_met": "Mr. Amit",
-      "mobile": "9876733354",
+      "person_met": "Mr.navraj singh",
+      "mobile": "9915944997",
       "is_new_agent": 0,
-      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-10-04",
@@ -29922,6 +29922,21 @@
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
       "agent_requirement": "no good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Closed - Not Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-04",
+      "payment_terms": null
+    },
+    {
+      "id": 1748,
+      "call_date": "2026-10-03",
+      "agent_id": "AGT-1874",
+      "visit_id": 702,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "call cut bussy",
       "interest_level": "Interested / Warm",
       "call_result": "Closed - Not Interested",
       "remarks": "",
