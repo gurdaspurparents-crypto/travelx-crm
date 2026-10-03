@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-03T09:25:12.046Z",
+  "backed_up_at": "2026-10-03T09:26:34.355Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4080,20 +4080,6 @@
       "name": "Mr. Gursewak singh",
       "company_name": "Gram suvidha centre",
       "mobile": "9803124794",
-      "city": "Taragarh",
-      "area": "Taragarh",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1812",
-      "name": "Mr. Nitin ",
-      "company_name": "Mahajan cyber café",
-      "mobile": "6284777608",
       "city": "Taragarh",
       "area": "Taragarh",
       "agent_type": "Retail Travel Agent",
@@ -15960,21 +15946,6 @@
       "agent_requirement": "not interested ",
       "interest_level": "Interested / Warm",
       "call_result": "Not Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-17",
-      "payment_terms": null
-    },
-    {
-      "id": 871,
-      "call_date": "2026-09-15",
-      "agent_id": "AGT-1812",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "busy ",
-      "interest_level": "Interested / Warm",
-      "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-09-17",
       "payment_terms": null
@@ -30753,6 +30724,11 @@
       "id": "AGT-1809",
       "entity_type": "agent",
       "deleted_at": "2026-10-03 09:06:21"
+    },
+    {
+      "id": "AGT-1812",
+      "entity_type": "agent",
+      "deleted_at": "2026-10-03 09:26:24"
     }
   ]
 }
