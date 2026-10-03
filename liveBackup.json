@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-03T07:26:36.790Z",
+  "backed_up_at": "2026-10-03T07:27:27.955Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4965,7 +4965,7 @@
       "city": "Wadala Bangar",
       "area": "Wadala Bangar",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -6127,7 +6127,7 @@
       "city": "Wadala Bangar",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-16",
@@ -29815,6 +29815,36 @@
       "payment_terms": null
     },
     {
+      "id": 1737,
+      "call_date": "2026-10-03",
+      "agent_id": "AGT-2046",
+      "visit_id": 841,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-04",
+      "payment_terms": null
+    },
+    {
+      "id": 1738,
+      "call_date": "2026-10-03",
+      "agent_id": "AGT-2046",
+      "visit_id": 841,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-04",
+      "payment_terms": null
+    },
+    {
       "id": 1740,
       "call_date": "2026-10-03",
       "agent_id": "AGT-2046",
@@ -29873,6 +29903,66 @@
       "remarks": "",
       "next_followup_date": "2026-10-04",
       "payment_terms": null
+    },
+    {
+      "id": 1744,
+      "call_date": "2026-10-03",
+      "agent_id": "AGT-1872",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-04",
+      "payment_terms": null
+    },
+    {
+      "id": 1745,
+      "call_date": "2026-10-03",
+      "agent_id": "AGT-1872",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-04",
+      "payment_terms": null
+    },
+    {
+      "id": 1746,
+      "call_date": "2026-10-03",
+      "agent_id": "AGT-1867",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "call bussy ",
+      "interest_level": "Interested / Warm",
+      "call_result": "Closed - Not Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-04",
+      "payment_terms": null
+    },
+    {
+      "id": 1747,
+      "call_date": "2026-10-03",
+      "agent_id": "AGT-1996",
+      "visit_id": 706,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "bussy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Call Connected / In Discussion",
+      "remarks": "",
+      "next_followup_date": "2026-10-04",
+      "payment_terms": "Not Discussed"
     }
   ],
   "queries": [
