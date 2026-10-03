@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-03T09:29:07.646Z",
+  "backed_up_at": "2026-10-03T09:29:21.045Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4208,20 +4208,6 @@
       "mobile": "9872605411",
       "city": "Tibri",
       "area": "Army Gate No. 1 Tibri Cantt, Gsp",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1836",
-      "name": "Mr. Surinder kumar",
-      "company_name": "ESM insurance",
-      "mobile": "9872493442",
-      "city": "Tibri",
-      "area": "Tibri Cant",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
@@ -21287,21 +21273,6 @@
       "payment_terms": null
     },
     {
-      "id": 1358,
-      "call_date": "2026-09-26",
-      "agent_id": "AGT-1836",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-27",
-      "payment_terms": null
-    },
-    {
       "id": 1359,
       "call_date": "2026-09-26",
       "agent_id": "AGT-1847",
@@ -30440,6 +30411,11 @@
       "id": "AGT-1831",
       "entity_type": "agent",
       "deleted_at": "2026-10-03 09:28:57"
+    },
+    {
+      "id": "AGT-1836",
+      "entity_type": "agent",
+      "deleted_at": "2026-10-03 09:29:10"
     }
   ]
 }
