@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-03T10:14:33.881Z",
+  "backed_up_at": "2026-10-03T10:29:44.012Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -10927,6 +10927,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-04",
       "location": "Qadian ",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 861,
+      "visit_date": "2026-10-03",
+      "agent_id": "AGT-1707",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.Kuldeep singh",
+      "mobile": "8558854898",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-04",
+      "location": "Qadian",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
@@ -30321,6 +30338,26 @@
       "agent_id": "AGT-2055",
       "product": "International Flight",
       "query_details": "pat-del",
+      "travel_date": "2026-10-18",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-04",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5212",
+      "query_date": "2026-10-03",
+      "agent_id": "AGT-1107",
+      "product": "International Flight",
+      "query_details": "atq-del",
       "travel_date": "2026-10-18",
       "pax_details": "2 Adults",
       "estimated_value": 0,
