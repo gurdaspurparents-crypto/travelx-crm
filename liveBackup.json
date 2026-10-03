@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-03T09:27:31.150Z",
+  "backed_up_at": "2026-10-03T09:29:07.646Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4194,20 +4194,6 @@
       "mobile": "9780054221",
       "city": "Tibber",
       "area": "Gurdaspur",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1831",
-      "name": "ravinder singh",
-      "company_name": "csc centre",
-      "mobile": "855897990",
-      "city": "Tibri",
-      "area": "Tibir Cant",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
@@ -22756,21 +22742,6 @@
       "payment_terms": null
     },
     {
-      "id": 1484,
-      "call_date": "2026-09-28",
-      "agent_id": "AGT-1831",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-29",
-      "payment_terms": null
-    },
-    {
       "id": 1485,
       "call_date": "2026-09-28",
       "agent_id": "AGT-2005",
@@ -30464,6 +30435,11 @@
       "id": "AGT-1973",
       "entity_type": "agent",
       "deleted_at": "2026-10-03 09:27:20"
+    },
+    {
+      "id": "AGT-1831",
+      "entity_type": "agent",
+      "deleted_at": "2026-10-03 09:28:57"
     }
   ]
 }
