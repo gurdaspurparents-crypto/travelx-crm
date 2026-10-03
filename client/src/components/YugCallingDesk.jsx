@@ -1700,9 +1700,20 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
                           </div>
                         </div>
                       ) : (
-                        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-rose-950/80 border border-rose-800/60 text-rose-300 text-[11px] font-bold">
-                          <AlertCircle className="w-3.5 h-3.5 text-rose-400 shrink-0" />
-                          <span>🔴 Pending Call in {selectedMonth}</span>
+                        <div className="flex items-center justify-between gap-1.5 px-2.5 py-1 rounded-lg bg-rose-950/80 border border-rose-800/60 text-rose-300 text-[11px] font-bold">
+                          <span className="flex items-center gap-1.5">
+                            <AlertCircle className="w-3.5 h-3.5 text-rose-400 shrink-0" />
+                            <span>🔴 Pending Call in {selectedMonth}</span>
+                          </span>
+                          {agent.is_query_active ? (
+                            <span className="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-1.5 py-0.2 rounded text-[10px] font-bold whitespace-nowrap">
+                              🟢 Active ({agent.query_month_label ? agent.query_month_label.replace(' Month', '') : 'Query'})
+                            </span>
+                          ) : (
+                            <span className="bg-slate-800 text-slate-400 border border-slate-700 px-1.5 py-0.2 rounded text-[10px] font-medium whitespace-nowrap">
+                              ⚪ Non-Active
+                            </span>
+                          )}
                         </div>
                       )}
                     </div>

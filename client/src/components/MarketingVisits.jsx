@@ -1528,15 +1528,30 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
                       <h4 className="font-bold text-slate-100 text-base sm:text-sm line-clamp-1">{ag.company_name}</h4>
                       <p className="text-slate-300 sm:text-slate-400 text-xs sm:text-[11px] font-medium mt-0.5">{ag.name} &bull; 📍 {ag.city} ({ag.area})</p>
                     </div>
-                    {isVisited ? (
-                      <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 px-2.5 py-1 sm:py-0.5 rounded-full text-xs sm:text-[10px] font-mono font-bold whitespace-nowrap" title={`Visited on: ${ag.last_visit_date}`}>
-                        ✅ Visited ({ag.last_visit_date})
-                      </span>
-                    ) : (
-                      <span className="bg-rose-500/10 text-rose-400 border border-rose-500/25 px-2.5 py-1 sm:py-0.5 rounded-full text-xs sm:text-[10px] font-mono font-bold whitespace-nowrap animate-pulse">
-                        🔴 Pending Visit
-                      </span>
-                    )}
+                    <div className="flex flex-col sm:flex-row items-end sm:items-center gap-1.5 shrink-0">
+                      {isVisited ? (
+                        <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 px-2.5 py-1 sm:py-0.5 rounded-full text-xs sm:text-[10px] font-mono font-bold whitespace-nowrap" title={`Visited on: ${ag.last_visit_date}`}>
+                          ✅ Visited ({ag.last_visit_date})
+                        </span>
+                      ) : (
+                        <span className="bg-rose-500/10 text-rose-400 border border-rose-500/25 px-2.5 py-1 sm:py-0.5 rounded-full text-xs sm:text-[10px] font-mono font-bold whitespace-nowrap animate-pulse">
+                          🔴 Pending Visit
+                        </span>
+                      )}
+
+                      {/* 🟢 Active / ⚪ Non-Active Badge right alongside Pending/Visited */}
+                      {ag.is_query_active ? (
+                        <span className="bg-emerald-500/20 text-emerald-300 border border-emerald-500/50 px-2 py-1 sm:py-0.5 rounded-full text-xs sm:text-[10px] font-bold whitespace-nowrap flex items-center gap-1 shadow-sm">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                          <span>🟢 Active ({ag.query_month_label ? ag.query_month_label.replace(' Month', '') : 'Query'})</span>
+                        </span>
+                      ) : (
+                        <span className="bg-slate-800/80 text-slate-400 border border-slate-700/60 px-2 py-1 sm:py-0.5 rounded-full text-xs sm:text-[10px] font-semibold whitespace-nowrap flex items-center gap-1">
+                          <span className="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+                          <span>⚪ Non-Active</span>
+                        </span>
+                      )}
+                    </div>
                   </div>
 
                   {/* 🔥 Active Query Status & Recent Inquiry Snippet */}

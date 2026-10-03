@@ -33,14 +33,18 @@ function AgentCombobox({ agentsList, selectedAgentId, onSelectAgent }) {
         <div className={`flex items-center justify-between p-2.5 rounded-xl text-sm font-semibold border ${
           selectedAgent.is_query_active 
             ? 'bg-emerald-950/40 border-emerald-500/70 text-emerald-300' 
-            : 'bg-slate-950 border-sky-500/60 text-sky-300'
+            : 'bg-slate-950 border-slate-800 text-slate-300'
         }`}>
           <div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
               <span>{selectedAgent.company_name}</span>
-              {selectedAgent.is_query_active && (
+              {selectedAgent.is_query_active ? (
                 <span className="text-[10px] font-extrabold bg-emerald-500 text-slate-950 px-2 py-0.5 rounded-full uppercase tracking-wider shadow-sm flex items-center gap-1">
-                  🔥 Active Client ({selectedAgent.query_month_label || 'Recent Query'})
+                  🟢 Active ({selectedAgent.query_month_label || 'Recent Query'})
+                </span>
+              ) : (
+                <span className="text-[10px] font-semibold bg-slate-800 text-slate-400 px-2 py-0.5 rounded-full uppercase tracking-wider border border-slate-700">
+                  ⚪ Non-Active (No Query)
                 </span>
               )}
             </div>
@@ -92,11 +96,15 @@ function AgentCombobox({ agentsList, selectedAgentId, onSelectAgent }) {
                     className="p-2.5 hover:bg-slate-800 cursor-pointer border-b border-slate-800/40 text-xs transition flex justify-between items-center"
                   >
                     <div>
-                      <div className="flex items-center gap-1.5 font-bold text-slate-100">
+                      <div className="flex items-center gap-1.5 font-bold text-slate-100 flex-wrap">
                         <span>{ag.company_name}</span>
-                        {ag.is_query_active && (
+                        {ag.is_query_active ? (
                           <span className="text-[10px] font-extrabold bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 px-1.5 py-0.2 rounded-full">
-                            🔥 {ag.query_month_label || 'Active'} Query
+                            🟢 Active ({ag.query_month_label || 'Query'})
+                          </span>
+                        ) : (
+                          <span className="text-[10px] font-medium bg-slate-800 text-slate-400 border border-slate-700 px-1.5 py-0.2 rounded-full">
+                            ⚪ Non-Active
                           </span>
                         )}
                       </div>
@@ -567,6 +575,36 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
         {/* LOG MARKETING VISIT FORM */}
         {modalType === 'log_visit' && (
           <form onSubmit={handleVisitSubmit} className="space-y-4">
+            {/* Agency Current Visit & Query Status Strip */}
+            {currentAgent && (
+              <div className="flex items-center justify-between text-xs px-3 py-2 rounded-xl bg-slate-950 border border-slate-800">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-slate-400 font-semibold">Visit:</span>
+                  {currentAgent.last_visit_date ? (
+                    <span className="text-emerald-400 font-bold bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800">
+                      ✅ Visited ({currentAgent.last_visit_date})
+                    </span>
+                  ) : (
+                    <span className="text-rose-400 font-bold bg-rose-950/80 px-2 py-0.5 rounded border border-rose-800 animate-pulse">
+                      🔴 Pending Visit
+                    </span>
+                  )}
+                </div>
+                <div>
+                  {currentAgent.is_query_active ? (
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                      <span>🟢 Active ({currentAgent.query_month_label || 'Recent Query'})</span>
+                    </span>
+                  ) : (
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-slate-800 text-slate-400 border border-slate-700">
+                      ⚪ Non-Active (No Query)
+                    </span>
+                  )}
+                </div>
+              </div>
+            )}
+
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="block text-xs font-semibold text-slate-400 mb-1">Visit Date</label>
