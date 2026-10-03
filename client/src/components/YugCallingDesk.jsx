@@ -320,10 +320,13 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
   const matrixInProgressCount = useMemo(() => sortedMatrix.filter(l => (l.yug_called_month || 0) > 0 && (l.yug_coverage_rate || 0) < 100).length, [sortedMatrix]);
   const matrixNotStartedCount = useMemo(() => sortedMatrix.filter(l => (l.yug_called_month || 0) === 0).length, [sortedMatrix]);
 
-  // Calling Queue Filtering (Pending / Called / All for selected month)
+  // Calling Queue Filtering (Pending / Called / All / Active Query for selected month)
   const filteredAgentsList = useMemo(() => {
     return agents.filter(agent => {
       const isCalled = !!yugAgentMonthMap[agent.id];
+      if (queueCallingFilter === 'active_query') {
+        return Boolean(agent.is_query_active);
+      }
       if (queueCallingFilter === 'pending') {
         // Keep agent visible if called in this active session so executive sees it was saved!
         if (recentlyCalledAgentIds.has(agent.id)) return true;
@@ -336,6 +339,7 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
 
   const queuePendingCount = useMemo(() => agents.filter(a => !yugAgentMonthMap[a.id]).length, [agents, yugAgentMonthMap]);
   const queueCalledCount = useMemo(() => agents.filter(a => !!yugAgentMonthMap[a.id]).length, [agents, yugAgentMonthMap]);
+  const queueActiveQueryCount = useMemo(() => agents.filter(a => Boolean(a.is_query_active)).length, [agents]);
 
   // Helper to check if a call record has meaningful remarks or requirement comments
   const hasCallComment = (c) => {
@@ -1547,8 +1551,8 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
             </p>
           </div>
 
-          {/* Queue Filter Tabs: Pending / Called / All */}
-          <div className="flex items-center gap-1.5 bg-slate-950 p-1 rounded-xl border border-slate-800 self-start sm:self-auto">
+          {/* Queue Filter Tabs: Pending / Called / All / Active Query */}
+          <div className="flex items-center gap-1.5 bg-slate-950 p-1 rounded-xl border border-slate-800 self-start sm:self-auto flex-wrap">
             <button
               onClick={() => setQueueCallingFilter('pending')}
               className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
@@ -1568,6 +1572,16 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
               }`}
             >
               <span>🟢 Called ({queueCalledCount})</span>
+            </button>
+            <button
+              onClick={() => setQueueCallingFilter('active_query')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
+                queueCallingFilter === 'active_query'
+                  ? 'bg-amber-500 text-slate-950 font-extrabold shadow-md shadow-amber-950/40'
+                  : 'text-amber-400 hover:text-white hover:bg-amber-950/30'
+              }`}
+            >
+              <span>🔥 Active Query ({queueActiveQueryCount})</span>
             </button>
             <button
               onClick={() => setQueueCallingFilter('all')}
@@ -1727,6 +1741,37 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
                         )}
                       </div>
                     </div>
+
+                    {/* 🔥 Active Query Status & Recent Inquiry Pitch Cue */}
+                    {agent.is_query_active && (
+                      <div className="bg-emerald-950/70 border border-emerald-500/50 rounded-lg p-2 text-xs space-y-1">
+                        <div className="flex items-center justify-between font-bold text-emerald-300">
+                          <span className="flex items-center gap-1 text-[11px]">
+                            🔥 Active Client ({agent.query_month_label || 'Recent Query'})
+                          </span>
+                          {agent.latest_query_status && (
+                            <span className={`px-1.5 py-0.5 rounded text-[10px] uppercase font-mono font-bold ${
+                              agent.latest_query_status === 'Converted' ? 'bg-emerald-500/30 text-emerald-200' :
+                              agent.latest_query_status === 'Rejected' || agent.latest_query_status === 'Lost' ? 'bg-rose-500/30 text-rose-200' :
+                              'bg-amber-500/30 text-amber-200'
+                            }`}>
+                              {agent.latest_query_status}
+                            </span>
+                          )}
+                        </div>
+                        {agent.latest_query_product && (
+                          <div className="text-[11px] text-slate-200 line-clamp-1">
+                            ✈️ {agent.latest_query_product}: {agent.latest_query_details || 'Latest inquiry'}
+                          </div>
+                        )}
+                        <div className="flex items-center justify-between text-[10px] text-slate-400 font-mono">
+                          <span>Date: {agent.latest_query_date || 'Recent'}</span>
+                          {agent.latest_quoted_amount > 0 && (
+                            <span className="text-amber-300 font-bold">Quoted: ₹{Number(agent.latest_quoted_amount).toLocaleString('en-IN')}</span>
+                          )}
+                        </div>
+                      </div>
+                    )}
 
                     <div className="mt-3 flex items-center justify-between text-xs text-slate-400 bg-slate-950/60 p-2 rounded-lg border border-slate-800">
                       <div>

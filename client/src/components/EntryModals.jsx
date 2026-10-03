@@ -30,10 +30,21 @@ function AgentCombobox({ agentsList, selectedAgentId, onSelectAgent }) {
       </label>
 
       {selectedAgent ? (
-        <div className="flex items-center justify-between bg-slate-950 border border-sky-500/60 p-2.5 rounded-xl text-sm font-semibold text-sky-300">
+        <div className={`flex items-center justify-between p-2.5 rounded-xl text-sm font-semibold border ${
+          selectedAgent.is_query_active 
+            ? 'bg-emerald-950/40 border-emerald-500/70 text-emerald-300' 
+            : 'bg-slate-950 border-sky-500/60 text-sky-300'
+        }`}>
           <div>
-            <span>{selectedAgent.company_name}</span>
-            <span className="text-xs text-slate-400 font-mono ml-2">({selectedAgent.id} &bull; {selectedAgent.name} &bull; {selectedAgent.city})</span>
+            <div className="flex items-center gap-2">
+              <span>{selectedAgent.company_name}</span>
+              {selectedAgent.is_query_active && (
+                <span className="text-[10px] font-extrabold bg-emerald-500 text-slate-950 px-2 py-0.5 rounded-full uppercase tracking-wider shadow-sm flex items-center gap-1">
+                  🔥 Active Client ({selectedAgent.query_month_label || 'Recent Query'})
+                </span>
+              )}
+            </div>
+            <span className="text-xs text-slate-400 font-mono ml-0.5">({selectedAgent.id} &bull; {selectedAgent.name} &bull; {selectedAgent.city})</span>
           </div>
           <button
             type="button"
@@ -81,7 +92,14 @@ function AgentCombobox({ agentsList, selectedAgentId, onSelectAgent }) {
                     className="p-2.5 hover:bg-slate-800 cursor-pointer border-b border-slate-800/40 text-xs transition flex justify-between items-center"
                   >
                     <div>
-                      <div className="font-bold text-slate-100">{ag.company_name}</div>
+                      <div className="flex items-center gap-1.5 font-bold text-slate-100">
+                        <span>{ag.company_name}</span>
+                        {ag.is_query_active && (
+                          <span className="text-[10px] font-extrabold bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 px-1.5 py-0.2 rounded-full">
+                            🔥 {ag.query_month_label || 'Active'} Query
+                          </span>
+                        )}
+                      </div>
                       <div className="text-[11px] text-slate-400">{ag.name} &bull; 📱 {ag.mobile} &bull; 📍 {ag.city} ({ag.area})</div>
                     </div>
                     <span className="font-mono text-[10px] font-bold bg-sky-950 text-sky-400 px-2 py-0.5 rounded border border-sky-800">
@@ -94,6 +112,122 @@ function AgentCombobox({ agentsList, selectedAgentId, onSelectAgent }) {
           )}
         </div>
       )}
+    </div>
+  );
+}
+
+// 🎯 Smart Pitch Alert & Guidance Banner for Field Visits & Telephonic Calling
+function AgentPitchBanner({ agent }) {
+  if (!agent) return null;
+
+  const isActive = Boolean(agent.is_query_active || (agent.recent_queries_count > 0));
+
+  if (!isActive) {
+    return (
+      <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-3 text-xs text-slate-300 space-y-1">
+        <div className="flex items-center justify-between">
+          <span className="font-bold text-slate-400 flex items-center gap-1.5 text-[11px]">
+            <span className="w-2 h-2 rounded-full bg-slate-500"></span>
+            ⚪ Standard Prospect (No query in last/current month)
+          </span>
+          {agent.city && <span className="text-[10px] text-slate-500 font-mono">📍 {agent.city}</span>}
+        </div>
+        <div className="text-[11px] text-slate-400 leading-relaxed">
+          🎯 <strong>Recommended Pitch:</strong> Introduce TravelX core inventory — Domestic & International Flight tickets, Group PNRs, Dubai/Thailand Fixed Packages & instant Visa assistance.
+        </div>
+      </div>
+    );
+  }
+
+  const queryStatus = agent.latest_query_status || 'In-Progress';
+  const isConverted = queryStatus === 'Converted';
+  const isLost = queryStatus === 'Rejected' || queryStatus === 'Lost';
+
+  return (
+    <div className="bg-gradient-to-r from-emerald-950/70 via-slate-900 to-emerald-950/50 border border-emerald-500/60 rounded-xl p-3.5 shadow-lg shadow-emerald-950/40 space-y-2.5">
+      {/* Header Badge */}
+      <div className="flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2">
+          <span className="flex h-2.5 w-2.5 relative">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+          </span>
+          <span className="text-xs font-black text-emerald-300 tracking-wide uppercase flex items-center gap-1">
+            🔥 ACTIVE AGENT &bull; {agent.query_month_label || 'RECENT'} QUERY
+          </span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <span className="text-[10px] font-bold bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full border border-emerald-500/40">
+            {agent.recent_queries_count || 1} Queries
+          </span>
+          {(agent.recent_bookings_count > 0 || isConverted) && (
+            <span className="text-[10px] font-bold bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full border border-amber-500/40">
+              ✅ Booked Client
+            </span>
+          )}
+        </div>
+      </div>
+
+      {/* Latest Query Details Card */}
+      <div className="bg-slate-950/90 border border-slate-800 rounded-lg p-2.5 text-xs space-y-1">
+        <div className="flex items-center justify-between font-bold text-slate-100">
+          <span className="flex items-center gap-1.5 text-sky-300">
+            ✈️ {agent.latest_query_product || 'Recent Travel Inquiry'}
+          </span>
+          <span className={`px-2 py-0.5 rounded text-[10px] uppercase font-mono font-bold ${
+            isConverted ? 'bg-emerald-500/30 text-emerald-300 border border-emerald-500/50' :
+            isLost ? 'bg-rose-500/30 text-rose-300 border border-rose-500/50' :
+            'bg-amber-500/30 text-amber-300 border border-amber-500/50'
+          }`}>
+            {queryStatus}
+          </span>
+        </div>
+
+        {agent.latest_query_details && (
+          <div className="text-[11px] text-slate-300 leading-snug">
+            <span className="text-slate-400 font-semibold">Route/Details: </span>
+            {agent.latest_query_details}
+          </div>
+        )}
+
+        <div className="flex items-center justify-between text-[10px] text-slate-400 font-mono pt-1 border-t border-slate-800/80">
+          <span>Date: {agent.latest_query_date || 'Recent'}</span>
+          {agent.latest_quoted_amount > 0 && (
+            <span className="text-amber-300 font-bold">Quoted: ₹{Number(agent.latest_quoted_amount).toLocaleString('en-IN')}</span>
+          )}
+          {agent.latest_booking_ref && (
+            <span className="text-emerald-400 font-bold">Booking: {agent.latest_booking_ref}</span>
+          )}
+        </div>
+
+        {agent.latest_rejection_reason && (
+          <div className="text-[10px] text-rose-300 pt-0.5">
+            <strong>Lost Reason:</strong> {agent.latest_rejection_reason}
+          </div>
+        )}
+      </div>
+
+      {/* 🎯 Actionable Pitch Strategy */}
+      <div className="bg-amber-950/40 border border-amber-500/40 rounded-lg p-2.5 text-xs">
+        <div className="font-bold text-amber-300 flex items-center gap-1 mb-1">
+          <span>🎯 Recommended Pitch Strategy:</span>
+        </div>
+        <div className="text-slate-200 text-[11px] leading-relaxed">
+          {isConverted ? (
+            <span>
+              🌟 <strong>Repeat/Converted Buyer:</strong> Thank them for booking <em>{agent.latest_booking_ref || agent.latest_query_product}</em>! Pitch upcoming festive fixed departures & ask for their fresh passenger travel requirements.
+            </span>
+          ) : isLost ? (
+            <span>
+              ⚡ <strong>Win-Back Opportunity:</strong> Previous inquiry for <em>{agent.latest_query_product} ({agent.latest_query_details || 'recent inquiry'})</em> was lost{agent.latest_rejection_reason ? ` (${agent.latest_rejection_reason})` : ''}. Pitch our unbeatable net B2B fares & guaranteed seat holding to win their next booking!
+            </span>
+          ) : (
+            <span>
+              🔥 <strong>Hot Follow-Up:</strong> Active inquiry in progress for <em>{agent.latest_query_product} ({agent.latest_query_details || 'recent inquiry'})</em> quoted on {agent.latest_query_date || 'recently'}. Check client confirmation & close the booking!
+            </span>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
@@ -408,7 +542,9 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
   if (!modalType) return null;
 
   const productsList = ['Domestic Flight', 'International Flight', 'Tour Packages', 'Hotel Booking', 'Visa Services', 'Forex', 'Travel Insurance', 'Bus Booking', 'Cruise', 'Money Transfer'];
-  const selectedAgent = agentsList.find(a => a.id === callForm.agent_id) || data;
+  const activeAgentId = modalType === 'log_visit' ? visitForm.agent_id : (modalType === 'create_query' ? queryForm.agent_id : callForm.agent_id);
+  const currentAgent = agentsList.find(a => a.id === activeAgentId) || (data && (data.id === activeAgentId || data.agent_id === activeAgentId) ? data : (data || null));
+  const selectedAgent = currentAgent;
 
   return (
     <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
@@ -498,6 +634,9 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
                 }
               }}
             />
+
+            {/* 🎯 Smart Pitch & Active Query Alert */}
+            {currentAgent && <AgentPitchBanner agent={currentAgent} />}
 
             <div className="grid grid-cols-2 gap-3">
               <div>
@@ -620,6 +759,9 @@ export default function EntryModals({ modalType, prefillData, prefilledData, onC
                 }
               }}
             />
+
+            {/* 🎯 Smart Pitch & Active Query Alert */}
+            {currentAgent && <AgentPitchBanner agent={currentAgent} />}
 
             {/* 3-WAY QUICK ACTION BUTTONS: Calling / Closed / Again Call */}
             <div>

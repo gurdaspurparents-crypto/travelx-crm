@@ -825,8 +825,23 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer, ro
                             <tr key={v.visit_id} className={`transition group ${wasJustLogged ? 'bg-emerald-950/30 border-l-4 border-emerald-400' : 'hover:bg-slate-800/30'}`}>
                               <td className="p-3 font-mono font-bold text-slate-200 whitespace-nowrap align-middle">{v.visit_date}</td>
                               <td className="p-3 align-middle">
-                                <div className="font-bold text-sky-400 text-sm">{v.company_name}</div>
+                                <div className="flex items-center gap-1.5 flex-wrap">
+                                  <span className="font-bold text-sky-400 text-sm">{v.company_name}</span>
+                                  {v.is_query_active && (
+                                    <span className="text-[10px] font-extrabold bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 px-1.5 py-0.2 rounded-full">
+                                      🔥 Active ({v.query_month_label || 'Recent'})
+                                    </span>
+                                  )}
+                                </div>
                                 <div className="text-slate-300 font-medium">{v.person_met}</div>
+                                {v.latest_query_product && (
+                                  <div className="text-[11px] text-amber-300/90 font-semibold mt-0.5 flex items-center gap-1">
+                                    <span>✈️ {v.latest_query_product}</span>
+                                    {v.latest_query_status && (
+                                      <span className="text-[10px] text-slate-400 font-mono">({v.latest_query_status})</span>
+                                    )}
+                                  </div>
+                                )}
                                 
                                 {/* 1-Click Dial & WhatsApp Shortcuts */}
                                 <div className="flex items-center gap-1.5 mt-1.5 whitespace-nowrap">
@@ -896,6 +911,8 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer, ro
                                       <button
                                         type="button"
                                         onClick={() => onOpenModal('log_call', {
+                                          ...v,
+                                          id: v.agent_id,
                                           agent_id: v.agent_id,
                                           visit_id: v.visit_id,
                                           company_name: v.company_name,

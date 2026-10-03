@@ -398,7 +398,12 @@ app.post('/api/agents/clear', async (req, res) => {
 // List agents with search, filter, and pagination
 app.get('/api/agents', async (req, res) => {
   try {
-    const { search, city, stage, agent_type, exec, visit_from_date, visit_to_date, visit_executive, limit = 100, offset = 0 } = req.query;
+    const { search, city, stage, agent_type, exec, visit_from_date, visit_to_date, visit_executive, query_active, limit = 100, offset = 0 } = req.query;
+
+    const now = new Date();
+    const lastMonthDate = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+    const lastMonthStart = `${lastMonthDate.getFullYear()}-${String(lastMonthDate.getMonth() + 1).padStart(2, '0')}-01`;
+    const curMonthStart = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-01`;
 
     const mvWhere = [];
     const mvParams = [];
@@ -429,17 +434,45 @@ app.get('/api/agents', async (req, res) => {
              COUNT(DISTINCT q.id) as total_queries,
              COUNT(DISTINCT CASE WHEN q.status = 'Converted' THEN q.id END) as total_bookings,
              COALESCE(SUM(CASE WHEN q.status = 'Converted' THEN q.booking_value ELSE 0 END), 0) as total_business_value,
+             COUNT(DISTINCT CASE WHEN q.query_date >= ? THEN q.id END) as recent_queries_count,
+             COUNT(DISTINCT CASE WHEN q.query_date >= ? AND q.status = 'Converted' THEN q.id END) as recent_bookings_count,
+             MAX(CASE WHEN q.query_date >= ? THEN 1 ELSE 0 END) as is_query_active,
              MAX(mv.visit_date) as last_visit_date,
              MAX(tc.call_date) as last_call_date,
              MAX(q.query_date) as last_query_date,
-             MAX(CASE WHEN q.status = 'Converted' THEN q.booking_date END) as last_booking_date
+             MAX(CASE WHEN q.status = 'Converted' THEN q.booking_date END) as last_booking_date,
+             lq.latest_query_id,
+             lq.latest_query_product,
+             lq.latest_query_date,
+             lq.latest_query_details,
+             lq.latest_query_status,
+             lq.latest_quoted_amount,
+             lq.latest_booking_ref,
+             lq.latest_rejection_reason
       FROM agents a
       ${mvJoinClause}
       LEFT JOIN telephonic_calls tc ON a.id = tc.agent_id
       LEFT JOIN queries q ON a.id = q.agent_id
+      LEFT JOIN (
+        SELECT q1.agent_id,
+               q1.id as latest_query_id,
+               q1.product as latest_query_product,
+               q1.query_date as latest_query_date,
+               q1.query_details as latest_query_details,
+               q1.status as latest_query_status,
+               q1.quoted_amount as latest_quoted_amount,
+               q1.booking_ref_no as latest_booking_ref,
+               q1.rejection_reason as latest_rejection_reason
+        FROM queries q1
+        JOIN (
+          SELECT agent_id, MAX(query_date) as max_date, MAX(id) as max_id
+          FROM queries
+          GROUP BY agent_id
+        ) qmax ON q1.agent_id = qmax.agent_id AND q1.query_date = qmax.max_date AND q1.id = qmax.max_id
+      ) lq ON a.id = lq.agent_id
       WHERE 1=1
     `;
-    const params = [...mvParams];
+    const params = [lastMonthStart, lastMonthStart, lastMonthStart, ...mvParams];
 
     if (search) {
       query += ` AND (a.name LIKE ? OR a.company_name LIKE ? OR a.mobile LIKE ? OR a.id LIKE ?)`;
@@ -464,10 +497,18 @@ app.get('/api/agents', async (req, res) => {
         query += ` AND (a.stage = 'Visited' AND a.id IN (SELECT DISTINCT agent_id FROM marketing_visits))`;
       } else if (stage === 'Inactive') {
         query += ` AND (a.stage = 'Inactive' OR (a.id NOT IN (SELECT DISTINCT agent_id FROM marketing_visits) AND a.id NOT IN (SELECT DISTINCT agent_id FROM queries)))`;
+      } else if (stage === 'ActiveQuery' || stage === 'Active') {
+        query += ` AND (a.id IN (SELECT DISTINCT agent_id FROM queries WHERE query_date >= ?))`;
+        params.push(lastMonthStart);
       } else {
         query += ` AND a.stage = ?`;
         params.push(stage);
       }
+    }
+
+    if (query_active === '1' || query_active === 'true') {
+      query += ` AND (a.id IN (SELECT DISTINCT agent_id FROM queries WHERE query_date >= ?))`;
+      params.push(lastMonthStart);
     }
 
     if (agent_type) {
@@ -507,15 +548,42 @@ app.get('/api/agents', async (req, res) => {
         countQuery += ` AND (stage = 'Visited' AND id IN (SELECT DISTINCT agent_id FROM marketing_visits))`;
       } else if (stage === 'Inactive') {
         countQuery += ` AND (stage = 'Inactive' OR (id NOT IN (SELECT DISTINCT agent_id FROM marketing_visits) AND id NOT IN (SELECT DISTINCT agent_id FROM queries)))`;
+      } else if (stage === 'ActiveQuery' || stage === 'Active') {
+        countQuery += ` AND (id IN (SELECT DISTINCT agent_id FROM queries WHERE query_date >= ?))`;
+        countParams.push(lastMonthStart);
       } else {
         countQuery += ` AND stage = ?`;
         countParams.push(stage);
       }
     }
+    if (query_active === '1' || query_active === 'true') {
+      countQuery += ` AND (id IN (SELECT DISTINCT agent_id FROM queries WHERE query_date >= ?))`;
+      countParams.push(lastMonthStart);
+    }
 
     const { total } = await dbGet(countQuery, countParams);
 
-    res.json({ success: true, agents, total });
+    const enrichedAgents = agents.map(ag => {
+      const isQueryActive = Boolean(ag.is_query_active || (ag.recent_queries_count > 0));
+      let queryMonthLabel = null;
+      if (ag.latest_query_date) {
+        if (ag.latest_query_date >= curMonthStart) {
+          queryMonthLabel = 'This Month';
+        } else if (ag.latest_query_date >= lastMonthStart) {
+          queryMonthLabel = 'Last Month';
+        }
+      }
+      return {
+        ...ag,
+        is_query_active: isQueryActive,
+        recent_queries_count: ag.recent_queries_count || 0,
+        recent_bookings_count: ag.recent_bookings_count || 0,
+        query_month_label: queryMonthLabel,
+        active_badge: isQueryActive ? `Active (${queryMonthLabel || 'Recent'} Query)` : null
+      };
+    });
+
+    res.json({ success: true, agents: enrichedAgents, total });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }
@@ -725,6 +793,11 @@ app.get('/api/visits', async (req, res) => {
 // Visited Agents Queue for Telephonic Follow-up (Bikramjit Field Visits Queue for Simranjit Next-Day Feedback)
 app.get('/api/visits/pending-followup', async (req, res) => {
   try {
+    const now = new Date();
+    const lastMonthDate = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+    const lastMonthStart = `${lastMonthDate.getFullYear()}-${String(lastMonthDate.getMonth() + 1).padStart(2, '0')}-01`;
+    const curMonthStart = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-01`;
+
     const visits = await dbAll(`
       SELECT 
         mv.id as visit_id,
@@ -740,20 +813,49 @@ app.get('/api/visits/pending-followup', async (req, res) => {
         a.id as agent_id,
         a.company_name,
         a.city as agent_city,
-        a.area as agent_area
+        a.area as agent_area,
+        lq.latest_query_id,
+        lq.latest_query_product,
+        lq.latest_query_date,
+        lq.latest_query_details,
+        lq.latest_query_status,
+        lq.latest_quoted_amount,
+        (CASE WHEN lq.latest_query_date >= ? THEN 1 ELSE 0 END) as is_query_active
       FROM marketing_visits mv
       JOIN agents a ON mv.agent_id = a.id
+      LEFT JOIN (
+        SELECT q1.agent_id,
+               q1.id as latest_query_id,
+               q1.product as latest_query_product,
+               q1.query_date as latest_query_date,
+               q1.query_details as latest_query_details,
+               q1.status as latest_query_status,
+               q1.quoted_amount as latest_quoted_amount
+        FROM queries q1
+        JOIN (
+          SELECT agent_id, MAX(query_date) as max_date, MAX(id) as max_id
+          FROM queries
+          GROUP BY agent_id
+        ) qmax ON q1.agent_id = qmax.agent_id AND q1.query_date = qmax.max_date AND q1.id = qmax.max_id
+      ) lq ON a.id = lq.agent_id
       ORDER BY mv.visit_date DESC, mv.id DESC
       LIMIT 5000
-    `);
+    `, [lastMonthStart]);
 
     const calls = await dbAll(`SELECT * FROM telephonic_calls ORDER BY call_date DESC, id DESC`);
 
     const queue = visits.map(v => {
       const call = calls.find(c => c.visit_id === v.visit_id) 
                 || calls.find(c => c.agent_id === v.agent_id && c.call_date >= v.visit_date);
+      let queryMonthLabel = null;
+      if (v.latest_query_date) {
+        if (v.latest_query_date >= curMonthStart) queryMonthLabel = 'This Month';
+        else if (v.latest_query_date >= lastMonthStart) queryMonthLabel = 'Last Month';
+      }
       return {
         ...v,
+        is_query_active: Boolean(v.is_query_active),
+        query_month_label: queryMonthLabel,
         call_id: call ? call.id : null,
         call_date: call ? call.call_date : null,
         call_executive: call ? call.executive_name : null,

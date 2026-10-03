@@ -508,12 +508,14 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
   const totalInCity = locationAgents.length;
   const visitedInCity = locationAgents.filter(a => Boolean(a.last_visit_date)).length;
   const pendingInCity = totalInCity - visitedInCity;
+  const activeQueryInCity = locationAgents.filter(a => a.is_query_active).length;
 
-  // Filtered Checklist agents based on status filter (all / visited / pending)
+  // Filtered Checklist agents based on status filter (all / visited / pending / active_query)
   const filteredLocationAgents = locationAgents.filter(ag => {
     const isVisited = Boolean(ag.last_visit_date);
     if (checklistStatusFilter === 'visited') return isVisited;
     if (checklistStatusFilter === 'pending') return !isVisited;
+    if (checklistStatusFilter === 'active_query') return Boolean(ag.is_query_active);
     return true;
   });
 
@@ -1376,8 +1378,8 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
               </div>
             </div>
 
-            {/* 🏷️ Status Filter Tabs (All / Visited / Pending) */}
-            <div className="flex items-center gap-1 bg-[#0c1322] p-1 rounded-xl border border-white/[0.08]">
+            {/* 🏷️ Status Filter Tabs (All / Visited / Pending / Active Query) */}
+            <div className="flex items-center gap-1 bg-[#0c1322] p-1 rounded-xl border border-white/[0.08] flex-wrap">
               <button
                 type="button"
                 onClick={() => setChecklistStatusFilter('all')}
@@ -1411,6 +1413,17 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
               >
                 <AlertCircle className="w-3.5 h-3.5" /> Pending ({pendingInCity})
               </button>
+              <button
+                type="button"
+                onClick={() => setChecklistStatusFilter('active_query')}
+                className={`px-3 py-1 rounded-lg text-xs font-bold transition cursor-pointer flex items-center gap-1 ${
+                  checklistStatusFilter === 'active_query'
+                    ? 'bg-amber-500 text-slate-950 font-extrabold shadow-sm'
+                    : 'text-amber-400 hover:bg-amber-500/10'
+                }`}
+              >
+                <span>🔥 Active Query ({activeQueryInCity})</span>
+              </button>
             </div>
 
           </div>
@@ -1418,7 +1431,7 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
 
         {/* Location Summary Cards (Interactive Filter Triggers) */}
         {selectedLocation && (
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             <button
               type="button"
               onClick={() => setChecklistStatusFilter('all')}
@@ -1470,6 +1483,24 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
               </div>
               <AlertCircle className="w-6 h-6 text-rose-400" />
             </button>
+
+            <button
+              type="button"
+              onClick={() => setChecklistStatusFilter('active_query')}
+              className={`text-left bg-amber-500/5 p-3.5 rounded-xl flex items-center justify-between border transition cursor-pointer ${
+                checklistStatusFilter === 'active_query'
+                  ? 'border-amber-500 ring-1 ring-amber-500/40 shadow-md shadow-amber-500/10'
+                  : 'border-amber-500/20 hover:border-amber-500/40'
+              }`}
+            >
+              <div>
+                <p className="text-xs text-amber-400 font-medium">
+                  🔥 Active Query Clients
+                </p>
+                <p className="text-xl font-extrabold font-mono text-amber-400 mt-0.5">{activeQueryInCity}</p>
+              </div>
+              <Sparkles className="w-6 h-6 text-amber-400" />
+            </button>
           </div>
         )}
 
@@ -1508,6 +1539,36 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
                     )}
                   </div>
 
+                  {/* 🔥 Active Query Status & Recent Inquiry Snippet */}
+                  {ag.is_query_active && (
+                    <div className="bg-emerald-950/60 border border-emerald-500/40 rounded-lg p-2 text-xs space-y-1">
+                      <div className="flex items-center justify-between font-bold text-emerald-300">
+                        <span className="flex items-center gap-1 text-[11px]">
+                          🔥 Active Client ({ag.query_month_label || 'Recent Query'})
+                        </span>
+                        {ag.latest_query_status && (
+                          <span className={`px-1.5 py-0.5 rounded text-[10px] uppercase font-mono font-bold ${
+                            ag.latest_query_status === 'Converted' ? 'bg-emerald-500/30 text-emerald-200' :
+                            ag.latest_query_status === 'Rejected' || ag.latest_query_status === 'Lost' ? 'bg-rose-500/30 text-rose-200' :
+                            'bg-amber-500/30 text-amber-200'
+                          }`}>
+                            {ag.latest_query_status}
+                          </span>
+                        )}
+                      </div>
+                      {ag.latest_query_product && (
+                        <div className="text-[11px] text-slate-300 line-clamp-1">
+                          ✈️ {ag.latest_query_product}: {ag.latest_query_details || 'Latest inquiry'}
+                        </div>
+                      )}
+                      {ag.latest_quoted_amount > 0 && (
+                        <div className="text-[10px] text-amber-300 font-mono font-bold">
+                          Quoted: ₹{Number(ag.latest_quoted_amount).toLocaleString('en-IN')}
+                        </div>
+                      )}
+                    </div>
+                  )}
+
                   <div className="flex items-center justify-between border-t border-white/[0.06] pt-2.5 flex-wrap gap-2">
                     <a
                       href={`tel:${ag.mobile}`}
@@ -1525,7 +1586,7 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
                         <Edit className="w-3.5 h-3.5 text-sky-400" /> Edit
                       </button>
                       <button
-                        onClick={() => onOpenModal('log_visit', { id: ag.id, company_name: ag.company_name, name: ag.name, mobile: ag.mobile, city: ag.city })}
+                        onClick={() => onOpenModal('log_visit', ag)}
                         className="px-3 py-1.5 sm:px-2.5 sm:py-1 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white font-bold rounded-lg text-xs sm:text-[11px] transition flex items-center gap-1 shadow cursor-pointer"
                       >
                         <Plus className="w-3.5 h-3.5" /> Log Visit
