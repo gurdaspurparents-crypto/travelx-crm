@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-03T06:18:59.778Z",
+  "backed_up_at": "2026-10-03T06:19:12.471Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -191,7 +191,7 @@
       "city": "Behrampur",
       "area": "Behrampur",
       "agent_type": "Retail Travel Agent",
-      "stage": "Active",
+      "stage": "Dormant",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -29545,6 +29545,21 @@
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
       "agent_requirement": "call cut bussy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Closed - Not Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-04",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 1724,
+      "call_date": "2026-10-03",
+      "agent_id": "AGT-1038",
+      "visit_id": 758,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "bussy",
       "interest_level": "Interested / Warm",
       "call_result": "Closed - Not Interested",
       "remarks": "",
