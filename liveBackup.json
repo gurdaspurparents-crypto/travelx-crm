@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-03T08:58:01.944Z",
+  "backed_up_at": "2026-10-03T08:58:58.546Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4070,20 +4070,6 @@
       "area": "Main Sunderchak Chowk, Near Maan Dairy, Sunderchak The. Distt Ptk",
       "agent_type": "Retail Travel Agent",
       "stage": "Inactive",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1806",
-      "name": "Mr.Love dhaliwal",
-      "company_name": "Dhaliwal travels",
-      "mobile": "7087523655",
-      "city": "Taragarh",
-      "area": "Taragarh",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -15992,21 +15978,6 @@
       "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-09-14",
-      "payment_terms": null
-    },
-    {
-      "id": 868,
-      "call_date": "2026-09-15",
-      "agent_id": "AGT-1806",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "no call busy ",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
-      "remarks": "",
-      "next_followup_date": "2026-09-17",
       "payment_terms": null
     },
     {
@@ -30793,6 +30764,11 @@
       "id": "AGT-2002",
       "entity_type": "agent",
       "deleted_at": "2026-10-03 08:57:51"
+    },
+    {
+      "id": "AGT-1806",
+      "entity_type": "agent",
+      "deleted_at": "2026-10-03 08:58:48"
     }
   ]
 }
