@@ -471,6 +471,7 @@ app.get('/api/agents', async (req, res) => {
         ) qmax ON q1.agent_id = qmax.agent_id AND q1.query_date = qmax.max_date AND q1.id = qmax.max_id
       ) lq ON a.id = lq.agent_id
       WHERE 1=1
+        AND a.id NOT IN (SELECT id FROM deleted_entities WHERE entity_type = 'agent')
     `;
     const params = [lastMonthStart, lastMonthStart, lastMonthStart, ...mvParams];
 
@@ -527,7 +528,7 @@ app.get('/api/agents', async (req, res) => {
     const agents = await dbAll(query, params);
 
     // Get total count for pagination
-    let countQuery = `SELECT COUNT(*) as total FROM agents WHERE 1=1`;
+    let countQuery = `SELECT COUNT(*) as total FROM agents WHERE 1=1 AND id NOT IN (SELECT id FROM deleted_entities WHERE entity_type = 'agent')`;
     const countParams = [];
     if (search) {
       countQuery += ` AND (name LIKE ? OR company_name LIKE ? OR mobile LIKE ? OR id LIKE ?)`;
@@ -729,6 +730,12 @@ app.delete('/api/agents/:id', async (req, res) => {
       return res.status(400).json({ success: false, error: 'Agent ID is required' });
     }
 
+    // Permanently record tombstone so this agent can NEVER resurrect from any backup or restart
+    await dbRun(`INSERT OR REPLACE INTO deleted_entities (id, entity_type, deleted_at) VALUES (?, 'agent', CURRENT_TIMESTAMP)`, [cleanId]);
+    if (rawId && rawId !== cleanId) {
+      await dbRun(`INSERT OR REPLACE INTO deleted_entities (id, entity_type, deleted_at) VALUES (?, 'agent', CURRENT_TIMESTAMP)`, [rawId]);
+    }
+
     await dbRun(`DELETE FROM queries WHERE agent_id = ? OR agent_id = ?`, [cleanId, rawId]);
     await dbRun(`DELETE FROM telephonic_calls WHERE agent_id = ? OR agent_id = ?`, [cleanId, rawId]);
     await dbRun(`DELETE FROM marketing_visits WHERE agent_id = ? OR agent_id = ?`, [cleanId, rawId]);
@@ -757,6 +764,9 @@ app.get('/api/visits', async (req, res) => {
       FROM marketing_visits mv
       JOIN agents a ON mv.agent_id = a.id
       WHERE 1=1
+        AND mv.id NOT IN (SELECT id FROM deleted_entities WHERE entity_type = 'visit')
+        AND mv.agent_id NOT IN (SELECT id FROM deleted_entities WHERE entity_type = 'agent')
+        AND a.id NOT IN (SELECT id FROM deleted_entities WHERE entity_type = 'agent')
     `;
     const params = [];
 
@@ -838,11 +848,14 @@ app.get('/api/visits/pending-followup', async (req, res) => {
           GROUP BY agent_id
         ) qmax ON q1.agent_id = qmax.agent_id AND q1.query_date = qmax.max_date AND q1.id = qmax.max_id
       ) lq ON a.id = lq.agent_id
+      WHERE mv.id NOT IN (SELECT id FROM deleted_entities WHERE entity_type = 'visit')
+        AND mv.agent_id NOT IN (SELECT id FROM deleted_entities WHERE entity_type = 'agent')
+        AND a.id NOT IN (SELECT id FROM deleted_entities WHERE entity_type = 'agent')
       ORDER BY mv.visit_date DESC, mv.id DESC
       LIMIT 5000
     `, [lastMonthStart]);
 
-    const calls = await dbAll(`SELECT * FROM telephonic_calls ORDER BY call_date DESC, id DESC`);
+    const calls = await dbAll(`SELECT * FROM telephonic_calls WHERE id NOT IN (SELECT id FROM deleted_entities WHERE entity_type = 'call') AND agent_id NOT IN (SELECT id FROM deleted_entities WHERE entity_type = 'agent') ORDER BY call_date DESC, id DESC`);
 
     const queue = visits.map(v => {
       const call = calls.find(c => c.visit_id === v.visit_id) 
@@ -989,14 +1002,20 @@ app.post('/api/visits', async (req, res) => {
 // Delete Marketing Visit
 app.delete('/api/visits/:id', async (req, res) => {
   try {
-    const visit = await dbGet(`SELECT agent_id FROM marketing_visits WHERE id = ?`, [req.params.id]);
-    await dbRun(`UPDATE telephonic_calls SET visit_id = NULL WHERE visit_id = ?`, [req.params.id]);
-    await dbRun(`DELETE FROM marketing_visits WHERE id = ?`, [req.params.id]);
+    const rawId = req.params.id;
+    const cleanId = String(rawId || '').trim();
+    const visit = await dbGet(`SELECT agent_id FROM marketing_visits WHERE id = ?`, [cleanId]);
+    await dbRun(`INSERT OR REPLACE INTO deleted_entities (id, entity_type, deleted_at) VALUES (?, 'visit', CURRENT_TIMESTAMP)`, [cleanId]);
+    await dbRun(`UPDATE telephonic_calls SET visit_id = NULL WHERE visit_id = ?`, [cleanId]);
+    await dbRun(`DELETE FROM marketing_visits WHERE id = ?`, [cleanId]);
     if (visit) {
       await refreshAgentStage(visit.agent_id);
     }
+    if (typeof syncLocalBackupFile === 'function') {
+      await syncLocalBackupFile(db);
+    }
     scheduleBackup(db, { allowFewer: true });
-    res.json({ success: true, message: 'Marketing visit log deleted successfully' });
+    res.json({ success: true, message: 'Marketing visit log deleted successfully', deletedId: cleanId });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }
@@ -1148,8 +1167,15 @@ app.put('/api/field-trips/:id', async (req, res) => {
 
 app.delete('/api/field-trips/:id', async (req, res) => {
   try {
-    await dbRun(`DELETE FROM field_trips WHERE id = ?`, [req.params.id]);
-    res.json({ success: true, message: 'Trip log deleted successfully' });
+    const rawId = req.params.id;
+    const cleanId = String(rawId || '').trim();
+    await dbRun(`INSERT OR REPLACE INTO deleted_entities (id, entity_type, deleted_at) VALUES (?, 'field_trip', CURRENT_TIMESTAMP)`, [cleanId]);
+    await dbRun(`DELETE FROM field_trips WHERE id = ?`, [cleanId]);
+    if (typeof syncLocalBackupFile === 'function') {
+      await syncLocalBackupFile(db);
+    }
+    scheduleBackup(db, { allowFewer: true });
+    res.json({ success: true, message: 'Trip log deleted successfully', deletedId: cleanId });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }
@@ -1166,6 +1192,9 @@ app.get('/api/calls', async (req, res) => {
       JOIN agents a ON tc.agent_id = a.id
       LEFT JOIN marketing_visits mv ON tc.visit_id = mv.id
       WHERE 1=1
+        AND tc.id NOT IN (SELECT id FROM deleted_entities WHERE entity_type = 'call')
+        AND tc.agent_id NOT IN (SELECT id FROM deleted_entities WHERE entity_type = 'agent')
+        AND a.id NOT IN (SELECT id FROM deleted_entities WHERE entity_type = 'agent')
     `;
     const params = [];
 
@@ -1332,13 +1361,19 @@ app.put('/api/calls/:id', async (req, res) => {
 // Delete Telephonic Call Log
 app.delete('/api/calls/:id', async (req, res) => {
   try {
-    const call = await dbGet(`SELECT agent_id FROM telephonic_calls WHERE id = ?`, [req.params.id]);
-    await dbRun(`DELETE FROM telephonic_calls WHERE id = ?`, [req.params.id]);
+    const rawId = req.params.id;
+    const cleanId = String(rawId || '').trim();
+    const call = await dbGet(`SELECT agent_id FROM telephonic_calls WHERE id = ?`, [cleanId]);
+    await dbRun(`INSERT OR REPLACE INTO deleted_entities (id, entity_type, deleted_at) VALUES (?, 'call', CURRENT_TIMESTAMP)`, [cleanId]);
+    await dbRun(`DELETE FROM telephonic_calls WHERE id = ?`, [cleanId]);
     if (call) {
       await refreshAgentStage(call.agent_id);
     }
+    if (typeof syncLocalBackupFile === 'function') {
+      await syncLocalBackupFile(db);
+    }
     scheduleBackup(db, { allowFewer: true });
-    res.json({ success: true, message: 'Telephonic call log deleted successfully' });
+    res.json({ success: true, message: 'Telephonic call log deleted successfully', deletedId: cleanId });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }
@@ -1354,6 +1389,8 @@ app.get('/api/queries', async (req, res) => {
       FROM queries q
       LEFT JOIN agents a ON q.agent_id = a.id
       WHERE 1=1
+        AND q.id NOT IN (SELECT id FROM deleted_entities WHERE entity_type = 'query')
+        AND (q.agent_id IS NULL OR q.agent_id NOT IN (SELECT id FROM deleted_entities WHERE entity_type = 'agent'))
     `;
     const params = [];
 
@@ -1500,13 +1537,19 @@ app.put('/api/queries/:id/reject', async (req, res) => {
 // Delete Query
 app.delete('/api/queries/:id', async (req, res) => {
   try {
-    const qry = await dbGet(`SELECT agent_id FROM queries WHERE id = ?`, [req.params.id]);
-    await dbRun(`DELETE FROM queries WHERE id = ?`, [req.params.id]);
+    const rawId = req.params.id;
+    const cleanId = String(rawId || '').trim();
+    const qry = await dbGet(`SELECT agent_id FROM queries WHERE id = ?`, [cleanId]);
+    await dbRun(`INSERT OR REPLACE INTO deleted_entities (id, entity_type, deleted_at) VALUES (?, 'query', CURRENT_TIMESTAMP)`, [cleanId]);
+    await dbRun(`DELETE FROM queries WHERE id = ?`, [cleanId]);
     if (qry) {
       await refreshAgentStage(qry.agent_id);
     }
+    if (typeof syncLocalBackupFile === 'function') {
+      await syncLocalBackupFile(db);
+    }
     scheduleBackup(db, { allowFewer: true });
-    res.json({ success: true, message: 'Query deleted successfully' });
+    res.json({ success: true, message: 'Query deleted successfully', deletedId: cleanId });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }

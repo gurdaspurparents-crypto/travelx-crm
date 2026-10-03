@@ -90,7 +90,8 @@ function exportAllData(db) {
       marketing_visits: [],
       telephonic_calls: [],
       queries: [],
-      field_trips: []
+      field_trips: [],
+      deleted_entities: []
     };
 
     const tables = [
@@ -98,7 +99,8 @@ function exportAllData(db) {
       { key: 'marketing_visits', query: 'SELECT * FROM marketing_visits' },
       { key: 'telephonic_calls', query: 'SELECT * FROM telephonic_calls' },
       { key: 'queries', query: 'SELECT * FROM queries' },
-      { key: 'field_trips', query: 'SELECT * FROM field_trips' }
+      { key: 'field_trips', query: 'SELECT * FROM field_trips' },
+      { key: 'deleted_entities', query: 'SELECT * FROM deleted_entities' }
     ];
 
     let done = 0;
@@ -115,27 +117,30 @@ function exportAllData(db) {
 async function applyDataToDb(data, dbRun, dbAll) {
   if (!data) return false;
 
-  // Restore Agents
-  if (Array.isArray(data.agents) && data.agents.length > 0) {
-    if (typeof dbAll === 'function') {
-      try {
-        const backupAgentIds = new Set(data.agents.map(a => a.id));
-        const existingAgents = await dbAll('SELECT id FROM agents');
-        for (const ea of existingAgents) {
-          if (!backupAgentIds.has(ea.id)) {
-            console.log(`[Restore] Removing deleted agent ${ea.id} from local database (not in cloud backup)`);
-            await dbRun('DELETE FROM queries WHERE agent_id = ?', [ea.id]);
-            await dbRun('DELETE FROM telephonic_calls WHERE agent_id = ?', [ea.id]);
-            await dbRun('DELETE FROM marketing_visits WHERE agent_id = ?', [ea.id]);
-            await dbRun('DELETE FROM agents WHERE id = ?', [ea.id]);
-          }
-        }
-      } catch (pruneErr) {
-        console.warn('[Restore] Prune check warning:', pruneErr.message);
-      }
+  // 1. Restore and Sync Tombstones (deleted_entities) FIRST
+  if (Array.isArray(data.deleted_entities) && data.deleted_entities.length > 0) {
+    for (const d of data.deleted_entities) {
+      if (!d || !d.id) continue;
+      await dbRun(
+        `INSERT OR IGNORE INTO deleted_entities (id, entity_type, deleted_at) VALUES (?, ?, ?)`,
+        [String(d.id), d.entity_type || 'unknown', d.deleted_at || new Date().toISOString()]
+      ).catch(() => {});
     }
+  }
 
+  // Load all tombstoned IDs into memory Set
+  const tombstoneRows = (typeof dbAll === 'function')
+    ? await dbAll(`SELECT id, entity_type FROM deleted_entities`).catch(() => [])
+    : [];
+  const tombstoneSet = new Set(tombstoneRows.map(r => String(r.id)));
+  if (Array.isArray(data.deleted_entities)) {
+    data.deleted_entities.forEach(d => { if (d && d.id) tombstoneSet.add(String(d.id)); });
+  }
+
+  // 2. Restore Agents (excluding tombstones)
+  if (Array.isArray(data.agents) && data.agents.length > 0) {
     for (const a of data.agents) {
+      if (tombstoneSet.has(String(a.id))) continue;
       await dbRun(
         `INSERT OR REPLACE INTO agents (id, name, company_name, mobile, city, area, agent_type, stage, assigned_marketing_exec, assigned_telephonic_exec, created_at)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -144,10 +149,11 @@ async function applyDataToDb(data, dbRun, dbAll) {
     }
   }
 
-  // Restore Marketing Visits
+  // 3. Restore Marketing Visits (excluding tombstones)
   const visitsList = data.marketing_visits || data.visits;
   if (Array.isArray(visitsList) && visitsList.length > 0) {
     for (const v of visitsList) {
+      if (tombstoneSet.has(String(v.id)) || tombstoneSet.has(String(v.agent_id))) continue;
       await dbRun(
         `INSERT OR REPLACE INTO marketing_visits (id, visit_date, agent_id, executive_name, person_met, mobile, is_new_agent, products_pitched, response_level, remarks, next_followup_date, location, gps_latitude, gps_longitude, gps_address)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -156,10 +162,11 @@ async function applyDataToDb(data, dbRun, dbAll) {
     }
   }
 
-  // Restore Telephonic Calls
+  // 4. Restore Telephonic Calls (excluding tombstones)
   const callsList = data.telephonic_calls || data.calls;
   if (Array.isArray(callsList) && callsList.length > 0) {
     for (const c of callsList) {
+      if (tombstoneSet.has(String(c.id)) || tombstoneSet.has(String(c.agent_id))) continue;
       await dbRun(
         `INSERT OR REPLACE INTO telephonic_calls (id, call_date, agent_id, visit_id, executive_name, is_connected, services_discussed, agent_requirement, interest_level, call_result, remarks, next_followup_date)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -168,9 +175,10 @@ async function applyDataToDb(data, dbRun, dbAll) {
     }
   }
 
-  // Restore Queries
+  // 5. Restore Queries (excluding tombstones)
   if (Array.isArray(data.queries) && data.queries.length > 0) {
     for (const q of data.queries) {
+      if (tombstoneSet.has(String(q.id)) || tombstoneSet.has(String(q.agent_id))) continue;
       await dbRun(
         `INSERT OR REPLACE INTO queries (id, query_date, agent_id, product, query_details, travel_date, pax_details, estimated_value, quoted_amount, handling_employee, followup_date, status, booking_date, booking_value, booking_ref_no, closing_employee, rejection_reason, rejection_remarks)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -179,9 +187,10 @@ async function applyDataToDb(data, dbRun, dbAll) {
     }
   }
 
-  // Restore Field Trips
+  // 6. Restore Field Trips (excluding tombstones)
   if (Array.isArray(data.field_trips) && data.field_trips.length > 0) {
     for (const ft of data.field_trips) {
+      if (tombstoneSet.has(String(ft.id))) continue;
       await dbRun(
         `INSERT OR REPLACE INTO field_trips (id, trip_date, executive_name, start_meter_reading, end_meter_reading, start_time, end_time, start_location, end_location, total_km, rate_per_km, conveyance_amount, status, remarks, created_at)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -190,18 +199,27 @@ async function applyDataToDb(data, dbRun, dbAll) {
     }
   }
 
+  // 7. Post-restore sweep: permanently purge any records matching tombstones
+  try {
+    await dbRun(`DELETE FROM agents WHERE id IN (SELECT id FROM deleted_entities WHERE entity_type = 'agent')`);
+    await dbRun(`DELETE FROM marketing_visits WHERE id IN (SELECT id FROM deleted_entities WHERE entity_type = 'visit') OR agent_id IN (SELECT id FROM deleted_entities WHERE entity_type = 'agent')`);
+    await dbRun(`DELETE FROM telephonic_calls WHERE id IN (SELECT id FROM deleted_entities WHERE entity_type = 'call') OR agent_id IN (SELECT id FROM deleted_entities WHERE entity_type = 'agent')`);
+    await dbRun(`DELETE FROM queries WHERE id IN (SELECT id FROM deleted_entities WHERE entity_type = 'query') OR agent_id IN (SELECT id FROM deleted_entities WHERE entity_type = 'agent')`);
+  } catch (purgeErr) {
+    console.warn('[Restore] Post-restore purge error:', purgeErr.message);
+  }
+
   return true;
 }
 
-// Synchronously/immediately update local liveBackup.json to prevent resurrection
+// Synchronously/immediately update local liveBackup.json across all file locations
 async function syncLocalBackupFile(db) {
   try {
     const data = await exportAllData(db);
-    fs.writeFileSync(path.resolve(__dirname, 'liveBackup.json'), JSON.stringify(data, null, 2));
-    const altPath = path.resolve(__dirname, '../liveBackup.json');
-    if (fs.existsSync(altPath) || fs.existsSync(path.resolve(__dirname, '..'))) {
-      try { fs.writeFileSync(altPath, JSON.stringify(data, null, 2)); } catch (_) {}
-    }
+    const jsonStr = JSON.stringify(data, null, 2);
+    try { fs.writeFileSync(path.resolve(__dirname, 'liveBackup.json'), jsonStr, 'utf8'); } catch (_) {}
+    try { fs.writeFileSync(path.resolve(__dirname, '../liveBackup.json'), jsonStr, 'utf8'); } catch (_) {}
+    try { fs.writeFileSync(path.resolve(__dirname, 'server/liveBackup.json'), jsonStr, 'utf8'); } catch (_) {}
     return true;
   } catch (err) {
     console.warn('[SyncLocalBackup] Error syncing local backup file:', err.message);
@@ -223,8 +241,12 @@ async function backupToGitHub(db, options = {}) {
     };
 
     // Save locally as liveBackup.json always
+    // Save locally as liveBackup.json always across all file paths
     try {
-      fs.writeFileSync(path.resolve(__dirname, 'liveBackup.json'), JSON.stringify(data, null, 2));
+      const jsonStr = JSON.stringify(data, null, 2);
+      try { fs.writeFileSync(path.resolve(__dirname, 'liveBackup.json'), jsonStr, 'utf8'); } catch (_) {}
+      try { fs.writeFileSync(path.resolve(__dirname, '../liveBackup.json'), jsonStr, 'utf8'); } catch (_) {}
+      try { fs.writeFileSync(path.resolve(__dirname, 'server/liveBackup.json'), jsonStr, 'utf8'); } catch (_) {}
     } catch (e) {}
 
     // Safety guard: Local developer laptops should NEVER overwrite production cloud database!
@@ -277,7 +299,7 @@ async function backupToGitHub(db, options = {}) {
     let sha = await getFileSha();
 
     const body = {
-      message: `Auto-backup CRM: ${data.agents.length} agts, ${data.marketing_visits.length} vsts, ${data.telephonic_calls.length} cls, ${data.queries.length} qrs [skip ci]`,
+      message: `Auto-backup CRM: ${data.agents.length} agts, ${data.marketing_visits.length} vsts, ${data.telephonic_calls.length} cls, ${data.queries.length} qrs [skip render] [skip ci]`,
       content,
       branch: BRANCH,
       ...(sha ? { sha } : {})
@@ -319,8 +341,12 @@ async function restoreFromGitHub(db, dbRun, dbAll) {
         const data = JSON.parse(raw);
         console.log(`[Restore] Found cloud backup from: ${data.backed_up_at}`);
         await applyDataToDb(data, dbRun, dbAll);
-        // Sync to local liveBackup.json
-        try { fs.writeFileSync(path.resolve(__dirname, 'liveBackup.json'), raw); } catch (e) {}
+        // Sync to all local liveBackup.json paths
+        try {
+          fs.writeFileSync(path.resolve(__dirname, 'liveBackup.json'), raw, 'utf8');
+          fs.writeFileSync(path.resolve(__dirname, '../liveBackup.json'), raw, 'utf8');
+          fs.writeFileSync(path.resolve(__dirname, 'server/liveBackup.json'), raw, 'utf8');
+        } catch (e) {}
         console.log('[Restore] ✅ Restored successfully from GitHub!');
         return true;
       }
@@ -332,8 +358,9 @@ async function restoreFromGitHub(db, dbRun, dbAll) {
   // 2. Fallback: Restore from local liveBackup.json or preservedData.json
   const candidateFiles = [
     path.resolve(__dirname, 'liveBackup.json'),
-    path.resolve(__dirname, 'preservedData.json'),
-    path.resolve(__dirname, '../liveBackup.json')
+    path.resolve(__dirname, 'server/liveBackup.json'),
+    path.resolve(__dirname, '../liveBackup.json'),
+    path.resolve(__dirname, 'preservedData.json')
   ];
 
   for (const filePath of candidateFiles) {
@@ -366,7 +393,7 @@ function scheduleBackup(db, options = {}) {
     const opts = pendingBackupOptions;
     pendingBackupOptions = {};
     backupToGitHub(dbInstance, opts);
-  }, 4000);
+  }, 10000);
 }
 
 function getBackupStatus() {

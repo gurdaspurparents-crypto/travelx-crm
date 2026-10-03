@@ -1,5 +1,6 @@
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
+const fs = require('fs');
 
 const dbPath = path.resolve(__dirname, 'travelx.db');
 const db = new sqlite3.Database(dbPath);
@@ -35,6 +36,14 @@ const dbGet = (sql, params = []) => {
 // Initialize Database Schema
 async function initDb() {
   db.serialize();
+
+  await dbRun(`
+    CREATE TABLE IF NOT EXISTS deleted_entities (
+      id TEXT PRIMARY KEY,
+      entity_type TEXT NOT NULL,
+      deleted_at TEXT NOT NULL
+    );
+  `);
 
   await dbRun(`
     CREATE TABLE IF NOT EXISTS agents (
@@ -197,8 +206,20 @@ async function seedDatabase() {
     try {
       const seed = JSON.parse(fs.readFileSync(targetFile, 'utf8'));
 
+      const tombstoneRows = await dbAll(`SELECT id, entity_type FROM deleted_entities`).catch(() => []);
+      const tombstoneSet = new Set(tombstoneRows.map(r => String(r.id)));
+      if (Array.isArray(seed.deleted_entities)) {
+        for (const d of seed.deleted_entities) {
+          if (d && d.id) {
+            tombstoneSet.add(String(d.id));
+            await dbRun(`INSERT OR IGNORE INTO deleted_entities (id, entity_type, deleted_at) VALUES (?, ?, ?)`, [String(d.id), d.entity_type || 'unknown', d.deleted_at || new Date().toISOString()]).catch(() => {});
+          }
+        }
+      }
+
       if (seed.agents && seed.agents.length > 0) {
         for (const a of seed.agents) {
+          if (tombstoneSet.has(String(a.id))) continue;
           await dbRun(
             `INSERT OR REPLACE INTO agents (id, name, company_name, mobile, city, area, agent_type, stage, assigned_marketing_exec, assigned_telephonic_exec, created_at)
              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -210,6 +231,7 @@ async function seedDatabase() {
       const visits = seed.marketing_visits || seed.visits;
       if (visits && visits.length > 0) {
         for (const v of visits) {
+          if (tombstoneSet.has(String(v.id)) || tombstoneSet.has(String(v.agent_id))) continue;
           await dbRun(
             `INSERT OR REPLACE INTO marketing_visits (id, visit_date, agent_id, executive_name, person_met, mobile, is_new_agent, products_pitched, response_level, remarks, next_followup_date, location, gps_latitude, gps_longitude, gps_address)
              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -221,6 +243,7 @@ async function seedDatabase() {
       const calls = seed.telephonic_calls || seed.calls;
       if (calls && calls.length > 0) {
         for (const c of calls) {
+          if (tombstoneSet.has(String(c.id)) || tombstoneSet.has(String(c.agent_id))) continue;
           await dbRun(
             `INSERT OR REPLACE INTO telephonic_calls (id, call_date, agent_id, visit_id, executive_name, is_connected, services_discussed, agent_requirement, interest_level, call_result, remarks, next_followup_date)
              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -231,6 +254,7 @@ async function seedDatabase() {
 
       if (seed.queries && seed.queries.length > 0) {
         for (const q of seed.queries) {
+          if (tombstoneSet.has(String(q.id)) || tombstoneSet.has(String(q.agent_id))) continue;
           await dbRun(
             `INSERT OR REPLACE INTO queries (id, query_date, agent_id, product, query_details, travel_date, pax_details, estimated_value, quoted_amount, handling_employee, followup_date, status, booking_date, booking_value, booking_ref_no, closing_employee, rejection_reason, rejection_remarks)
              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -241,6 +265,7 @@ async function seedDatabase() {
 
       if (seed.field_trips && seed.field_trips.length > 0) {
         for (const ft of seed.field_trips) {
+          if (tombstoneSet.has(String(ft.id))) continue;
           await dbRun(
             `INSERT OR REPLACE INTO field_trips (id, trip_date, executive_name, start_meter_reading, end_meter_reading, start_time, end_time, start_location, end_location, total_km, rate_per_km, conveyance_amount, status, remarks, created_at)
              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -248,6 +273,11 @@ async function seedDatabase() {
           );
         }
       }
+
+      await dbRun(`DELETE FROM agents WHERE id IN (SELECT id FROM deleted_entities WHERE entity_type = 'agent')`).catch(() => {});
+      await dbRun(`DELETE FROM marketing_visits WHERE id IN (SELECT id FROM deleted_entities WHERE entity_type = 'visit') OR agent_id IN (SELECT id FROM deleted_entities WHERE entity_type = 'agent')`).catch(() => {});
+      await dbRun(`DELETE FROM telephonic_calls WHERE id IN (SELECT id FROM deleted_entities WHERE entity_type = 'call') OR agent_id IN (SELECT id FROM deleted_entities WHERE entity_type = 'agent')`).catch(() => {});
+      await dbRun(`DELETE FROM queries WHERE id IN (SELECT id FROM deleted_entities WHERE entity_type = 'query') OR agent_id IN (SELECT id FROM deleted_entities WHERE entity_type = 'agent')`).catch(() => {});
 
       console.log('Successfully seeded exact master database from seedData.json!');
       return;
