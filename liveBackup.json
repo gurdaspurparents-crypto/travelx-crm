@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-03T09:35:39.518Z",
+  "backed_up_at": "2026-10-03T09:38:41.957Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -3046,20 +3046,6 @@
       "mobile": "9814732733",
       "city": "Naranwali",
       "area": "Nara Wali, Gsp",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1613",
-      "name": "Mr.",
-      "company_name": "punjab computer centre",
-      "mobile": "8264336154",
-      "city": "Naushera Majha Singh",
-      "area": "Naushera Mjja Singh",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
@@ -21707,21 +21693,6 @@
       "payment_terms": null
     },
     {
-      "id": 1397,
-      "call_date": "2026-09-26",
-      "agent_id": "AGT-1613",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-27",
-      "payment_terms": null
-    },
-    {
       "id": 1398,
       "call_date": "2026-09-26",
       "agent_id": "AGT-1615",
@@ -30485,6 +30456,11 @@
       "id": "QRY-5200",
       "entity_type": "query",
       "deleted_at": "2026-10-03 09:30:13"
+    },
+    {
+      "id": "AGT-1613",
+      "entity_type": "agent",
+      "deleted_at": "2026-10-03 09:38:31"
     }
   ]
 }
