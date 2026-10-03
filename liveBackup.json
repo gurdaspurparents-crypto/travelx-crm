@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-03T11:28:28.274Z",
+  "backed_up_at": "2026-10-03T11:29:06.193Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6015,7 +6015,7 @@
       "city": "qadian",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-03",
@@ -11051,6 +11051,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-04",
       "location": "Qadian ",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 865,
+      "visit_date": "2026-10-03",
+      "agent_id": "AGT-2061",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Lakwinder singh",
+      "mobile": "8968898444",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Visa Services\",\"Domestic Flight\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-04",
+      "location": "qadian",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
