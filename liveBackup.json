@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-05T05:48:42.909Z",
+  "backed_up_at": "2026-10-05T05:58:52.880Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -11117,6 +11117,23 @@
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "customer e nhi hai ",
+      "next_followup_date": "2026-10-06",
+      "location": "Dhariwal",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 869,
+      "visit_date": "2026-10-05",
+      "agent_id": "AGT-1908",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "miss.jyoti",
+      "mobile": "9501335344",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Tour Packages\",\"Travel Insurance\",\"Visa Services\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
       "next_followup_date": "2026-10-06",
       "location": "Dhariwal",
       "gps_latitude": null,
