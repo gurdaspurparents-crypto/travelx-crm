@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-05T05:30:06.388Z",
+  "backed_up_at": "2026-10-05T05:31:16.517Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -11068,6 +11068,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-04",
       "location": "qadian",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 866,
+      "visit_date": "2026-10-05",
+      "agent_id": "AGT-1138",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.Balbir singh",
+      "mobile": "7528811999",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Domestic Flight\",\"Hotel Booking\",\"Forex\",\"Money Transfer\",\"Bus Booking\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-06",
+      "location": "Dhariwal",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
