@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-05T11:57:52.124Z",
+  "backed_up_at": "2026-10-05T11:58:18.557Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -5917,7 +5917,7 @@
       "city": "Qadian ",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-03",
@@ -29031,6 +29031,21 @@
       "call_date": "2026-10-05",
       "agent_id": "AGT-2056",
       "visit_id": 859,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-06",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 1899,
+      "call_date": "2026-10-05",
+      "agent_id": "AGT-2057",
+      "visit_id": 860,
       "executive_name": "Yug",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
