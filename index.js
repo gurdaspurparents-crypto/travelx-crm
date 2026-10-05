@@ -437,7 +437,11 @@ app.get('/api/agents', async (req, res) => {
              COUNT(DISTINCT CASE WHEN q.query_date >= ? THEN q.id END) as recent_queries_count,
              COUNT(DISTINCT CASE WHEN q.query_date >= ? AND q.status = 'Converted' THEN q.id END) as recent_bookings_count,
              MAX(CASE WHEN q.query_date >= ? THEN 1 ELSE 0 END) as is_query_active,
-             MAX(mv.visit_date) as last_visit_date,
+             COALESCE(lv.latest_visit_date, MAX(mv.visit_date)) as last_visit_date,
+             lv.latest_visit_executive as last_visit_executive,
+             lv.latest_visit_person_met as last_visit_person_met,
+             lv.latest_visit_response as last_visit_response,
+             lv.latest_visit_remarks as last_visit_remarks,
              MAX(tc.call_date) as last_call_date,
              MAX(q.query_date) as last_query_date,
              MAX(CASE WHEN q.status = 'Converted' THEN q.booking_date END) as last_booking_date,
@@ -470,6 +474,22 @@ app.get('/api/agents', async (req, res) => {
           GROUP BY agent_id
         ) qmax ON q1.agent_id = qmax.agent_id AND q1.query_date = qmax.max_date AND q1.id = qmax.max_id
       ) lq ON a.id = lq.agent_id
+      LEFT JOIN (
+        SELECT v1.agent_id,
+               v1.id as latest_visit_id,
+               v1.visit_date as latest_visit_date,
+               v1.executive_name as latest_visit_executive,
+               v1.person_met as latest_visit_person_met,
+               v1.response_level as latest_visit_response,
+               v1.remarks as latest_visit_remarks
+        FROM marketing_visits v1
+        JOIN (
+          SELECT agent_id, MAX(visit_date) as max_date, MAX(id) as max_id
+          FROM marketing_visits
+          WHERE id NOT IN (SELECT id FROM deleted_entities WHERE entity_type = 'visit')
+          GROUP BY agent_id
+        ) vmax ON v1.agent_id = vmax.agent_id AND v1.visit_date = vmax.max_date AND v1.id = vmax.max_id
+      ) lv ON a.id = lv.agent_id
       WHERE 1=1
         AND a.id NOT IN (SELECT id FROM deleted_entities WHERE entity_type = 'agent')
     `;
@@ -576,6 +596,11 @@ app.get('/api/agents', async (req, res) => {
       }
       return {
         ...ag,
+        last_visit_date: ag.last_visit_date || ag.latest_visit_date || null,
+        last_visit_executive: ag.last_visit_executive || ag.latest_visit_executive || ag.assigned_marketing_exec || null,
+        last_visit_person_met: ag.last_visit_person_met || ag.latest_visit_person_met || null,
+        last_visit_response: ag.last_visit_response || ag.latest_visit_response || null,
+        last_visit_remarks: ag.last_visit_remarks || ag.latest_visit_remarks || null,
         is_query_active: isQueryActive,
         recent_queries_count: ag.recent_queries_count || 0,
         recent_bookings_count: ag.recent_bookings_count || 0,

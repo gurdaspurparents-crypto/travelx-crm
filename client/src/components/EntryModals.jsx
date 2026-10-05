@@ -132,7 +132,7 @@ function AgentPitchBanner({ agent }) {
 
   if (!isActive) {
     return (
-      <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-3 text-xs text-slate-300 space-y-1">
+      <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-3 text-xs text-slate-300 space-y-1.5">
         <div className="flex items-center justify-between">
           <span className="font-bold text-slate-400 flex items-center gap-1.5 text-[11px]">
             <span className="w-2 h-2 rounded-full bg-slate-500"></span>
@@ -142,6 +142,17 @@ function AgentPitchBanner({ agent }) {
         </div>
         <div className="text-[11px] text-slate-400 leading-relaxed">
           🎯 <strong>Recommended Pitch:</strong> Introduce TravelX core inventory — Domestic & International Flight tickets, Group PNRs, Dubai/Thailand Fixed Packages & instant Visa assistance.
+        </div>
+        <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1.5 border-t border-slate-800/80">
+          <span className="flex items-center gap-1">
+            📍 Last Visit: {agent.last_visit_date ? <strong className="text-slate-200 font-mono">{agent.last_visit_date}</strong> : <span className="text-amber-400/90 font-medium">No Visit Recorded (Pending)</span>}
+          </span>
+          {agent.last_visit_date && (
+            <span className="text-[10px] text-slate-300">
+              By: <strong className="text-white">{agent.last_visit_executive || agent.assigned_marketing_exec || 'Marketing'}</strong>
+              {agent.last_visit_person_met ? ` (Met: ${agent.last_visit_person_met})` : ''}
+            </span>
+          )}
         </div>
       </div>
     );
@@ -174,6 +185,20 @@ function AgentPitchBanner({ agent }) {
             </span>
           )}
         </div>
+      </div>
+
+      {/* 📍 Marketing Visit Summary */}
+      <div className="bg-sky-950/40 border border-sky-500/30 rounded-lg p-2 text-xs flex items-center justify-between">
+        <span className="text-sky-300 font-semibold flex items-center gap-1.5 text-[11px]">
+          📍 Last Visit: <span className="font-mono text-white font-bold">{agent.last_visit_date || 'No Visit Recorded'}</span>
+        </span>
+        <span className="text-slate-300 text-[10px]">
+          {agent.last_visit_date ? (
+            <>By: <span className="font-medium text-slate-100">{agent.last_visit_executive || agent.assigned_marketing_exec || 'Marketing'}</span>{agent.last_visit_person_met ? ` (Met: ${agent.last_visit_person_met})` : ''}</>
+          ) : (
+            <span className="text-rose-400 font-mono">Visit Pending</span>
+          )}
+        </span>
       </div>
 
       {/* Latest Query Details Card */}

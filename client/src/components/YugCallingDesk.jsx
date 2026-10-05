@@ -1755,7 +1755,7 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
 
                     {/* 🔥 Active Query Status & Recent Inquiry Pitch Cue */}
                     {agent.is_query_active && (
-                      <div className="bg-emerald-950/70 border border-emerald-500/50 rounded-lg p-2 text-xs space-y-1">
+                      <div className="mt-2 bg-emerald-950/70 border border-emerald-500/50 rounded-lg p-2 text-xs space-y-1">
                         <div className="flex items-center justify-between font-bold text-emerald-300">
                           <span className="flex items-center gap-1 text-[11px]">
                             🔥 Active Client ({agent.query_month_label || 'Recent Query'})
@@ -1784,7 +1784,46 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
                       </div>
                     )}
 
-                    <div className="mt-3 flex items-center justify-between text-xs text-slate-400 bg-slate-950/60 p-2 rounded-lg border border-slate-800">
+                    {/* 📍 Last Date of Visit & Marketing Executive Info */}
+                    {agent.last_visit_date ? (
+                      <div className="mt-2 bg-sky-950/40 border border-sky-500/30 rounded-lg p-2 text-xs space-y-1">
+                        <div className="flex items-center justify-between">
+                          <span className="font-bold text-sky-300 flex items-center gap-1.5 text-[11px]">
+                            <MapPin className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+                            Last Date of Visit: <span className="font-mono text-white font-bold">{agent.last_visit_date}</span>
+                          </span>
+                          <span className="bg-sky-500/20 text-sky-300 border border-sky-500/40 px-2 py-0.5 rounded-full text-[10px] font-bold">
+                            Visited
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between text-[11px] text-slate-300 pt-0.5 border-t border-sky-500/20">
+                          <span className="flex items-center gap-1 text-slate-300 truncate">
+                            <UserCheck className="w-3 h-3 text-sky-400 shrink-0" />
+                            <span className="text-slate-400">Marketing:</span>{' '}
+                            <span className="font-semibold text-slate-200">
+                              {agent.last_visit_executive || agent.assigned_marketing_exec || 'Bikramjit Singh'}
+                            </span>
+                          </span>
+                          {agent.last_visit_person_met && (
+                            <span className="text-slate-400 text-[10px] truncate max-w-[130px]" title={agent.last_visit_person_met}>
+                              Met: <span className="text-slate-200">{agent.last_visit_person_met}</span>
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="mt-2 bg-slate-950/70 border border-slate-800/80 rounded-lg px-2.5 py-1.5 text-xs flex items-center justify-between">
+                        <span className="text-slate-400 flex items-center gap-1.5 text-[11px]">
+                          <MapPin className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                          Last Date of Visit: <span className="text-amber-400/90 font-medium">No Visit Yet</span>
+                        </span>
+                        <span className="text-[10px] bg-rose-500/10 text-rose-400 border border-rose-500/20 px-2 py-0.5 rounded-full font-mono">
+                          Visit Pending
+                        </span>
+                      </div>
+                    )}
+
+                    <div className="mt-2.5 flex items-center justify-between text-xs text-slate-400 bg-slate-950/60 p-2 rounded-lg border border-slate-800">
                       <div>
                         <span className="block text-[10px] text-slate-500 font-bold uppercase">Mobile Number</span>
                         <span className="font-mono text-slate-200 font-semibold">{agent.mobile}</span>
