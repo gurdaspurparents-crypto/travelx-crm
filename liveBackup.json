@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-05T12:47:02.330Z",
+  "backed_up_at": "2026-10-05T12:47:26.630Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -5981,20 +5981,6 @@
     },
     {
       "id": "AGT-2063",
-      "name": "TASVIR SINGH",
-      "company_name": "CSC CENTRE",
-      "mobile": "9855203050",
-      "city": "BEHRAMPUR",
-      "area": "BEHRAMPUR",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
-      "assigned_marketing_exec": "Bikramjit Singh",
-      "assigned_telephonic_exec": "Simranjit Kaur",
-      "created_at": "2026-10-05",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-2064",
       "name": "TASVIR SINGH",
       "company_name": "CSC CENTRE",
       "mobile": "9855203050",
@@ -32889,6 +32875,26 @@
       "closing_employee": null,
       "rejection_reason": null,
       "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5227",
+      "query_date": "2026-10-05",
+      "agent_id": "AGT-1491",
+      "product": "International Flight",
+      "query_details": "DRS to DEl to DRS",
+      "travel_date": "2026-10-20",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-06",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
     }
   ],
   "field_trips": [
@@ -33309,6 +33315,11 @@
       "id": "AGT-1162",
       "entity_type": "agent",
       "deleted_at": "2026-10-05 12:07:25"
+    },
+    {
+      "id": "AGT-2064",
+      "entity_type": "agent",
+      "deleted_at": "2026-10-05 12:47:16"
     }
   ]
 }
