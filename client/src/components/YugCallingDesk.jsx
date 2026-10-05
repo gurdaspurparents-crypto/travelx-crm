@@ -1796,7 +1796,7 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
                     )}
 
                     {/* 📍 Last Date of Visit & Marketing Executive Info */}
-                    {agent.last_visit_date ? (
+                    {(agent.last_visit_date || agent.all_time_visit_date) ? (
                       <div className="mt-2 bg-gradient-to-r from-sky-950/70 via-slate-900 to-sky-950/50 border border-sky-500/40 rounded-xl p-2.5 text-xs shadow-sm space-y-1.5">
                         <div className="flex items-center justify-between gap-1.5">
                           <span className="text-[10px] font-bold uppercase tracking-wider text-sky-400 flex items-center gap-1">
@@ -1811,10 +1811,10 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
                         <div className="flex items-baseline justify-between gap-2 pt-0.5">
                           <div className="text-white font-extrabold text-sm tracking-wide flex items-center gap-1.5">
                             <Calendar className="w-3.5 h-3.5 text-sky-400 shrink-0" />
-                            <span>{formatProperDate(agent.last_visit_date)}</span>
+                            <span>{formatProperDate(agent.last_visit_date || agent.all_time_visit_date)}</span>
                           </div>
                           <span className="text-[10px] font-mono text-slate-400 font-semibold">
-                            ({agent.last_visit_date})
+                            ({agent.last_visit_date || agent.all_time_visit_date})
                           </span>
                         </div>
 

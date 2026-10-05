@@ -4,6 +4,17 @@ import { exportToPDF } from '../utils/exportUtils';
 import BikramPwaInstallBanner from './BikramPwaInstallBanner';
 import RoutePlannerTester from './RoutePlannerTester';
 
+// Helper to format dates cleanly into proper readable format (e.g. 15 Sep 2026)
+function formatProperDate(dateStr) {
+  if (!dateStr) return '';
+  const match = String(dateStr).match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (!match) return dateStr;
+  const [, year, month, day] = match;
+  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const monthName = monthNames[parseInt(month, 10) - 1] || month;
+  return `${parseInt(day, 10)} ${monthName} ${year}`;
+}
+
 export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, refreshTrigger }) {
   const isAdmin = role === 'Admin / Owner' || !role;
   const [visits, setVisits] = useState([]);
@@ -1531,10 +1542,10 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
                     <div className="flex flex-col sm:flex-row items-end sm:items-center gap-1.5 shrink-0">
                       {isVisited ? (
                         <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 px-2.5 py-1 sm:py-0.5 rounded-full text-xs sm:text-[10px] font-mono font-bold whitespace-nowrap" title={`Visited on: ${ag.last_visit_date}`}>
-                          ✅ Visited ({ag.last_visit_date})
+                          ✅ Visited ({formatProperDate(ag.last_visit_date)})
                         </span>
                       ) : (
-                        <span className="bg-rose-500/10 text-rose-400 border border-rose-500/25 px-2.5 py-1 sm:py-0.5 rounded-full text-xs sm:text-[10px] font-mono font-bold whitespace-nowrap animate-pulse">
+                        <span className="bg-rose-500/10 text-rose-400 border border-rose-500/25 px-2.5 py-1 sm:py-0.5 rounded-full text-xs sm:text-[10px] font-mono font-bold whitespace-nowrap animate-pulse" title={ag.all_time_visit_date ? `Previous visit: ${ag.all_time_visit_date}` : 'Never visited'}>
                           🔴 Pending Visit
                         </span>
                       )}
@@ -1553,6 +1564,19 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
                       )}
                     </div>
                   </div>
+
+                  {/* Historical visit note if pending in current period */}
+                  {!isVisited && ag.all_time_visit_date && (
+                    <div className="bg-slate-900/80 border border-slate-800 rounded-lg px-2.5 py-1.5 text-[11px] text-slate-400 flex items-center justify-between">
+                      <span className="flex items-center gap-1.5 text-slate-300">
+                        <MapPin className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                        <span>Previous Visit: <strong className="text-white font-mono">{formatProperDate(ag.all_time_visit_date)}</strong></span>
+                      </span>
+                      {ag.last_visit_executive && (
+                        <span className="text-[10px] text-slate-400 font-medium">By: {ag.last_visit_executive}</span>
+                      )}
+                    </div>
+                  )}
 
                   {/* 🔥 Active Query Status & Recent Inquiry Snippet */}
                   {ag.is_query_active && (
