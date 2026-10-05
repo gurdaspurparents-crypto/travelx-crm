@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-05T12:47:41.422Z",
+  "backed_up_at": "2026-10-05T12:47:56.500Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4223,7 +4223,7 @@
       "city": "Wadala Bangar",
       "area": "Wadala Bangar",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -32902,6 +32902,26 @@
       "agent_id": "AGT-2063",
       "product": "International Flight",
       "query_details": "LGW-DEL",
+      "travel_date": "2026-10-20",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-06",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5229",
+      "query_date": "2026-10-05",
+      "agent_id": "AGT-1871",
+      "product": "International Flight",
+      "query_details": "LHR to DEl",
       "travel_date": "2026-10-20",
       "pax_details": "2 Adults",
       "estimated_value": 0,
