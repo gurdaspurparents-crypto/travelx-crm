@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-05T08:22:25.563Z",
+  "backed_up_at": "2026-10-05T08:24:10.924Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -1507,7 +1507,7 @@
       "city": "Gurdaspur",
       "area": "Back Side Of Bus Stand, Gsp",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -27999,6 +27999,21 @@
       "agent_requirement": "good relpy",
       "interest_level": "Interested / Warm",
       "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-06",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 1827,
+      "call_date": "2026-10-05",
+      "agent_id": "AGT-1348",
+      "visit_id": 579,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "call cut bussy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Closed - Not Interested",
       "remarks": "",
       "next_followup_date": "2026-10-06",
       "payment_terms": "Not Discussed"
