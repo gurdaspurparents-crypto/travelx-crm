@@ -124,6 +124,17 @@ function AgentCombobox({ agentsList, selectedAgentId, onSelectAgent }) {
   );
 }
 
+// Helper to format dates cleanly into proper readable Indian business format (e.g. 15 Sep 2026)
+function formatProperDate(dateStr) {
+  if (!dateStr) return '';
+  const match = String(dateStr).match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (!match) return dateStr;
+  const [, year, month, day] = match;
+  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const monthName = monthNames[parseInt(month, 10) - 1] || month;
+  return `${parseInt(day, 10)} ${monthName} ${year}`;
+}
+
 // 🎯 Smart Pitch Alert & Guidance Banner for Field Visits & Telephonic Calling
 function AgentPitchBanner({ agent }) {
   if (!agent) return null;
@@ -145,7 +156,7 @@ function AgentPitchBanner({ agent }) {
         </div>
         <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1.5 border-t border-slate-800/80">
           <span className="flex items-center gap-1">
-            📍 Last Visit: {agent.last_visit_date ? <strong className="text-slate-200 font-mono">{agent.last_visit_date}</strong> : <span className="text-amber-400/90 font-medium">No Visit Recorded (Pending)</span>}
+            📍 Last Visit: {agent.last_visit_date ? <strong className="text-white font-semibold">{formatProperDate(agent.last_visit_date)} <span className="text-slate-400 text-[10px] font-mono">({agent.last_visit_date})</span></strong> : <span className="text-amber-400/90 font-medium">No Visit Recorded (Pending)</span>}
           </span>
           {agent.last_visit_date && (
             <span className="text-[10px] text-slate-300">
@@ -190,7 +201,7 @@ function AgentPitchBanner({ agent }) {
       {/* 📍 Marketing Visit Summary */}
       <div className="bg-sky-950/40 border border-sky-500/30 rounded-lg p-2 text-xs flex items-center justify-between">
         <span className="text-sky-300 font-semibold flex items-center gap-1.5 text-[11px]">
-          📍 Last Visit: <span className="font-mono text-white font-bold">{agent.last_visit_date || 'No Visit Recorded'}</span>
+          📍 Last Visit: {agent.last_visit_date ? <span className="text-white font-bold">{formatProperDate(agent.last_visit_date)} <span className="text-slate-400 text-[10px] font-mono">({agent.last_visit_date})</span></span> : <span className="text-amber-400 font-medium">No Visit Recorded</span>}
         </span>
         <span className="text-slate-300 text-[10px]">
           {agent.last_visit_date ? (
@@ -224,7 +235,7 @@ function AgentPitchBanner({ agent }) {
         )}
 
         <div className="flex items-center justify-between text-[10px] text-slate-400 font-mono pt-1 border-t border-slate-800/80">
-          <span>Date: {agent.latest_query_date || 'Recent'}</span>
+          <span>Date: {formatProperDate(agent.latest_query_date) || agent.latest_query_date || 'Recent'}</span>
           {agent.latest_quoted_amount > 0 && (
             <span className="text-amber-300 font-bold">Quoted: ₹{Number(agent.latest_quoted_amount).toLocaleString('en-IN')}</span>
           )}

@@ -1,6 +1,17 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Phone, PhoneCall, Plus, Search, Filter, Calendar, MapPin, CheckCircle2, MessageSquare, Flame, FileText, UserCheck, AlertCircle, RefreshCw, Users, Eye, ArrowUpDown, DollarSign, Award, ChevronRight, X, ChevronDown, ChevronUp, Clock, Sparkles, Target, Zap, BarChart3, Check, Trash2 } from 'lucide-react';
 
+// Helper to format dates cleanly into proper readable Indian business format (e.g. 15 Sep 2026)
+export function formatProperDate(dateStr) {
+  if (!dateStr) return '';
+  const match = String(dateStr).match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (!match) return dateStr;
+  const [, year, month, day] = match;
+  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const monthName = monthNames[parseInt(month, 10) - 1] || month;
+  return `${parseInt(day, 10)} ${monthName} ${year}`;
+}
+
 export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, refreshTrigger }) {
   const isAdmin = role === 'Admin / Owner' || role?.toLowerCase().includes('admin') || role?.toLowerCase().includes('owner') || !role;
   const [agents, setAgents] = useState([]);
@@ -1681,7 +1692,7 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
                         <div className="flex items-center justify-between gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-950/80 border border-emerald-700/60 text-emerald-300 text-[11px] font-bold">
                           <span className="flex items-center gap-1.5">
                             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                            <span>Called: {monthCall.call_date}</span>
+                            <span>Called: {formatProperDate(monthCall.call_date)}</span>
                           </span>
                           <div className="flex items-center gap-1.5">
                             <span className="text-[10px] font-mono text-emerald-300/90 bg-emerald-900/60 px-1.5 py-0.5 rounded">
@@ -1776,7 +1787,7 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
                           </div>
                         )}
                         <div className="flex items-center justify-between text-[10px] text-slate-400 font-mono">
-                          <span>Date: {agent.latest_query_date || 'Recent'}</span>
+                          <span>Date: {formatProperDate(agent.latest_query_date) || agent.latest_query_date || 'Recent'}</span>
                           {agent.latest_quoted_amount > 0 && (
                             <span className="text-amber-300 font-bold">Quoted: ₹{Number(agent.latest_quoted_amount).toLocaleString('en-IN')}</span>
                           )}
@@ -1786,38 +1797,50 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
 
                     {/* 📍 Last Date of Visit & Marketing Executive Info */}
                     {agent.last_visit_date ? (
-                      <div className="mt-2 bg-sky-950/40 border border-sky-500/30 rounded-lg p-2 text-xs space-y-1">
-                        <div className="flex items-center justify-between">
-                          <span className="font-bold text-sky-300 flex items-center gap-1.5 text-[11px]">
+                      <div className="mt-2 bg-gradient-to-r from-sky-950/70 via-slate-900 to-sky-950/50 border border-sky-500/40 rounded-xl p-2.5 text-xs shadow-sm space-y-1.5">
+                        <div className="flex items-center justify-between gap-1.5">
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-sky-400 flex items-center gap-1">
                             <MapPin className="w-3.5 h-3.5 text-sky-400 shrink-0" />
-                            Last Date of Visit: <span className="font-mono text-white font-bold">{agent.last_visit_date}</span>
+                            Last Marketing Visit
                           </span>
-                          <span className="bg-sky-500/20 text-sky-300 border border-sky-500/40 px-2 py-0.5 rounded-full text-[10px] font-bold">
+                          <span className="bg-sky-500/20 text-sky-300 border border-sky-500/40 px-2 py-0.5 rounded-full text-[10px] font-bold shrink-0">
                             Visited
                           </span>
                         </div>
-                        <div className="flex items-center justify-between text-[11px] text-slate-300 pt-0.5 border-t border-sky-500/20">
+
+                        <div className="flex items-baseline justify-between gap-2 pt-0.5">
+                          <div className="text-white font-extrabold text-sm tracking-wide flex items-center gap-1.5">
+                            <Calendar className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+                            <span>{formatProperDate(agent.last_visit_date)}</span>
+                          </div>
+                          <span className="text-[10px] font-mono text-slate-400 font-semibold">
+                            ({agent.last_visit_date})
+                          </span>
+                        </div>
+
+                        <div className="flex items-center justify-between text-[11px] text-slate-300 pt-1 border-t border-sky-500/20">
                           <span className="flex items-center gap-1 text-slate-300 truncate">
-                            <UserCheck className="w-3 h-3 text-sky-400 shrink-0" />
+                            <UserCheck className="w-3.5 h-3.5 text-sky-400 shrink-0" />
                             <span className="text-slate-400">Marketing:</span>{' '}
-                            <span className="font-semibold text-slate-200">
+                            <span className="font-semibold text-white">
                               {agent.last_visit_executive || agent.assigned_marketing_exec || 'Bikramjit Singh'}
                             </span>
                           </span>
                           {agent.last_visit_person_met && (
-                            <span className="text-slate-400 text-[10px] truncate max-w-[130px]" title={agent.last_visit_person_met}>
-                              Met: <span className="text-slate-200">{agent.last_visit_person_met}</span>
+                            <span className="text-slate-400 text-[10px] truncate max-w-[140px]" title={agent.last_visit_person_met}>
+                              Met: <span className="text-slate-200 font-medium">{agent.last_visit_person_met}</span>
                             </span>
                           )}
                         </div>
                       </div>
                     ) : (
-                      <div className="mt-2 bg-slate-950/70 border border-slate-800/80 rounded-lg px-2.5 py-1.5 text-xs flex items-center justify-between">
+                      <div className="mt-2 bg-slate-950/70 border border-slate-800/80 rounded-xl p-2.5 text-xs flex items-center justify-between">
                         <span className="text-slate-400 flex items-center gap-1.5 text-[11px]">
                           <MapPin className="w-3.5 h-3.5 text-slate-500 shrink-0" />
-                          Last Date of Visit: <span className="text-amber-400/90 font-medium">No Visit Yet</span>
+                          <span>Last Date of Visit:</span>{' '}
+                          <strong className="text-amber-400/90 font-medium">No Visit Recorded</strong>
                         </span>
-                        <span className="text-[10px] bg-rose-500/10 text-rose-400 border border-rose-500/20 px-2 py-0.5 rounded-full font-mono">
+                        <span className="text-[10px] bg-rose-500/10 text-rose-400 border border-rose-500/20 px-2 py-0.5 rounded-full font-mono font-bold">
                           Visit Pending
                         </span>
                       </div>
@@ -2020,7 +2043,7 @@ export default function YugCallingDesk({ onOpenModal, onOpenAgentDrawer, role, r
               <tbody className="divide-y divide-slate-800/60">
                 {callsHistory.filter(c => (!callDateFilter || c.call_date === callDateFilter) && (!bottomOnlyComments || hasCallComment(c))).slice(0, 50).map((c, i) => (
                   <tr key={c.id || i} className="hover:bg-slate-800/40 transition">
-                    <td className="p-3 font-mono font-medium text-slate-300">{c.call_date}</td>
+                    <td className="p-3 font-medium text-slate-200">{formatProperDate(c.call_date)}</td>
                     <td className="p-3">
                       <span className="font-bold px-2 py-0.5 rounded bg-sky-950 text-sky-400 border border-sky-800 text-[10px]">
                         {c.executive_name || 'Yug'}
