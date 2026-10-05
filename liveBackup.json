@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-05T06:59:24.201Z",
+  "backed_up_at": "2026-10-05T07:26:31.796Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -27648,6 +27648,21 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-06",
+      "payment_terms": null
+    },
+    {
+      "id": 1808,
+      "call_date": "2026-10-05",
+      "agent_id": "AGT-1485",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-06",
       "payment_terms": "Not Discussed"
     }
   ],
@@ -31198,26 +31213,6 @@
       "agent_id": "AGT-1533",
       "product": "International Flight",
       "query_details": "akl-del-akl",
-      "travel_date": "2026-10-20",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-10-06",
-      "status": "New",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
-    },
-    {
-      "id": "QRY-5215",
-      "query_date": "2026-10-05",
-      "agent_id": "AGT-1138",
-      "product": "International Flight",
-      "query_details": "atq-pune-atq",
       "travel_date": "2026-10-20",
       "pax_details": "2 Adults",
       "estimated_value": 0,
