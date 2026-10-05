@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-05T09:49:07.408Z",
+  "backed_up_at": "2026-10-05T09:49:54.215Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4776,20 +4776,6 @@
       "payment_terms": "Not Discussed"
     },
     {
-      "id": "AGT-1942",
-      "name": "Akashdeep singh ",
-      "company_name": "Goraya cyber cafe ",
-      "mobile": "+91 78370 47595",
-      "city": "Gurdaspur",
-      "area": "sant nagar",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikramjit Singh",
-      "assigned_telephonic_exec": "Simranjit Kaur",
-      "created_at": "2026-09-07",
-      "payment_terms": "Not Discussed"
-    },
-    {
       "id": "AGT-1944",
       "name": "Gurtej singh ",
       "company_name": "Sardar cyber cafe ",
@@ -6883,23 +6869,6 @@
       "executive_name": "Bikramjit Singh",
       "person_met": "sonu ",
       "mobile": "9915688840",
-      "is_new_agent": 0,
-      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Cruise\",\"International Flight\",\"Money Transfer\"]",
-      "response_level": "Interested / Warm",
-      "remarks": "",
-      "next_followup_date": "2026-09-08",
-      "location": "Gurdaspur",
-      "gps_latitude": null,
-      "gps_longitude": null,
-      "gps_address": null
-    },
-    {
-      "id": 575,
-      "visit_date": "2026-09-07",
-      "agent_id": "AGT-1942",
-      "executive_name": "Bikramjit Singh",
-      "person_met": "Akashdeep singh ",
-      "mobile": "+91 78370 47595",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Cruise\",\"International Flight\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
@@ -14532,21 +14501,6 @@
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
       "agent_requirement": "but rate jada hai kehnde",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-12",
-      "payment_terms": null
-    },
-    {
-      "id": 729,
-      "call_date": "2026-09-10",
-      "agent_id": "AGT-1942",
-      "visit_id": 575,
-      "executive_name": "Simranjit Kaur",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
       "interest_level": "Interested / Warm",
       "call_result": "Interested",
       "remarks": "",
@@ -22864,21 +22818,6 @@
       "payment_terms": null
     },
     {
-      "id": 1482,
-      "call_date": "2026-09-28",
-      "agent_id": "AGT-1942",
-      "visit_id": 575,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "bussy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Follow-up Required",
-      "remarks": "",
-      "next_followup_date": "2026-09-29",
-      "payment_terms": null
-    },
-    {
       "id": 1487,
       "call_date": "2026-09-28",
       "agent_id": "AGT-1923",
@@ -28442,21 +28381,6 @@
       "remarks": "",
       "next_followup_date": "2026-10-06",
       "payment_terms": "Not Discussed"
-    },
-    {
-      "id": 1860,
-      "call_date": "2026-10-05",
-      "agent_id": "AGT-1942",
-      "visit_id": 575,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "bussy ",
-      "interest_level": "Interested / Warm",
-      "call_result": "Follow-up Required",
-      "remarks": "",
-      "next_followup_date": "2026-10-06",
-      "payment_terms": "Not Discussed"
     }
   ],
   "queries": [
@@ -32487,6 +32411,11 @@
       "id": "AGT-1524",
       "entity_type": "agent",
       "deleted_at": "2026-10-05 09:21:41"
+    },
+    {
+      "id": "AGT-1942",
+      "entity_type": "agent",
+      "deleted_at": "2026-10-05 09:49:43"
     }
   ]
 }
