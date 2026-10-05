@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-05T10:16:40.711Z",
+  "backed_up_at": "2026-10-05T10:17:13.174Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -5991,6 +5991,20 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-03",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2062",
+      "name": "ankush",
+      "company_name": "gram  suvidha kendar ",
+      "mobile": "9780156118",
+      "city": "tibber",
+      "area": "tibber",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-10-05",
       "payment_terms": "Not Discussed"
     }
   ],
