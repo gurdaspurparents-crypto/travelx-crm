@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-05T09:21:51.818Z",
+  "backed_up_at": "2026-10-05T09:22:22.748Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -11241,6 +11241,23 @@
       "remarks": "Rate ",
       "next_followup_date": "2026-10-06",
       "location": "Sanghar",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 878,
+      "visit_date": "2026-10-05",
+      "agent_id": "AGT-1107",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Satnam singh",
+      "mobile": "9653757220",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-06",
+      "location": "Dhariwal",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
