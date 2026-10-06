@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-06T11:28:41.429Z",
+  "backed_up_at": "2026-10-06T11:33:22.053Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -3100,20 +3100,6 @@
       "name": "Mr.Sukhman",
       "company_name": "Waho waho internet point",
       "mobile": "9888635933",
-      "city": "Naushera Majha Singh",
-      "area": "Naushera Mjjha Singh",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1626",
-      "name": "gagandeep",
-      "company_name": "guru nanak",
-      "mobile": "988887038",
       "city": "Naushera Majha Singh",
       "area": "Naushera Mjjha Singh",
       "agent_type": "Retail Travel Agent",
@@ -22348,21 +22334,6 @@
       "payment_terms": null
     },
     {
-      "id": 1402,
-      "call_date": "2026-09-26",
-      "agent_id": "AGT-1626",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "not good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-27",
-      "payment_terms": null
-    },
-    {
       "id": 1403,
       "call_date": "2026-09-26",
       "agent_id": "AGT-1622",
@@ -27578,21 +27549,6 @@
       "agent_requirement": "bussy",
       "interest_level": "Interested / Warm",
       "call_result": "Follow-up Required",
-      "remarks": "",
-      "next_followup_date": "2026-10-04",
-      "payment_terms": null
-    },
-    {
-      "id": 1782,
-      "call_date": "2026-10-03",
-      "agent_id": "AGT-1626",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "goodrelpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-04",
       "payment_terms": null
@@ -34716,6 +34672,11 @@
       "id": "AGT-2013",
       "entity_type": "agent",
       "deleted_at": "2026-10-05 10:29:06"
+    },
+    {
+      "id": "AGT-1626",
+      "entity_type": "agent",
+      "deleted_at": "2026-10-06 11:33:11"
     }
   ]
 }
