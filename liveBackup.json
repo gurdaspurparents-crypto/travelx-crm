@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-06T06:39:58.567Z",
+  "backed_up_at": "2026-10-06T06:58:41.405Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -33152,13 +33152,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-06",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5216",
@@ -33172,13 +33172,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-06",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Customer Did Not Confirm",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5217",
@@ -33192,13 +33192,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-06",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Customer Did Not Confirm",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5218",
@@ -33212,13 +33212,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-06",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Customer Did Not Confirm",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5219",
@@ -33232,13 +33232,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-06",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Customer Did Not Confirm",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5220",
@@ -33252,13 +33252,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-06",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Customer Did Not Confirm",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5221",
@@ -33272,13 +33272,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-06",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Customer Did Not Confirm",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5222",
@@ -33292,13 +33292,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-06",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Customer Did Not Confirm",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5223",
