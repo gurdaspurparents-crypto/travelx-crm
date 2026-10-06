@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-06T11:38:38.539Z",
+  "backed_up_at": "2026-10-06T11:39:03.525Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -5987,7 +5987,7 @@
       "city": "Naushera majha singh ",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-06",
@@ -11618,6 +11618,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-07",
       "location": "kundha",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 902,
+      "visit_date": "2026-10-06",
+      "agent_id": "AGT-2065",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Kamal ",
+      "mobile": "+91 84471 01414",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Bus Booking\",\"Forex\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-07",
+      "location": "Naushera majha singh ",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
