@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-06T06:18:41.474Z",
+  "backed_up_at": "2026-10-06T06:22:14.215Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -5991,6 +5991,20 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-05",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2063",
+      "name": "amit",
+      "company_name": "csc centre",
+      "mobile": "9780371446",
+      "city": "kundha",
+      "area": "kundha",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-10-06",
       "payment_terms": "Not Discussed"
     }
   ],
