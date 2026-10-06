@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-06T11:34:20.461Z",
+  "backed_up_at": "2026-10-06T11:37:13.188Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -5974,6 +5974,20 @@
       "area": "aujla bye pass",
       "agent_type": "Retail Travel Agent",
       "stage": "QueryReceived",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-10-06",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2065",
+      "name": "Kamal ",
+      "company_name": "Kamal computer",
+      "mobile": "+91 84471 01414",
+      "city": "Nushera majha singh ",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-06",
