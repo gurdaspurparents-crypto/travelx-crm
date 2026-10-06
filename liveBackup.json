@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-06T10:53:56.567Z",
+  "backed_up_at": "2026-10-06T10:54:13.545Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -11629,6 +11629,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-07",
       "location": "Kundha",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 901,
+      "visit_date": "2026-10-06",
+      "agent_id": "AGT-2063",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "amit",
+      "mobile": "9780371446",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\",\"Visa Services\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-07",
+      "location": "kundha",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
