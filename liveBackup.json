@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-07T10:24:05.292Z",
+  "backed_up_at": "2026-10-07T10:26:33.262Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -11663,6 +11663,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-08",
       "location": "Sarna",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 903,
+      "visit_date": "2026-10-07",
+      "agent_id": "AGT-1027",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "mr.rahul",
+      "mobile": "7986217893",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Visa Services\",\"Travel Insurance\",\"International Flight\",\"Domestic Flight\",\"Tour Packages\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-08",
+      "location": "Barth Sahib",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
