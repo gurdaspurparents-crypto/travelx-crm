@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-07T09:27:38.575Z",
+  "backed_up_at": "2026-10-07T09:31:14.292Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -11561,6 +11561,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-08",
       "location": "sunderchak ",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 897,
+      "visit_date": "2026-10-07",
+      "agent_id": "AGT-1744",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Simranjit singh",
+      "mobile": "9780995703",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-08",
+      "location": "Sarna",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
@@ -34341,13 +34358,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-08",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Customer Did Not Confirm",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5224",
