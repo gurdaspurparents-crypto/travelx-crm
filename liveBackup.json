@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-07T07:58:52.373Z",
+  "backed_up_at": "2026-10-07T07:59:05.276Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -30365,6 +30365,21 @@
       "call_date": "2026-10-07",
       "agent_id": "AGT-1110",
       "visit_id": 868,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-08",
+      "payment_terms": "After Booking / Credit"
+    },
+    {
+      "id": 1977,
+      "call_date": "2026-10-07",
+      "agent_id": "AGT-1113",
+      "visit_id": 872,
       "executive_name": "Yug",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
