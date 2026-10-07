@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-07T09:58:56.033Z",
+  "backed_up_at": "2026-10-07T10:06:16.014Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -2109,7 +2109,7 @@
       "city": "Jakaria",
       "area": "Jakaria",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -11626,6 +11626,23 @@
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-08",
+      "location": "Sarna",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 901,
+      "visit_date": "2026-10-07",
+      "agent_id": "AGT-1746",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Sanjeev",
+      "mobile": "7837537953",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Visa Services\",\"Tour Packages\",\"Domestic Flight\",\"International Flight\",\"Hotel Booking\",\"Money Transfer\",\"Forex\",\"Bus Booking\",\"Travel Insurance\"]",
+      "response_level": "Very Interested / Hot",
       "remarks": "",
       "next_followup_date": "2026-10-08",
       "location": "Sarna",
@@ -30876,6 +30893,21 @@
       "agent_requirement": "good relpy",
       "interest_level": "Interested / Warm",
       "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-08",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 2005,
+      "call_date": "2026-10-07",
+      "agent_id": "AGT-1461",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "bussy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-10-08",
       "payment_terms": "Not Discussed"
