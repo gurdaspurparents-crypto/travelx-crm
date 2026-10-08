@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-08T09:39:46.804Z",
+  "backed_up_at": "2026-10-08T09:43:06.405Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -12150,6 +12150,23 @@
       "executive_name": "Bikramjit Singh",
       "person_met": "Mr. Pritpal malhotra",
       "mobile": "9478833221",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-09",
+      "location": "Dinanagar",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 932,
+      "visit_date": "2026-10-08",
+      "agent_id": "AGT-1979",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "sandeep ",
+      "mobile": "+91 98151 44901",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
