@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-08T09:41:10.333Z",
+  "backed_up_at": "2026-10-08T16:27:52.113Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -34162,7 +34162,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-10-09",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2182,
@@ -34177,7 +34177,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-10-09",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2183,
@@ -34192,7 +34192,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-10-09",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2184,
@@ -34207,7 +34207,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-09",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2185,
@@ -34222,7 +34222,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-09",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2186,
@@ -34237,7 +34237,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-10-09",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2187,
@@ -34252,7 +34252,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-10-09",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2188,
@@ -34267,7 +34267,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-10-09",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2189,
@@ -34282,7 +34282,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-10-09",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2190,
@@ -34297,7 +34297,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-09",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2191,
@@ -34312,7 +34312,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-10-09",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2192,
@@ -34327,7 +34327,7 @@
       "call_result": "No Response",
       "remarks": "",
       "next_followup_date": "2026-10-09",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2193,
@@ -34342,7 +34342,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-09",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2194,
@@ -34357,7 +34357,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-10-09",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2195,
@@ -34372,7 +34372,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-09",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
@@ -38433,26 +38433,6 @@
       "booking_value": 1,
       "booking_ref_no": "1",
       "closing_employee": "Simranjit Kaur",
-      "rejection_reason": null,
-      "rejection_remarks": null
-    },
-    {
-      "id": "QRY-5242",
-      "query_date": "2026-10-08",
-      "agent_id": "AGT-1533",
-      "product": "International Flight",
-      "query_details": "akl-del-akl",
-      "travel_date": "2026-10-23",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-10-09",
-      "status": "New",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
       "rejection_reason": null,
       "rejection_remarks": null
     },
