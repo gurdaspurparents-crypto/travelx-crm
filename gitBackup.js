@@ -262,33 +262,35 @@ async function backupToGitHub(db, options = {}) {
       return { success: false, reason: 'NO_TOKEN', data };
     }
 
-    // Anti-Data Loss Guard: Prevent overwriting cloud if local DB suffered catastrophic data loss (e.g. wiped to 0 or unexpected >30% drop)
+    // Anti-Data Loss Guard: Prevent overwriting cloud if local DB has fewer records
     try {
-      const cloudFile = await githubRequest('GET', `/repos/${REPO}/contents/${FILE_PATH}?ref=${BRANCH}`);
-      if (cloudFile && cloudFile.content) {
-        const cloudData = JSON.parse(Buffer.from(cloudFile.content, 'base64').toString('utf8'));
+      let cloudData = null;
+      try {
+        cloudData = await downloadRawFromGitHub();
+      } catch (_) {
+        const cloudFile = await githubRequest('GET', `/repos/${REPO}/contents/${FILE_PATH}?ref=${BRANCH}`).catch(() => null);
+        if (cloudFile && cloudFile.content) {
+          cloudData = JSON.parse(Buffer.from(cloudFile.content, 'base64').toString('utf8'));
+        }
+      }
+
+      if (cloudData) {
         const cloudAgents = cloudData.agents ? cloudData.agents.length : 0;
         const cloudVisits = cloudData.marketing_visits ? cloudData.marketing_visits.length : 0;
+        const cloudCalls = cloudData.telephonic_calls ? cloudData.telephonic_calls.length : 0;
 
         const agentDrop = cloudAgents - data.agents.length;
         const visitDrop = cloudVisits - data.marketing_visits.length;
+        const callDrop = cloudCalls - data.telephonic_calls.length;
 
-        // Catastrophic wipeout check:
-        // 1. Local database completely empty (0 agents) while cloud has agents
-        // 2. Unexpected major drop (>30% of entire database dropped at once and allowFewer was NOT set)
-        const isCatastrophicWipeout = (data.agents.length === 0 && cloudAgents > 0) ||
-          (!options.allowFewer && (agentDrop > cloudAgents * 0.3 || visitDrop > cloudVisits * 0.3));
+        // Anti-wipe guard: reject if local has fewer records than cloud without allowFewer
+        const isDataDrop = (data.agents.length === 0 && cloudAgents > 0) ||
+          (!options.allowFewer && (agentDrop > 0 || visitDrop > 0 || callDrop > 0));
 
-        if (isCatastrophicWipeout) {
-          console.warn(`[Backup Guard] 🛑 REJECTED! Local DB suffered major record loss (Agents: ${data.agents.length}/${cloudAgents}, Visits: ${data.marketing_visits.length}/${cloudVisits}). Refusing to overwrite cloud!`);
-          lastBackupStatus.lastError = `Backup rejected by guard: suspected data loss (${data.agents.length} < ${cloudAgents} agents or ${data.marketing_visits.length} < ${cloudVisits} visits)`;
-          console.log('[Backup Guard] 🔄 Auto-healing local database from cloud backup...');
-          await applyDataToDb(
-            cloudData,
-            (sql, p) => new Promise((res, rej) => db.run(sql, p, function(e) { if (e) rej(e); else res(this); })),
-            (sql, p) => new Promise((res, rej) => db.all(sql, p, (e, rows) => { if (e) rej(e); else res(rows); }))
-          );
-          return { success: false, reason: 'LOCAL_DATA_SMALLER_THAN_CLOUD_HEALED' };
+        if (isDataDrop) {
+          console.warn(`[Backup Guard] 🛑 REJECTED! Local DB has fewer records than Cloud (Agents: ${data.agents.length}/${cloudAgents}, Visits: ${data.marketing_visits.length}/${cloudVisits}, Calls: ${data.telephonic_calls.length}/${cloudCalls}). Refusing to overwrite cloud!`);
+          lastBackupStatus.lastError = `Backup rejected by guard: local records fewer than cloud (${data.marketing_visits.length} < ${cloudVisits} visits or ${data.telephonic_calls.length} < ${cloudCalls} calls)`;
+          return { success: false, reason: 'LOCAL_DATA_SMALLER_THAN_CLOUD' };
         }
       }
     } catch (guardErr) {
@@ -327,25 +329,89 @@ async function backupToGitHub(db, options = {}) {
   }
 }
 
+// Helper: Download raw file directly from raw.githubusercontent.com (no 1MB size limit)
+function downloadRawFromGitHub() {
+  return new Promise((resolve, reject) => {
+    const options = {
+      hostname: 'raw.githubusercontent.com',
+      path: `/${REPO}/${BRANCH}/${FILE_PATH}`,
+      method: 'GET',
+      headers: {
+        'User-Agent': 'TravelxCRM-AutoBackup/2.0',
+        ...(GITHUB_TOKEN ? { 'Authorization': `Bearer ${GITHUB_TOKEN}` } : {})
+      }
+    };
+    const req = https.request(options, res => {
+      let rawData = '';
+      res.on('data', chunk => rawData += chunk);
+      res.on('end', () => {
+        if (res.statusCode < 200 || res.statusCode >= 300) {
+          return reject(new Error(`raw.githubusercontent.com returned HTTP ${res.statusCode}`));
+        }
+        try {
+          resolve(JSON.parse(rawData));
+        } catch (e) {
+          reject(e);
+        }
+      });
+    });
+    req.on('error', reject);
+    req.end();
+  });
+}
+
 // RESTORE: Fetch latest backup from GitHub on startup, with local fallback
-async function restoreFromGitHub(db, dbRun, dbAll) {
+async function restoreFromGitHub(db, dbRun, dbAll, options = {}) {
   let restored = false;
 
-  // 1. Try restoring from GitHub API
+  // Check local database counts first
+  let localVisits = 0;
+  let localCalls = 0;
+  let localAgents = 0;
+  if (typeof dbAll === 'function') {
+    try {
+      const v = await dbAll('SELECT COUNT(*) as c FROM marketing_visits');
+      const c = await dbAll('SELECT COUNT(*) as c FROM telephonic_calls');
+      const a = await dbAll('SELECT COUNT(*) as c FROM agents');
+      localVisits = v[0]?.c || 0;
+      localCalls = c[0]?.c || 0;
+      localAgents = a[0]?.c || 0;
+    } catch (_) {}
+  }
+
+  // 1. Try restoring from GitHub Raw (bypasses 1MB API limit)
   if (GITHUB_TOKEN) {
     try {
       console.log('[Restore] Checking GitHub for latest cloud backup...');
-      const result = await githubRequest('GET', `/repos/${REPO}/contents/${FILE_PATH}?ref=${BRANCH}`);
-      if (result && result.content) {
-        const raw = Buffer.from(result.content, 'base64').toString('utf8');
-        const data = JSON.parse(raw);
-        console.log(`[Restore] Found cloud backup from: ${data.backed_up_at}`);
-        await applyDataToDb(data, dbRun, dbAll);
-        // Sync to all local liveBackup.json paths
+      let cloudData = null;
+      try {
+        cloudData = await downloadRawFromGitHub();
+      } catch (rawErr) {
+        console.log('[Restore] Raw download failed, trying contents API:', rawErr.message);
+        const result = await githubRequest('GET', `/repos/${REPO}/contents/${FILE_PATH}?ref=${BRANCH}`);
+        if (result && result.content) {
+          cloudData = JSON.parse(Buffer.from(result.content, 'base64').toString('utf8'));
+        }
+      }
+
+      if (cloudData) {
+        const cloudVisits = cloudData.marketing_visits ? cloudData.marketing_visits.length : 0;
+        const cloudCalls = cloudData.telephonic_calls ? cloudData.telephonic_calls.length : 0;
+
+        // Safety: If local DB is already healthy and has MORE or equal data, NEVER overwrite!
+        if (localVisits > 0 && cloudVisits < localVisits) {
+          console.log(`[Restore] 🛡️ Local DB has more visits (${localVisits}) than cloud backup (${cloudVisits}). Preserving local data!`);
+          return true;
+        }
+
+        console.log(`[Restore] Found cloud backup from: ${cloudData.backed_up_at} (${cloudVisits} visits, ${cloudCalls} calls)`);
+        await applyDataToDb(cloudData, dbRun, dbAll);
+
+        const rawJson = JSON.stringify(cloudData, null, 2);
         try {
-          fs.writeFileSync(path.resolve(__dirname, 'liveBackup.json'), raw, 'utf8');
-          fs.writeFileSync(path.resolve(__dirname, '../liveBackup.json'), raw, 'utf8');
-          fs.writeFileSync(path.resolve(__dirname, 'server/liveBackup.json'), raw, 'utf8');
+          fs.writeFileSync(path.resolve(__dirname, 'liveBackup.json'), rawJson, 'utf8');
+          fs.writeFileSync(path.resolve(__dirname, '../liveBackup.json'), rawJson, 'utf8');
+          fs.writeFileSync(path.resolve(__dirname, 'server/liveBackup.json'), rawJson, 'utf8');
         } catch (e) {}
         console.log('[Restore] ✅ Restored successfully from GitHub!');
         return true;
@@ -366,8 +432,16 @@ async function restoreFromGitHub(db, dbRun, dbAll) {
   for (const filePath of candidateFiles) {
     if (fs.existsSync(filePath)) {
       try {
-        console.log(`[Restore] Loading fallback backup from ${path.basename(filePath)}...`);
         const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+        const fileVisits = data.marketing_visits ? data.marketing_visits.length : 0;
+
+        // If local DB already has more data, don't rollback to older file
+        if (localVisits > 0 && fileVisits < localVisits) {
+          console.log(`[Restore] 🛡️ Local DB has ${localVisits} visits vs fallback ${fileVisits}. Skipping rollback.`);
+          return true;
+        }
+
+        console.log(`[Restore] Loading fallback backup from ${path.basename(filePath)}...`);
         await applyDataToDb(data, dbRun, dbAll);
         console.log(`[Restore] ✅ Restored from ${path.basename(filePath)}!`);
         return true;

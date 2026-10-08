@@ -599,10 +599,10 @@ app.get('/api/agents', async (req, res) => {
         ...ag,
         last_visit_date: ag.last_visit_date || null,
         all_time_visit_date: ag.all_time_visit_date || ag.last_visit_date || null,
-        last_visit_executive: ag.last_visit_executive || ag.latest_visit_executive || ag.assigned_marketing_exec || null,
-        last_visit_person_met: ag.last_visit_person_met || ag.latest_visit_person_met || null,
-        last_visit_response: ag.last_visit_response || ag.latest_visit_response || null,
-        last_visit_remarks: ag.last_visit_remarks || ag.latest_visit_remarks || null,
+        last_visit_executive: ag.last_visit_executive || ag.assigned_marketing_exec || null,
+        last_visit_person_met: ag.last_visit_person_met || null,
+        last_visit_response: ag.last_visit_response || null,
+        last_visit_remarks: ag.last_visit_remarks || null,
         is_query_active: isQueryActive,
         recent_queries_count: ag.recent_queries_count || 0,
         recent_bookings_count: ag.recent_bookings_count || 0,
@@ -1120,7 +1120,60 @@ app.post('/api/field-trips/start', async (req, res) => {
       [trip_date || new Date().toISOString().split('T')[0], executive_name || 'Bikramjit Singh', parseFloat(start_meter_reading), nowTime, start_location || 'Office Departure', parseFloat(rate_per_km || 3.0), remarks || '', createdAt]
     );
 
+    if (typeof syncLocalBackupFile === 'function') {
+      await syncLocalBackupFile(db);
+    }
+    scheduleBackup(db);
+
     res.json({ success: true, id: result.lastID, message: '🏍️ Field trip started successfully! Start Meter Reading logged.' });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.post('/api/field-trips/direct', async (req, res) => {
+  try {
+    const { trip_date, executive_name, start_meter_reading, end_meter_reading, rate_per_km, remarks, start_location, end_location } = req.body;
+    const startKM = parseFloat(start_meter_reading || 0);
+    const endKM = parseFloat(end_meter_reading || 0);
+    const rate = parseFloat(rate_per_km || 3.0);
+    const totalKM = Math.max(0, endKM - startKM);
+    const conveyance = Math.round(totalKM * rate);
+    const nowTime = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+    const createdAt = new Date().toISOString();
+
+    const result = await dbRun(
+      `INSERT INTO field_trips (trip_date, executive_name, start_meter_reading, end_meter_reading, start_time, end_time, start_location, end_location, total_km, rate_per_km, conveyance_amount, status, remarks, created_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Completed', ?, ?)`,
+      [
+        trip_date || new Date().toISOString().split('T')[0],
+        executive_name || 'Bikramjit Singh',
+        startKM,
+        endKM,
+        nowTime,
+        nowTime,
+        start_location || 'Office Departure',
+        end_location || 'Office Return',
+        totalKM,
+        rate,
+        conveyance,
+        remarks || '',
+        createdAt
+      ]
+    );
+
+    if (typeof syncLocalBackupFile === 'function') {
+      await syncLocalBackupFile(db);
+    }
+    scheduleBackup(db);
+
+    res.json({
+      success: true,
+      id: result.lastID,
+      total_km: totalKM,
+      conveyance_amount: conveyance,
+      message: `🏍️ Conveyance trip saved successfully! ${totalKM} KM – ₹${conveyance}`
+    });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }
@@ -1150,6 +1203,11 @@ app.post('/api/field-trips/end/:id', async (req, res) => {
       [endKM, nowTime, end_location || 'Office Return', totalKM, conveyance, remarks || '', tripId]
     );
 
+    if (typeof syncLocalBackupFile === 'function') {
+      await syncLocalBackupFile(db);
+    }
+    scheduleBackup(db);
+
     res.json({
       success: true,
       total_km: totalKM,
@@ -1164,6 +1222,10 @@ app.post('/api/field-trips/end/:id', async (req, res) => {
 app.delete('/api/field-trips/clear-all', async (req, res) => {
   try {
     await dbRun(`DELETE FROM field_trips`);
+    if (typeof syncLocalBackupFile === 'function') {
+      await syncLocalBackupFile(db);
+    }
+    scheduleBackup(db, { allowFewer: true });
     res.json({ success: true, message: 'All conveyance trip logs cleared successfully' });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
@@ -1185,6 +1247,11 @@ app.put('/api/field-trips/:id', async (req, res) => {
        WHERE id = ?`,
       [startKM, endKM, totalKM, rate, conveyance, remarks || '', req.params.id]
     );
+
+    if (typeof syncLocalBackupFile === 'function') {
+      await syncLocalBackupFile(db);
+    }
+    scheduleBackup(db);
 
     res.json({ success: true, message: 'Conveyance trip log updated successfully', total_km: totalKM, conveyance_amount: conveyance });
   } catch (err) {
@@ -2463,14 +2530,23 @@ async function startServer() {
   try {
     console.log('[Startup] 1. Initializing database schema...');
     await initDb();
-    console.log('[Startup] 2. Restoring master cloud backup from GitHub...');
-    await restoreFromGitHub(db, dbRun, dbAll);
+    console.log('[Startup] 2. Checking database health and syncing cloud backup...');
     const countRow = await dbGet('SELECT COUNT(*) as count FROM agents');
-    if (!countRow || countRow.count === 0) {
+    const visitRow = await dbGet('SELECT COUNT(*) as count FROM marketing_visits');
+    const isColdBoot = (!countRow || countRow.count === 0) && (!visitRow || visitRow.count === 0);
+    if (isColdBoot) {
+      console.log('[Startup] ⚠️ DB is empty. Restoring master cloud backup from GitHub...');
+      await restoreFromGitHub(db, dbRun, dbAll);
+    } else {
+      console.log(`[Startup] 🛡️ DB is healthy (${countRow.count} agents, ${visitRow.count} visits). Running safe non-destructive sync...`);
+      await restoreFromGitHub(db, dbRun, dbAll, { nonDestructive: true });
+    }
+    const finalCount = await dbGet('SELECT COUNT(*) as count FROM agents');
+    if (!finalCount || finalCount.count === 0) {
       console.log('[Startup] ⚠️ DB is empty after all restore attempts. Loading fallback seed...');
       if (typeof seedDatabase === 'function') await seedDatabase();
     }
-    console.log('[Startup] 3. Database successfully initialized & restored.');
+    console.log('[Startup] 3. Database successfully initialized & protected.');
 
     app.listen(PORT, '0.0.0.0', () => {
       console.log(`Travelx CRM Backend running on port ${PORT}`);

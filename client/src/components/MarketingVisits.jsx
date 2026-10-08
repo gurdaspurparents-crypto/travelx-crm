@@ -65,6 +65,11 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
   const [dayReport, setDayReport] = useState([]);
   const [startKmInput, setStartKmInput] = useState('');
   const [endKmInput, setEndKmInput] = useState('');
+  const [conveyanceMode, setConveyanceMode] = useState('direct'); // 'direct' or '2step'
+  const [directTripDate, setDirectTripDate] = useState(() => new Date().toISOString().split('T')[0]);
+  const [directStartKm, setDirectStartKm] = useState('');
+  const [directEndKm, setDirectEndKm] = useState('');
+  const [directRemarks, setDirectRemarks] = useState('');
 
   // Collapsible Dropdown Section States
   const [showOdometer, setShowOdometer] = useState(false);
@@ -381,6 +386,49 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
       }
     } catch (err) {
       alert('Error ending field trip');
+    }
+  };
+ 
+  const handleDirectTripSubmit = async (e) => {
+    e.preventDefault();
+    if (!directStartKm || isNaN(directStartKm) || !directEndKm || isNaN(directEndKm)) {
+      alert('Please enter valid Start KM and End KM');
+      return;
+    }
+    const startNum = parseFloat(directStartKm);
+    const endNum = parseFloat(directEndKm);
+    if (endNum < startNum) {
+      alert('End KM cannot be less than Start KM!');
+      return;
+    }
+    try {
+      const res = await fetch('/api/field-trips/direct', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          trip_date: directTripDate || new Date().toISOString().split('T')[0],
+          executive_name: 'Bikramjit Singh',
+          start_meter_reading: startNum,
+          end_meter_reading: endNum,
+          rate_per_km: 3.0,
+          remarks: directRemarks || '',
+          start_location: 'Office Departure',
+          end_location: 'Office Return'
+        })
+      });
+      const json = await res.json();
+      if (json.success) {
+        alert(json.message);
+        setDirectStartKm('');
+        setDirectEndKm('');
+        setDirectRemarks('');
+        fetchFieldTrips();
+        fetchDayReport();
+      } else {
+        alert(json.error || 'Failed to save conveyance entry');
+      }
+    } catch (err) {
+      alert('Error saving conveyance: ' + err.message);
     }
   };
 
@@ -744,7 +792,130 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
         {showOdometer && (
           <div className="p-4 sm:p-5 space-y-4">
 
-        {/* 2-SECTION ENTRY FORMS (Departure Start KM & Return End KM) */}
+        {/* Toggle Mode: Direct 1-Click vs 2-Step Live Meter */}
+        <div className="flex flex-wrap items-center justify-between gap-3 bg-[#080d1a] p-2 rounded-xl border border-white/[0.06]">
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setConveyanceMode('direct')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
+                conveyanceMode === 'direct'
+                  ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              <Zap className="w-3.5 h-3.5" /> ⚡ 1-Click Daily Entry (Start + End KM)
+            </button>
+            <button
+              type="button"
+              onClick={() => setConveyanceMode('2step')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
+                conveyanceMode === '2step'
+                  ? 'bg-sky-500 text-slate-950 shadow-md shadow-sky-500/20'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              <Gauge className="w-3.5 h-3.5" /> 🏍️ 2-Step Live Meter (Morning & Evening)
+            </button>
+          </div>
+          {activeTrip && (
+            <button
+              type="button"
+              onClick={async () => {
+                if (window.confirm(`Discard stuck ongoing trip from ${activeTrip.trip_date}?`)) {
+                  await fetch(`/api/field-trips/${activeTrip.id}`, { method: 'DELETE' });
+                  fetchFieldTrips();
+                  fetchDayReport();
+                }
+              }}
+              className="text-[11px] font-semibold text-rose-400 hover:text-rose-300 bg-rose-500/10 px-2.5 py-1 rounded-lg border border-rose-500/20 transition cursor-pointer"
+            >
+              ✕ Clear Stuck Ongoing Trip ({activeTrip.trip_date})
+            </button>
+          )}
+        </div>
+
+        {/* 1. DIRECT 1-CLICK ENTRY FORM */}
+        {conveyanceMode === 'direct' && (
+          <form onSubmit={handleDirectTripSubmit} className="bg-[#070b14]/90 border border-amber-500/30 p-4 rounded-xl space-y-3 shadow-lg">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <h4 className="font-bold text-amber-300 text-xs sm:text-sm flex items-center gap-1.5">
+                <Zap className="w-4 h-4 text-amber-400" /> Daily Conveyance Single-Click Entry (Bikramjit Singh)
+              </h4>
+              <span className="text-[10px] font-mono font-bold text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-md border border-amber-500/20">
+                Rate: ₹3.00 / KM
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+              <div>
+                <label className="text-[11px] font-bold text-slate-400 block mb-1">📅 Trip Date</label>
+                <input
+                  type="date"
+                  value={directTripDate}
+                  onChange={e => setDirectTripDate(e.target.value)}
+                  className="bg-[#0c1322] border border-white/[0.08] text-slate-100 font-mono text-xs px-3 py-2 rounded-xl focus:outline-none focus:border-amber-400 w-full"
+                  required
+                />
+              </div>
+              <div>
+                <label className="text-[11px] font-bold text-emerald-400 block mb-1">🟢 Start KM (Morning)</label>
+                <input
+                  type="number"
+                  step="0.1"
+                  placeholder="e.g. 15200"
+                  value={directStartKm}
+                  onChange={e => setDirectStartKm(e.target.value)}
+                  className="bg-[#0c1322] border border-white/[0.08] text-slate-100 font-mono text-xs px-3 py-2 rounded-xl focus:outline-none focus:border-emerald-400 w-full"
+                  required
+                />
+              </div>
+              <div>
+                <label className="text-[11px] font-bold text-rose-400 block mb-1">🔴 End KM (Evening)</label>
+                <input
+                  type="number"
+                  step="0.1"
+                  placeholder="e.g. 15350"
+                  value={directEndKm}
+                  onChange={e => setDirectEndKm(e.target.value)}
+                  className="bg-[#0c1322] border border-white/[0.08] text-slate-100 font-mono text-xs px-3 py-2 rounded-xl focus:outline-none focus:border-rose-400 w-full"
+                  required
+                />
+              </div>
+              <div>
+                <label className="text-[11px] font-bold text-slate-400 block mb-1">📝 Remarks / Locations</label>
+                <input
+                  type="text"
+                  placeholder="e.g. Dhariwal & Gurdaspur visits"
+                  value={directRemarks}
+                  onChange={e => setDirectRemarks(e.target.value)}
+                  className="bg-[#0c1322] border border-white/[0.08] text-slate-100 text-xs px-3 py-2 rounded-xl focus:outline-none focus:border-amber-400 w-full"
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-white/[0.06]">
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-slate-400">
+                  Calculated Distance: <span className="font-mono font-bold text-sky-300">{Math.max(0, (parseFloat(directEndKm) || 0) - (parseFloat(directStartKm) || 0))} KM</span>
+                </span>
+                <span className="text-xs text-slate-400">
+                  Payable Conveyance: <span className="font-mono font-extrabold text-amber-300">₹{Math.round(Math.max(0, (parseFloat(directEndKm) || 0) - (parseFloat(directStartKm) || 0)) * 3)}</span>
+                </span>
+              </div>
+
+              <button
+                type="submit"
+                className="px-5 py-2 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-slate-950 font-extrabold rounded-xl text-xs transition shadow-md shadow-amber-900/30 flex items-center gap-1.5 cursor-pointer"
+              >
+                <CheckCircle2 className="w-4 h-4" /> Save Conveyance Entry
+              </button>
+            </div>
+          </form>
+        )}
+
+        {/* 2. 2-SECTION LIVE METER ENTRY FORMS (Departure Start KM & Return End KM) */}
+        {conveyanceMode === '2step' && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           
           {/* Section 1: Morning Office Departure (Start KM) */}
@@ -831,6 +1002,7 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
           </form>
 
         </div>
+        )}
 
         {/* 📊 DAY-WISE ADMIN CONVEYANCE REPORT SUMMARY TABLE */}
         <div className="space-y-2 pt-2 border-t border-white/[0.06]">
@@ -852,6 +1024,7 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
                     <th className="p-2.5">Total Distance</th>
                     <th className="p-2.5">Rate / KM</th>
                     <th className="p-2.5">Payable</th>
+                    {isAdmin && <th className="p-2.5 text-right">Action</th>}
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-white/[0.04] bg-[#0b101e]/60">
@@ -864,6 +1037,22 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
                       <td className="p-2.5 font-bold font-mono text-sky-400">{r.total_day_km || 0} KM</td>
                       <td className="p-2.5 text-slate-400 font-mono">₹3.00</td>
                       <td className="p-2.5 font-extrabold font-mono text-amber-400">₹{(r.total_day_conveyance || 0).toLocaleString('en-IN')}</td>
+                      {isAdmin && (
+                        <td className="p-2.5 text-right">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const matchTrip = fieldTrips.find(t => t.trip_date === r.trip_date && (t.status === 'Completed' || t.end_meter_reading));
+                              if (matchTrip) handleDeleteTrip(matchTrip.id);
+                              else alert('Trip record ID not found');
+                            }}
+                            className="px-2 py-0.5 rounded bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/20 font-bold text-[10px] transition cursor-pointer inline-flex items-center gap-1"
+                            title="Delete this day's trip log"
+                          >
+                            <Trash2 className="w-3 h-3 text-rose-400" /> Del
+                          </button>
+                        </td>
+                      )}
                     </tr>
                   ))}
                 </tbody>

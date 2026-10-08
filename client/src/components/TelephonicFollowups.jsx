@@ -266,8 +266,10 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer, ro
 
   const dueTodayCalls = useMemo(() => {
     return calls.filter(c => {
-      const isCallAgain = (c.call_result || '').toLowerCase().includes('again') || (c.call_result || '').toLowerCase().includes('later') || (c.call_result || '').toLowerCase().includes('follow');
-      return isCallAgain && c.next_followup_date && c.next_followup_date <= todayStr;
+      if (!c.next_followup_date || String(c.next_followup_date).trim() === '' || c.next_followup_date > todayStr) return false;
+      const resStr = (c.call_result || '').toLowerCase();
+      if (resStr.includes('closed') || resStr.includes('not interested') || resStr.includes("don't call")) return false;
+      return true;
     });
   }, [calls, todayStr]);
 
@@ -278,8 +280,8 @@ export default function TelephonicFollowups({ onOpenModal, onOpenAgentDrawer, ro
         const filterLower = resultFilter.toLowerCase();
 
         if (filterLower === 'due today') {
-          const isCallAgain = resStr.includes('again') || resStr.includes('later') || resStr.includes('follow');
-          if (!isCallAgain || !c.next_followup_date || c.next_followup_date > todayStr) return false;
+          if (!c.next_followup_date || String(c.next_followup_date).trim() === '' || c.next_followup_date > todayStr) return false;
+          if (resStr.includes('closed') || resStr.includes('not interested') || resStr.includes("don't call")) return false;
         } else if (filterLower === 'not interested') {
           if (!resStr.includes('not interested') && !resStr.includes("don't call")) return false;
         } else if (filterLower === 'closed') {
