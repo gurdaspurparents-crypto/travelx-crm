@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-08T08:43:31.185Z",
+  "backed_up_at": "2026-10-08T08:43:53.832Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -11986,6 +11986,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-08",
       "location": "Barth Sahib",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 922,
+      "visit_date": "2026-10-08",
+      "agent_id": "AGT-1212",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "JEEVAN ",
+      "mobile": "8847369704",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Visa Services\",\"Tour Packages\",\"Domestic Flight\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Money Transfer\",\"Bus Booking\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-09",
+      "location": "Dinanagar",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
@@ -37941,6 +37958,26 @@
     },
     {
       "id": "QRY-5242",
+      "query_date": "2026-10-08",
+      "agent_id": "AGT-1533",
+      "product": "International Flight",
+      "query_details": "akl-del-akl",
+      "travel_date": "2026-10-23",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-09",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5243",
       "query_date": "2026-10-08",
       "agent_id": "AGT-1533",
       "product": "International Flight",
