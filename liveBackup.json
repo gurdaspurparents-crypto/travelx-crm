@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-09T08:44:44.623Z",
+  "backed_up_at": "2026-10-09T08:50:09.779Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -39111,6 +39111,26 @@
       "agent_id": "AGT-1530",
       "product": "International Flight",
       "query_details": "atq-dxb",
+      "travel_date": "2026-10-24",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-10",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5256",
+      "query_date": "2026-10-09",
+      "agent_id": "AGT-1904",
+      "product": "International Flight",
+      "query_details": "atq-bah",
       "travel_date": "2026-10-24",
       "pax_details": "2 Adults",
       "estimated_value": 0,
