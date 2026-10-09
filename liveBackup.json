@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-09T10:01:50.903Z",
+  "backed_up_at": "2026-10-09T10:13:38.196Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -12511,6 +12511,23 @@
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "Rate jada hunda aa 300 , 400 ",
+      "next_followup_date": "2026-10-10",
+      "location": "Taragarh",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 953,
+      "visit_date": "2026-10-09",
+      "agent_id": "AGT-1819",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Suraj ",
+      "mobile": "9592123891",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"Hotel Booking\",\"International Flight\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
       "next_followup_date": "2026-10-10",
       "location": "Taragarh",
       "gps_latitude": null,
