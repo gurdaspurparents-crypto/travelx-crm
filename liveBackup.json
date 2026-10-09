@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-09T07:57:50.856Z",
+  "backed_up_at": "2026-10-09T07:58:02.104Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -12422,6 +12422,23 @@
       "executive_name": "Bikramjit Singh",
       "person_met": "Mr. Rajpal",
       "mobile": "9592908575",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-10",
+      "location": "Marara",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 948,
+      "visit_date": "2026-10-09",
+      "agent_id": "AGT-2012",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Ajay ",
+      "mobile": "6280-302536",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
