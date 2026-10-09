@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-09T09:44:43.232Z",
+  "backed_up_at": "2026-10-09T09:50:36.959Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -39154,11 +39154,11 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-10",
-      "status": "New",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
+      "status": "Converted",
+      "booking_date": "2026-10-09",
+      "booking_value": 1,
+      "booking_ref_no": "1",
+      "closing_employee": "Simranjit Kaur",
       "rejection_reason": null,
       "rejection_remarks": null
     },
