@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-09T04:44:43.241Z",
+  "backed_up_at": "2026-10-09T05:12:25.540Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -38555,6 +38555,26 @@
       "closing_employee": null,
       "rejection_reason": "Customer Did Not Confirm",
       "rejection_remarks": ""
+    },
+    {
+      "id": "QRY-5249",
+      "query_date": "2026-10-09",
+      "agent_id": "AGT-1439",
+      "product": "International Flight",
+      "query_details": "del-auh",
+      "travel_date": "2026-10-24",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-10",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
     }
   ],
   "field_trips": [
