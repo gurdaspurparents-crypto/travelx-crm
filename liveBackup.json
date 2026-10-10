@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-10T06:39:05.333Z",
+  "backed_up_at": "2026-10-10T06:39:21.579Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4937,7 +4937,7 @@
       "city": "Barth Sahib",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-11",
@@ -35847,6 +35847,36 @@
       "agent_requirement": "bussy",
       "interest_level": "Interested / Warm",
       "call_result": "Follow-up Required",
+      "remarks": "",
+      "next_followup_date": "2026-10-11",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 2274,
+      "call_date": "2026-10-10",
+      "agent_id": "AGT-1966",
+      "visit_id": 921,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "call cut",
+      "interest_level": "Interested / Warm",
+      "call_result": "Follow-up Required",
+      "remarks": "",
+      "next_followup_date": "2026-10-11",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 2275,
+      "call_date": "2026-10-10",
+      "agent_id": "AGT-1962",
+      "visit_id": 919,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-11",
       "payment_terms": "Not Discussed"
