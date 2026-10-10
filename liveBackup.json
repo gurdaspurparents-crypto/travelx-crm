@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-10T07:44:55.836Z",
+  "backed_up_at": "2026-10-10T07:45:06.284Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -12672,6 +12672,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-11",
       "location": "Hardochanni",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 966,
+      "visit_date": "2026-10-10",
+      "agent_id": "AGT-1227",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Daljit ",
+      "mobile": "7009149655",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-11",
+      "location": "Dorangla",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
