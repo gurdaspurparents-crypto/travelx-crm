@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-14T05:54:58.459Z",
+  "backed_up_at": "2026-10-14T05:55:31.250Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -13306,6 +13306,23 @@
       "executive_name": "Bikramjit Singh",
       "person_met": "baljit ",
       "mobile": "9592962725",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-15",
+      "location": "Jaura Chattran",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1002,
+      "visit_date": "2026-10-14",
+      "agent_id": "AGT-1482",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.rahul",
+      "mobile": "7973133450",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
