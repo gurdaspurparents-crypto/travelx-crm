@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-14T05:43:41.022Z",
+  "backed_up_at": "2026-10-14T05:47:07.556Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6015,7 +6015,7 @@
       "city": "Gurdaspur",
       "area": "Aujla bypass",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-13",
@@ -37617,6 +37617,21 @@
       "remarks": "",
       "next_followup_date": "2026-10-13",
       "payment_terms": null
+    },
+    {
+      "id": 2348,
+      "call_date": "2026-10-14",
+      "agent_id": "AGT-2066",
+      "visit_id": 989,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-15",
+      "payment_terms": "Not Discussed"
     }
   ],
   "queries": [
