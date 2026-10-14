@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-14T07:24:59.173Z",
+  "backed_up_at": "2026-10-14T07:25:24.808Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4265,11 +4265,11 @@
       "city": "Warsola",
       "area": "Warsola",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "Advance Payment"
     },
     {
       "id": "AGT-1888",
@@ -39231,6 +39231,21 @@
       "agent_requirement": "",
       "interest_level": "Interested / Warm",
       "call_result": "Call Again Later",
+      "remarks": "",
+      "next_followup_date": "2026-10-15",
+      "payment_terms": "Advance Payment"
+    },
+    {
+      "id": 2446,
+      "call_date": "2026-10-14",
+      "agent_id": "AGT-1886",
+      "visit_id": 962,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "abhi khatt hai jabh aygya km to kre ge ",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-15",
       "payment_terms": "Advance Payment"
