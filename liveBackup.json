@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-14T07:11:42.377Z",
+  "backed_up_at": "2026-10-14T07:12:07.800Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -135,11 +135,11 @@
       "city": "Behrampur",
       "area": "Behrampur, Gsp Road, Nera C.b.i Bank",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "Advance Payment"
     },
     {
       "id": "AGT-1036",
@@ -38863,6 +38863,21 @@
       "call_date": "2026-10-14",
       "agent_id": "AGT-2012",
       "visit_id": 948,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Call Again Later",
+      "remarks": "",
+      "next_followup_date": "2026-10-15",
+      "payment_terms": "Advance Payment"
+    },
+    {
+      "id": 2423,
+      "call_date": "2026-10-14",
+      "agent_id": "AGT-1032",
+      "visit_id": 946,
       "executive_name": "Simranjit Kaur",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
