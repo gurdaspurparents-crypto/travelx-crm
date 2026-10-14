@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-14T06:12:16.417Z",
+  "backed_up_at": "2026-10-14T06:12:40.397Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6029,7 +6029,7 @@
       "city": "Jaura chattran",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-14",
@@ -13360,6 +13360,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-15",
       "location": "Amipur",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1004,
+      "visit_date": "2026-10-14",
+      "agent_id": "AGT-2067",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Aman",
+      "mobile": "+91 81467 86528",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-15",
+      "location": "Jaura chattran",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
