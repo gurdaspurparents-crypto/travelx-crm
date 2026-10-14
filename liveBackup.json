@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-14T07:19:55.656Z",
+  "backed_up_at": "2026-10-14T07:20:41.027Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -1465,11 +1465,11 @@
       "city": "Warsola",
       "area": "Opp. Sukhjindra College, Gsp",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "After Booking / Credit"
     },
     {
       "id": "AGT-1348",
@@ -13436,6 +13436,23 @@
       "executive_name": "Bikramjit Singh",
       "person_met": "sanwar singh ",
       "mobile": "+91 79019 41466",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-15",
+      "location": "Kalanour",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1008,
+      "visit_date": "2026-10-14",
+      "agent_id": "AGT-1904",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Aman",
+      "mobile": "7889078051",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
@@ -39082,6 +39099,36 @@
       "remarks": "",
       "next_followup_date": "2026-10-15",
       "payment_terms": "Advance Payment"
+    },
+    {
+      "id": 2437,
+      "call_date": "2026-10-14",
+      "agent_id": "AGT-1347",
+      "visit_id": 958,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-15",
+      "payment_terms": "After Booking / Credit"
+    },
+    {
+      "id": 2438,
+      "call_date": "2026-10-14",
+      "agent_id": "AGT-1933",
+      "visit_id": 846,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good rfelpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-15",
+      "payment_terms": "Not Discussed"
     }
   ],
   "queries": [
