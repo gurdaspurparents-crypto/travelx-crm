@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-14T07:10:30.160Z",
+  "backed_up_at": "2026-10-14T07:10:53.512Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4493,7 +4493,7 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-01",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "After Booking / Credit"
     },
     {
       "id": "AGT-1916",
@@ -38773,6 +38773,21 @@
       "call_date": "2026-10-14",
       "agent_id": "AGT-1920",
       "visit_id": 941,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-15",
+      "payment_terms": "After Booking / Credit"
+    },
+    {
+      "id": 2417,
+      "call_date": "2026-10-14",
+      "agent_id": "AGT-1915",
+      "visit_id": 943,
       "executive_name": "Simranjit Kaur",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
