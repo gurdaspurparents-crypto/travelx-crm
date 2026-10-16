@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-16T11:43:37.467Z",
+  "backed_up_at": "2026-10-16T11:49:44.035Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6058,6 +6058,20 @@
       "area": "aujla bye pass",
       "agent_type": "Retail Travel Agent",
       "stage": "QueryReceived",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-10-16",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2070",
+      "name": "parminder",
+      "company_name": "csc centre",
+      "mobile": "8847455391",
+      "city": "gharota",
+      "area": "gharota",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-16",
