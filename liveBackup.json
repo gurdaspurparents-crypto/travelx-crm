@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-16T11:49:44.035Z",
+  "backed_up_at": "2026-10-16T11:49:57.141Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6071,7 +6071,7 @@
       "city": "gharota",
       "area": "gharota",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-16",
@@ -46693,6 +46693,26 @@
       "id": "QRY-5305",
       "query_date": "2026-10-16",
       "agent_id": "AGT-1573",
+      "product": "International Flight",
+      "query_details": "atq-shj",
+      "travel_date": "2026-10-31",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-17",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5306",
+      "query_date": "2026-10-16",
+      "agent_id": "AGT-2070",
       "product": "International Flight",
       "query_details": "atq-shj",
       "travel_date": "2026-10-31",
