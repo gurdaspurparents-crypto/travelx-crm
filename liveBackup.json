@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-16T06:41:32.868Z",
+  "backed_up_at": "2026-10-16T06:41:47.243Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -3663,7 +3663,7 @@
       "city": "Sarna",
       "area": "Barth sahib",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -40068,6 +40068,21 @@
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
       "agent_requirement": "bussy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Follow-up Required",
+      "remarks": "",
+      "next_followup_date": "2026-10-17",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 2484,
+      "call_date": "2026-10-16",
+      "agent_id": "AGT-1756",
+      "visit_id": 615,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "busy",
       "interest_level": "Interested / Warm",
       "call_result": "Follow-up Required",
       "remarks": "",
