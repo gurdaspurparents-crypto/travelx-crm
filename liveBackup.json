@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-16T11:13:37.463Z",
+  "backed_up_at": "2026-10-16T11:31:37.133Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4671,7 +4671,7 @@
       "city": "Nikke Ghuman",
       "area": "Nikke ghuman ",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-03",
@@ -46641,6 +46641,26 @@
       "agent_id": "AGT-1148",
       "product": "International Flight",
       "query_details": "del-kwi",
+      "travel_date": "2026-10-31",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-17",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5304",
+      "query_date": "2026-10-16",
+      "agent_id": "AGT-1930",
+      "product": "International Flight",
+      "query_details": "dxb-atq-dxb",
       "travel_date": "2026-10-31",
       "pax_details": "2 Adults",
       "estimated_value": 0,
