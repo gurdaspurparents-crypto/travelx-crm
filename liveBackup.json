@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-16T07:19:08.842Z",
+  "backed_up_at": "2026-10-16T07:19:26.923Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -5973,7 +5973,7 @@
       "city": "sunderchak ",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-07",
@@ -40203,6 +40203,21 @@
       "call_date": "2026-10-16",
       "agent_id": "AGT-1956",
       "visit_id": 908,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-17",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 2491,
+      "call_date": "2026-10-16",
+      "agent_id": "AGT-2064",
+      "visit_id": 911,
       "executive_name": "Yug",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
