@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-16T07:43:37.432Z",
+  "backed_up_at": "2026-10-16T07:44:46.432Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -13773,6 +13773,23 @@
       "executive_name": "Bikramjit Singh",
       "person_met": "Mr. Sourav",
       "mobile": "9855213007",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-17",
+      "location": "Dera Baba Nanak",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1027,
+      "visit_date": "2026-10-16",
+      "agent_id": "AGT-1085",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. vawinder ",
+      "mobile": "9814612211",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
@@ -40466,6 +40483,21 @@
       "agent_requirement": "no connected",
       "interest_level": "Interested / Warm",
       "call_result": "Call Connected / In Discussion",
+      "remarks": "",
+      "next_followup_date": "2026-10-17",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 2507,
+      "call_date": "2026-10-16",
+      "agent_id": "AGT-1783",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-17",
       "payment_terms": "Not Discussed"
