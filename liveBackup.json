@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-16T06:28:48.197Z",
+  "backed_up_at": "2026-10-16T06:29:13.901Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6057,7 +6057,7 @@
       "city": "aujla bye pass",
       "area": "aujla bye pass",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-16",
@@ -13705,6 +13705,23 @@
       "executive_name": "Bikramjit Singh",
       "person_met": "Ranjit kaur",
       "mobile": "+91 89686 52520",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-17",
+      "location": "Dera Baba Nanak",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1023,
+      "visit_date": "2026-10-16",
+      "agent_id": "AGT-2000",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr pawan",
+      "mobile": "87270 60390",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
@@ -39951,6 +39968,21 @@
       "remarks": "",
       "next_followup_date": "2026-10-15",
       "payment_terms": null
+    },
+    {
+      "id": 2477,
+      "call_date": "2026-10-16",
+      "agent_id": "AGT-1739",
+      "visit_id": null,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-17",
+      "payment_terms": "Not Discussed"
     }
   ],
   "queries": [
@@ -44940,6 +44972,26 @@
       "agent_id": "AGT-1125",
       "product": "International Flight",
       "query_details": "atq-dxb",
+      "travel_date": "2026-10-31",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-17",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5293",
+      "query_date": "2026-10-16",
+      "agent_id": "AGT-2069",
+      "product": "International Flight",
+      "query_details": "dxb-atq",
       "travel_date": "2026-10-31",
       "pax_details": "2 Adults",
       "estimated_value": 0,
