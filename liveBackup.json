@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-16T06:13:37.338Z",
+  "backed_up_at": "2026-10-16T06:13:53.859Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -13680,6 +13680,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-15",
       "location": "Kalanour",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1022,
+      "visit_date": "2026-10-16",
+      "agent_id": "AGT-1998",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Ranjit kaur",
+      "mobile": "+91 89686 52520",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-17",
+      "location": "Dera Baba Nanak",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
