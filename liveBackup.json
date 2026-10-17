@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-17T06:39:02.230Z",
+  "backed_up_at": "2026-10-17T06:42:50.148Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -14028,6 +14028,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-18",
       "location": "pandori",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1040,
+      "visit_date": "2026-10-17",
+      "agent_id": "AGT-2027",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Rohit ",
+      "mobile": "+91 90413 23769",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Bus Booking\",\"Forex\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-18",
+      "location": "pandori ",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
