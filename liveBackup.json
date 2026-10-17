@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-17T09:52:37.372Z",
+  "backed_up_at": "2026-10-17T10:02:31.405Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -14126,6 +14126,23 @@
       "mobile": "+91 98788 50249",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"Bus Booking\",\"Forex\",\"Hotel Booking\",\"International Flight\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-18",
+      "location": "Beant clg ",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1046,
+      "visit_date": "2026-10-17",
+      "agent_id": "AGT-2032",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "pawan ",
+      "mobile": "+91 94648 63412",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-10-18",
