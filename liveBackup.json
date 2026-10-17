@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-17T08:11:35.204Z",
+  "backed_up_at": "2026-10-17T08:14:36.169Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -14092,6 +14092,23 @@
       "mobile": "8872737461",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"Hotel Booking\",\"International Flight\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-18",
+      "location": "Bhotoya",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1044,
+      "visit_date": "2026-10-17",
+      "agent_id": "AGT-1052",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Lucky ",
+      "mobile": "+91 99884 03840",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-10-18",
@@ -42688,6 +42705,36 @@
       "agent_requirement": "good relpy",
       "interest_level": "Interested / Warm",
       "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-18",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 2634,
+      "call_date": "2026-10-17",
+      "agent_id": "AGT-1110",
+      "visit_id": 868,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-18",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 2635,
+      "call_date": "2026-10-17",
+      "agent_id": "AGT-1109",
+      "visit_id": 867,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "call cut",
+      "interest_level": "Interested / Warm",
+      "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-10-18",
       "payment_terms": "Not Discussed"
