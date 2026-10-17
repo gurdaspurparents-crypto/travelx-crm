@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-17T11:36:26.156Z",
+  "backed_up_at": "2026-10-17T11:40:37.536Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6075,20 +6075,6 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-16",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-2071",
-      "name": "PARDEEP KUMAR",
-      "company_name": "SNEHA CAFE",
-      "mobile": "7889104023",
-      "city": "PANDORI RD",
-      "area": "PANDORI RD",
-      "agent_type": "Retail Travel Agent",
-      "stage": "QueryReceived",
-      "assigned_marketing_exec": "Bikramjit Singh",
-      "assigned_telephonic_exec": "Simranjit Kaur",
-      "created_at": "2026-10-17",
       "payment_terms": "Not Discussed"
     },
     {
@@ -48470,26 +48456,6 @@
       "rejection_remarks": null
     },
     {
-      "id": "QRY-5311",
-      "query_date": "2026-10-17",
-      "agent_id": "AGT-2071",
-      "product": "International Flight",
-      "query_details": "ATQ-DXB",
-      "travel_date": "2026-11-01",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-10-18",
-      "status": "New",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
-    },
-    {
       "id": "QRY-5312",
       "query_date": "2026-10-17",
       "agent_id": "AGT-1195",
@@ -49112,6 +49078,11 @@
       "id": "QRY-5265",
       "entity_type": "query",
       "deleted_at": "2026-10-10 09:59:36"
+    },
+    {
+      "id": "AGT-2071",
+      "entity_type": "agent",
+      "deleted_at": "2026-10-17 11:40:27"
     }
   ]
 }
