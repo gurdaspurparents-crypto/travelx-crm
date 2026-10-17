@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-17T07:26:45.820Z",
+  "backed_up_at": "2026-10-17T07:27:44.893Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -14058,6 +14058,23 @@
       "mobile": "9530532093",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Forex\",\"Hotel Booking\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-18",
+      "location": "Kalijpur",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1042,
+      "visit_date": "2026-10-17",
+      "agent_id": "AGT-1567",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "mr.charnjit sharma",
+      "mobile": "9914259306",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-10-18",
