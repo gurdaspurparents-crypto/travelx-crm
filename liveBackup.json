@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-19T08:30:16.437Z",
+  "backed_up_at": "2026-10-19T08:30:38.098Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -49593,6 +49593,26 @@
       "closing_employee": null,
       "rejection_reason": null,
       "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5328",
+      "query_date": "2026-10-19",
+      "agent_id": "AGT-1062",
+      "product": "International Flight",
+      "query_details": "LIS-DEL",
+      "travel_date": "2026-11-03",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-20",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
     }
   ],
   "field_trips": [
@@ -50167,6 +50187,11 @@
       "id": "QRY-5320",
       "entity_type": "query",
       "deleted_at": "2026-10-19 05:36:28"
+    },
+    {
+      "id": "QRY-5327",
+      "entity_type": "query",
+      "deleted_at": "2026-10-19 08:30:27"
     }
   ]
 }
