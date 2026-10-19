@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-19T07:18:41.157Z",
+  "backed_up_at": "2026-10-19T07:28:30.808Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -14356,6 +14356,23 @@
       "executive_name": "Bikramjit Singh",
       "person_met": "Mr. Rahul",
       "mobile": "9988540407",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-20",
+      "location": "Purana Shalla",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1058,
+      "visit_date": "2026-10-19",
+      "agent_id": "AGT-1656",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Davider kumar",
+      "mobile": "9876156097",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
