@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-19T08:30:38.098Z",
+  "backed_up_at": "2026-10-19T08:40:00.474Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -5273,7 +5273,7 @@
       "city": "Gurdaspur",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-19",
@@ -49600,6 +49600,26 @@
       "agent_id": "AGT-1062",
       "product": "International Flight",
       "query_details": "LIS-DEL",
+      "travel_date": "2026-11-03",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-20",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5329",
+      "query_date": "2026-10-19",
+      "agent_id": "AGT-2004",
+      "product": "International Flight",
+      "query_details": "DXB-ATQ",
       "travel_date": "2026-11-03",
       "pax_details": "2 Adults",
       "estimated_value": 0,
