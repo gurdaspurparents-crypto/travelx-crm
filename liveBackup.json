@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-19T05:34:32.726Z",
+  "backed_up_at": "2026-10-19T05:36:14.980Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6103,6 +6103,20 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-17",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2074",
+      "name": "RAMAN",
+      "company_name": "INFOTECH CYBER CAFE ",
+      "mobile": "7837372998",
+      "city": "BABEHALI",
+      "area": "BABEHALI",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-10-19",
       "payment_terms": "Not Discussed"
     }
   ],
