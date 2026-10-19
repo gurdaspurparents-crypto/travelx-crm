@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-19T05:58:31.564Z",
+  "backed_up_at": "2026-10-19T06:13:42.875Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -14288,6 +14288,23 @@
       "executive_name": "Bikramjit Singh",
       "person_met": "Mr. Gurbaksh singh",
       "mobile": "9463228947",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-20",
+      "location": "Tibri",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1054,
+      "visit_date": "2026-10-19",
+      "agent_id": "AGT-1838",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Nishan singh",
+      "mobile": "8054420008",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
@@ -43405,6 +43422,21 @@
       "call_date": "2026-10-19",
       "agent_id": "AGT-1904",
       "visit_id": 1008,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-20",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 2669,
+      "call_date": "2026-10-19",
+      "agent_id": "AGT-1989",
+      "visit_id": 1007,
       "executive_name": "Yug",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
