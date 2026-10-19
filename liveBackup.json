@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-19T05:36:14.980Z",
+  "backed_up_at": "2026-10-19T05:36:38.589Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6113,7 +6113,7 @@
       "city": "BABEHALI",
       "area": "BABEHALI",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-19",
@@ -48645,6 +48645,26 @@
       "closing_employee": null,
       "rejection_reason": null,
       "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5321",
+      "query_date": "2026-10-19",
+      "agent_id": "AGT-2074",
+      "product": "International Flight",
+      "query_details": "BEG-DEL",
+      "travel_date": "2026-11-03",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-20",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
     }
   ],
   "field_trips": [
@@ -49214,6 +49234,11 @@
       "id": "AGT-2071",
       "entity_type": "agent",
       "deleted_at": "2026-10-17 11:40:27"
+    },
+    {
+      "id": "QRY-5320",
+      "entity_type": "query",
+      "deleted_at": "2026-10-19 05:36:28"
     }
   ]
 }
