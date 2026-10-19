@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-19T10:48:34.019Z",
+  "backed_up_at": "2026-10-19T10:54:06.277Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -14475,6 +14475,23 @@
       "executive_name": "Bikramjit Singh",
       "person_met": "Mr.Vijay",
       "mobile": "7341184754",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-20",
+      "location": "Chak Sharif",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1065,
+      "visit_date": "2026-10-19",
+      "agent_id": "AGT-1063",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Anil ",
+      "mobile": "7837060012",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
