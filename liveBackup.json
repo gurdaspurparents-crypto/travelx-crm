@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-20T07:47:34.259Z",
+  "backed_up_at": "2026-10-20T07:54:57.762Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -50038,6 +50038,26 @@
       "agent_id": "AGT-1107",
       "product": "International Flight",
       "query_details": "atq-dxb",
+      "travel_date": "2026-11-04",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-21",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5339",
+      "query_date": "2026-10-20",
+      "agent_id": "AGT-1432",
+      "product": "International Flight",
+      "query_details": "LIS-DEL",
       "travel_date": "2026-11-04",
       "pax_details": "2 Adults",
       "estimated_value": 0,
