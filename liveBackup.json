@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-21T11:32:44.103Z",
+  "backed_up_at": "2026-10-21T11:51:36.977Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -15077,6 +15077,23 @@
       "mobile": "9462520813",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-22",
+      "location": "Kahnuwan",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1097,
+      "visit_date": "2026-10-21",
+      "agent_id": "AGT-1510",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "poonam preet ",
+      "mobile": "7087890837",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-10-22",
@@ -52681,13 +52698,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-22",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Customer Did Not Confirm",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5343",
@@ -52721,13 +52738,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-22",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Customer Did Not Confirm",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5345",
@@ -52741,13 +52758,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-22",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Agent Did Not Respond",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5346",
@@ -52761,13 +52778,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-22",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Agent Did Not Respond",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5347",
@@ -52781,13 +52798,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-22",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Customer Did Not Confirm",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5348",
@@ -52821,13 +52838,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-22",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Agent Did Not Respond",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5350",
@@ -52841,13 +52858,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-22",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Customer Did Not Confirm",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5351",
@@ -52881,13 +52898,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-22",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Customer Did Not Confirm",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5353",
