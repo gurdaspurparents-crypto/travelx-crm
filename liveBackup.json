@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-21T05:58:59.059Z",
+  "backed_up_at": "2026-10-21T05:59:23.607Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6015,7 +6015,7 @@
       "city": "Jaura chattran",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Visited",
+      "stage": "Followup",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-14",
@@ -44979,6 +44979,21 @@
       "call_date": "2026-10-21",
       "agent_id": "AGT-2073",
       "visit_id": 1048,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-22",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 2740,
+      "call_date": "2026-10-21",
+      "agent_id": "AGT-2067",
+      "visit_id": 1004,
       "executive_name": "Yug",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
