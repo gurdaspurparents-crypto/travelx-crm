@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-21T06:00:52.159Z",
+  "backed_up_at": "2026-10-21T06:01:12.878Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6169,7 +6169,7 @@
       "city": "taragarh",
       "area": "taragarh",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-21",
@@ -50991,6 +50991,26 @@
       "agent_id": "AGT-1148",
       "product": "International Flight",
       "query_details": "atq-akl",
+      "travel_date": "2026-11-05",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-22",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5344",
+      "query_date": "2026-10-21",
+      "agent_id": "AGT-2079",
+      "product": "International Flight",
+      "query_details": "atq-vce",
       "travel_date": "2026-11-05",
       "pax_details": "2 Adults",
       "estimated_value": 0,
