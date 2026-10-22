@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-22T05:55:51.014Z",
+  "backed_up_at": "2026-10-22T06:14:26.978Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -15099,6 +15099,23 @@
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"Hotel Booking\",\"International Flight\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "rate problem ",
+      "next_followup_date": "2026-10-23",
+      "location": "Dehriwal",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1099,
+      "visit_date": "2026-10-22",
+      "agent_id": "AGT-1075",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.inderjit singh",
+      "mobile": "9855336327",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
       "next_followup_date": "2026-10-23",
       "location": "Dehriwal",
       "gps_latitude": null,
