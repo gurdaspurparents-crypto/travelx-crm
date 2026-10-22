@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-22T06:46:59.178Z",
+  "backed_up_at": "2026-10-22T06:47:20.018Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -53277,6 +53277,26 @@
       "agent_id": "AGT-1521",
       "product": "International Flight",
       "query_details": "dxb-atq",
+      "travel_date": "2026-11-06",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-23",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5360",
+      "query_date": "2026-10-22",
+      "agent_id": "AGT-1487",
+      "product": "International Flight",
+      "query_details": "del-vce",
       "travel_date": "2026-11-06",
       "pax_details": "2 Adults",
       "estimated_value": 0,
