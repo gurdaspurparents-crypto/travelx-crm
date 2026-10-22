@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-22T05:40:43.629Z",
+  "backed_up_at": "2026-10-22T05:49:05.832Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6145,6 +6145,20 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-21",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2080",
+      "name": "ajay",
+      "company_name": "ajay cyber cafe",
+      "mobile": "6239179068",
+      "city": "jhabra",
+      "area": "jhabra",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-10-22",
       "payment_terms": "Not Discussed"
     }
   ],
