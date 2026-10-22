@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-22T10:24:52.273Z",
+  "backed_up_at": "2026-10-22T10:25:08.408Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6212,6 +6212,20 @@
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
       "stage": "Visited",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-10-22",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2085",
+      "name": "Mr. simar ",
+      "company_name": "csc center ",
+      "mobile": "78146 38088",
+      "city": "wadala granthia ",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-22",
