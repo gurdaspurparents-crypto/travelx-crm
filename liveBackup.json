@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-22T04:54:52.271Z",
+  "backed_up_at": "2026-10-22T05:24:52.274Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -52785,13 +52785,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-22",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5354",
