@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-22T09:48:47.733Z",
+  "backed_up_at": "2026-10-22T09:49:08.504Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6211,7 +6211,7 @@
       "city": "wadala granthia ",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-22",
@@ -15225,6 +15225,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-23",
       "location": "wadala Granthia",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1103,
+      "visit_date": "2026-10-22",
+      "agent_id": "AGT-2084",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Tarsem singn ",
+      "mobile": "9815379630",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Visa Services\",\"Travel Insurance\",\"Tour Packages\",\"Domestic Flight\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-23",
+      "location": "wadala granthia ",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
