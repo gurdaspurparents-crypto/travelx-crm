@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-22T11:24:52.273Z",
+  "backed_up_at": "2026-10-22T11:32:37.082Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6223,6 +6223,20 @@
       "company_name": "csc center ",
       "mobile": "78146 38088",
       "city": "wadala granthia ",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-10-22",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2086",
+      "name": "Mr. Happy ",
+      "company_name": "Happy travel ",
+      "mobile": "+91 84279 39374",
+      "city": "Wadala Granthia ",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
       "stage": "Inactive",
