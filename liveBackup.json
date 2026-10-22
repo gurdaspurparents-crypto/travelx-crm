@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-22T07:36:03.413Z",
+  "backed_up_at": "2026-10-22T07:46:27.210Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6156,6 +6156,20 @@
       "area": "jhabra",
       "agent_type": "Retail Travel Agent",
       "stage": "QueryReceived",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-10-22",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2081",
+      "name": "Mr varun ",
+      "company_name": "Varun travel ",
+      "mobile": "+91 98728 05532",
+      "city": "Wadala Granthia ",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-22",
