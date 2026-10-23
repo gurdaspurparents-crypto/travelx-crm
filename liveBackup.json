@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-22T12:33:31.043Z",
+  "backed_up_at": "2026-10-23T05:01:27.243Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -46997,7 +46997,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-23",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2845,
@@ -47012,7 +47012,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-23",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2846,
@@ -47027,7 +47027,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-23",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2847,
@@ -47042,7 +47042,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-23",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2848,
@@ -47057,7 +47057,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-23",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2849,
@@ -47072,7 +47072,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-23",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2850,
@@ -47087,7 +47087,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-23",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2851,
@@ -47102,7 +47102,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-23",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2852,
@@ -47117,7 +47117,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-10-23",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2853,
@@ -47132,7 +47132,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-23",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2854,
@@ -47147,7 +47147,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-23",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2855,
@@ -47162,7 +47162,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-23",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2856,
@@ -47177,7 +47177,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-23",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2857,
@@ -47192,7 +47192,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-10-23",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2858,
@@ -47207,7 +47207,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-23",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2859,
@@ -47222,7 +47222,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-23",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2860,
@@ -47237,7 +47237,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-23",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2861,
@@ -47252,7 +47252,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-23",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2862,
@@ -47267,7 +47267,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-23",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2863,
@@ -47282,7 +47282,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-23",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2864,
@@ -47297,7 +47297,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-23",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2865,
@@ -47312,7 +47312,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-10-23",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
@@ -53488,13 +53488,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-23",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5356",
@@ -53508,13 +53508,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-23",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Agent Did Not Respond",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5357",
@@ -53548,13 +53548,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-23",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Agent Did Not Respond",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5359",
@@ -53568,13 +53568,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-23",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Agent Did Not Respond",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5360",
@@ -53588,13 +53588,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-23",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Agent Did Not Respond",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5361",
@@ -53608,13 +53608,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-23",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Agent Did Not Respond",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5362",
@@ -53628,13 +53628,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-23",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Agent Did Not Respond",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5363",
@@ -53648,13 +53648,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-23",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Customer Did Not Confirm",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5364",
@@ -53668,13 +53668,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-23",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Customer Did Not Confirm",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5365",
@@ -53688,13 +53688,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-23",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Agent Did Not Respond",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5366",
@@ -53713,6 +53713,26 @@
       "booking_value": 1,
       "booking_ref_no": "1",
       "closing_employee": "Simranjit Kaur",
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5368",
+      "query_date": "2026-10-23",
+      "agent_id": "AGT-1850",
+      "product": "International Flight",
+      "query_details": "atq-gau",
+      "travel_date": "2026-11-07",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-24",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
       "rejection_reason": null,
       "rejection_remarks": null
     }
@@ -54382,6 +54402,11 @@
       "id": "AGT-2014",
       "entity_type": "agent",
       "deleted_at": "2026-10-22 04:40:12"
+    },
+    {
+      "id": "QRY-5367",
+      "entity_type": "query",
+      "deleted_at": "2026-10-23 05:01:16"
     }
   ]
 }
