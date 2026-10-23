@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-23T09:44:11.943Z",
+  "backed_up_at": "2026-10-23T09:46:53.892Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -15505,6 +15505,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-24",
       "location": "Wadala Bangar",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1117,
+      "visit_date": "2026-10-23",
+      "agent_id": "AGT-1896",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "fateh",
+      "mobile": "9803167123",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Bus Booking\",\"Forex\",\"Hotel Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-24",
+      "location": "Kotli Surat Malhi",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
