@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-23T11:40:18.542Z",
+  "backed_up_at": "2026-10-23T11:40:40.775Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -15635,6 +15635,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-24",
       "location": "Kotli surat malhi",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1123,
+      "visit_date": "2026-10-23",
+      "agent_id": "AGT-1916",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "navjot",
+      "mobile": "8196948492",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Visa Services\",\"Tour Packages\",\"Domestic Flight\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-24",
+      "location": "Naranwali",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
