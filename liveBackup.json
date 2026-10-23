@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-23T07:24:05.975Z",
+  "backed_up_at": "2026-10-23T07:27:40.673Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -15482,6 +15482,23 @@
       "executive_name": "Bikramjit Singh",
       "person_met": "Partap singh ",
       "mobile": "+91 79014 25000",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-24",
+      "location": "Wadala Bangar",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1116,
+      "visit_date": "2026-10-23",
+      "agent_id": "AGT-1994",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Jaskaran kaur",
+      "mobile": "+91 70098 28340",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
