@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-24T07:01:12.270Z",
+  "backed_up_at": "2026-10-24T07:01:26.183Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -15720,6 +15720,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-25",
       "location": "Gharota",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1128,
+      "visit_date": "2026-10-24",
+      "agent_id": "AGT-2070",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Rakesh ",
+      "mobile": "8847455391",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-25",
+      "location": "gharota",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
