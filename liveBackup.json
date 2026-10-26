@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-26T12:21:11.585Z",
+  "backed_up_at": "2026-10-26T12:21:34.334Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -55576,6 +55576,26 @@
       "closing_employee": null,
       "rejection_reason": null,
       "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5392",
+      "query_date": "2026-10-26",
+      "agent_id": "AGT-1487",
+      "product": "International Flight",
+      "query_details": "akl-atq",
+      "travel_date": "2026-11-10",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-27",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
     }
   ],
   "field_trips": [
@@ -55850,6 +55870,23 @@
       "status": "Completed",
       "remarks": "",
       "created_at": "2026-10-24T11:30:10.630Z"
+    },
+    {
+      "id": 23,
+      "trip_date": "2026-10-26",
+      "executive_name": "Bikramjit Singh",
+      "start_meter_reading": 0,
+      "end_meter_reading": 20,
+      "start_time": "12:21 PM",
+      "end_time": "12:21 PM",
+      "start_location": "Office Departure",
+      "end_location": "Office Return",
+      "total_km": 20,
+      "rate_per_km": 3,
+      "conveyance_amount": 60,
+      "status": "Completed",
+      "remarks": "",
+      "created_at": "2026-10-26T12:21:23.762Z"
     }
   ],
   "deleted_entities": [
