@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-26T04:51:27.632Z",
+  "backed_up_at": "2026-10-26T04:51:38.786Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -54918,26 +54918,6 @@
       "closing_employee": null,
       "rejection_reason": null,
       "rejection_remarks": null
-    },
-    {
-      "id": "QRY-5390",
-      "query_date": "2026-10-26",
-      "agent_id": "AGT-1904",
-      "product": "International Flight",
-      "query_details": "atq-mel",
-      "travel_date": "2026-11-10",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-10-27",
-      "status": "New",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
     }
   ],
   "field_trips": [
@@ -55679,6 +55659,11 @@
       "id": "AGT-1724",
       "entity_type": "agent",
       "deleted_at": "2026-10-24 12:27:53"
+    },
+    {
+      "id": "QRY-5390",
+      "entity_type": "query",
+      "deleted_at": "2026-10-26 04:51:27"
     }
   ]
 }
