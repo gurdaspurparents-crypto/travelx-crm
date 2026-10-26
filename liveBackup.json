@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-26T07:01:30.098Z",
+  "backed_up_at": "2026-10-26T07:06:36.196Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6243,6 +6243,20 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-24",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2093",
+      "name": "Mr. jatinder mahajan ",
+      "company_name": "Manipal oversees ",
+      "mobile": "9988151006",
+      "city": "Gurdaspur",
+      "area": "Main Market",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-10-26",
       "payment_terms": "Not Discussed"
     }
   ],
