@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-27T06:51:42.003Z",
+  "backed_up_at": "2026-10-27T06:54:07.365Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -55682,6 +55682,26 @@
       "booking_value": 1,
       "booking_ref_no": "1",
       "closing_employee": "Simranjit Kaur",
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5395",
+      "query_date": "2026-10-27",
+      "agent_id": "AGT-1113",
+      "product": "International Flight",
+      "query_details": "atq-leh",
+      "travel_date": "2026-11-11",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-28",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
       "rejection_reason": null,
       "rejection_remarks": null
     }
