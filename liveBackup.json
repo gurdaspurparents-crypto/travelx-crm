@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-26T13:01:30.187Z",
+  "backed_up_at": "2026-10-27T05:01:36.315Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -48413,7 +48413,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-27",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2915,
@@ -48428,7 +48428,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-27",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2916,
@@ -48443,7 +48443,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-27",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2917,
@@ -48458,7 +48458,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-27",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2918,
@@ -48473,7 +48473,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-27",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2919,
@@ -48488,7 +48488,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-27",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2920,
@@ -48503,7 +48503,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-27",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2921,
@@ -48518,7 +48518,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-27",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2922,
@@ -48533,7 +48533,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-27",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2923,
@@ -48548,7 +48548,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-27",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2924,
@@ -48563,7 +48563,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-27",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2925,
@@ -48578,7 +48578,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-27",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2926,
@@ -48593,7 +48593,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-27",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2927,
@@ -48608,7 +48608,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-27",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2928,
@@ -48623,7 +48623,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-27",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2929,
@@ -48638,7 +48638,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-27",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2930,
@@ -48653,7 +48653,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-27",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2931,
@@ -48668,7 +48668,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-27",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2932,
@@ -48683,7 +48683,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-27",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2933,
@@ -48698,7 +48698,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-27",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 2934,
@@ -48713,7 +48713,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-10-27",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
@@ -55538,26 +55538,6 @@
       "rejection_remarks": null
     },
     {
-      "id": "QRY-5390",
-      "query_date": "2026-10-26",
-      "agent_id": "AGT-1487",
-      "product": "International Flight",
-      "query_details": "akl-atq",
-      "travel_date": "2026-11-10",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-10-27",
-      "status": "New",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
-    },
-    {
       "id": "QRY-5391",
       "query_date": "2026-10-26",
       "agent_id": "AGT-1915",
@@ -55589,6 +55569,26 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-27",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5393",
+      "query_date": "2026-10-27",
+      "agent_id": "AGT-1209",
+      "product": "International Flight",
+      "query_details": "atq-dxb",
+      "travel_date": "2026-11-11",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-28",
       "status": "New",
       "booking_date": null,
       "booking_value": 0,
