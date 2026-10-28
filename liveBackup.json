@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-28T07:26:47.931Z",
+  "backed_up_at": "2026-10-28T07:43:58.924Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -56002,6 +56002,26 @@
       "closing_employee": null,
       "rejection_reason": null,
       "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5401",
+      "query_date": "2026-10-28",
+      "agent_id": "AGT-1209",
+      "product": "International Flight",
+      "query_details": "del-yvr",
+      "travel_date": "2026-11-12",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-29",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
     }
   ],
   "field_trips": [
@@ -56792,6 +56812,16 @@
       "id": "2936",
       "entity_type": "call",
       "deleted_at": "2026-10-28 06:45:35"
+    },
+    {
+      "id": "QRY-5402",
+      "entity_type": "query",
+      "deleted_at": "2026-10-28 07:43:43"
+    },
+    {
+      "id": "QRY-5400",
+      "entity_type": "query",
+      "deleted_at": "2026-10-28 07:43:48"
     }
   ]
 }
