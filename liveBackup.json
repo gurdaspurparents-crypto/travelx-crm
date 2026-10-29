@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-29T08:05:07.577Z",
+  "backed_up_at": "2026-10-29T08:13:55.141Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -16690,6 +16690,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-30",
       "location": "Marara",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1194,
+      "visit_date": "2026-10-29",
+      "agent_id": "AGT-1644",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.simarjit ",
+      "mobile": "9465403143",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-30",
+      "location": "Panj Grahiyan",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
