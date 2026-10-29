@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-29T08:23:56.634Z",
+  "backed_up_at": "2026-10-29T08:27:53.284Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -16738,6 +16738,23 @@
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\"]",
       "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-30",
+      "location": "Sarna",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1197,
+      "visit_date": "2026-10-29",
+      "agent_id": "AGT-1743",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Navtesh singh",
+      "mobile": "9988016363",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Not Interested",
       "remarks": "",
       "next_followup_date": "2026-10-30",
       "location": "Sarna",
