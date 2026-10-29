@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-29T05:04:50.775Z",
+  "backed_up_at": "2026-10-29T05:12:08.166Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -16205,6 +16205,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-28",
       "location": "Gurdaspur",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1162,
+      "visit_date": "2026-10-29",
+      "agent_id": "AGT-1020",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.munish kumar",
+      "mobile": "9344850007",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-30",
+      "location": "Shri Hargobinpur",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
