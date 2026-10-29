@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-29T06:10:12.736Z",
+  "backed_up_at": "2026-10-29T06:11:56.871Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -16460,6 +16460,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-30",
       "location": "Gogowal",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1177,
+      "visit_date": "2026-10-29",
+      "agent_id": "AGT-1360",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Sachin",
+      "mobile": "9872439090",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Forex\",\"Hotel Booking\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-30",
+      "location": "Gurdaspur",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
