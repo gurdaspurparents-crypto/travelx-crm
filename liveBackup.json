@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-29T06:15:15.922Z",
+  "backed_up_at": "2026-10-29T06:18:27.098Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -16494,6 +16494,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-30",
       "location": "Gurdaspur",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1179,
+      "visit_date": "2026-10-29",
+      "agent_id": "AGT-1421",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "rajesh",
+      "mobile": "8872986888",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-30",
+      "location": "Near Beant College",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
