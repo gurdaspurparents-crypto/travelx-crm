@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-29T10:06:55.193Z",
+  "backed_up_at": "2026-10-29T10:08:06.742Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -16792,6 +16792,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-30",
       "location": "Kot todar mall ",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1200,
+      "visit_date": "2026-10-29",
+      "agent_id": "AGT-2074",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "RAMAN",
+      "mobile": "7837372998",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-30",
+      "location": "BABEHALI",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
