@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-29T07:56:06.777Z",
+  "backed_up_at": "2026-10-29T07:56:55.872Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -2780,20 +2780,6 @@
       "mobile": "9888396570",
       "city": "Kotli",
       "area": "Kotli",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1588",
-      "name": "Mr. Mukesh bhagat",
-      "company_name": "EMM kay communication",
-      "mobile": "9988515450",
-      "city": "Kotli",
-      "area": "Near Aman Bhalla Institute, Gt Road, Kotli",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
@@ -17513,21 +17499,6 @@
       "payment_terms": null
     },
     {
-      "id": 489,
-      "call_date": "2026-09-08",
-      "agent_id": "AGT-1588",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
-      "remarks": "",
-      "next_followup_date": "2026-09-10",
-      "payment_terms": null
-    },
-    {
       "id": 491,
       "call_date": "2026-09-08",
       "agent_id": "AGT-1572",
@@ -29348,21 +29319,6 @@
       "payment_terms": null
     },
     {
-      "id": 1580,
-      "call_date": "2026-10-01",
-      "agent_id": "AGT-1588",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Follow-up Required",
-      "remarks": "",
-      "next_followup_date": "2026-10-02",
-      "payment_terms": null
-    },
-    {
       "id": 1581,
       "call_date": "2026-10-01",
       "agent_id": "AGT-1587",
@@ -39356,21 +39312,6 @@
       "id": 2263,
       "call_date": "2026-10-10",
       "agent_id": "AGT-1587",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-10-11",
-      "payment_terms": null
-    },
-    {
-      "id": 2265,
-      "call_date": "2026-10-10",
-      "agent_id": "AGT-1588",
       "visit_id": null,
       "executive_name": "Yug",
       "is_connected": 1,
@@ -58513,6 +58454,11 @@
       "id": "AGT-1589",
       "entity_type": "agent",
       "deleted_at": "2026-10-29 07:55:56"
+    },
+    {
+      "id": "AGT-1588",
+      "entity_type": "agent",
+      "deleted_at": "2026-10-29 07:56:45"
     }
   ]
 }
