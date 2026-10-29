@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-29T05:12:08.166Z",
+  "backed_up_at": "2026-10-29T05:14:55.508Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -16222,6 +16222,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-30",
       "location": "Shri Hargobinpur",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1163,
+      "visit_date": "2026-10-29",
+      "agent_id": "AGT-1022",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Rohit",
+      "mobile": "9646828141",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-30",
+      "location": "Barth Sahib",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
