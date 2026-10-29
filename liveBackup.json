@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-29T05:51:09.702Z",
+  "backed_up_at": "2026-10-29T06:01:49.422Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -16392,6 +16392,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-30",
       "location": "Galhri",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1173,
+      "visit_date": "2026-10-29",
+      "agent_id": "AGT-1267",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "raman ",
+      "mobile": "9878414234",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-30",
+      "location": "Ghuman",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
