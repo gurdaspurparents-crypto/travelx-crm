@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-29T06:04:50.778Z",
+  "backed_up_at": "2026-10-29T06:08:07.178Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -16426,6 +16426,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-30",
       "location": "Ghuman",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1175,
+      "visit_date": "2026-10-29",
+      "agent_id": "AGT-1288",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Rakesh kumar",
+      "mobile": "9464490723",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Hotel Booking\",\"International Flight\",\"Forex\",\"Bus Booking\",\"Money Transfer\",\"Travel Insurance\",\"Tour Packages\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-30",
+      "location": "keshopur",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
@@ -57471,6 +57488,26 @@
       "booking_value": 1,
       "booking_ref_no": "1",
       "closing_employee": "Simranjit Kaur",
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5409",
+      "query_date": "2026-10-29",
+      "agent_id": "AGT-1933",
+      "product": "International Flight",
+      "query_details": "atq-dxb",
+      "travel_date": "2026-11-13",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-10-30",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
       "rejection_reason": null,
       "rejection_remarks": null
     }
