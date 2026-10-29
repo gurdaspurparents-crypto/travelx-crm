@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-29T10:14:05.320Z",
+  "backed_up_at": "2026-10-29T10:14:58.605Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -16894,6 +16894,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-30",
       "location": "ghuman",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1206,
+      "visit_date": "2026-10-29",
+      "agent_id": "AGT-2049",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Kulwinder singh ",
+      "mobile": "8353980014",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-30",
+      "location": "Udhanwal",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
