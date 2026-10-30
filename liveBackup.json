@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-30T08:38:09.205Z",
+  "backed_up_at": "2026-10-30T08:41:14.824Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -17061,6 +17061,23 @@
       "remarks": "",
       "next_followup_date": "2026-10-31",
       "location": "ghuman",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1215,
+      "visit_date": "2026-10-30",
+      "agent_id": "AGT-1261",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Karan",
+      "mobile": "8625070000",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Hotel Booking\",\"International Flight\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Not Interested",
+      "remarks": "",
+      "next_followup_date": "2026-10-31",
+      "location": "Ghuman",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
