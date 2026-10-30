@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-10-30T09:58:30.449Z",
+  "backed_up_at": "2026-10-30T09:58:58.030Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6225,7 +6225,7 @@
       "city": "Ghuman",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-30",
@@ -17105,6 +17105,23 @@
       "mobile": "9815086690",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-10-31",
+      "location": "Ghuman",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1217,
+      "visit_date": "2026-10-30",
+      "agent_id": "AGT-2095",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Gurwinder singh ",
+      "mobile": "9915472954",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Money Transfer\",\"Bus Booking\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-10-31",
