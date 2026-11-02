@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-02T06:10:24.483Z",
+  "backed_up_at": "2026-11-02T06:11:03.680Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -61505,6 +61505,26 @@
       "closing_employee": null,
       "rejection_reason": null,
       "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5437",
+      "query_date": "2026-11-02",
+      "agent_id": "AGT-1959",
+      "product": "International Flight",
+      "query_details": "lca-del",
+      "travel_date": "2026-11-17",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-11-03",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
     }
   ],
   "field_trips": [
@@ -62357,6 +62377,16 @@
       "id": "QRY-5428",
       "entity_type": "query",
       "deleted_at": "2026-10-30 08:44:41"
+    },
+    {
+      "id": "QRY-5439",
+      "entity_type": "query",
+      "deleted_at": "2026-11-02 06:10:48"
+    },
+    {
+      "id": "QRY-5438",
+      "entity_type": "query",
+      "deleted_at": "2026-11-02 06:10:53"
     }
   ]
 }
