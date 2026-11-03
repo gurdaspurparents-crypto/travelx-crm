@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-03T06:55:56.760Z",
+  "backed_up_at": "2026-11-03T06:56:39.893Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -17298,6 +17298,23 @@
       "executive_name": "Bikramjit Singh",
       "person_met": "Mr.parwinder",
       "mobile": "9780167127",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-04",
+      "location": "Dhariwal",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1226,
+      "visit_date": "2026-11-03",
+      "agent_id": "AGT-1169",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.gagandeep bedi ",
+      "mobile": "8872553574",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
@@ -55196,6 +55213,21 @@
       "agent_requirement": "no visit",
       "interest_level": "Interested / Warm",
       "call_result": "Follow-up Required",
+      "remarks": "",
+      "next_followup_date": "2026-11-04",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 3294,
+      "call_date": "2026-11-03",
+      "agent_id": "AGT-1794",
+      "visit_id": 824,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-04",
       "payment_terms": "Not Discussed"
