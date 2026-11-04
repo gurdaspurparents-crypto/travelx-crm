@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-04T06:28:20.949Z",
+  "backed_up_at": "2026-11-04T06:43:05.653Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -531,7 +531,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1099",
@@ -713,7 +713,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1135",
@@ -1441,7 +1441,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1350",
@@ -1455,7 +1455,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "After Booking / Credit"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1355",
@@ -1469,7 +1469,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1356",
@@ -1497,7 +1497,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1363",
@@ -1525,7 +1525,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1365",
@@ -1539,7 +1539,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "50% Advance / 50% Credit"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1373",
@@ -1567,7 +1567,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1385",
@@ -1595,7 +1595,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "After Booking / Credit"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1389",
@@ -1609,7 +1609,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "50% Advance / 50% Credit"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1390",
@@ -1623,7 +1623,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "After Booking / Credit"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1397",
@@ -1679,7 +1679,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1404",
@@ -1693,7 +1693,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1411",
@@ -1707,7 +1707,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1412",
@@ -1721,7 +1721,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1413",
@@ -1735,7 +1735,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1414",
@@ -1749,7 +1749,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1415",
@@ -1763,7 +1763,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1421",
@@ -1791,7 +1791,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1425",
@@ -1805,7 +1805,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1426",
@@ -1819,7 +1819,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1427",
@@ -2183,7 +2183,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "50% Advance / 50% Credit"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1488",
@@ -2449,7 +2449,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1533",
@@ -3303,7 +3303,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1707",
@@ -4101,7 +4101,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1872",
@@ -4605,7 +4605,7 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-07",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1944",
@@ -4619,7 +4619,7 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-07",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1948",
@@ -4633,7 +4633,7 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-07",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1949",
@@ -4661,7 +4661,7 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-07",
-      "payment_terms": "50% Advance / 50% Credit"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1956",
@@ -5025,7 +5025,7 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-16",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-1996",
@@ -5137,7 +5137,7 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-19",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-2006",
@@ -5543,7 +5543,7 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-01",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-2045",
@@ -5837,7 +5837,7 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-12",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-2066",
@@ -6131,7 +6131,7 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-10-24",
-      "payment_terms": "Advance Payment"
+      "payment_terms": "Not Discussed"
     },
     {
       "id": "AGT-2092",
@@ -17481,6 +17481,23 @@
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
+      "next_followup_date": "2026-11-05",
+      "location": "Gurdaspur",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1246,
+      "visit_date": "2026-11-04",
+      "agent_id": "AGT-2065",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Shubam ",
+      "mobile": "9592931235",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Tour Packages\",\"Visa Services\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "Rate problem",
       "next_followup_date": "2026-11-05",
       "location": "Gurdaspur",
       "gps_latitude": null,
@@ -55692,7 +55709,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3334,
@@ -55707,7 +55724,7 @@
       "call_result": "Call Again Later",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3335,
@@ -55722,7 +55739,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3336,
@@ -55737,7 +55754,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "After Booking / Credit"
+      "payment_terms": null
     },
     {
       "id": 3337,
@@ -55752,7 +55769,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "After Booking / Credit"
+      "payment_terms": null
     },
     {
       "id": 3338,
@@ -55767,7 +55784,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3339,
@@ -55782,7 +55799,7 @@
       "call_result": "Call Again Later",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3340,
@@ -55797,7 +55814,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3341,
@@ -55812,7 +55829,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3342,
@@ -55827,7 +55844,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3343,
@@ -55842,7 +55859,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3344,
@@ -55857,7 +55874,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3345,
@@ -55872,7 +55889,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3346,
@@ -55887,7 +55904,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3347,
@@ -55902,7 +55919,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3348,
@@ -55917,7 +55934,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3349,
@@ -55932,7 +55949,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3350,
@@ -55947,7 +55964,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3351,
@@ -55962,7 +55979,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3352,
@@ -55977,7 +55994,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3353,
@@ -55992,7 +56009,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3354,
@@ -56007,7 +56024,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3355,
@@ -56022,7 +56039,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3356,
@@ -56037,7 +56054,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3357,
@@ -56052,7 +56069,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3358,
@@ -56067,7 +56084,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3359,
@@ -56082,7 +56099,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3360,
@@ -56097,7 +56114,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3361,
@@ -56112,7 +56129,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3362,
@@ -56127,7 +56144,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3363,
@@ -56142,7 +56159,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3364,
@@ -56157,7 +56174,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3365,
@@ -56172,7 +56189,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3366,
@@ -56187,7 +56204,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3367,
@@ -56202,7 +56219,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3368,
@@ -56217,7 +56234,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3369,
@@ -56232,7 +56249,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3370,
@@ -56247,7 +56264,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3371,
@@ -56262,7 +56279,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3372,
@@ -56277,7 +56294,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "After Booking / Credit"
+      "payment_terms": null
     },
     {
       "id": 3373,
@@ -56292,7 +56309,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3374,
@@ -56307,7 +56324,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3375,
@@ -56322,7 +56339,7 @@
       "call_result": "Call Again Later",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3376,
@@ -56337,7 +56354,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3377,
@@ -56352,7 +56369,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3378,
@@ -56367,7 +56384,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3379,
@@ -56382,7 +56399,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3380,
@@ -56397,7 +56414,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3381,
@@ -56412,7 +56429,7 @@
       "call_result": "Call Again Later",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3382,
@@ -56427,7 +56444,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3383,
@@ -56442,7 +56459,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3384,
@@ -56457,7 +56474,7 @@
       "call_result": "Call Again Later",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3385,
@@ -56472,7 +56489,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3386,
@@ -56487,7 +56504,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3387,
@@ -56502,7 +56519,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3388,
@@ -56517,7 +56534,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3389,
@@ -56532,7 +56549,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3390,
@@ -56547,7 +56564,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "50% Advance / 50% Credit"
+      "payment_terms": null
     },
     {
       "id": 3391,
@@ -56562,7 +56579,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3392,
@@ -56577,7 +56594,7 @@
       "call_result": "Call Again Later",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3393,
@@ -56592,7 +56609,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3394,
@@ -56607,7 +56624,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3395,
@@ -56622,7 +56639,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "50% Advance / 50% Credit"
+      "payment_terms": null
     },
     {
       "id": 3396,
@@ -56637,7 +56654,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3397,
@@ -56652,7 +56669,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3398,
@@ -56667,7 +56684,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3399,
@@ -56682,7 +56699,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3400,
@@ -56697,7 +56714,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3401,
@@ -56712,7 +56729,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3402,
@@ -56727,7 +56744,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3403,
@@ -56742,7 +56759,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3404,
@@ -56757,7 +56774,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3405,
@@ -56772,7 +56789,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3406,
@@ -56787,7 +56804,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3407,
@@ -56802,7 +56819,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "50% Advance / 50% Credit"
+      "payment_terms": null
     },
     {
       "id": 3408,
@@ -56817,7 +56834,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3409,
@@ -56832,7 +56849,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3410,
@@ -56847,7 +56864,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3411,
@@ -56862,7 +56879,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3412,
@@ -56877,7 +56894,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3413,
@@ -56892,7 +56909,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3414,
@@ -56907,7 +56924,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3415,
@@ -56922,7 +56939,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3416,
@@ -56937,7 +56954,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3417,
@@ -56952,7 +56969,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3418,
@@ -56967,7 +56984,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3419,
@@ -56982,7 +56999,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3420,
@@ -56997,7 +57014,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3421,
@@ -57012,7 +57029,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3422,
@@ -57027,7 +57044,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3423,
@@ -57042,7 +57059,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3424,
@@ -57057,7 +57074,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3425,
@@ -57072,7 +57089,7 @@
       "call_result": "Call Again Later",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3426,
@@ -57087,7 +57104,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3427,
@@ -57102,7 +57119,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "50% Advance / 50% Credit"
+      "payment_terms": null
     },
     {
       "id": 3428,
@@ -57117,7 +57134,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3429,
@@ -57132,7 +57149,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3430,
@@ -57147,7 +57164,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3431,
@@ -57162,7 +57179,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3432,
@@ -57177,7 +57194,7 @@
       "call_result": "Call Again Later",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3433,
@@ -57192,7 +57209,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3434,
@@ -57207,7 +57224,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3435,
@@ -57222,7 +57239,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3436,
@@ -57237,7 +57254,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3437,
@@ -57252,7 +57269,7 @@
       "call_result": "Call Again Later",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Advance Payment"
+      "payment_terms": null
     },
     {
       "id": 3438,
@@ -57267,7 +57284,7 @@
       "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3439,
@@ -57282,7 +57299,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3440,
@@ -57297,7 +57314,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3441,
@@ -57312,7 +57329,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3442,
@@ -57327,7 +57344,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
@@ -65537,6 +65554,26 @@
       "agent_id": "AGT-2087",
       "product": "International Flight",
       "query_details": "auh/dxb-atq",
+      "travel_date": "2026-11-19",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-11-05",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5469",
+      "query_date": "2026-11-04",
+      "agent_id": "AGT-1915",
+      "product": "International Flight",
+      "query_details": "atq-shj",
       "travel_date": "2026-11-19",
       "pax_details": "2 Adults",
       "estimated_value": 0,
