@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-04T05:01:18.629Z",
+  "backed_up_at": "2026-11-04T05:01:31.185Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4356,20 +4356,6 @@
       "payment_terms": "Not Discussed"
     },
     {
-      "id": "AGT-1910",
-      "name": "sheetal ",
-      "company_name": "Randhawa cafe ",
-      "mobile": "7973145748",
-      "city": "Kot Santokh Rai",
-      "area": "Kot Santokh Raimain Market",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikramjit Singh",
-      "assigned_telephonic_exec": "Simranjit Kaur",
-      "created_at": "2026-09-01",
-      "payment_terms": "Not Discussed"
-    },
-    {
       "id": "AGT-1911",
       "name": "MR chuhan ",
       "company_name": "csc center",
@@ -6458,23 +6444,6 @@
       "remarks": "",
       "next_followup_date": "2026-09-02",
       "location": "Dhariwal",
-      "gps_latitude": null,
-      "gps_longitude": null,
-      "gps_address": null
-    },
-    {
-      "id": 516,
-      "visit_date": "2026-09-01",
-      "agent_id": "AGT-1910",
-      "executive_name": "Bikramjit Singh",
-      "person_met": "sheetal ",
-      "mobile": "7973145748",
-      "is_new_agent": 0,
-      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\"]",
-      "response_level": "Interested / Warm",
-      "remarks": "",
-      "next_followup_date": "2026-09-02",
-      "location": "Kot Santokh Rai",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
@@ -16918,23 +16887,6 @@
       "gps_address": null
     },
     {
-      "id": 1203,
-      "visit_date": "2026-10-29",
-      "agent_id": "AGT-1910",
-      "executive_name": "Bikramjit Singh",
-      "person_met": "sheetal ",
-      "mobile": "7973145748",
-      "is_new_agent": 0,
-      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\"]",
-      "response_level": "Interested / Warm",
-      "remarks": "",
-      "next_followup_date": "2026-10-30",
-      "location": "Kot Santokh Rai",
-      "gps_latitude": null,
-      "gps_longitude": null,
-      "gps_address": null
-    },
-    {
       "id": 1204,
       "visit_date": "2026-10-29",
       "agent_id": "AGT-1783",
@@ -18286,21 +18238,6 @@
       "payment_terms": null
     },
     {
-      "id": 469,
-      "call_date": "2026-09-07",
-      "agent_id": "AGT-1910",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
-      "remarks": "",
-      "next_followup_date": "2026-09-09",
-      "payment_terms": null
-    },
-    {
       "id": 470,
       "call_date": "2026-09-07",
       "agent_id": "AGT-1466",
@@ -19370,21 +19307,6 @@
       "call_date": "2026-09-09",
       "agent_id": "AGT-1135",
       "visit_id": 514,
-      "executive_name": "Simranjit Kaur",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-11",
-      "payment_terms": null
-    },
-    {
-      "id": 594,
-      "call_date": "2026-09-09",
-      "agent_id": "AGT-1910",
-      "visit_id": 516,
       "executive_name": "Simranjit Kaur",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
@@ -29911,21 +29833,6 @@
       "payment_terms": null
     },
     {
-      "id": 1556,
-      "call_date": "2026-10-01",
-      "agent_id": "AGT-1910",
-      "visit_id": 516,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good  relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Follow-up Required",
-      "remarks": "",
-      "next_followup_date": "2026-10-02",
-      "payment_terms": null
-    },
-    {
       "id": 1557,
       "call_date": "2026-10-01",
       "agent_id": "AGT-1911",
@@ -40070,21 +39977,6 @@
       "call_date": "2026-10-10",
       "agent_id": "AGT-1119",
       "visit_id": 874,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-10-11",
-      "payment_terms": null
-    },
-    {
-      "id": 2252,
-      "call_date": "2026-10-10",
-      "agent_id": "AGT-1910",
-      "visit_id": 516,
       "executive_name": "Yug",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
@@ -52366,21 +52258,6 @@
       "payment_terms": null
     },
     {
-      "id": 3088,
-      "call_date": "2026-10-30",
-      "agent_id": "AGT-1910",
-      "visit_id": 1203,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-10-31",
-      "payment_terms": null
-    },
-    {
       "id": 3089,
       "call_date": "2026-10-30",
       "agent_id": "AGT-1911",
@@ -55256,21 +55133,6 @@
       "agent_requirement": "bussy call cut",
       "interest_level": "Interested / Warm",
       "call_result": "Follow-up Required",
-      "remarks": "",
-      "next_followup_date": "2026-11-04",
-      "payment_terms": null
-    },
-    {
-      "id": 3281,
-      "call_date": "2026-11-03",
-      "agent_id": "AGT-1910",
-      "visit_id": 1203,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-04",
       "payment_terms": null
@@ -65055,6 +64917,11 @@
       "id": "QRY-5453",
       "entity_type": "query",
       "deleted_at": "2026-11-03 08:24:52"
+    },
+    {
+      "id": "AGT-1910",
+      "entity_type": "agent",
+      "deleted_at": "2026-11-04 05:01:20"
     }
   ]
 }
