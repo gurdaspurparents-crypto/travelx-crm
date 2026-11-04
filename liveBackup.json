@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-04T05:35:32.849Z",
+  "backed_up_at": "2026-11-04T05:36:07.629Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -1595,7 +1595,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "After Booking / Credit"
     },
     {
       "id": "AGT-1389",
@@ -56179,6 +56179,66 @@
       "agent_requirement": "",
       "interest_level": "Interested / Warm",
       "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-11-05",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 3370,
+      "call_date": "2026-11-04",
+      "agent_id": "AGT-1259",
+      "visit_id": 1127,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-11-05",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 3371,
+      "call_date": "2026-11-04",
+      "agent_id": "AGT-1963",
+      "visit_id": 1124,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-11-05",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 3372,
+      "call_date": "2026-10-29",
+      "agent_id": "AGT-1388",
+      "visit_id": 1155,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-11-05",
+      "payment_terms": "After Booking / Credit"
+    },
+    {
+      "id": 3373,
+      "call_date": "2026-11-04",
+      "agent_id": "AGT-1964",
+      "visit_id": 623,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-11-05",
       "payment_terms": "Not Discussed"
