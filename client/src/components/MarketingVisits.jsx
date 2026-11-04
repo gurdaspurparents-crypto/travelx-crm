@@ -63,14 +63,32 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
   // Odometer & Conveyance Field Trip state
   const [fieldTrips, setFieldTrips] = useState([]);
   const [dayReport, setDayReport] = useState([]);
-  const [selectedConveyanceMonth, setSelectedConveyanceMonth] = useState('all');
+  const currentMonthKey = useMemo(() => {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+  }, []);
+
+  const lastMonthKey = useMemo(() => {
+    const d = new Date();
+    d.setMonth(d.getMonth() - 1);
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+  }, []);
+
+  // Defaults to Current Month so every new month starts at 0 KM / ₹0 automatically!
+  const [selectedConveyanceMonth, setSelectedConveyanceMonth] = useState(() => {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+  });
 
   const formatMonthLabel = (mStr) => {
-    if (!mStr || mStr === 'all') return 'All Months';
+    if (!mStr || mStr === 'all') return 'All Months (Sabhi Mahine)';
     try {
       const [year, month] = mStr.split('-');
       const date = new Date(parseInt(year, 10), parseInt(month, 10) - 1, 1);
-      return date.toLocaleDateString('en-IN', { month: 'long', year: 'numeric' });
+      const formatted = date.toLocaleDateString('en-IN', { month: 'long', year: 'numeric' });
+      if (mStr === currentMonthKey) return `${formatted} (Current Month)`;
+      if (mStr === lastMonthKey) return `${formatted} (Last Month)`;
+      return formatted;
     } catch {
       return mStr;
     }
@@ -600,6 +618,32 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
   const totalKmSum = completedTrips.reduce((acc, t) => acc + (t.total_km || 0), 0);
   const totalConveyanceSum = completedTrips.reduce((acc, t) => acc + (t.conveyance_amount || 0), 0);
 
+  // Current Month calculations (Starts fresh from 0 on 1st of every month automatically)
+  const currentMonthTrips = useMemo(() => {
+    return completedTrips.filter(t => t.trip_date && t.trip_date.startsWith(currentMonthKey));
+  }, [completedTrips, currentMonthKey]);
+
+  const currentMonthKm = useMemo(() => {
+    return currentMonthTrips.reduce((acc, t) => acc + (t.total_km || 0), 0);
+  }, [currentMonthTrips]);
+
+  const currentMonthConveyance = useMemo(() => {
+    return currentMonthTrips.reduce((acc, t) => acc + (t.conveyance_amount || 0), 0);
+  }, [currentMonthTrips]);
+
+  // Last Month calculations (For quick payout settlement)
+  const lastMonthTrips = useMemo(() => {
+    return completedTrips.filter(t => t.trip_date && t.trip_date.startsWith(lastMonthKey));
+  }, [completedTrips, lastMonthKey]);
+
+  const lastMonthKm = useMemo(() => {
+    return lastMonthTrips.reduce((acc, t) => acc + (t.total_km || 0), 0);
+  }, [lastMonthTrips]);
+
+  const lastMonthConveyance = useMemo(() => {
+    return lastMonthTrips.reduce((acc, t) => acc + (t.conveyance_amount || 0), 0);
+  }, [lastMonthTrips]);
+
   // Location Agent Checklist Summary Statistics
   const totalInCity = locationAgents.length;
   const visitedInCity = locationAgents.filter(a => Boolean(a.last_visit_date)).length;
@@ -699,7 +743,7 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
                 : 'bg-white/[0.04] text-slate-400 hover:text-white border-white/[0.06]'
             }`}
           >
-            <Gauge className="w-3.5 h-3.5 text-sky-400" /> 🏍️ Odometer ({totalKmSum} KM)
+            <Gauge className="w-3.5 h-3.5 text-sky-400" /> 🏍️ Odometer ({currentMonthKm} KM in {new Date().toLocaleDateString('en-IN', { month: 'short' })})
           </button>
 
           <button
@@ -793,11 +837,54 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
           </div>
 
           <div className="flex items-center gap-2 flex-wrap" onClick={(e) => e.stopPropagation()}>
-            <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-lg border border-emerald-500/20">
-              Total KM: {totalKmSum} KM
-            </span>
-            <span className="text-xs font-mono font-bold text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20">
-              Conveyance: ₹{totalConveyanceSum.toLocaleString('en-IN')}
+            {/* 🟢 CURRENT MONTH ACTIVE BADGE (Starts from 0 on 1st of every month automatically) */}
+            <div 
+              onClick={() => setSelectedConveyanceMonth(currentMonthKey)}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border transition cursor-pointer ${
+                selectedConveyanceMonth === currentMonthKey
+                  ? 'bg-emerald-500/25 border-emerald-500/60 ring-2 ring-emerald-400/40 shadow-sm'
+                  : 'bg-emerald-500/10 hover:bg-emerald-500/20 border-emerald-500/25'
+              }`}
+              title="Current Active Month (Har mahine 1 tarikh ko 0 se shuru hota hai)"
+            >
+              <span className="text-[10px] uppercase font-bold text-emerald-300 tracking-wider">
+                This Month ({new Date().toLocaleDateString('en-IN', { month: 'short' })}):
+              </span>
+              <span className="text-xs font-mono font-extrabold text-emerald-300">{currentMonthKm} KM</span>
+              <span className="text-emerald-500/50">•</span>
+              <span className="text-xs font-mono font-extrabold text-amber-400">₹{currentMonthConveyance.toLocaleString('en-IN')}</span>
+            </div>
+
+            {/* 🔵 LAST MONTH SUMMARY BADGE (For Payout Settlement) */}
+            {lastMonthKm > 0 && (
+              <button
+                type="button"
+                onClick={() => {
+                  setSelectedConveyanceMonth(lastMonthKey);
+                  setShowOdometer(true);
+                }}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border transition cursor-pointer text-left ${
+                  selectedConveyanceMonth === lastMonthKey
+                    ? 'bg-sky-500/25 border-sky-500/60 ring-2 ring-sky-400/40 shadow-sm'
+                    : 'bg-sky-500/10 hover:bg-sky-500/20 border-sky-500/25'
+                }`}
+                title={`Click to view & download ${formatMonthLabel(lastMonthKey)} Conveyance`}
+              >
+                <span className="text-[10px] uppercase font-bold text-sky-300">
+                  Last Month ({new Date(new Date().getFullYear(), new Date().getMonth() - 1, 1).toLocaleDateString('en-IN', { month: 'short' })}):
+                </span>
+                <span className="text-xs font-mono font-bold text-sky-200">{lastMonthKm} KM</span>
+                <span className="text-sky-500/50">•</span>
+                <span className="text-xs font-mono font-extrabold text-amber-400">₹{lastMonthConveyance.toLocaleString('en-IN')}</span>
+                <span className="text-[9px] font-bold uppercase tracking-wider bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30">
+                  Pay Last Month
+                </span>
+              </button>
+            )}
+
+            {/* Lifetime overall badge */}
+            <span className="text-[11px] font-mono text-slate-400 bg-white/[0.04] px-2.5 py-1.5 rounded-xl border border-white/[0.06]" title="All-Time Total Logged">
+              All-Time: {totalKmSum} KM
             </span>
             {isAdmin && (
               <button
