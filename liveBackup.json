@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-04T05:40:06.667Z",
+  "backed_up_at": "2026-11-04T05:40:48.948Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -56638,6 +56638,36 @@
       "call_date": "2026-11-04",
       "agent_id": "AGT-2067",
       "visit_id": 1004,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-11-05",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 3401,
+      "call_date": "2026-11-04",
+      "agent_id": "AGT-1828",
+      "visit_id": 1069,
+      "executive_name": "Yug",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "good relpy",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-11-05",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": 3402,
+      "call_date": "2026-11-04",
+      "agent_id": "AGT-1829",
+      "visit_id": 1071,
       "executive_name": "Yug",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
