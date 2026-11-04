@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-04T12:53:18.915Z",
+  "backed_up_at": "2026-11-04T16:12:26.358Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -57512,7 +57512,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3444,
@@ -57527,7 +57527,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3445,
@@ -57542,7 +57542,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3446,
@@ -57557,7 +57557,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3447,
@@ -57572,7 +57572,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3448,
@@ -57587,7 +57587,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3449,
@@ -57602,7 +57602,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3450,
@@ -57617,7 +57617,7 @@
       "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3451,
@@ -57632,7 +57632,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     },
     {
       "id": 3452,
@@ -57647,7 +57647,7 @@
       "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-11-05",
-      "payment_terms": "Not Discussed"
+      "payment_terms": null
     }
   ],
   "queries": [
@@ -66312,6 +66312,23 @@
       "status": "Completed",
       "remarks": "",
       "created_at": "2026-11-03T16:48:07.827Z"
+    },
+    {
+      "id": 27,
+      "trip_date": "2026-11-04",
+      "executive_name": "Bikramjit Singh",
+      "start_meter_reading": 0,
+      "end_meter_reading": 20,
+      "start_time": "04:12 PM",
+      "end_time": "04:12 PM",
+      "start_location": "Office Departure",
+      "end_location": "Office Return",
+      "total_km": 20,
+      "rate_per_km": 3,
+      "conveyance_amount": 60,
+      "status": "Completed",
+      "remarks": "",
+      "created_at": "2026-11-04T16:12:15.856Z"
     }
   ],
   "deleted_entities": [
