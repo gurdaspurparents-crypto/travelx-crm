@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-04T06:47:54.598Z",
+  "backed_up_at": "2026-11-04T07:14:57.266Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -17496,6 +17496,23 @@
       "mobile": "9592931235",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Tour Packages\",\"Visa Services\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "Rate problem",
+      "next_followup_date": "2026-11-05",
+      "location": "Gurdaspur",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1247,
+      "visit_date": "2026-11-04",
+      "agent_id": "AGT-1944",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Gurtej singh ",
+      "mobile": "9780421717",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Tour Packages\",\"Visa Services\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "Rate problem",
       "next_followup_date": "2026-11-05",
@@ -65580,11 +65597,11 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-05",
-      "status": "Converted",
-      "booking_date": "2026-11-04",
-      "booking_value": 1,
-      "booking_ref_no": "1",
-      "closing_employee": "Simranjit Kaur",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
       "rejection_reason": null,
       "rejection_remarks": null
     }
