@@ -63,6 +63,43 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
   // Odometer & Conveyance Field Trip state
   const [fieldTrips, setFieldTrips] = useState([]);
   const [dayReport, setDayReport] = useState([]);
+  const [selectedConveyanceMonth, setSelectedConveyanceMonth] = useState('all');
+
+  const formatMonthLabel = (mStr) => {
+    if (!mStr || mStr === 'all') return 'All Months';
+    try {
+      const [year, month] = mStr.split('-');
+      const date = new Date(parseInt(year, 10), parseInt(month, 10) - 1, 1);
+      return date.toLocaleDateString('en-IN', { month: 'long', year: 'numeric' });
+    } catch {
+      return mStr;
+    }
+  };
+
+  const availableConveyanceMonths = useMemo(() => {
+    const monthsSet = new Set();
+    dayReport.forEach(r => {
+      if (r.trip_date && r.trip_date.length >= 7) {
+        monthsSet.add(r.trip_date.substring(0, 7));
+      }
+    });
+    const now = new Date();
+    const currentMonthStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+    monthsSet.add(currentMonthStr);
+    return Array.from(monthsSet).sort().reverse();
+  }, [dayReport]);
+
+  const filteredDayReport = useMemo(() => {
+    if (selectedConveyanceMonth === 'all') return dayReport;
+    return dayReport.filter(r => r.trip_date && r.trip_date.startsWith(selectedConveyanceMonth));
+  }, [dayReport, selectedConveyanceMonth]);
+
+  const conveyanceTotals = useMemo(() => {
+    const totalDays = filteredDayReport.length;
+    const totalKm = filteredDayReport.reduce((acc, r) => acc + (parseFloat(r.total_day_km) || 0), 0);
+    const totalAmount = filteredDayReport.reduce((acc, r) => acc + (parseFloat(r.total_day_conveyance) || 0), 0);
+    return { totalDays, totalKm, totalAmount };
+  }, [filteredDayReport]);
   const [startKmInput, setStartKmInput] = useState('');
   const [endKmInput, setEndKmInput] = useState('');
   const [conveyanceMode, setConveyanceMode] = useState('direct'); // 'direct' or '2step'
@@ -1005,13 +1042,78 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
         )}
 
         {/* 📊 DAY-WISE ADMIN CONVEYANCE REPORT SUMMARY TABLE */}
-        <div className="space-y-2 pt-2 border-t border-white/[0.06]">
-          <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-            <Calendar className="w-3.5 h-3.5 text-sky-400" /> Day-Wise Conveyance Summary:
-          </h4>
+        <div className="space-y-3 pt-3 border-t border-white/[0.06]">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+            <div className="flex items-center gap-2">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                <Calendar className="w-3.5 h-3.5 text-sky-400" /> Day-Wise Conveyance Summary:
+              </h4>
+              {filteredDayReport.length > 0 && (
+                <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-300 border border-sky-500/20 font-semibold">
+                  {filteredDayReport.length} Days
+                </span>
+              )}
+            </div>
 
-          {dayReport.length === 0 ? (
-            <p className="text-xs text-slate-500 italic">No completed trip reports yet. Log Start & End KM above!</p>
+            {/* Month Filter & Excel Export Options */}
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="flex items-center gap-1.5 bg-[#070b14] border border-white/[0.08] px-2.5 py-1.5 rounded-xl">
+                <span className="text-[11px] text-slate-400 font-medium">Month:</span>
+                <select
+                  value={selectedConveyanceMonth}
+                  onChange={e => setSelectedConveyanceMonth(e.target.value)}
+                  className="bg-transparent text-xs font-semibold text-sky-300 focus:outline-none cursor-pointer"
+                >
+                  <option value="all" className="bg-[#0c1322] text-slate-200">All Months (Sabhi Mahine)</option>
+                  {availableConveyanceMonths.map(m => (
+                    <option key={m} value={m} className="bg-[#0c1322] text-slate-200">
+                      {formatMonthLabel(m)}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <a
+                href={`/api/export/conveyance?month=${selectedConveyanceMonth}`}
+                download
+                className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs transition shadow-sm flex items-center gap-1.5 cursor-pointer"
+                title="Download month-wise conveyance excel spreadsheet"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>
+                  {selectedConveyanceMonth === 'all' ? 'Download All Excel' : `Download ${formatMonthLabel(selectedConveyanceMonth)} Excel`} (.xlsx)
+                </span>
+              </a>
+            </div>
+          </div>
+
+          {/* Quick Month-Wise Stats Summary Bar */}
+          {filteredDayReport.length > 0 && (
+            <div className="flex flex-wrap items-center gap-2 sm:gap-4 p-2.5 rounded-xl bg-[#090e1a]/80 border border-white/[0.06] text-xs">
+              <span className="text-slate-400">
+                Period: <strong className="text-slate-200 font-semibold">{formatMonthLabel(selectedConveyanceMonth)}</strong>
+              </span>
+              <span className="text-slate-600 hidden sm:inline">•</span>
+              <span className="text-slate-400">
+                Total Distance: <strong className="text-sky-400 font-mono font-bold">{conveyanceTotals.totalKm} KM</strong>
+              </span>
+              <span className="text-slate-600 hidden sm:inline">•</span>
+              <span className="text-slate-400">
+                Rate: <strong className="text-slate-300 font-mono">₹3.00/KM</strong>
+              </span>
+              <span className="text-slate-600 hidden sm:inline">•</span>
+              <span className="text-slate-400">
+                Total Conveyance Payable: <strong className="text-amber-400 font-mono font-extrabold text-sm">₹{conveyanceTotals.totalAmount.toLocaleString('en-IN')}</strong>
+              </span>
+            </div>
+          )}
+
+          {filteredDayReport.length === 0 ? (
+            <p className="text-xs text-slate-500 italic p-3 text-center bg-[#070b14]/40 rounded-xl border border-white/[0.04]">
+              {selectedConveyanceMonth === 'all'
+                ? 'No completed trip reports yet. Log Start & End KM above!'
+                : `No conveyance logs found for ${formatMonthLabel(selectedConveyanceMonth)}.`}
+            </p>
           ) : (
             <div className="overflow-x-auto border border-white/[0.06] rounded-xl">
               <table className="w-full text-left text-xs text-slate-300">
@@ -1028,7 +1130,7 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-white/[0.04] bg-[#0b101e]/60">
-                  {dayReport.map((r, i) => (
+                  {filteredDayReport.map((r, i) => (
                     <tr key={i} className="hover:bg-white/[0.02] transition">
                       <td className="p-2.5 font-mono font-bold text-slate-200">{r.trip_date}</td>
                       <td className="p-2.5 font-semibold text-slate-300">{r.executive_name}</td>
@@ -1056,6 +1158,18 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
                     </tr>
                   ))}
                 </tbody>
+                <tfoot className="bg-[#090e1a] border-t-2 border-white/[0.1] text-xs font-bold">
+                  <tr>
+                    <td className="p-2.5 text-amber-400 font-mono uppercase">TOTAL</td>
+                    <td className="p-2.5 text-slate-400 font-mono">{conveyanceTotals.totalDays} Days</td>
+                    <td className="p-2.5 text-slate-500 font-mono">--</td>
+                    <td className="p-2.5 text-slate-500 font-mono">--</td>
+                    <td className="p-2.5 text-sky-400 font-mono">{conveyanceTotals.totalKm} KM</td>
+                    <td className="p-2.5 text-slate-400 font-mono">₹3.00</td>
+                    <td className="p-2.5 text-amber-400 font-mono text-sm">₹{conveyanceTotals.totalAmount.toLocaleString('en-IN')}</td>
+                    {isAdmin && <td className="p-2.5"></td>}
+                  </tr>
+                </tfoot>
               </table>
             </div>
           )}

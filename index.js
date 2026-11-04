@@ -1074,7 +1074,8 @@ app.get('/api/field-trips', async (req, res) => {
 
 app.get('/api/field-trips/report', async (req, res) => {
   try {
-    const rawReport = await dbAll(`
+    const { month, executive } = req.query;
+    let query = `
       SELECT 
         trip_date,
         executive_name,
@@ -1083,10 +1084,23 @@ app.get('/api/field-trips/report', async (req, res) => {
         MAX(rate_per_km) as rate_per_km,
         COUNT(id) as total_trips
       FROM field_trips
-      WHERE status = 'Completed' OR end_meter_reading IS NOT NULL
+      WHERE (status = 'Completed' OR end_meter_reading IS NOT NULL)
+    `;
+    const params = [];
+    if (month && month !== 'all') {
+      query += ` AND trip_date LIKE ?`;
+      params.push(`${month}%`);
+    }
+    if (executive && executive !== 'all') {
+      query += ` AND executive_name = ?`;
+      params.push(executive);
+    }
+    query += `
       GROUP BY trip_date, executive_name
       ORDER BY trip_date DESC
-    `);
+    `;
+
+    const rawReport = await dbAll(query, params);
 
     const report = rawReport.map(r => {
       const start = parseFloat(r.day_start_km || 0);
@@ -2450,7 +2464,8 @@ app.get('/api/export/september-report', (req, res) => {
 
 app.get('/api/export/conveyance', async (req, res) => {
   try {
-    const rawReport = await dbAll(`
+    const { month, executive } = req.query;
+    let query = `
       SELECT 
         trip_date as "Date",
         executive_name as "Executive Name",
@@ -2458,10 +2473,29 @@ app.get('/api/export/conveyance', async (req, res) => {
         MAX(end_meter_reading) as "Day End Odometer (KM)",
         MAX(rate_per_km) as "Rate Per KM (INR)"
       FROM field_trips
-      WHERE status = 'Completed' OR end_meter_reading IS NOT NULL
+      WHERE (status = 'Completed' OR end_meter_reading IS NOT NULL)
+    `;
+    const params = [];
+
+    if (month && month !== 'all') {
+      query += ` AND trip_date LIKE ?`;
+      params.push(`${month}%`);
+    }
+
+    if (executive && executive !== 'all') {
+      query += ` AND executive_name = ?`;
+      params.push(executive);
+    }
+
+    query += `
       GROUP BY trip_date, executive_name
       ORDER BY trip_date DESC
-    `);
+    `;
+
+    const rawReport = await dbAll(query, params);
+
+    let totalKmSum = 0;
+    let totalPayableSum = 0;
 
     const formatted = rawReport.map(r => {
       const start = parseFloat(r["Day Start Odometer (KM)"] || 0);
@@ -2470,24 +2504,54 @@ app.get('/api/export/conveyance', async (req, res) => {
       const totalKm = Math.max(0, end - start);
       const conveyance = Math.round(totalKm * rate);
 
+      totalKmSum += totalKm;
+      totalPayableSum += conveyance;
+
       return {
         "Date": r["Date"],
         "Executive Name": r["Executive Name"],
-        "Day Start Odometer (KM)": start,
-        "Day End Odometer (KM)": end,
-        "Total Day Distance Traveled (KM)": totalKm,
-        "Conveyance Rate (INR/KM)": `₹${rate}`,
-        "Total Conveyance Allowance Payable (INR)": `₹${conveyance}`
+        "Day Start Odometer (KM)": start > 0 ? start : '--',
+        "Day End Odometer (KM)": end > 0 ? end : '--',
+        "Total Day Distance (KM)": totalKm,
+        "Rate Per KM (INR)": `₹${rate.toFixed(2)}`,
+        "Total Payable (INR)": `₹${conveyance.toLocaleString('en-IN')}`
       };
     });
 
+    if (formatted.length > 0) {
+      formatted.push({
+        "Date": "TOTAL SUMMARY",
+        "Executive Name": `${formatted.length} Day(s)`,
+        "Day Start Odometer (KM)": "",
+        "Day End Odometer (KM)": "",
+        "Total Day Distance (KM)": `${totalKmSum} KM`,
+        "Rate Per KM (INR)": "₹3.00",
+        "Total Payable (INR)": `₹${totalPayableSum.toLocaleString('en-IN')}`
+      });
+    }
+
     const ws = XLSX.utils.json_to_sheet(formatted);
+    ws['!cols'] = [
+      { wch: 15 },
+      { wch: 22 },
+      { wch: 25 },
+      { wch: 25 },
+      { wch: 25 },
+      { wch: 20 },
+      { wch: 25 }
+    ];
+
     const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Day-Wise Conveyance Report");
+    const sheetName = month && month !== 'all' ? `Conveyance_${month}` : "Conveyance Report";
+    XLSX.utils.book_append_sheet(wb, ws, sheetName.substring(0, 31));
     const buf = XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' });
 
+    const filename = month && month !== 'all'
+      ? `Travelx_Conveyance_Report_${month}.xlsx`
+      : 'Travelx_Daywise_Conveyance_Report.xlsx';
+
     res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    res.setHeader('Content-Disposition', 'attachment; filename=Travelx_Daywise_Conveyance_Report.xlsx');
+    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
     res.send(buf);
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
