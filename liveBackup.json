@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-05T07:21:07.567Z",
+  "backed_up_at": "2026-11-05T07:30:30.246Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -66794,6 +66794,26 @@
       "agent_id": "AGT-1871",
       "product": "International Flight",
       "query_details": "waw-del",
+      "travel_date": "2026-11-20",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-11-06",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5486",
+      "query_date": "2026-11-05",
+      "agent_id": "AGT-1573",
+      "product": "International Flight",
+      "query_details": "del-kwi",
       "travel_date": "2026-11-20",
       "pax_details": "2 Adults",
       "estimated_value": 0,
