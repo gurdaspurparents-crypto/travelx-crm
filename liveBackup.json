@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-05T06:03:54.233Z",
+  "backed_up_at": "2026-11-05T06:04:45.399Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6229,6 +6229,20 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-11-03",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2099",
+      "name": "Mr. Rajit ",
+      "company_name": "Rk cyber cafe ",
+      "mobile": "+91 98787 88550",
+      "city": "Gurdaspur",
+      "area": "jail rd",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-11-05",
       "payment_terms": "Not Discussed"
     }
   ],
