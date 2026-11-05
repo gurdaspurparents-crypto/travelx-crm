@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-05T07:30:30.246Z",
+  "backed_up_at": "2026-11-05T07:38:10.672Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6240,6 +6240,20 @@
       "area": "jail rd",
       "agent_type": "Retail Travel Agent",
       "stage": "Visited",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-11-05",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2100",
+      "name": "royal",
+      "company_name": "royal internet cafe",
+      "mobile": "9779815513",
+      "city": "ghoman ",
+      "area": "ghoman",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-11-05",
