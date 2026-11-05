@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-05T05:11:14.428Z",
+  "backed_up_at": "2026-11-05T05:14:02.080Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -17652,6 +17652,23 @@
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-11-05",
+      "location": "Gurdaspur",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1256,
+      "visit_date": "2026-11-05",
+      "agent_id": "AGT-2044",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "prabhjot singh",
+      "mobile": "7059700751",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Hotel Booking\",\"International Flight\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-06",
       "location": "Gurdaspur",
       "gps_latitude": null,
       "gps_longitude": null,
