@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-05T07:57:40.610Z",
+  "backed_up_at": "2026-11-05T08:03:54.744Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4097,7 +4097,7 @@
       "city": "Wadala Bangar",
       "area": "Wadala Bangar",
       "agent_type": "Retail Travel Agent",
-      "stage": "Active",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -66820,26 +66820,6 @@
       "rejection_remarks": null
     },
     {
-      "id": "QRY-5485",
-      "query_date": "2026-11-05",
-      "agent_id": "AGT-1871",
-      "product": "International Flight",
-      "query_details": "waw-del",
-      "travel_date": "2026-11-20",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-11-06",
-      "status": "Converted",
-      "booking_date": "2026-11-05",
-      "booking_value": 1,
-      "booking_ref_no": "1",
-      "closing_employee": "Simranjit Kaur",
-      "rejection_reason": null,
-      "rejection_remarks": null
-    },
-    {
       "id": "QRY-5486",
       "query_date": "2026-11-05",
       "agent_id": "AGT-1573",
@@ -67829,6 +67809,11 @@
       "id": "QRY-5481",
       "entity_type": "query",
       "deleted_at": "2026-11-05 06:20:53"
+    },
+    {
+      "id": "QRY-5485",
+      "entity_type": "query",
+      "deleted_at": "2026-11-05 08:03:44"
     }
   ]
 }
