@@ -612,6 +612,27 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
     exportToPDF('Stage 1 – Field Marketing Visits Report', 'Physical Agency Visits Logged Location-wise', headers, rows);
   };
 
+  const handleExportConveyancePDF = () => {
+    const headers = ['Date', 'Executive', 'Day Start', 'Day End', 'Distance', 'Rate', 'Payable', 'Visits Done', 'Visited Areas & Cities'];
+    const rows = filteredDayReport.map(r => [
+      formatProperDate(r.trip_date),
+      r.executive_name,
+      r.day_start_km ? `${r.day_start_km} KM` : '--',
+      r.day_end_km ? `${r.day_end_km} KM` : '--',
+      `${r.total_day_km || 0} KM`,
+      '₹3.00/KM',
+      `₹${(r.total_day_conveyance || 0).toLocaleString('en-IN')}`,
+      r.visit_count > 0 ? `${r.visit_count} Visits` : '0 Visits',
+      r.visited_cities && r.visited_cities.length > 0 ? r.visited_cities.join(', ') : (r.remarks || 'Direct / Travel')
+    ]);
+    exportToPDF(
+      `Field Conveyance & Area Verification Report (${formatMonthLabel(selectedConveyanceMonth)})`,
+      `Verified Distance: ${conveyanceTotals.totalKm} KM | Total Payable: ₹${conveyanceTotals.totalAmount.toLocaleString('en-IN')} (@ ₹3.00/KM)`,
+      headers,
+      rows
+    );
+  };
+
   // Active ongoing trip
   const activeTrip = fieldTrips.find(t => t.status === 'Ongoing');
   const completedTrips = fieldTrips.filter(t => t.status === 'Completed');
@@ -1171,6 +1192,15 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
                   {selectedConveyanceMonth === 'all' ? 'Download All Excel' : `Download ${formatMonthLabel(selectedConveyanceMonth)} Excel`} (.xlsx)
                 </span>
               </a>
+              <button
+                type="button"
+                onClick={handleExportConveyancePDF}
+                className="px-3 py-1.5 bg-rose-600 hover:bg-rose-500 text-white font-bold rounded-xl text-xs transition shadow-sm flex items-center gap-1.5 cursor-pointer"
+                title="Download conveyance audit & area verification report as PDF"
+              >
+                <FileText className="w-3.5 h-3.5" />
+                <span>Download PDF</span>
+              </button>
             </div>
           </div>
 
@@ -1213,6 +1243,7 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
                     <th className="p-2.5">Total Distance</th>
                     <th className="p-2.5">Rate / KM</th>
                     <th className="p-2.5">Payable</th>
+                    <th className="p-2.5">Visited Locations & Areas (Verification)</th>
                     {isAdmin && <th className="p-2.5 text-right">Action</th>}
                   </tr>
                 </thead>
@@ -1226,6 +1257,30 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
                       <td className="p-2.5 font-bold font-mono text-sky-400">{r.total_day_km || 0} KM</td>
                       <td className="p-2.5 text-slate-400 font-mono">₹3.00</td>
                       <td className="p-2.5 font-extrabold font-mono text-amber-400">₹{(r.total_day_conveyance || 0).toLocaleString('en-IN')}</td>
+                      <td className="p-2.5 min-w-[240px] max-w-sm">
+                        {r.visited_cities && r.visited_cities.length > 0 ? (
+                          <div className="space-y-1">
+                            <div className="flex items-center gap-1.5 flex-wrap">
+                              <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/25 inline-flex items-center gap-1">
+                                <CheckCircle2 className="w-3 h-3 text-emerald-400" /> {r.visit_count} Visits Done
+                              </span>
+                              <span className="text-slate-200 font-semibold text-[11px] inline-flex items-center gap-1">
+                                <MapPin className="w-3 h-3 text-sky-400 shrink-0" />
+                                {r.visited_cities.join(', ')}
+                              </span>
+                            </div>
+                            {r.visited_agencies && r.visited_agencies.length > 0 && (
+                              <p className="text-[10px] text-slate-400 truncate" title={r.visited_agencies.join(', ')}>
+                                <span className="text-slate-500">Agencies:</span> {r.visited_agencies.slice(0, 3).join(', ')}{r.visited_agencies.length > 3 ? ` +${r.visited_agencies.length - 3} more` : ''}
+                              </p>
+                            )}
+                          </div>
+                        ) : (
+                          <span className="text-[10px] text-amber-400/80 italic inline-flex items-center gap-1 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
+                            <AlertCircle className="w-3 h-3 text-amber-400" /> No visits logged (Direct/Travel)
+                          </span>
+                        )}
+                      </td>
                       {isAdmin && (
                         <td className="p-2.5 text-right">
                           <button
@@ -1254,6 +1309,9 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
                     <td className="p-2.5 text-sky-400 font-mono">{conveyanceTotals.totalKm} KM</td>
                     <td className="p-2.5 text-slate-400 font-mono">₹3.00</td>
                     <td className="p-2.5 text-amber-400 font-mono text-sm">₹{conveyanceTotals.totalAmount.toLocaleString('en-IN')}</td>
+                    <td className="p-2.5 text-emerald-400 font-mono text-[11px]">
+                      {filteredDayReport.filter(r => r.visit_count > 0).length} of {filteredDayReport.length} Days Verified with Visits
+                    </td>
                     {isAdmin && <td className="p-2.5"></td>}
                   </tr>
                 </tfoot>
