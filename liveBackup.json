@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-06T10:02:37.699Z",
+  "backed_up_at": "2026-11-06T10:05:32.938Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -18207,6 +18207,23 @@
       "mobile": "9465250105",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-07",
+      "location": "Taragarh",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1291,
+      "visit_date": "2026-11-06",
+      "agent_id": "AGT-1970",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Rohit ",
+      "mobile": "+91 95928 53824",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-11-07",
