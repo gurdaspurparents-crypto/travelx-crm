@@ -1312,21 +1312,29 @@ export default function ManagementDashboard({ onNavigate, onOpenAgentDrawer, onO
                               <td className="p-3 font-extrabold font-mono text-amber-400 text-sm">
                                 ₹{(r.total_day_conveyance || 0).toLocaleString('en-IN')}
                               </td>
-                              <td className="p-3 min-w-[220px]">
+                              <td className="p-3 min-w-[260px] max-w-sm">
                                 {r.visited_cities && r.visited_cities.length > 0 ? (
-                                  <div className="space-y-0.5">
+                                  <div className="space-y-1">
                                     <div className="flex items-center gap-1.5 flex-wrap">
                                       <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/25 inline-flex items-center gap-1">
-                                        <CheckCircle2 className="w-3 h-3 text-emerald-400" /> {r.visit_count} Visits
+                                        <CheckCircle2 className="w-3 h-3 text-emerald-400" /> {r.visit_count} Visits Done
                                       </span>
-                                      <span className="text-slate-200 font-semibold text-xs inline-flex items-center gap-1">
+                                      <span className="text-slate-100 font-bold text-xs inline-flex items-center gap-1">
                                         <MapPin className="w-3 h-3 text-sky-400 shrink-0" />
                                         {r.visited_cities.join(', ')}
                                       </span>
                                     </div>
+                                    {r.visited_areas && r.visited_areas.length > 0 && (
+                                      <div className="text-[10px] text-amber-300 font-medium flex items-center gap-1 flex-wrap">
+                                        <span className="text-slate-400 font-semibold">Areas:</span>
+                                        <span className="bg-amber-500/10 px-1.5 py-0.5 rounded border border-amber-500/20 text-amber-200">
+                                          {r.visited_areas.slice(0, 4).join(', ')}{r.visited_areas.length > 4 ? ` +${r.visited_areas.length - 4} more` : ''}
+                                        </span>
+                                      </div>
+                                    )}
                                     {r.visited_agencies && r.visited_agencies.length > 0 && (
                                       <p className="text-[10px] text-slate-400 truncate max-w-xs" title={r.visited_agencies.join(', ')}>
-                                        {r.visited_agencies.slice(0, 3).join(', ')}{r.visited_agencies.length > 3 ? ` +${r.visited_agencies.length - 3} more` : ''}
+                                        <span className="text-slate-500">Agencies:</span> {r.visited_agencies.slice(0, 3).join(', ')}{r.visited_agencies.length > 3 ? ` +${r.visited_agencies.length - 3} more` : ''}
                                       </p>
                                     )}
                                   </div>

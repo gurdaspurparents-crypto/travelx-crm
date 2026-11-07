@@ -787,7 +787,7 @@ app.get('/api/visits', async (req, res) => {
   try {
     const { executive, city, date, from_date, to_date } = req.query;
     let query = `
-      SELECT mv.*, a.name as agent_name, a.company_name, a.city as agent_city, a.mobile as agent_mobile
+      SELECT mv.*, a.name as agent_name, a.company_name, a.city as agent_city, a.area as agent_area, a.mobile as agent_mobile
       FROM marketing_visits mv
       JOIN agents a ON mv.agent_id = a.id
       WHERE 1=1
@@ -1087,6 +1087,23 @@ function cleanLocationList(rawStr) {
   return result;
 }
 
+function cleanAreaList(rawStr, cities = []) {
+  if (!rawStr) return [];
+  const citySet = new Set(cities.map(c => c.toLowerCase()));
+  const parts = rawStr.split('||').map(s => s.trim()).filter(Boolean);
+  const seen = new Set();
+  const result = [];
+  for (const item of parts) {
+    const key = item.toLowerCase();
+    if (citySet.has(key) || key === 'main market' || key === 'gurdaspur' || key === 'gsp') continue;
+    if (!seen.has(key)) {
+      seen.add(key);
+      result.push(item);
+    }
+  }
+  return result;
+}
+
 async function getVisitsSummaryMap() {
   const visitsQuery = `
     SELECT 
@@ -1098,6 +1115,7 @@ async function getVisitsSummaryMap() {
       GROUP_CONCAT(COALESCE(NULLIF(a.company_name, ''), a.name), '||') as raw_agencies
     FROM marketing_visits v
     LEFT JOIN agents a ON v.agent_id = a.id
+    WHERE v.id NOT IN (SELECT id FROM deleted_entities WHERE entity_type = 'visit')
     GROUP BY v.visit_date, v.executive_name
   `;
   const allVisits = await dbAll(visitsQuery);
@@ -1119,7 +1137,12 @@ function matchVisitData(tripDate, tripExecName, allVisits, visitsMap) {
     for (const v of allVisits) {
       if (v.visit_date === tripDate) {
         const vExec = (v.executive_name || '').toLowerCase().trim();
-        if (execStr.includes(vExec) || vExec.includes(execStr) || (execStr.includes('bikram') && vExec.includes('bikram'))) {
+        if (
+          execStr === vExec ||
+          execStr.includes(vExec) ||
+          vExec.includes(execStr) ||
+          (execStr.includes('bikram') && vExec.includes('bikram'))
+        ) {
           match = v;
           break;
         }
@@ -1174,7 +1197,7 @@ app.get('/api/field-trips/report', async (req, res) => {
 
       const visitMatch = matchVisitData(r.trip_date, r.executive_name, allVisits, visitsMap);
       const cities = visitMatch ? cleanLocationList(visitMatch.raw_cities) : [];
-      const areas = visitMatch ? cleanLocationList(visitMatch.raw_areas) : [];
+      const areas = visitMatch ? cleanAreaList(visitMatch.raw_areas, cities) : [];
       const agencies = visitMatch ? cleanLocationList(visitMatch.raw_agencies) : [];
       const visitCount = visitMatch ? visitMatch.visit_count : 0;
 
@@ -2588,7 +2611,7 @@ app.get('/api/export/conveyance', async (req, res) => {
       const execName = r["Executive Name"];
       const visitMatch = matchVisitData(dateStr, execName, allVisits, visitsMap);
       const cities = visitMatch ? cleanLocationList(visitMatch.raw_cities) : [];
-      const areas = visitMatch ? cleanLocationList(visitMatch.raw_areas) : [];
+      const areas = visitMatch ? cleanAreaList(visitMatch.raw_areas, cities) : [];
       const agencies = visitMatch ? cleanLocationList(visitMatch.raw_agencies) : [];
       const visitCount = visitMatch ? visitMatch.visit_count : 0;
 
@@ -2608,7 +2631,8 @@ app.get('/api/export/conveyance', async (req, res) => {
         "Rate Per KM (INR)": `₹${rate.toFixed(2)}`,
         "Total Payable (INR)": `₹${conveyance.toLocaleString('en-IN')}`,
         "Visits Logged": visitCount > 0 ? `${visitCount} Visits` : '0 Visits',
-        "Visited Areas / Cities": cities.length > 0 ? cities.join(', ') : 'Direct Conveyance / Travel',
+        "Cities / Towns Visited": cities.length > 0 ? cities.join(', ') : 'Direct Conveyance / Travel',
+        "Specific Areas Covered": areas.length > 0 ? areas.join(', ') : (cities.length > 0 ? 'Town Center / Main Market' : '--'),
         "Agencies Visited Details": agencies.length > 0 ? agencies.join(', ') : 'None',
         "Audit Status": visitCount > 0 ? `✅ Verified (${visitCount} Visits in ${cities.slice(0, 3).join(', ')})` : '⚠️ No Visits Logged (Direct Travel)'
       };
@@ -2624,7 +2648,8 @@ app.get('/api/export/conveyance', async (req, res) => {
         "Rate Per KM (INR)": "₹3.00",
         "Total Payable (INR)": `₹${totalPayableSum.toLocaleString('en-IN')}`,
         "Visits Logged": `${totalVisitsSum} Visits Total`,
-        "Visited Areas / Cities": `${verifiedDaysCount} of ${formatted.length} Days Verified with Visits`,
+        "Cities / Towns Visited": `${verifiedDaysCount} of ${formatted.length} Days Verified with Visits`,
+        "Specific Areas Covered": "",
         "Agencies Visited Details": "",
         "Audit Status": verifiedDaysCount === formatted.length ? "✅ All Days 100% Verified" : `⚠️ ${formatted.length - verifiedDaysCount} Day(s) Without Visit Logs`
       });
@@ -2632,17 +2657,18 @@ app.get('/api/export/conveyance', async (req, res) => {
 
     const ws = XLSX.utils.json_to_sheet(formatted);
     ws['!cols'] = [
-      { wch: 14 },
-      { wch: 20 },
-      { wch: 20 },
-      { wch: 20 },
-      { wch: 22 },
-      { wch: 16 },
-      { wch: 18 },
-      { wch: 16 },
-      { wch: 40 },
-      { wch: 60 },
-      { wch: 35 }
+      { wch: 14 }, // Date
+      { wch: 20 }, // Executive Name
+      { wch: 18 }, // Day Start Odometer (KM)
+      { wch: 18 }, // Day End Odometer (KM)
+      { wch: 20 }, // Total Day Distance (KM)
+      { wch: 15 }, // Rate Per KM (INR)
+      { wch: 18 }, // Total Payable (INR)
+      { wch: 16 }, // Visits Logged
+      { wch: 35 }, // Cities / Towns Visited
+      { wch: 45 }, // Specific Areas Covered
+      { wch: 60 }, // Agencies Visited Details
+      { wch: 35 }  // Audit Status
     ];
 
     const wb = XLSX.utils.book_new();

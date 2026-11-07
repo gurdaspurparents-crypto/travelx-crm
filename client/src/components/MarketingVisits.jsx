@@ -612,19 +612,76 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
     exportToPDF('Stage 1 – Field Marketing Visits Report', 'Physical Agency Visits Logged Location-wise', headers, rows);
   };
 
+  const getTripVisitInfo = (r) => {
+    // 1. If backend report already has visited_cities:
+    if (r.visited_cities && r.visited_cities.length > 0) {
+      return {
+        count: r.visit_count || r.visited_cities.length,
+        cities: r.visited_cities,
+        areas: r.visited_areas || [],
+        agencies: r.visited_agencies || [],
+        isVerified: true
+      };
+    }
+
+    // 2. Client-side fallback matching from visits state:
+    const matchingVisits = visits.filter(v => v.visit_date === r.trip_date);
+    if (matchingVisits.length > 0) {
+      const citySet = new Set();
+      const areaSet = new Set();
+      const agencyList = [];
+
+      matchingVisits.forEach(v => {
+        const city = (v.agent_city || v.location || '').trim();
+        const area = (v.agent_area || v.area || '').trim();
+        const agency = (v.company_name || v.agent_name || '').trim();
+        if (city) citySet.add(city);
+        if (area && area.toLowerCase() !== city.toLowerCase() && area.toLowerCase() !== 'main market' && area.toLowerCase() !== 'gurdaspur' && area.toLowerCase() !== 'gsp') {
+          areaSet.add(area);
+        }
+        if (agency && !agencyList.includes(agency)) {
+          agencyList.push(agency);
+        }
+      });
+
+      const cities = Array.from(citySet);
+      const areas = Array.from(areaSet);
+      return {
+        count: matchingVisits.length,
+        cities,
+        areas,
+        agencies: agencyList,
+        isVerified: true
+      };
+    }
+
+    return {
+      count: 0,
+      cities: [],
+      areas: [],
+      agencies: [],
+      isVerified: false
+    };
+  };
+
   const handleExportConveyancePDF = () => {
-    const headers = ['Date', 'Executive', 'Day Start', 'Day End', 'Distance', 'Rate', 'Payable', 'Visits Done', 'Visited Areas & Cities'];
-    const rows = filteredDayReport.map(r => [
-      formatProperDate(r.trip_date),
-      r.executive_name,
-      r.day_start_km ? `${r.day_start_km} KM` : '--',
-      r.day_end_km ? `${r.day_end_km} KM` : '--',
-      `${r.total_day_km || 0} KM`,
-      '₹3.00/KM',
-      `₹${(r.total_day_conveyance || 0).toLocaleString('en-IN')}`,
-      r.visit_count > 0 ? `${r.visit_count} Visits` : '0 Visits',
-      r.visited_cities && r.visited_cities.length > 0 ? r.visited_cities.join(', ') : (r.remarks || 'Direct / Travel')
-    ]);
+    const headers = ['Date', 'Executive', 'Day Start', 'Day End', 'Distance', 'Rate', 'Payable', 'Visits Done', 'Cities & Areas Covered'];
+    const rows = filteredDayReport.map(r => {
+      const info = getTripVisitInfo(r);
+      const areaText = info.areas && info.areas.length > 0 ? ` (Areas: ${info.areas.slice(0, 3).join(', ')})` : '';
+      const locationText = info.cities && info.cities.length > 0 ? `${info.cities.join(', ')}${areaText}` : (r.remarks || 'Direct / Travel');
+      return [
+        formatProperDate(r.trip_date),
+        r.executive_name,
+        r.day_start_km ? `${r.day_start_km} KM` : '--',
+        r.day_end_km ? `${r.day_end_km} KM` : '--',
+        `${r.total_day_km || 0} KM`,
+        '₹3.00/KM',
+        `₹${(r.total_day_conveyance || 0).toLocaleString('en-IN')}`,
+        info.count > 0 ? `${info.count} Visits` : '0 Visits',
+        locationText
+      ];
+    });
     exportToPDF(
       `Field Conveyance & Area Verification Report (${formatMonthLabel(selectedConveyanceMonth)})`,
       `Verified Distance: ${conveyanceTotals.totalKm} KM | Total Payable: ₹${conveyanceTotals.totalAmount.toLocaleString('en-IN')} (@ ₹3.00/KM)`,
@@ -1257,29 +1314,43 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
                       <td className="p-2.5 font-bold font-mono text-sky-400">{r.total_day_km || 0} KM</td>
                       <td className="p-2.5 text-slate-400 font-mono">₹3.00</td>
                       <td className="p-2.5 font-extrabold font-mono text-amber-400">₹{(r.total_day_conveyance || 0).toLocaleString('en-IN')}</td>
-                      <td className="p-2.5 min-w-[240px] max-w-sm">
-                        {r.visited_cities && r.visited_cities.length > 0 ? (
-                          <div className="space-y-1">
-                            <div className="flex items-center gap-1.5 flex-wrap">
-                              <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/25 inline-flex items-center gap-1">
-                                <CheckCircle2 className="w-3 h-3 text-emerald-400" /> {r.visit_count} Visits Done
-                              </span>
-                              <span className="text-slate-200 font-semibold text-[11px] inline-flex items-center gap-1">
-                                <MapPin className="w-3 h-3 text-sky-400 shrink-0" />
-                                {r.visited_cities.join(', ')}
-                              </span>
-                            </div>
-                            {r.visited_agencies && r.visited_agencies.length > 0 && (
-                              <p className="text-[10px] text-slate-400 truncate" title={r.visited_agencies.join(', ')}>
-                                <span className="text-slate-500">Agencies:</span> {r.visited_agencies.slice(0, 3).join(', ')}{r.visited_agencies.length > 3 ? ` +${r.visited_agencies.length - 3} more` : ''}
-                              </p>
-                            )}
-                          </div>
-                        ) : (
-                          <span className="text-[10px] text-amber-400/80 italic inline-flex items-center gap-1 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
-                            <AlertCircle className="w-3 h-3 text-amber-400" /> No visits logged (Direct/Travel)
-                          </span>
-                        )}
+                      <td className="p-2.5 min-w-[280px] max-w-md">
+                        {(() => {
+                          const info = getTripVisitInfo(r);
+                          if (info.isVerified && info.count > 0) {
+                            return (
+                              <div className="space-y-1">
+                                <div className="flex items-center gap-1.5 flex-wrap">
+                                  <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/25 inline-flex items-center gap-1 shadow-sm">
+                                    <CheckCircle2 className="w-3 h-3 text-emerald-400" /> {info.count} Visits Done
+                                  </span>
+                                  <span className="text-slate-100 font-bold text-xs inline-flex items-center gap-1">
+                                    <MapPin className="w-3 h-3 text-sky-400 shrink-0" />
+                                    {info.cities.join(', ')}
+                                  </span>
+                                </div>
+                                {info.areas && info.areas.length > 0 && (
+                                  <div className="text-[10px] text-amber-300 font-medium flex items-center gap-1 flex-wrap">
+                                    <span className="text-slate-400 font-semibold">Areas Covered:</span>
+                                    <span className="bg-amber-500/10 px-1.5 py-0.5 rounded border border-amber-500/20 text-amber-200">
+                                      {info.areas.slice(0, 4).join(', ')}{info.areas.length > 4 ? ` +${info.areas.length - 4} more` : ''}
+                                    </span>
+                                  </div>
+                                )}
+                                {info.agencies && info.agencies.length > 0 && (
+                                  <p className="text-[10px] text-slate-400 truncate" title={info.agencies.join(', ')}>
+                                    <span className="text-slate-500">Agencies:</span> {info.agencies.slice(0, 3).join(', ')}{info.agencies.length > 3 ? ` +${info.agencies.length - 3} more` : ''}
+                                  </p>
+                                )}
+                              </div>
+                            );
+                          }
+                          return (
+                            <span className="text-[10px] text-amber-400/80 italic inline-flex items-center gap-1 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
+                              <AlertCircle className="w-3 h-3 text-amber-400" /> No visits logged (Direct/Travel)
+                            </span>
+                          );
+                        })()}
                       </td>
                       {isAdmin && (
                         <td className="p-2.5 text-right">
@@ -1310,7 +1381,7 @@ export default function MarketingVisits({ onOpenModal, onOpenAgentDrawer, role, 
                     <td className="p-2.5 text-slate-400 font-mono">₹3.00</td>
                     <td className="p-2.5 text-amber-400 font-mono text-sm">₹{conveyanceTotals.totalAmount.toLocaleString('en-IN')}</td>
                     <td className="p-2.5 text-emerald-400 font-mono text-[11px]">
-                      {filteredDayReport.filter(r => r.visit_count > 0).length} of {filteredDayReport.length} Days Verified with Visits
+                      {filteredDayReport.filter(r => getTripVisitInfo(r).count > 0).length} of {filteredDayReport.length} Days Verified with Visits
                     </td>
                     {isAdmin && <td className="p-2.5"></td>}
                   </tr>
