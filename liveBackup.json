@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-09T05:11:31.230Z",
+  "backed_up_at": "2026-11-09T05:36:43.607Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -18452,6 +18452,23 @@
       "remarks": "",
       "next_followup_date": "2026-11-08",
       "location": "Beant clg ",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1308,
+      "visit_date": "2026-11-09",
+      "agent_id": "AGT-1983",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Rohit ",
+      "mobile": "8699345790",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Domestic Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-10",
+      "location": "Dinanagar",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
