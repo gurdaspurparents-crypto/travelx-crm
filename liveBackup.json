@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-09T11:11:31.240Z",
+  "backed_up_at": "2026-11-09T11:13:01.557Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6229,6 +6229,20 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-11-05",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2102",
+      "name": "SIMAR",
+      "company_name": "CSC CENTRE",
+      "mobile": "7814638088",
+      "city": "WADALA GARNTHIA",
+      "area": "WADALA GRANTHIA",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-11-09",
       "payment_terms": "Not Discussed"
     }
   ],
