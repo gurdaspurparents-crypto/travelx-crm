@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-10T09:49:49.945Z",
+  "backed_up_at": "2026-11-10T09:51:20.363Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -68369,6 +68369,26 @@
       "booking_value": 1,
       "booking_ref_no": "1",
       "closing_employee": "Simranjit Kaur",
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5525",
+      "query_date": "2026-11-10",
+      "agent_id": "AGT-2087",
+      "product": "International Flight",
+      "query_details": "AUH/DXB-ATQ",
+      "travel_date": "2026-11-25",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-11-11",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
       "rejection_reason": null,
       "rejection_remarks": null
     }
