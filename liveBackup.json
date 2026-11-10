@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-10T09:36:43.767Z",
+  "backed_up_at": "2026-11-10T09:44:35.268Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6243,6 +6243,34 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-11-09",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2103",
+      "name": "SUMEL",
+      "company_name": "CSC CENTRE",
+      "mobile": "9878073162",
+      "city": "KALIJPUR",
+      "area": "KALJIPUR",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-11-10",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2104",
+      "name": "SUMEL",
+      "company_name": "CSC CENTRE",
+      "mobile": "9878073162",
+      "city": "KALIJPUR",
+      "area": "KALJIPUR",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-11-10",
       "payment_terms": "Not Discussed"
     }
   ],
