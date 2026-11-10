@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-10T09:44:35.268Z",
+  "backed_up_at": "2026-11-10T09:45:22.548Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6253,7 +6253,7 @@
       "city": "KALIJPUR",
       "area": "KALJIPUR",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Active",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-11-10",
@@ -18902,6 +18902,23 @@
       "remarks": "",
       "next_followup_date": "2026-11-11",
       "location": "sunderchak ",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1332,
+      "visit_date": "2026-11-10",
+      "agent_id": "AGT-1746",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Sanjeev",
+      "mobile": "7837537953",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-11",
+      "location": "Sarna",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
@@ -68332,6 +68349,26 @@
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5524",
+      "query_date": "2026-11-10",
+      "agent_id": "AGT-2103",
+      "product": "International Flight",
+      "query_details": "SHJ-ATQ",
+      "travel_date": "2026-11-25",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-11-11",
+      "status": "Converted",
+      "booking_date": "2026-11-10",
+      "booking_value": 1,
+      "booking_ref_no": "1",
+      "closing_employee": "Simranjit Kaur",
       "rejection_reason": null,
       "rejection_remarks": null
     }
