@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-10T04:49:49.927Z",
+  "backed_up_at": "2026-11-10T05:04:25.073Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -67775,13 +67775,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-10",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5507",
@@ -67815,13 +67815,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-10",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5509",
@@ -67889,6 +67889,26 @@
       "agent_id": "AGT-2094",
       "product": "International Flight",
       "query_details": "aip-ndc",
+      "travel_date": "2026-11-25",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-11-11",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5513",
+      "query_date": "2026-11-10",
+      "agent_id": "AGT-1930",
+      "product": "International Flight",
+      "query_details": "atq-mel",
       "travel_date": "2026-11-25",
       "pax_details": "2 Adults",
       "estimated_value": 0,
