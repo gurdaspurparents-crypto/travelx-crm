@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-11T11:16:56.805Z",
+  "backed_up_at": "2026-11-11T11:18:51.098Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -19273,6 +19273,23 @@
       "remarks": "New ",
       "next_followup_date": "2026-11-12",
       "location": "warsola",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1353,
+      "visit_date": "2026-11-11",
+      "agent_id": "AGT-1246",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.varinder singh",
+      "mobile": "9914223009",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-12",
+      "location": "Galhri",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
