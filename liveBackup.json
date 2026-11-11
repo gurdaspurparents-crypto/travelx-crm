@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-11T11:32:50.500Z",
+  "backed_up_at": "2026-11-11T11:53:18.308Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -3772,34 +3772,6 @@
       "name": "Mr.Saurav ",
       "company_name": "Mishra cyber café",
       "mobile": "9781019487",
-      "city": "Sunderchak",
-      "area": "Bhoa",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1799",
-      "name": "Mr. Saurav",
-      "company_name": "Modern café",
-      "mobile": "9888118439",
-      "city": "Sunderchak",
-      "area": "Bhoa",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1800",
-      "name": "Mr.Vikas",
-      "company_name": "Shri ram csc",
-      "mobile": "8837609192",
       "city": "Sunderchak",
       "area": "Bhoa",
       "agent_type": "Retail Travel Agent",
@@ -20182,21 +20154,6 @@
       "payment_terms": null
     },
     {
-      "id": 495,
-      "call_date": "2026-09-08",
-      "agent_id": "AGT-1800",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-10",
-      "payment_terms": null
-    },
-    {
       "id": 496,
       "call_date": "2026-09-08",
       "agent_id": "AGT-1797",
@@ -27202,21 +27159,6 @@
       "payment_terms": null
     },
     {
-      "id": 1202,
-      "call_date": "2026-09-23",
-      "agent_id": "AGT-1799",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "kam nhi karda ",
-      "interest_level": "Interested / Warm",
-      "call_result": "Not Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-25",
-      "payment_terms": null
-    },
-    {
       "id": 1203,
       "call_date": "2026-09-23",
       "agent_id": "AGT-1956",
@@ -33431,36 +33373,6 @@
       "call_date": "2026-10-02",
       "agent_id": "AGT-1797",
       "visit_id": 601,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-10-03",
-      "payment_terms": null
-    },
-    {
-      "id": 1693,
-      "call_date": "2026-10-02",
-      "agent_id": "AGT-1799",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-10-03",
-      "payment_terms": null
-    },
-    {
-      "id": 1694,
-      "call_date": "2026-10-02",
-      "agent_id": "AGT-1800",
-      "visit_id": null,
       "executive_name": "Yug",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
@@ -44925,36 +44837,6 @@
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
       "agent_requirement": "good rel.py",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-10-17",
-      "payment_terms": null
-    },
-    {
-      "id": 2488,
-      "call_date": "2026-10-16",
-      "agent_id": "AGT-1799",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-10-17",
-      "payment_terms": null
-    },
-    {
-      "id": 2489,
-      "call_date": "2026-10-16",
-      "agent_id": "AGT-1800",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy",
       "interest_level": "Interested / Warm",
       "call_result": "Interested",
       "remarks": "",
@@ -70094,6 +69976,16 @@
       "id": "QRY-5517",
       "entity_type": "query",
       "deleted_at": "2026-11-10 06:19:14"
+    },
+    {
+      "id": "AGT-1799",
+      "entity_type": "agent",
+      "deleted_at": "2026-11-11 11:53:00"
+    },
+    {
+      "id": "AGT-1800",
+      "entity_type": "agent",
+      "deleted_at": "2026-11-11 11:53:07"
     }
   ]
 }
