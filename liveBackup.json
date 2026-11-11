@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-11T05:14:42.907Z",
+  "backed_up_at": "2026-11-11T05:23:00.880Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -19004,6 +19004,23 @@
       "remarks": "",
       "next_followup_date": "2026-11-11",
       "location": "Sarna",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1338,
+      "visit_date": "2026-11-11",
+      "agent_id": "AGT-1905",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "JUGAL SHARMA ",
+      "mobile": "7087171719",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-12",
+      "location": "Warsola",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
