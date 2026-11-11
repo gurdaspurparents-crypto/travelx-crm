@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-11T10:48:32.292Z",
+  "backed_up_at": "2026-11-11T10:53:25.983Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6271,6 +6271,20 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-11-10",
+      "payment_terms": "Not Discussed"
+    },
+    {
+      "id": "AGT-2105",
+      "name": "Thomas ",
+      "company_name": "Bhatti  cyber cafe ",
+      "mobile": "+91 90419 91957",
+      "city": "sukhjindra clg ",
+      "area": "warsola",
+      "agent_type": "Retail Travel Agent",
+      "stage": "Inactive",
+      "assigned_marketing_exec": "Bikramjit Singh",
+      "assigned_telephonic_exec": "Simranjit Kaur",
+      "created_at": "2026-11-11",
       "payment_terms": "Not Discussed"
     }
   ],
