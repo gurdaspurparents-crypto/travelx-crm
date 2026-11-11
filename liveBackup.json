@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-10T13:19:49.956Z",
+  "backed_up_at": "2026-11-11T04:54:52.985Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -68229,13 +68229,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-11",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5513",
@@ -68249,13 +68249,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-11",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Agent Did Not Respond",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5514",
@@ -68289,13 +68289,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-11",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Agent Did Not Respond",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5516",
@@ -68309,13 +68309,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-11",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Agent Did Not Respond",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5518",
@@ -68329,13 +68329,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-11",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Agent Did Not Respond",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5519",
@@ -68349,13 +68349,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-11",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5520",
@@ -68369,13 +68369,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-11",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5521",
@@ -68389,13 +68389,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-11",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5522",
@@ -68409,13 +68409,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-11",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5523",
@@ -68429,13 +68429,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-11",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5524",
@@ -68469,13 +68469,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-11",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5526",
@@ -68489,13 +68489,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-11",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5527",
@@ -68509,6 +68509,26 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-11",
+      "status": "Rejected",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
+    },
+    {
+      "id": "QRY-5528",
+      "query_date": "2026-11-11",
+      "agent_id": "AGT-1432",
+      "product": "International Flight",
+      "query_details": "dxb/auh-atq",
+      "travel_date": "2026-11-26",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-11-12",
       "status": "New",
       "booking_date": null,
       "booking_value": 0,
