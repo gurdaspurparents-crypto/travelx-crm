@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-11T06:39:44.664Z",
+  "backed_up_at": "2026-11-11T06:49:22.109Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -19068,6 +19068,23 @@
       "mobile": "7009149655",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"International Flight\",\"Travel Insurance\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-12",
+      "location": "Dorangla",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1342,
+      "visit_date": "2026-11-11",
+      "agent_id": "AGT-1229",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Rikhi Kumar",
+      "mobile": "9464961119",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"Hotel Booking\",\"International Flight\",\"Forex\",\"Money Transfer\",\"Bus Booking\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-11-12",
