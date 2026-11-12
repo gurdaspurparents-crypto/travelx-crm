@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-12T11:09:59.162Z",
+  "backed_up_at": "2026-11-12T11:10:49.680Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -19636,6 +19636,23 @@
       "remarks": "",
       "next_followup_date": "2026-11-13",
       "location": "Gosal",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1379,
+      "visit_date": "2026-11-12",
+      "agent_id": "AGT-1482",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.rahul",
+      "mobile": "7973133450",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-13",
+      "location": "Jaura Chattran",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
