@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-12T06:26:39.556Z",
+  "backed_up_at": "2026-11-12T06:43:13.874Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -19265,6 +19265,23 @@
       "remarks": "",
       "next_followup_date": "2026-11-13",
       "location": "Amipur",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1358,
+      "visit_date": "2026-11-12",
+      "agent_id": "AGT-1013",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Jatinder singh",
+      "mobile": "8528588887",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Tour Packages\",\"Visa Services\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-13",
+      "location": "Bakshiwal",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
