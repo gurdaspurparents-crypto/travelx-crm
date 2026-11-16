@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-16T05:20:22.990Z",
+  "backed_up_at": "2026-11-16T05:20:51.798Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -685,7 +685,7 @@
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "Advance Payment"
     },
     {
       "id": "AGT-1125",
@@ -60148,6 +60148,21 @@
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
       "agent_requirement": "bolte bahi kam kht aa but krta hu ",
+      "interest_level": "Interested / Warm",
+      "call_result": "Interested",
+      "remarks": "",
+      "next_followup_date": "2026-11-17",
+      "payment_terms": "Advance Payment"
+    },
+    {
+      "id": 3500,
+      "call_date": "2026-11-06",
+      "agent_id": "AGT-1124",
+      "visit_id": 1233,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
       "interest_level": "Interested / Warm",
       "call_result": "Interested",
       "remarks": "",
