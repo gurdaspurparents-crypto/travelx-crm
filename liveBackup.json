@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-16T12:22:54.740Z",
+  "backed_up_at": "2026-11-16T12:25:30.740Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -3075,7 +3075,7 @@
       "city": "Purana Shalla",
       "area": "Purana Shalla",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -3677,7 +3677,7 @@
       "city": "Sri Hargobindpur",
       "area": "Shri Hargobinpur",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -6198,20 +6198,6 @@
       "area": "KALJIPUR",
       "agent_type": "Retail Travel Agent",
       "stage": "Active",
-      "assigned_marketing_exec": "Bikramjit Singh",
-      "assigned_telephonic_exec": "Simranjit Kaur",
-      "created_at": "2026-11-10",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-2104",
-      "name": "SUMEL",
-      "company_name": "CSC CENTRE",
-      "mobile": "9878073162",
-      "city": "KALIJPUR",
-      "area": "KALJIPUR",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-11-10",
@@ -71634,6 +71620,46 @@
       "closing_employee": null,
       "rejection_reason": null,
       "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5608",
+      "query_date": "2026-11-16",
+      "agent_id": "AGT-1791",
+      "product": "International Flight",
+      "query_details": "atq-shj",
+      "travel_date": "2026-12-01",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-11-17",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5609",
+      "query_date": "2026-11-16",
+      "agent_id": "AGT-1646",
+      "product": "International Flight",
+      "query_details": "kul-del",
+      "travel_date": "2026-12-01",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-11-17",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
     }
   ],
   "field_trips": [
@@ -72852,6 +72878,11 @@
       "id": "AGT-1081",
       "entity_type": "agent",
       "deleted_at": "2026-11-16 12:22:44"
+    },
+    {
+      "id": "AGT-2104",
+      "entity_type": "agent",
+      "deleted_at": "2026-11-16 12:25:20"
     }
   ]
 }
