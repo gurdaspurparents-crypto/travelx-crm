@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-17T06:11:10.804Z",
+  "backed_up_at": "2026-11-17T06:14:00.280Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -71915,6 +71915,26 @@
       "agent_id": "AGT-1928",
       "product": "International Flight",
       "query_details": "mxp-del-mxp",
+      "travel_date": "2026-12-02",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-11-18",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5621",
+      "query_date": "2026-11-17",
+      "agent_id": "AGT-1038",
+      "product": "International Flight",
+      "query_details": "del-kwi",
       "travel_date": "2026-12-02",
       "pax_details": "2 Adults",
       "estimated_value": 0,
