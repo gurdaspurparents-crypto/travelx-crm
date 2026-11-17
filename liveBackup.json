@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-17T06:36:44.014Z",
+  "backed_up_at": "2026-11-17T06:50:44.535Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -20159,6 +20159,23 @@
       "mobile": "9855515957",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"International Flight\",\"Travel Insurance\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-18",
+      "location": "Naushera Majha Singh",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1412,
+      "visit_date": "2026-11-17",
+      "agent_id": "AGT-1631",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.anant nahar ",
+      "mobile": "8872487533",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Money Transfer\",\"Bus Booking\",\"Forex\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-11-18",
