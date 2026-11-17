@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-17T10:06:44.039Z",
+  "backed_up_at": "2026-11-17T10:16:07.309Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -20261,6 +20261,23 @@
       "mobile": "9872824052",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-18",
+      "location": "Nikke Ghuman",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1418,
+      "visit_date": "2026-11-17",
+      "agent_id": "AGT-1931",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Gill",
+      "mobile": "8727047315",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-11-18",
