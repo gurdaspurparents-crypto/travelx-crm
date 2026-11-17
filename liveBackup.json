@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-17T07:36:44.025Z",
+  "backed_up_at": "2026-11-17T08:01:07.291Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -72039,6 +72039,26 @@
       "closing_employee": null,
       "rejection_reason": null,
       "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5626",
+      "query_date": "2026-11-17",
+      "agent_id": "AGT-1038",
+      "product": "International Flight",
+      "query_details": "atq-dxb",
+      "travel_date": "2026-12-02",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-11-18",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
     }
   ],
   "field_trips": [
@@ -73267,6 +73287,11 @@
       "id": "QRY-5622",
       "entity_type": "query",
       "deleted_at": "2026-11-17 07:11:20"
+    },
+    {
+      "id": "QRY-5625",
+      "entity_type": "query",
+      "deleted_at": "2026-11-17 08:00:56"
     }
   ]
 }
