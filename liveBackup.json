@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-18T07:42:26.077Z",
+  "backed_up_at": "2026-11-18T07:42:49.651Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4783,7 +4783,7 @@
       "city": "Dinanagar",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Active",
+      "stage": "Dormant",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-14",
@@ -72621,6 +72621,26 @@
       "agent_id": "AGT-1281",
       "product": "International Flight",
       "query_details": "mel-atq-mel",
+      "travel_date": "2026-12-03",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-11-19",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5643",
+      "query_date": "2026-11-18",
+      "agent_id": "AGT-1981",
+      "product": "International Flight",
+      "query_details": "atq-ind-atq",
       "travel_date": "2026-12-03",
       "pax_details": "2 Adults",
       "estimated_value": 0,
