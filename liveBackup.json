@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-18T10:07:47.850Z",
+  "backed_up_at": "2026-11-18T10:08:00.242Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -177,7 +177,7 @@
       "city": "Behrampur",
       "area": "Behrampur",
       "agent_type": "Retail Travel Agent",
-      "stage": "Dormant",
+      "stage": "Active",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -72692,11 +72692,11 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-19",
-      "status": "New",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
+      "status": "Converted",
+      "booking_date": "2026-11-18",
+      "booking_value": 1,
+      "booking_ref_no": "1",
+      "closing_employee": "Simranjit Kaur",
       "rejection_reason": null,
       "rejection_remarks": null
     },
