@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-18T06:14:42.553Z",
+  "backed_up_at": "2026-11-18T06:16:54.659Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -20363,6 +20363,23 @@
       "mobile": "9815150165",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-19",
+      "location": "Tibri",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1424,
+      "visit_date": "2026-11-18",
+      "agent_id": "AGT-2006",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Rahul mehra ",
+      "mobile": "+91 6284 536 986",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Visa Services\",\"Domestic Flight\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-11-19",
