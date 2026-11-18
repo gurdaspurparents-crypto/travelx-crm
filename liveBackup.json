@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-18T06:18:37.059Z",
+  "backed_up_at": "2026-11-18T06:31:32.657Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -20380,6 +20380,23 @@
       "mobile": "+91 6284 536 986",
       "is_new_agent": 0,
       "products_pitched": "[\"Visa Services\",\"Domestic Flight\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-19",
+      "location": "Tibri",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1425,
+      "visit_date": "2026-11-18",
+      "agent_id": "AGT-1850",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Gurbaksh singh",
+      "mobile": "9463228947",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-11-19",
