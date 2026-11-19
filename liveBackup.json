@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-19T12:06:46.750Z",
+  "backed_up_at": "2026-11-19T12:07:12.648Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -74531,6 +74531,11 @@
       "id": "QRY-5648",
       "entity_type": "query",
       "deleted_at": "2026-11-19 05:25:23"
+    },
+    {
+      "id": "QRY-5654",
+      "entity_type": "query",
+      "deleted_at": "2026-11-19 12:07:02"
     }
   ]
 }
