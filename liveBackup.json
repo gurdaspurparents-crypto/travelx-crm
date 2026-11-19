@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-19T06:21:58.801Z",
+  "backed_up_at": "2026-11-19T06:57:50.942Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -20669,6 +20669,23 @@
       "mobile": "9462520813",
       "is_new_agent": 0,
       "products_pitched": "[\"Visa Services\",\"Domestic Flight\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-20",
+      "location": "Kahnuwan",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1442,
+      "visit_date": "2026-11-19",
+      "agent_id": "AGT-1485",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.harpreet singh",
+      "mobile": "9814673776",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-11-20",
