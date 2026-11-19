@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-19T11:03:44.829Z",
+  "backed_up_at": "2026-11-19T11:04:06.516Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -20860,6 +20860,23 @@
       "remarks": "",
       "next_followup_date": "2026-11-20",
       "location": "Kahnuwan",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1453,
+      "visit_date": "2026-11-19",
+      "agent_id": "AGT-1062",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.Vijay",
+      "mobile": "7341184754",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Visa Services\",\"Domestic Flight\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-20",
+      "location": "Chak Sharif",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
