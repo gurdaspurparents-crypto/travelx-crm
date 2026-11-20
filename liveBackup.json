@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-20T11:12:24.679Z",
+  "backed_up_at": "2026-11-20T11:13:03.567Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6267,7 +6267,7 @@
       "city": "Harchowal",
       "area": "Main Market",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "Visited",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-11-20",
@@ -21214,6 +21214,23 @@
       "remarks": "",
       "next_followup_date": "2026-11-21",
       "location": "Kot todar mall",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1473,
+      "visit_date": "2026-11-20",
+      "agent_id": "AGT-2109",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Anahad ",
+      "mobile": "8872152109",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "Rate problem ",
+      "next_followup_date": "2026-11-21",
+      "location": "Harchowal",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
