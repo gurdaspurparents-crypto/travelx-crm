@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-20T10:03:23.651Z",
+  "backed_up_at": "2026-11-20T10:04:00.660Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -74018,6 +74018,26 @@
       "booking_value": 1,
       "booking_ref_no": "1",
       "closing_employee": "Simranjit Kaur",
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5682",
+      "query_date": "2026-11-20",
+      "agent_id": "AGT-1115",
+      "product": "International Flight",
+      "query_details": "MXP-DEL/ATQ",
+      "travel_date": "2026-12-05",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-11-21",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
       "rejection_reason": null,
       "rejection_remarks": null
     }
