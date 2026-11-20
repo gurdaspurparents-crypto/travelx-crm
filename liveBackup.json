@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-20T07:19:16.231Z",
+  "backed_up_at": "2026-11-20T07:19:33.050Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -20975,6 +20975,23 @@
       "mobile": "95012 92272",
       "is_new_agent": 0,
       "products_pitched": "[\"Visa Services\",\"Domestic Flight\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-21",
+      "location": "Harchowal",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1460,
+      "visit_date": "2026-11-20",
+      "agent_id": "AGT-1444",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.parwinder singh",
+      "mobile": "8658793157",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Tour Packages\",\"Visa Services\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-11-21",
