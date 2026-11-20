@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-20T11:05:30.469Z",
+  "backed_up_at": "2026-11-20T11:06:26.256Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -21149,6 +21149,40 @@
       "remarks": "",
       "next_followup_date": "2026-11-21",
       "location": "tibber",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1470,
+      "visit_date": "2026-11-20",
+      "agent_id": "AGT-1585",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.komal",
+      "mobile": "9517483794",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"Hotel Booking\",\"International Flight\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-21",
+      "location": "Kot Todar Mall",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1471,
+      "visit_date": "2026-11-20",
+      "agent_id": "AGT-2077",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Manpreer ",
+      "mobile": "9781878141",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-21",
+      "location": "Kot todar mall ",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
