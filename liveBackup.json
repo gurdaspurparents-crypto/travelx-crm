@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-20T10:18:11.692Z",
+  "backed_up_at": "2026-11-20T10:34:03.697Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -21098,6 +21098,23 @@
       "remarks": "",
       "next_followup_date": "2026-11-21",
       "location": "harchowal",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1467,
+      "visit_date": "2026-11-20",
+      "agent_id": "AGT-2094",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "rajan",
+      "mobile": "9478180482",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"Hotel Booking\",\"International Flight\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-21",
+      "location": "sidhwan",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
