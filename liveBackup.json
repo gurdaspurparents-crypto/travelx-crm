@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-21T10:34:33.665Z",
+  "backed_up_at": "2026-11-21T10:35:00.816Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -21432,6 +21432,23 @@
       "remarks": "",
       "next_followup_date": "2026-11-22",
       "location": "wadala granthia ",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1485,
+      "visit_date": "2026-11-21",
+      "agent_id": "AGT-2083",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "sandhu",
+      "mobile": "96539 88593",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"International Flight\",\"Forex\",\"Hotel Booking\",\"Bus Booking\",\"Money Transfer\",\"Travel Insurance\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-22",
+      "location": "wadala Granthia",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
