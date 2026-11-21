@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-21T06:58:12.746Z",
+  "backed_up_at": "2026-11-21T06:59:16.465Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4773,7 +4773,7 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-14",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "Advance Payment"
     },
     {
       "id": "AGT-1981",
@@ -62658,6 +62658,21 @@
       "remarks": "",
       "next_followup_date": "2026-11-22",
       "payment_terms": "After Booking / Credit"
+    },
+    {
+      "id": 3579,
+      "call_date": "2026-11-14",
+      "agent_id": "AGT-1979",
+      "visit_id": 1311,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
+      "interest_level": "Interested / Warm",
+      "call_result": "Call Again Later",
+      "remarks": "",
+      "next_followup_date": "2026-11-22",
+      "payment_terms": "Advance Payment"
     }
   ],
   "queries": [
