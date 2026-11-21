@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-21T06:36:04.268Z",
+  "backed_up_at": "2026-11-21T06:36:34.041Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -6281,7 +6281,7 @@
       "city": "hardochani rd",
       "area": "hardochani rd",
       "agent_type": "Retail Travel Agent",
-      "stage": "Inactive",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-11-21",
@@ -74368,6 +74368,26 @@
       "agent_id": "AGT-1008",
       "product": "International Flight",
       "query_details": "yyz-del",
+      "travel_date": "2026-12-06",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-11-22",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5691",
+      "query_date": "2026-11-21",
+      "agent_id": "AGT-2110",
+      "product": "International Flight",
+      "query_details": "hum/fra-del/hum/fra",
       "travel_date": "2026-12-06",
       "pax_details": "2 Adults",
       "estimated_value": 0,
