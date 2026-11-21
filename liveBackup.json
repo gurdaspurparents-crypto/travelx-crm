@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-21T10:10:01.578Z",
+  "backed_up_at": "2026-11-21T10:33:59.741Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -21381,6 +21381,23 @@
       "remarks": "",
       "next_followup_date": "2026-11-22",
       "location": "Seikhwan",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1482,
+      "visit_date": "2026-11-21",
+      "agent_id": "AGT-2081",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr varun ",
+      "mobile": "+91 98728 05532",
+      "is_new_agent": 0,
+      "products_pitched": "[\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\",\"Tour Packages\",\"Domestic Flight\",\"Visa Services\",\"Travel Insurance\",\"Cruise\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-22",
+      "location": "Wadala Granthia ",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
