@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-21T07:10:49.587Z",
+  "backed_up_at": "2026-11-21T07:11:00.628Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -4605,7 +4605,7 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-10",
-      "payment_terms": "Not Discussed"
+      "payment_terms": "Advance Payment"
     },
     {
       "id": "AGT-1959",
@@ -62953,6 +62953,21 @@
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
       "agent_requirement": "cut krta 2 time",
+      "interest_level": "Interested / Warm",
+      "call_result": "Call Again Later",
+      "remarks": "",
+      "next_followup_date": "2026-11-22",
+      "payment_terms": "Advance Payment"
+    },
+    {
+      "id": 3599,
+      "call_date": "2026-11-14",
+      "agent_id": "AGT-1958",
+      "visit_id": 1337,
+      "executive_name": "Simranjit Kaur",
+      "is_connected": 1,
+      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
+      "agent_requirement": "",
       "interest_level": "Interested / Warm",
       "call_result": "Call Again Later",
       "remarks": "",
