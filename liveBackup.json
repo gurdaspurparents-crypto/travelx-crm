@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-21T07:49:56.134Z",
+  "backed_up_at": "2026-11-21T07:56:15.705Z",
   "agents": [
     {
       "id": "AGT-1007",
@@ -21341,6 +21341,23 @@
       "executive_name": "Bikramjit Singh",
       "person_met": "Mr. Gurdeep singh",
       "mobile": "7508965807",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-22",
+      "location": "Seikhwan",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1480,
+      "visit_date": "2026-11-21",
+      "agent_id": "AGT-2018",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "jagga",
+      "mobile": "883-7702315",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
