@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-23T06:41:55.639Z",
+  "backed_up_at": "2026-11-23T06:43:49.320Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -21302,6 +21302,23 @@
       "mobile": "9888602475",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-24",
+      "location": "Sri Hargobindpur",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1491,
+      "visit_date": "2026-11-23",
+      "agent_id": "AGT-1780",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Karandeep singh",
+      "mobile": "9815977156",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Forex\",\"Hotel Booking\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-11-24",
