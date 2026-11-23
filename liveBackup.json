@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-23T12:17:43.774Z",
+  "backed_up_at": "2026-11-23T13:07:54.372Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -74746,26 +74746,6 @@
       "rejection_remarks": null
     },
     {
-      "id": "QRY-5702",
-      "query_date": "2026-11-23",
-      "agent_id": "AGT-1038",
-      "product": "International Flight",
-      "query_details": "del-lis",
-      "travel_date": "2026-12-08",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-11-24",
-      "status": "New",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
-    },
-    {
       "id": "QRY-5703",
       "query_date": "2026-11-23",
       "agent_id": "AGT-1390",
@@ -75518,6 +75498,23 @@
       "status": "Completed",
       "remarks": "",
       "created_at": "2026-11-21T11:51:53.773Z"
+    },
+    {
+      "id": 43,
+      "trip_date": "2026-11-23",
+      "executive_name": "Bikramjit Singh",
+      "start_meter_reading": 0,
+      "end_meter_reading": 110,
+      "start_time": "01:07 PM",
+      "end_time": "01:07 PM",
+      "start_location": "Office Departure",
+      "end_location": "Office Return",
+      "total_km": 110,
+      "rate_per_km": 3,
+      "conveyance_amount": 330,
+      "status": "Completed",
+      "remarks": "",
+      "created_at": "2026-11-23T13:07:43.937Z"
     }
   ],
   "deleted_entities": [
