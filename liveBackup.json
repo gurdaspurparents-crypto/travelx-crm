@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-23T06:35:52.100Z",
+  "backed_up_at": "2026-11-23T06:37:21.235Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -74523,26 +74523,6 @@
       "closing_employee": null,
       "rejection_reason": null,
       "rejection_remarks": null
-    },
-    {
-      "id": "QRY-5702",
-      "query_date": "2026-11-23",
-      "agent_id": "AGT-1038",
-      "product": "International Flight",
-      "query_details": "del-auh",
-      "travel_date": "2026-12-08",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-11-24",
-      "status": "New",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
     }
   ],
   "field_trips": [
@@ -75909,6 +75889,11 @@
       "id": "AGT-1249",
       "entity_type": "agent",
       "deleted_at": "2026-11-21 12:18:26"
+    },
+    {
+      "id": "QRY-5702",
+      "entity_type": "query",
+      "deleted_at": "2026-11-23 06:37:10"
     }
   ]
 }
