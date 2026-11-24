@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-24T11:21:42.051Z",
+  "backed_up_at": "2026-11-24T11:21:58.507Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -21799,6 +21799,23 @@
       "remarks": "",
       "next_followup_date": "2026-11-25",
       "location": "Qadian",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1520,
+      "visit_date": "2026-11-24",
+      "agent_id": "AGT-2022",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "amit",
+      "mobile": "9056167960",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-25",
+      "location": "Qadian ",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
