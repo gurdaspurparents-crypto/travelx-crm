@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-24T10:38:35.344Z",
+  "backed_up_at": "2026-11-24T10:51:13.907Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -21744,6 +21744,23 @@
       "mobile": "+91 79050 64505",
       "is_new_agent": 0,
       "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"Hotel Booking\",\"International Flight\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-25",
+      "location": "Qadian ",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1517,
+      "visit_date": "2026-11-24",
+      "agent_id": "AGT-2058",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Gurpreet singh ",
+      "mobile": "9815029031",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Tour Packages\",\"Visa Services\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
       "response_level": "Interested / Warm",
       "remarks": "",
       "next_followup_date": "2026-11-25",
