@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-24T10:12:07.729Z",
+  "backed_up_at": "2026-11-24T10:12:26.249Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -2039,7 +2039,7 @@
       "city": "Jaura Chattran",
       "area": "Jaura Chittran",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -75398,6 +75398,26 @@
       "agent_id": "AGT-1292",
       "product": "International Flight",
       "query_details": "atq-shj",
+      "travel_date": "2026-12-09",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-11-25",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5729",
+      "query_date": "2026-11-24",
+      "agent_id": "AGT-1482",
+      "product": "International Flight",
+      "query_details": "atq-bhx",
       "travel_date": "2026-12-09",
       "pax_details": "2 Adults",
       "estimated_value": 0,
