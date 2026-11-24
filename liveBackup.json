@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-24T11:21:58.507Z",
+  "backed_up_at": "2026-11-24T11:25:18.925Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -5468,20 +5468,6 @@
       "mobile": "9815604631",
       "city": "ghuman",
       "area": "ghuman",
-      "agent_type": "Retail Travel Agent",
-      "stage": "QueryReceived",
-      "assigned_marketing_exec": "Bikramjit Singh",
-      "assigned_telephonic_exec": "Simranjit Kaur",
-      "created_at": "2026-10-03",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-2055",
-      "name": "sunny",
-      "company_name": "dasmesh enterprises",
-      "mobile": "9592034448",
-      "city": "Qadian",
-      "area": "harchowal",
       "agent_type": "Retail Travel Agent",
       "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikramjit Singh",
@@ -21719,23 +21705,6 @@
       "gps_address": null
     },
     {
-      "id": 1515,
-      "visit_date": "2026-11-24",
-      "agent_id": "AGT-2055",
-      "executive_name": "Bikramjit Singh",
-      "person_met": "sunny",
-      "mobile": "9592034448",
-      "is_new_agent": 0,
-      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
-      "response_level": "Interested / Warm",
-      "remarks": "",
-      "next_followup_date": "2026-11-25",
-      "location": "Qadian",
-      "gps_latitude": null,
-      "gps_longitude": null,
-      "gps_address": null
-    },
-    {
       "id": 1516,
       "visit_date": "2026-11-24",
       "agent_id": "AGT-2056",
@@ -37033,21 +37002,6 @@
       "payment_terms": null
     },
     {
-      "id": 1803,
-      "call_date": "2026-10-03",
-      "agent_id": "AGT-2055",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-10-04",
-      "payment_terms": null
-    },
-    {
       "id": 1804,
       "call_date": "2026-10-03",
       "agent_id": "AGT-2053",
@@ -47638,21 +47592,6 @@
       "payment_terms": null
     },
     {
-      "id": 2560,
-      "call_date": "2026-10-16",
-      "agent_id": "AGT-2055",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy no visit",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-10-17",
-      "payment_terms": null
-    },
-    {
       "id": 2561,
       "call_date": "2026-10-17",
       "agent_id": "AGT-1614",
@@ -48188,21 +48127,6 @@
       "agent_requirement": "",
       "interest_level": "Interested / Warm",
       "call_result": "No Response",
-      "remarks": "",
-      "next_followup_date": "2026-10-18",
-      "payment_terms": null
-    },
-    {
-      "id": 2598,
-      "call_date": "2026-10-17",
-      "agent_id": "AGT-2055",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy no visit",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-18",
       "payment_terms": null
@@ -66035,26 +65959,6 @@
       "rejection_remarks": "dasda"
     },
     {
-      "id": "QRY-5211",
-      "query_date": "2026-10-03",
-      "agent_id": "AGT-2055",
-      "product": "International Flight",
-      "query_details": "pat-del",
-      "travel_date": "2026-10-18",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-10-04",
-      "status": "Rejected",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
-      "rejection_reason": "Customer Did Not Confirm",
-      "rejection_remarks": ""
-    },
-    {
       "id": "QRY-5212",
       "query_date": "2026-10-03",
       "agent_id": "AGT-1107",
@@ -66272,26 +66176,6 @@
       "booking_ref_no": null,
       "closing_employee": null,
       "rejection_reason": "Agent Did Not Respond",
-      "rejection_remarks": ""
-    },
-    {
-      "id": "QRY-5224",
-      "query_date": "2026-10-06",
-      "agent_id": "AGT-2055",
-      "product": "International Flight",
-      "query_details": "atq-akl-atq",
-      "travel_date": "2026-10-21",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-10-07",
-      "status": "Rejected",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
-      "rejection_reason": "Customer Did Not Confirm",
       "rejection_remarks": ""
     },
     {
@@ -66975,26 +66859,6 @@
       "rejection_remarks": ""
     },
     {
-      "id": "QRY-5261",
-      "query_date": "2026-10-09",
-      "agent_id": "AGT-2055",
-      "product": "International Flight",
-      "query_details": "ATH-ATQ",
-      "travel_date": "2026-10-24",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-10-10",
-      "status": "Rejected",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
-      "rejection_reason": "Customer Did Not Confirm",
-      "rejection_remarks": ""
-    },
-    {
       "id": "QRY-5263",
       "query_date": "2026-10-10",
       "agent_id": "AGT-1829",
@@ -67506,26 +67370,6 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-10-15",
-      "status": "Rejected",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
-      "rejection_reason": "Agent Did Not Respond",
-      "rejection_remarks": ""
-    },
-    {
-      "id": "QRY-5290",
-      "query_date": "2026-10-16",
-      "agent_id": "AGT-2055",
-      "product": "International Flight",
-      "query_details": "atq-shj",
-      "travel_date": "2026-10-31",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-10-17",
       "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
@@ -70235,26 +70079,6 @@
       "rejection_remarks": ""
     },
     {
-      "id": "QRY-5436",
-      "query_date": "2026-11-02",
-      "agent_id": "AGT-2055",
-      "product": "International Flight",
-      "query_details": "atq-blr",
-      "travel_date": "2026-11-17",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-11-03",
-      "status": "Rejected",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
-      "rejection_reason": "Customer Did Not Confirm",
-      "rejection_remarks": ""
-    },
-    {
       "id": "QRY-5440",
       "query_date": "2026-11-02",
       "agent_id": "AGT-1850",
@@ -72395,26 +72219,6 @@
       "rejection_remarks": ""
     },
     {
-      "id": "QRY-5554",
-      "query_date": "2026-11-13",
-      "agent_id": "AGT-2055",
-      "product": "International Flight",
-      "query_details": "dxb-atq",
-      "travel_date": "2026-11-28",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-11-14",
-      "status": "Rejected",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
-      "rejection_reason": "Agent Did Not Respond",
-      "rejection_remarks": ""
-    },
-    {
       "id": "QRY-5555",
       "query_date": "2026-11-13",
       "agent_id": "AGT-1993",
@@ -73520,26 +73324,6 @@
       "agent_id": "AGT-1038",
       "product": "International Flight",
       "query_details": "del-kwi",
-      "travel_date": "2026-12-02",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-11-18",
-      "status": "Rejected",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
-      "rejection_reason": "Agent Did Not Respond",
-      "rejection_remarks": ""
-    },
-    {
-      "id": "QRY-5623",
-      "query_date": "2026-11-17",
-      "agent_id": "AGT-2055",
-      "product": "International Flight",
-      "query_details": "del-mxp",
       "travel_date": "2026-12-02",
       "pax_details": "2 Adults",
       "estimated_value": 0,
@@ -76976,6 +76760,11 @@
       "id": "QRY-5730",
       "entity_type": "query",
       "deleted_at": "2026-11-24 10:12:37"
+    },
+    {
+      "id": "AGT-2055",
+      "entity_type": "agent",
+      "deleted_at": "2026-11-24 11:25:08"
     }
   ]
 }
