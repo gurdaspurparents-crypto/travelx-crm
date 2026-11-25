@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-25T12:51:42.018Z",
+  "backed_up_at": "2026-11-25T12:51:59.801Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -76137,6 +76137,23 @@
       "status": "Completed",
       "remarks": "",
       "created_at": "2026-11-24T11:28:05.626Z"
+    },
+    {
+      "id": 45,
+      "trip_date": "2026-11-25",
+      "executive_name": "Bikramjit Singh",
+      "start_meter_reading": 0,
+      "end_meter_reading": 110,
+      "start_time": "12:51 PM",
+      "end_time": "12:51 PM",
+      "start_location": "Office Departure",
+      "end_location": "Office Return",
+      "total_km": 110,
+      "rate_per_km": 3,
+      "conveyance_amount": 330,
+      "status": "Completed",
+      "remarks": "",
+      "created_at": "2026-11-25T12:51:49.367Z"
     }
   ],
   "deleted_entities": [
