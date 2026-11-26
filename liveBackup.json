@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-26T08:06:12.546Z",
+  "backed_up_at": "2026-11-26T08:06:53.846Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -1812,8 +1812,8 @@
       "name": "Mr. Sukhraj singh",
       "company_name": "Sidhu Travel Agency",
       "mobile": "9876067504",
-      "city": "Jaura Chattran",
-      "area": "Adda Jaura Chattran",
+      "city": "Dhariwal",
+      "area": "Dhariwal",
       "agent_type": "Retail Travel Agent",
       "stage": "Dormant",
       "assigned_marketing_exec": "Bikram",
@@ -5907,20 +5907,6 @@
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-11-13",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-2108",
-      "name": "ranbir singh",
-      "company_name": "ranbir cafe ",
-      "mobile": "8968125701",
-      "city": "jaura chittran",
-      "area": "jaura chittran",
-      "agent_type": "Retail Travel Agent",
-      "stage": "QueryReceived",
-      "assigned_marketing_exec": "Bikramjit Singh",
-      "assigned_telephonic_exec": "Simranjit Kaur",
-      "created_at": "2026-11-17",
       "payment_terms": "Not Discussed"
     },
     {
@@ -71958,26 +71944,6 @@
       "rejection_remarks": ""
     },
     {
-      "id": "QRY-5616",
-      "query_date": "2026-11-17",
-      "agent_id": "AGT-2108",
-      "product": "International Flight",
-      "query_details": "dxb-del",
-      "travel_date": "2026-12-02",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-11-18",
-      "status": "Rejected",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
-      "rejection_reason": "Agent Did Not Respond",
-      "rejection_remarks": ""
-    },
-    {
       "id": "QRY-5617",
       "query_date": "2026-11-17",
       "agent_id": "AGT-1119",
@@ -75608,6 +75574,11 @@
       "id": "AGT-1478",
       "entity_type": "agent",
       "deleted_at": "2026-11-26 08:06:02"
+    },
+    {
+      "id": "AGT-2108",
+      "entity_type": "agent",
+      "deleted_at": "2026-11-26 08:06:43"
     }
   ]
 }
