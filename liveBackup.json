@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-26T07:56:59.460Z",
+  "backed_up_at": "2026-11-26T07:57:27.408Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -22071,6 +22071,23 @@
       "remarks": "",
       "next_followup_date": "2026-11-27",
       "location": "aujla bye pass",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1537,
+      "visit_date": "2026-11-26",
+      "agent_id": "AGT-1992",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "ashwani",
+      "mobile": "9814902164",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-27",
+      "location": "Amritsar",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
