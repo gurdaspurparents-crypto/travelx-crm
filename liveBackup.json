@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-26T08:04:11.653Z",
+  "backed_up_at": "2026-11-26T08:06:12.546Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -1816,20 +1816,6 @@
       "area": "Adda Jaura Chattran",
       "agent_type": "Retail Travel Agent",
       "stage": "Dormant",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1478",
-      "name": "Mr.ranjit singh",
-      "company_name": "baba shri chand tour travel",
-      "mobile": "7710155028",
-      "city": "Jaura Chattran",
-      "area": "Jaura Chittran",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -30490,21 +30476,6 @@
       "payment_terms": null
     },
     {
-      "id": 1310,
-      "call_date": "2026-09-26",
-      "agent_id": "AGT-1478",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy ",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-27",
-      "payment_terms": null
-    },
-    {
       "id": 1312,
       "call_date": "2026-09-26",
       "agent_id": "AGT-1475",
@@ -34310,21 +34281,6 @@
       "agent_requirement": "good relpy",
       "interest_level": "Interested / Warm",
       "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-10-03",
-      "payment_terms": null
-    },
-    {
-      "id": 1637,
-      "call_date": "2026-10-02",
-      "agent_id": "AGT-1478",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "kam nhi karda ",
-      "interest_level": "Interested / Warm",
-      "call_result": "Call Connected / In Discussion",
       "remarks": "",
       "next_followup_date": "2026-10-03",
       "payment_terms": null
@@ -58345,21 +58301,6 @@
       "payment_terms": null
     },
     {
-      "id": 3396,
-      "call_date": "2026-11-04",
-      "agent_id": "AGT-1478",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "no visit",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-11-05",
-      "payment_terms": null
-    },
-    {
       "id": 3397,
       "call_date": "2026-11-04",
       "agent_id": "AGT-1480",
@@ -75662,6 +75603,11 @@
       "id": "AGT-1428",
       "entity_type": "agent",
       "deleted_at": "2026-11-26 08:04:01"
+    },
+    {
+      "id": "AGT-1478",
+      "entity_type": "agent",
+      "deleted_at": "2026-11-26 08:06:02"
     }
   ]
 }
