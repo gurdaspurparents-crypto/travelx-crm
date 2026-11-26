@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-26T07:59:27.549Z",
+  "backed_up_at": "2026-11-26T08:00:47.844Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -426,20 +426,6 @@
       "name": "KHOLI ",
       "company_name": "KOHLI  Telecom",
       "mobile": "+91 98146 12211",
-      "city": "Dera Baba Nanak",
-      "area": "Dbn",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1099",
-      "name": "AULAKH ",
-      "company_name": "AULAKH TRAVEL",
-      "mobile": "9882440084",
       "city": "Dera Baba Nanak",
       "area": "Dbn",
       "agent_type": "Retail Travel Agent",
@@ -25204,21 +25190,6 @@
       "payment_terms": null
     },
     {
-      "id": 751,
-      "call_date": "2026-09-10",
-      "agent_id": "AGT-1099",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "maim kam nhi  karde ",
-      "interest_level": "Interested / Warm",
-      "call_result": "Requirement Received",
-      "remarks": "",
-      "next_followup_date": "2026-09-12",
-      "payment_terms": null
-    },
-    {
       "id": 753,
       "call_date": "2026-09-11",
       "agent_id": "AGT-1676",
@@ -38884,21 +38855,6 @@
       "payment_terms": null
     },
     {
-      "id": 1943,
-      "call_date": "2026-10-06",
-      "agent_id": "AGT-1099",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "nonumber",
-      "interest_level": "Interested / Warm",
-      "call_result": "Follow-up Required",
-      "remarks": "",
-      "next_followup_date": "2026-10-07",
-      "payment_terms": null
-    },
-    {
       "id": 1944,
       "call_date": "2026-10-06",
       "agent_id": "AGT-1997",
@@ -39938,21 +39894,6 @@
       "call_date": "2026-10-07",
       "agent_id": "AGT-1096",
       "visit_id": 720,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-10-08",
-      "payment_terms": null
-    },
-    {
-      "id": 2018,
-      "call_date": "2026-10-07",
-      "agent_id": "AGT-1099",
-      "visit_id": null,
       "executive_name": "Yug",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
@@ -41144,21 +41085,6 @@
       "agent_requirement": "",
       "interest_level": "Interested / Warm",
       "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-10-09",
-      "payment_terms": null
-    },
-    {
-      "id": 2104,
-      "call_date": "2026-10-08",
-      "agent_id": "AGT-1099",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Warm",
-      "call_result": "Follow-up Required",
       "remarks": "",
       "next_followup_date": "2026-10-09",
       "payment_terms": null
@@ -76456,6 +76382,11 @@
       "id": "AGT-1069",
       "entity_type": "agent",
       "deleted_at": "2026-11-26 07:59:17"
+    },
+    {
+      "id": "AGT-1099",
+      "entity_type": "agent",
+      "deleted_at": "2026-11-26 08:00:37"
     }
   ]
 }
