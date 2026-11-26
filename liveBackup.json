@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-26T11:25:32.277Z",
+  "backed_up_at": "2026-11-26T11:25:55.624Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -2864,20 +2864,6 @@
       "mobile": "9988225389",
       "city": "Qadian",
       "area": "Qadian",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1733",
-      "name": "Mr. Harkirat singh",
-      "company_name": "Saini photostate",
-      "mobile": "8968069839",
-      "city": "Tibri",
-      "area": "Saidowal",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
@@ -25474,21 +25460,6 @@
       "payment_terms": null
     },
     {
-      "id": 853,
-      "call_date": "2026-09-12",
-      "agent_id": "AGT-1733",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "busy ",
-      "interest_level": "Interested / Warm",
-      "call_result": "No Response",
-      "remarks": "",
-      "next_followup_date": "2026-09-14",
-      "payment_terms": null
-    },
-    {
       "id": 855,
       "call_date": "2026-09-12",
       "agent_id": "AGT-1736",
@@ -34994,36 +34965,6 @@
       "agent_requirement": "",
       "interest_level": "Interested / Warm",
       "call_result": "Call Connected / In Discussion",
-      "remarks": "",
-      "next_followup_date": "2026-10-04",
-      "payment_terms": null
-    },
-    {
-      "id": 1757,
-      "call_date": "2026-10-03",
-      "agent_id": "AGT-1733",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-10-04",
-      "payment_terms": null
-    },
-    {
-      "id": 1758,
-      "call_date": "2026-10-03",
-      "agent_id": "AGT-1733",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-04",
       "payment_terms": null
@@ -44569,21 +44510,6 @@
       "payment_terms": null
     },
     {
-      "id": 2496,
-      "call_date": "2026-10-16",
-      "agent_id": "AGT-1733",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-10-17",
-      "payment_terms": null
-    },
-    {
       "id": 2497,
       "call_date": "2026-10-16",
       "agent_id": "AGT-1834",
@@ -48479,21 +48405,6 @@
       "agent_requirement": "busy",
       "interest_level": "Interested / Warm",
       "call_result": "Follow-up Required",
-      "remarks": "",
-      "next_followup_date": "2026-10-22",
-      "payment_terms": null
-    },
-    {
-      "id": 2793,
-      "call_date": "2026-10-21",
-      "agent_id": "AGT-1733",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good elpy no visit",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
       "remarks": "",
       "next_followup_date": "2026-10-22",
       "payment_terms": null
@@ -73726,6 +73637,11 @@
       "id": "AGT-1466",
       "entity_type": "agent",
       "deleted_at": "2026-11-26 11:25:21"
+    },
+    {
+      "id": "AGT-1733",
+      "entity_type": "agent",
+      "deleted_at": "2026-11-26 11:25:44"
     }
   ]
 }
