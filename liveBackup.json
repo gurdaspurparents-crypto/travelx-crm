@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-26T06:40:49.161Z",
+  "backed_up_at": "2026-11-26T07:56:59.460Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -4192,8 +4192,8 @@
       "name": "Rishi",
       "company_name": "Internet cafe ",
       "mobile": "7973235771",
-      "city": "Allechak",
-      "area": "Allechak",
+      "city": "Alle Nangal",
+      "area": "Alle Nangal",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikramjit Singh",
