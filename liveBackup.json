@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-26T08:06:53.846Z",
+  "backed_up_at": "2026-11-26T08:07:20.252Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -2038,20 +2038,6 @@
       "mobile": "9041964088",
       "city": "Kahnuwan",
       "area": "Kahnwan",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1510",
-      "name": "poonam preet ",
-      "company_name": "common service centre",
-      "mobile": "7087890837",
-      "city": "Kahnuwan",
-      "area": "Kahnuwan",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
@@ -14553,23 +14539,6 @@
       "gps_address": null
     },
     {
-      "id": 1097,
-      "visit_date": "2026-10-21",
-      "agent_id": "AGT-1510",
-      "executive_name": "Bikramjit Singh",
-      "person_met": "poonam preet ",
-      "mobile": "7087890837",
-      "is_new_agent": 0,
-      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\",\"Travel Insurance\",\"International Flight\",\"Hotel Booking\",\"Forex\",\"Bus Booking\",\"Money Transfer\"]",
-      "response_level": "Interested / Warm",
-      "remarks": "",
-      "next_followup_date": "2026-10-22",
-      "location": "Kahnuwan",
-      "gps_latitude": null,
-      "gps_longitude": null,
-      "gps_address": null
-    },
-    {
       "id": 1098,
       "visit_date": "2026-10-22",
       "agent_id": "AGT-1071",
@@ -22462,21 +22431,6 @@
       "agent_requirement": "",
       "interest_level": "Interested / Warm",
       "call_result": "No Response",
-      "remarks": "",
-      "next_followup_date": "2026-09-09",
-      "payment_terms": null
-    },
-    {
-      "id": 461,
-      "call_date": "2026-09-07",
-      "agent_id": "AGT-1510",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Warm",
-      "call_result": "Not Interested",
       "remarks": "",
       "next_followup_date": "2026-09-09",
       "payment_terms": null
@@ -36537,21 +36491,6 @@
       "payment_terms": null
     },
     {
-      "id": 1806,
-      "call_date": "2026-10-03",
-      "agent_id": "AGT-1510",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-10-04",
-      "payment_terms": null
-    },
-    {
       "id": 1808,
       "call_date": "2026-10-05",
       "agent_id": "AGT-1485",
@@ -47277,21 +47216,6 @@
       "payment_terms": null
     },
     {
-      "id": 2602,
-      "call_date": "2026-10-17",
-      "agent_id": "AGT-1510",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-10-18",
-      "payment_terms": null
-    },
-    {
       "id": 2603,
       "call_date": "2026-10-17",
       "agent_id": "AGT-1509",
@@ -52861,21 +52785,6 @@
       "call_date": "2026-10-24",
       "agent_id": "AGT-1497",
       "visit_id": 1094,
-      "executive_name": "Simranjit Kaur",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-10-29",
-      "payment_terms": null
-    },
-    {
-      "id": 3001,
-      "call_date": "2026-10-24",
-      "agent_id": "AGT-1510",
-      "visit_id": 1097,
       "executive_name": "Simranjit Kaur",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
@@ -75579,6 +75488,11 @@
       "id": "AGT-2108",
       "entity_type": "agent",
       "deleted_at": "2026-11-26 08:06:43"
+    },
+    {
+      "id": "AGT-1510",
+      "entity_type": "agent",
+      "deleted_at": "2026-11-26 08:07:09"
     }
   ]
 }
