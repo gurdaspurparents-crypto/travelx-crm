@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-26T08:03:10.254Z",
+  "backed_up_at": "2026-11-26T08:03:46.852Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -1352,20 +1352,6 @@
       "mobile": "9914201023",
       "city": "Gurdaspur",
       "area": "Hardochanni Road,gsp",
-      "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
-      "assigned_marketing_exec": "Bikram",
-      "assigned_telephonic_exec": "Simran",
-      "created_at": "2026-08-29",
-      "payment_terms": "Not Discussed"
-    },
-    {
-      "id": "AGT-1385",
-      "name": "Mr.Deepak kumar",
-      "company_name": "Csc centre ",
-      "mobile": "9592990809",
-      "city": "Gurdaspur",
-      "area": "Near City Nursing Clg,gsp",
       "agent_type": "Retail Travel Agent",
       "stage": "Followup",
       "assigned_marketing_exec": "Bikram",
@@ -28628,21 +28614,6 @@
       "payment_terms": null
     },
     {
-      "id": 1117,
-      "call_date": "2026-09-23",
-      "agent_id": "AGT-1385",
-      "visit_id": null,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-09-25",
-      "payment_terms": null
-    },
-    {
       "id": 1121,
       "call_date": "2026-09-23",
       "agent_id": "AGT-1424",
@@ -37062,21 +37033,6 @@
       "call_date": "2026-10-05",
       "agent_id": "AGT-1384",
       "visit_id": 554,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-10-06",
-      "payment_terms": null
-    },
-    {
-      "id": 1834,
-      "call_date": "2026-10-05",
-      "agent_id": "AGT-1385",
-      "visit_id": null,
       "executive_name": "Yug",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
@@ -48957,21 +48913,6 @@
       "call_date": "2026-10-21",
       "agent_id": "AGT-1384",
       "visit_id": 993,
-      "executive_name": "Yug",
-      "is_connected": 1,
-      "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
-      "agent_requirement": "good relpy",
-      "interest_level": "Interested / Warm",
-      "call_result": "Interested",
-      "remarks": "",
-      "next_followup_date": "2026-10-22",
-      "payment_terms": null
-    },
-    {
-      "id": 2706,
-      "call_date": "2026-10-21",
-      "agent_id": "AGT-1385",
-      "visit_id": null,
       "executive_name": "Yug",
       "is_connected": 1,
       "services_discussed": "[\"Domestic Flight\",\"Tour Packages\"]",
@@ -75815,6 +75756,11 @@
       "id": "AGT-1290",
       "entity_type": "agent",
       "deleted_at": "2026-11-26 08:02:59"
+    },
+    {
+      "id": "AGT-1385",
+      "entity_type": "agent",
+      "deleted_at": "2026-11-26 08:03:36"
     }
   ]
 }
