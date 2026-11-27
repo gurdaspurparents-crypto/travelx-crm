@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-27T10:56:57.134Z",
+  "backed_up_at": "2026-11-27T11:11:45.977Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -71556,13 +71556,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-25",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5711",
@@ -71576,13 +71576,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-25",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5712",
@@ -71616,13 +71616,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-25",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5714",
@@ -71656,13 +71656,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-25",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5716",
@@ -71676,13 +71676,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-25",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5717",
@@ -71696,13 +71696,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-25",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5718",
@@ -71716,13 +71716,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-25",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5719",
@@ -71736,13 +71736,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-25",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5721",
@@ -71756,13 +71756,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-25",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5722",
@@ -71776,13 +71776,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-25",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5724",
@@ -71796,13 +71796,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-25",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5725",
@@ -71816,13 +71816,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-25",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5726",
@@ -71836,13 +71836,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-25",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5727",
@@ -71856,13 +71856,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-25",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5728",
@@ -71876,13 +71876,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-25",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5729",
@@ -71896,13 +71896,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-25",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5731",
@@ -71916,13 +71916,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-25",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5732",
@@ -71936,13 +71936,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-25",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5733",
@@ -71956,33 +71956,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-28",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
-    },
-    {
-      "id": "QRY-5734",
-      "query_date": "2026-11-27",
-      "agent_id": "AGT-2087",
-      "product": "International Flight",
-      "query_details": "auh/shj-atq",
-      "travel_date": "2026-12-12",
-      "pax_details": "2 Adults",
-      "estimated_value": 0,
-      "quoted_amount": 0,
-      "handling_employee": "Simranjit Kaur",
-      "followup_date": "2026-11-28",
-      "status": "New",
-      "booking_date": null,
-      "booking_value": 0,
-      "booking_ref_no": null,
-      "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5735",
@@ -73675,6 +73655,11 @@
       "id": "AGT-1232",
       "entity_type": "agent",
       "deleted_at": "2026-11-26 11:26:36"
+    },
+    {
+      "id": "QRY-5734",
+      "entity_type": "query",
+      "deleted_at": "2026-11-27 11:11:35"
     }
   ]
 }
