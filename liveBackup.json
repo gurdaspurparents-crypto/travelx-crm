@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-27T11:14:14.487Z",
+  "backed_up_at": "2026-11-27T11:14:33.970Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -72083,6 +72083,26 @@
       "closing_employee": null,
       "rejection_reason": null,
       "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5742",
+      "query_date": "2026-11-27",
+      "agent_id": "AGT-1530",
+      "product": "International Flight",
+      "query_details": "shj-atq",
+      "travel_date": "2026-12-12",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-11-28",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
     }
   ],
   "field_trips": [
@@ -73720,6 +73740,11 @@
       "id": "QRY-5734",
       "entity_type": "query",
       "deleted_at": "2026-11-27 11:11:35"
+    },
+    {
+      "id": "QRY-5741",
+      "entity_type": "query",
+      "deleted_at": "2026-11-27 11:14:23"
     }
   ]
 }
