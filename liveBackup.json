@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-27T09:56:57.125Z",
+  "backed_up_at": "2026-11-27T10:10:25.372Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -21587,6 +21587,23 @@
       "remarks": "",
       "next_followup_date": "2026-11-28",
       "location": "Dinanagar ",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1549,
+      "visit_date": "2026-11-27",
+      "agent_id": "AGT-1949",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "vikas",
+      "mobile": "+91 85588 04978",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\"]",
+      "response_level": "Not Interested",
+      "remarks": "",
+      "next_followup_date": "2026-11-28",
+      "location": "Gurdaspur",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
