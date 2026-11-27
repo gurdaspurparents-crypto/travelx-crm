@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-27T11:12:07.454Z",
+  "backed_up_at": "2026-11-27T11:13:47.125Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -2123,7 +2123,7 @@
       "city": "Kalanour",
       "area": "Kalanaur, Main Bazar, Gsp",
       "agent_type": "Retail Travel Agent",
-      "stage": "QueryReceived",
+      "stage": "Active",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -72016,13 +72016,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-28",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5738",
@@ -72030,6 +72030,26 @@
       "agent_id": "AGT-2087",
       "product": "International Flight",
       "query_details": "auh/shj-atq",
+      "travel_date": "2026-12-12",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-11-28",
+      "status": "Converted",
+      "booking_date": "2026-11-27",
+      "booking_value": 1,
+      "booking_ref_no": "1",
+      "closing_employee": "Simranjit Kaur",
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5739",
+      "query_date": "2026-11-27",
+      "agent_id": "AGT-1533",
+      "product": "International Flight",
+      "query_details": "shj-atq",
       "travel_date": "2026-12-12",
       "pax_details": "2 Adults",
       "estimated_value": 0,
