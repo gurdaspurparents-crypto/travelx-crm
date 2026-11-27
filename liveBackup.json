@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-27T05:56:57.089Z",
+  "backed_up_at": "2026-11-27T06:22:19.330Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -71840,6 +71840,26 @@
       "agent_id": "AGT-1430",
       "product": "International Flight",
       "query_details": "del-doh",
+      "travel_date": "2026-12-12",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-11-28",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5737",
+      "query_date": "2026-11-27",
+      "agent_id": "AGT-1110",
+      "product": "International Flight",
+      "query_details": "dxb-atq",
       "travel_date": "2026-12-12",
       "pax_details": "2 Adults",
       "estimated_value": 0,
