@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-28T07:35:28.828Z",
+  "backed_up_at": "2026-11-28T07:36:56.965Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -3705,7 +3705,7 @@
       "city": "Alle Nangal",
       "area": "Alle Nangal",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikramjit Singh",
       "assigned_telephonic_exec": "Simranjit Kaur",
       "created_at": "2026-09-02",
@@ -73206,6 +73206,26 @@
       "agent_id": "AGT-2069",
       "product": "International Flight",
       "query_details": "atq-mal",
+      "travel_date": "2026-12-13",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-11-29",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
+    },
+    {
+      "id": "QRY-5758",
+      "query_date": "2026-11-28",
+      "agent_id": "AGT-1917",
+      "product": "International Flight",
+      "query_details": "lis-del",
       "travel_date": "2026-12-13",
       "pax_details": "2 Adults",
       "estimated_value": 0,
