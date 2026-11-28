@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-28T06:40:55.317Z",
+  "backed_up_at": "2026-11-28T06:46:17.044Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -22250,6 +22250,40 @@
       "remarks": "",
       "next_followup_date": "2026-11-29",
       "location": "Gurdaspur",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1588,
+      "visit_date": "2026-11-28",
+      "agent_id": "AGT-1447",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr.kali",
+      "mobile": "9501466001",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-29",
+      "location": "Hardochanni",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1589,
+      "visit_date": "2026-11-28",
+      "agent_id": "AGT-1492",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr. Taranjit singh",
+      "mobile": "9256564448",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-29",
+      "location": "Kahnuwan",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
