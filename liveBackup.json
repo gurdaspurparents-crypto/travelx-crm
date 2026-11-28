@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-28T11:17:20.909Z",
+  "backed_up_at": "2026-11-28T11:32:25.858Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -555,7 +555,7 @@
       "city": "Dhariwal",
       "area": "Opp. Union Bank Of India, Near New Bus Stand, Dhariwal",
       "agent_type": "Retail Travel Agent",
-      "stage": "Followup",
+      "stage": "QueryReceived",
       "assigned_marketing_exec": "Bikram",
       "assigned_telephonic_exec": "Simran",
       "created_at": "2026-08-29",
@@ -69963,13 +69963,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-15",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5578",
@@ -72463,13 +72463,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-25",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5713",
@@ -72503,13 +72503,13 @@
       "quoted_amount": 0,
       "handling_employee": "Simranjit Kaur",
       "followup_date": "2026-11-25",
-      "status": "New",
+      "status": "Rejected",
       "booking_date": null,
       "booking_value": 0,
       "booking_ref_no": null,
       "closing_employee": null,
-      "rejection_reason": null,
-      "rejection_remarks": null
+      "rejection_reason": "Competitor Rate",
+      "rejection_remarks": ""
     },
     {
       "id": "QRY-5715",
@@ -73410,6 +73410,26 @@
       "closing_employee": null,
       "rejection_reason": "Competitor Rate",
       "rejection_remarks": ""
+    },
+    {
+      "id": "QRY-5765",
+      "query_date": "2026-11-28",
+      "agent_id": "AGT-1121",
+      "product": "International Flight",
+      "query_details": "auh-atq",
+      "travel_date": "2026-12-13",
+      "pax_details": "2 Adults",
+      "estimated_value": 0,
+      "quoted_amount": 0,
+      "handling_employee": "Simranjit Kaur",
+      "followup_date": "2026-11-29",
+      "status": "New",
+      "booking_date": null,
+      "booking_value": 0,
+      "booking_ref_no": null,
+      "closing_employee": null,
+      "rejection_reason": null,
+      "rejection_remarks": null
     }
   ],
   "field_trips": [
