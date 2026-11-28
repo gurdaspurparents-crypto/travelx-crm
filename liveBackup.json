@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-28T06:25:22.213Z",
+  "backed_up_at": "2026-11-28T06:27:19.619Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -22131,6 +22131,23 @@
       "remarks": "",
       "next_followup_date": "2026-11-29",
       "location": "jakria",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1581,
+      "visit_date": "2026-11-28",
+      "agent_id": "AGT-2103",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "SUMEL",
+      "mobile": "9878073162",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\",\"Tour Packages\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-29",
+      "location": "KALIJPUR",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
