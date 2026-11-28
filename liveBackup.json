@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-28T07:30:54.255Z",
+  "backed_up_at": "2026-11-28T07:31:21.199Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -22318,6 +22318,40 @@
       "remarks": "",
       "next_followup_date": "2026-11-29",
       "location": "Tibber",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1592,
+      "visit_date": "2026-11-28",
+      "agent_id": "AGT-1906",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Sony ",
+      "mobile": "6280199537",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-29",
+      "location": "Kot Todar Mall",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1593,
+      "visit_date": "2026-11-28",
+      "agent_id": "AGT-1921",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Aman",
+      "mobile": "7087953376",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-29",
+      "location": "Bhaini Mia Khan",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
