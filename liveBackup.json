@@ -1,5 +1,5 @@
 {
-  "backed_up_at": "2026-11-28T09:50:12.195Z",
+  "backed_up_at": "2026-11-28T09:52:34.759Z",
   "agents": [
     {
       "id": "AGT-1008",
@@ -22454,6 +22454,23 @@
       "remarks": "",
       "next_followup_date": "2026-11-29",
       "location": "Nikke Ghuman",
+      "gps_latitude": null,
+      "gps_longitude": null,
+      "gps_address": null
+    },
+    {
+      "id": 1600,
+      "visit_date": "2026-11-28",
+      "agent_id": "AGT-1964",
+      "executive_name": "Bikramjit Singh",
+      "person_met": "Mr Rakesh ",
+      "mobile": "+91 884-7455391",
+      "is_new_agent": 0,
+      "products_pitched": "[\"Domestic Flight\",\"Visa Services\"]",
+      "response_level": "Interested / Warm",
+      "remarks": "",
+      "next_followup_date": "2026-11-29",
+      "location": "Gharota",
       "gps_latitude": null,
       "gps_longitude": null,
       "gps_address": null
